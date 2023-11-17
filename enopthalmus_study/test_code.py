@@ -1,7 +1,4 @@
-# Dummy geometry utils to test Ryan's code
-
-from math import sqrt
-
+# Fake mimics geometry objects
 class Sphere:
   def __init__(self, x, y, z, radius):
     self.radius = radius
@@ -10,7 +7,10 @@ class Sphere:
 class Spline:
   def __init__(self, points):
     self.points = points
-    
+
+# Dummy geometry utils to test Ryan's code
+from math import sqrt # needed to calculate vector magnitude
+
 def dot(u, v):
   return [u[0] * v[0], 
           u[1] * v[1], 
@@ -51,8 +51,18 @@ import mimics
 from mimics import segment
 from mimics import analyze
 
-import const
+import const # Contains definitions of all materials
+
+# Segment orbital contents into these Materials & measure volume
+materials = {
+  'air'    : const.MATL_AIR, 
+	'fat'    : const.MATL_FAT,
+	'muscle' : const.MATL_MUSCLE
+}
+
 from utils import *
+
+
 
 # Main function -  called if file is run and not imported
 if __name__ == '__main__':
@@ -96,9 +106,8 @@ if __name__ == '__main__':
   # Create planes using these origins and all in the X,Y plane (normal is Z+)
   norm_z = [0, 0, 1]
   z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) for orig in plane_origins]
-   
-  # For each plane, find intersections with the spline lines and create a 
-  # bounding box based on the intersection points.
+
+  # Function to create a mimics.BoundingBox3D given two intesection points
   def make_crop_box(pt_up, pt_down):
     # Calculate the extents of the cropping box.
     # Align the crop box along the XY line between the two intesection points, 
@@ -110,7 +119,10 @@ if __name__ == '__main__':
     origin = (pt_down.x, pt_down.y, pt_down.z + spacing_z / 2)
     return mimics.BoundingBox3d(origin, vector_x, vector_y, vector_z)
   
+  # Create a blank list for the boxes
   boxes = []
+  # For each plane, find intersections with the spline lines and create a 
+  # bounding box based on the intersection points.
   for plane in z_planes:
     pt_up, pt_down = None, None
     for line in spline_lines:
@@ -126,7 +138,7 @@ if __name__ == '__main__':
     else:
       print(f"did not find intersection for plane {plane}")
 
-   # Then adjust the first and last bounding box to ensure full overlap.
+  # Adjust the first and last bounding box to ensure full overlap.
   boxes[0].third_vector[2] = -1.5 * boxes[0].third_vector[2]  # first goes down
   boxes[-1].third_vector[2] = 1.5 * boxes[-1].third_vector[2] # last goes up
    
@@ -144,15 +156,16 @@ if __name__ == '__main__':
     
     pause 
             
+    mask_bone = material_mask("Bone Mask", const.MATL_BONE)
+    mask_air = material_mask("Air Mask", const.MATL_AIR)
+    
     #boolean w air
     combined_masks = mimics.segment.boolean_operations(combined_masks, mask_bone, 'Unite')
+    combined_masks = mimics.segment.boolean_operations(combined_masks, mask_air,  'Unite')
     
-    mask_air = mimics.segment.create_mask()
-    mask_air = mimics.segment.threshold(mask_air, mimics.segment.HU2GV(-1024), mimics.segment.HU2GV(-200))
-    boolean_masks = mimics.segment.boolean_operations(boolean_masks, mask_air, 'Unite')            
-    smartfill_mask = mimics.segment.smart_fill_global(boolean_masks, 7)
+    smartfill_mask = mimics.segment.smart_fill_global(combined_masks, 7)
 
-    
+###############################
 
 # Ryan version
   intersect_points = {} # here len(intersect_points) == 0, so using len()+1 below starts indices from 1

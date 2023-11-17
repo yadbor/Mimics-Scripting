@@ -3,17 +3,18 @@
 
 # Define some useful "constants"
 
-NUM_PLANES = 10	# Number of planes to divide up orbit
+NUM_PLANES = 10	# Number of planes to divide up orbit (TODO move to main code?)
 
-# Hounsfield Units for various substances and 
-# Grey Value conversions to use with mimics.segment.threshold()
+# Hounsfield Units (HU) for various substances and their Grey Value (GV)
+# conversions to use with mimics.segment.threshold(). Mimics routines all use GV.
 
-#import mimics # to use HU to GV converion routine
+# These have all been chosen by Ryan for the enopthalmus study based on input
+# from surgeons about accuracy of orbital contents segmentation.
 
-import mimics.segment
+import mimics.segment # For Dummy HU to GV converion routine.
 
-MIN_HU = -1024
-MAX_HU = 3072
+MIN_HU = -1024 # The minimum possible HU
+MAX_HU =  3072 # The maximum possible HU
 
 MIN_BONE_HU = 226
 MAX_BONE_HU = MAX_HU - 1
@@ -27,6 +28,7 @@ MAX_FAT_HU = -24
 MIN_MUSCLE_HU = MAX_FAT_HU
 MAX_MUSCLE_HU = 100
 
+# Pre-calculate GV equivalents of all material thresholds
 MIN_GV = mimics.segment.HU2GV(MIN_HU)
 MAX_GV = mimics.segment.HU2GV(MAX_HU)
 
@@ -42,16 +44,10 @@ MAX_FAT_GV = mimics.segment.HU2GV(MAX_FAT_HU)
 MIN_MUSCLE_GV = mimics.segment.HU2GV(MIN_MUSCLE_HU)
 MAX_MUSCLE_GV = mimics.segment.HU2GV(MAX_MUSCLE_HU)
 
-import utils
+from utils import Material # A dataclass for defining materials
 
 MATL_AIR = Material(lo = MIN_AIR_GV, hi = MAX_AIR_GV, units = 'GV')
 MATL_FAT = Material(lo = MIN_FAT_GV, hi = MAX_FAT_GV, units = 'GV')
 MATL_MUSCLE = Material(lo = MIN_MUSCLE_GV, hi = MAX_MUSCLE_GV, units = 'GV')
 MATL_BONE = Material(lo = MIN_BONE_GV, hi = MAX_BONE_GV, units = 'GV')
 
-materials = {
-  'air' : MATL_AIR, 
-	'fat' : MATL_FAT,
-	'muscle' : MATL_MUSCLE
-}
-			 
