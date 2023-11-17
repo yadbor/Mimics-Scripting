@@ -88,14 +88,71 @@ if __name__ == '__main__':
   print(delta_z)
   spacing_z = delta_z/const.NUM_PLANES
     
-   # Create a list of plane origin points, each aligned to the orbit in the X,Y plane 
-   # and spaced in Z from min_z to min_z + delta_z (which is close to max_z)
-   orig_x = sphere1.center[0]
-   orig_y = sphere1.center[1]
-   plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] for z in range(const.NUM_PLANES - 1)]
-   # Create planes using these origins and all in the X,Y plane (normal is Z+)
-   norm_z = [0, 0, 1]
-   z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) for orig in plane_origins]
+  # Create a list of plane origin points, each aligned to the orbit in the X,Y plane 
+  # and spaced in Z from min_z to min_z + delta_z (which is close to max_z)
+  orig_x = sphere1.center[0]
+  orig_y = sphere1.center[1]
+  plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] for z in range(const.NUM_PLANES - 1)]
+  # Create planes using these origins and all in the X,Y plane (normal is Z+)
+  norm_z = [0, 0, 1]
+  z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) for orig in plane_origins]
+   
+  # For each plane, find intersections with the spline lines and create a 
+  # bounding box based on the intersection points.
+  def make_crop_box(pt_up, pt_down):
+    # Calculate the extents of the cropping box.
+    # Align the crop box along the XY line between the two intesection points, 
+    # expanded slightly to ensure it covers the whole orbit
+    vector_x = [ 1.2 * (pt_up.x - pt_down.x ), 1.2 * (pt_up.y - pt_down.y ), 0]
+    vector_y = [0, -20, 0]       # -Y is anterior, so point towards front of face
+    vector_z = [0, 0, spacing_z] # thickness is distance bwtween planes
+    # Put the origin above the down intesection point, midway between the z planes
+    origin = (pt_down.x, pt_down.y, pt_down.z + spacing_z / 2)
+    return mimics.BoundingBox3d(origin, vector_x, vector_y, vector_z)
+  
+  boxes = []
+  for plane in z_planes:
+    pt_up, pt_down = None, None
+    for line in spline_lines:
+      from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z])
+      from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z])
+      if (from_above):
+        pt_up = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
+      if (from_below):
+        pt_down = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
+
+    if from_above and from_below:
+      boxes.append(make_crop_box(pt_up, pt_down))
+    else:
+      print(f"did not find intersection for plane {plane}")
+
+   # Then adjust the first and last bounding box to ensure full overlap.
+  boxes[0].third_vector[2] = -1.5 * boxes[0].third_vector[2]  # first goes down
+  boxes[-1].third_vector[2] = 1.5 * boxes[-1].third_vector[2] # last goes up
+   
+  # Create the combined mask
+  combined_masks = mimics.segment.create_mask()
+  # Loop through each plane again, create a mask, crop it, and Union it together.
+  for bbox in boxes:
+    # Create a mask, threshold to cover everything
+    m = mimics.segment.create_mask()
+    mimics.segment.threshold(m, const.MIN_GV, const.MAX_GV)
+    # Crop it with BoundingBox for this plane
+    mimics.segment.crop_mask(m, bbox)
+    # Union with the existing mask
+    combined_masks = mimics.segment.boolean_operations(combined_masks, m, 'Unite')
+    
+    pause 
+            
+    #boolean w air
+    combined_masks = mimics.segment.boolean_operations(combined_masks, mask_bone, 'Unite')
+    
+    mask_air = mimics.segment.create_mask()
+    mask_air = mimics.segment.threshold(mask_air, mimics.segment.HU2GV(-1024), mimics.segment.HU2GV(-200))
+    boolean_masks = mimics.segment.boolean_operations(boolean_masks, mask_air, 'Unite')            
+    smartfill_mask = mimics.segment.smart_fill_global(boolean_masks, 7)
+
+    
 
 # Ryan version
   intersect_points = {} # here len(intersect_points) == 0, so using len()+1 below starts indices from 1
