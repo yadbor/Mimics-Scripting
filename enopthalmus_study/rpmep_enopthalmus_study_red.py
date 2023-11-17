@@ -35,16 +35,17 @@ if mimics.data.objects.find("Sphere 1", False) == None:
 			show_message_box=True, confirm=True, title=None
 		)
 		
-# The DICOM co-ordinate system is defined (for BIPED) as patient LPS. That is:
+# The DICOM co-ordinate system is defined (for a BIPED) as patient LPS. That is:
 #    X+ to the Left hand side of the patient
 #    Y+ to the Posterior (towards the back)
 #    Z+ to the Superior (towards the head)
+#
 # Mimics appears to use the DICOM LPS co-ordinate system.
-
-# Which eye is being processed? The head is usually scanned in the 
-# centre of the CT co-ordinate system, so X=0 is roughly the midline
-# meaning the Right eye is X < 0 and the Left eye is X > 0
-# TODO - a possibly more robust midline is the mean image X co-ordinates
+#
+# Which eye is being analysed? The head is usually scanned in the centre 
+# of the CT co-ordinate system, so X=0 is roughly the midline, meaning 
+# the Right eye is X < 0 and the Left eye is X > 0
+# TODO - a possibly more robust midline is the mean image X co-ordinate
 if sphere1.x < 0:
 	side = 'right'
 elif sphere1.x > 0:
@@ -57,7 +58,7 @@ if mimics.data.objects.find("Orbital Volume", False) == None:
     print(len(spline1.points))
 	
 	# Decompose the spline into straight lines between each pair of points in the spline.
-    # Use these to intersect with planes, as mimics doesn't have a spline intersect plane function.
+  # Use these to intersect with planes, as mimics doesn't have a spline intersect plane function.
 	# Use utils.circular_pairwise to join the last point back to the first point
 	spline_lines = [mimics.analyze.create_line(point1 = a, point2 = b) for a, b in circular_pairwise(spline1.points)]
  
