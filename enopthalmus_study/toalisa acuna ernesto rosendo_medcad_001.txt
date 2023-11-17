@@ -1,0 +1,43 @@
+RIGHT EYE
+Legend
+======
+
+Sphere:
+Name:          Name of the sphere
+X1,Y1,Z1:      Coordinates of the center
+R:             Radius
+
+Data
+====
+
+Sphere:
+Name     	X1       	Y1       	Z1      	R       	
+Sphere 1 	-29.9621 	-36.1569 	76.0900 	11.7760 	
+
+Legend
+======
+
+Spline:
+Name:          Name of the spline
+Xp,Yp,Zp:      Coordinates of point P on spline
+
+Data
+====
+
+Spline:
+Name: Spline 1
+X0 Y0 Z0: -22.31 -46.94 94.00 
+X1 Y1 Z1: -32.22 -46.54 92.10 
+X2 Y2 Z2: -41.65 -42.97 87.38 
+X3 Y3 Z3: -46.08 -38.57 83.18 
+X4 Y4 Z4: -45.93 -35.38 75.76 
+X5 Y5 Z5: -46.55 -35.92 68.80 
+X6 Y6 Z6: -44.12 -40.42 61.95 
+X7 Y7 Z7: -36.31 -44.23 58.72 
+X8 Y8 Z8: -26.31 -44.84 60.14 
+X9 Y9 Z9: -16.61 -46.71 64.92 
+X10 Y10 Z10: -11.09 -48.23 70.07 
+X11 Y11 Z11: -8.86  -46.85 76.10 
+X12 Y12 Z12: -10.93 -44.75 82.40 
+X13 Y13 Z13: -13.85 -45.99 88.07 
+X14 Y14 Z14: -17.94 -46.54 92.42 
