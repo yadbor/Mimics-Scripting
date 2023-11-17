@@ -14,9 +14,9 @@ def pairwise(iterable):
   return list(zip(a, b))
   
 # Variant of pairwise that loops to the first value (like a ring buffer).
-def circular_pairwise(iterable):
+def looped_pairwise(iterable):
   """Return consecutive overlapping pairs from a list. The final pair is (item, first)."""
-  # circular_pairwise('ABCDEFG') --> AB BC CD DE EF FG GA
+  # looped_pairwise('ABCDEFG') --> AB BC CD DE EF FG GA
   a, b = tee(iterable)
   return zip_longest(a, b, fillvalue=next(b, None))
   

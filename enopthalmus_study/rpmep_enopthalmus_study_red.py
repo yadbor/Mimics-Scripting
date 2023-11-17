@@ -18,7 +18,7 @@ materials = {
 	'muscle' : const.MATL_MUSCLE
 }
 
-# If there is no "Bone Mark" mask the make a bone mask and part
+# If there is no "Bone Mask" mask the make a bone mask and part
 if mimics.data.objects.find("Bone Mask") is None:
 	mask_bone = material_mask("Bone Mask", const.MATL_BONE)
 	part_bone = mask_to_part("Bone", mask_bone)
@@ -59,8 +59,8 @@ if mimics.data.objects.find("Orbital Volume", False) == None:
 	
 	# Decompose the spline into straight lines between each pair of points in the spline.
   # Use these to intersect with planes, as mimics doesn't have a spline intersect plane function.
-	# Use utils.circular_pairwise to join the last point back to the first point
-	spline_lines = [mimics.analyze.create_line(point1 = a, point2 = b) for a, b in circular_pairwise(spline1.points)]
+	# Use utils.looped_pairwise to join the last point back to the first point
+	spline_lines = [mimics.analyze.create_line(point1 = a, point2 = b) for a, b in looped_pairwise(spline1.points)]
  
     # Find the x,y,z limits of the spline points (i.e. the max & min for each axis)
 	# In the following code * unpacks the iterator (i.e. spline1_points), 
@@ -315,7 +315,7 @@ if not FILE_PATH.exists():
         log_csv_write = csv.writer(log_csv)
 		log_csv_write.writerow(["user", "date", "study", "Orbital Volume", "Air Volume", "Fat Volume", "Muscle Volume"])
 
-# Append the current results (wtih autocloses at exit)
+# Append the current results (with autocloses at exit)
 with open(FILE_PATH, 'a', newline='') as log_csv:
     log_csv_append = csv.writer(log_csv, dialect = 'excel')
     log_csv_append.writerow(results)

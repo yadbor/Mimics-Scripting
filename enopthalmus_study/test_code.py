@@ -64,30 +64,50 @@ from utils import *
 
 
 
-# Main function -  called if file is run and not imported
-if __name__ == '__main__':
+  # Main function -  called if file is run and not imported
+  if __name__ == '__main__':
+    
+  # If there is no "Bone Mask" mask then make one & corrresponding part.
+  if mimics.data.objects.find("Bone Mask") is None:
+  	mask_bone = material_mask("Bone Mask", const.MATL_BONE)
+  	part_bone = mask_to_part("Bone", mask_bone)
   
-  # Define the geomtry that the user enters
-  sphere1 = Sphere(11.776, -29.9621, -36.1569, 76.0900)
-  spline_pts = [[-22.31, -46.94, 94.00],
-                [-32.22, -46.54, 92.10],
-                [-41.65, -42.97, 87.38],
-                [-46.08, -38.57, 83.18],
-                [-45.93, -35.38, 75.76],
-                [-46.55, -35.92, 68.80],
-                [-44.12, -40.42, 61.95],
-                [-36.31, -44.23, 58.72],
-                [-26.31, -44.84, 60.14],
-                [-16.61, -46.71, 64.92],
-                [-11.09, -48.23, 70.07],
-                [-8.86, -46.85, 76.10],
-                [-10.93, -44.75, 82.40],
-                [-13.85, -45.99, 88.07],
-                [-17.94, -46.54, 92.42,]
-               ]
-  spline1 = Spline(points = spline_pts)
+  if TESTING: ##########################################################
+    # Define the geometry that the user would normally enter
+    sphere1 = Sphere(11.776, -29.9621, -36.1569, 76.0900)
+    spline_pts = [[-22.31, -46.94, 94.00],
+                  [-32.22, -46.54, 92.10],
+                  [-41.65, -42.97, 87.38],
+                  [-46.08, -38.57, 83.18],
+                  [-45.93, -35.38, 75.76],
+                  [-46.55, -35.92, 68.80],
+                  [-44.12, -40.42, 61.95],
+                  [-36.31, -44.23, 58.72],
+                  [-26.31, -44.84, 60.14],
+                  [-16.61, -46.71, 64.92],
+                  [-11.09, -48.23, 70.07],
+                  [-8.86, -46.85, 76.10],
+                  [-10.93, -44.75, 82.40],
+                  [-13.85, -45.99, 88.07],
+                  [-17.94, -46.54, 92.42,]
+                 ]
+    spline1 = Spline(points = spline_pts)
+  else: ################################################################
+    #User Inputs
+    if mimics.data.objects.find("Spline 1", False) == None:
+      spline1 = mimics.analyze.indicate_spline(
+        message='Indicate spline on the orbital rim, passing through landmarks', 
+        show_message_box=True, confirm=False, title=None
+       )
+    if mimics.data.objects.find("Sphere 1", False) == None:
+      sphere1 = mimics.analyze.indicate_sphere(
+        message="Indicate the globe using 3pts on the axial view", 
+        show_message_box=True, confirm=True, title=None
+      )
+  ######################################################################
   
-  spline_lines = [mimics.analyze.create_line(point1 = a, point2 = b) for a, b in circular_pairwise(spline1.points)]
+  
+  spline_lines = [mimics.analyze.create_line(point1 = a, point2 = b) for a, b in looped_pairwise(spline1.points)]
 
   (max_x, max_y, max_z) = [max(idx) for idx in list(zip(* spline1.points))]
   (min_x, min_y, min_z) = [min(idx) for idx in list(zip(* spline1.points))]
