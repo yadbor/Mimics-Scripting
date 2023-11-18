@@ -1,14 +1,5 @@
-# Fake mimics geometry objects
-class Sphere:
-  def __init__(self, x, y, z, radius):
-    self.radius = radius
-    self.center = [x, y, z]
 
-class Spline:
-  def __init__(self, points):
-    self.points = points
-
-# Dummy geometry utils to test Ryan's code
+# Simple 3D geometry functions
 from math import sqrt # needed to calculate vector magnitude
 
 def dot(u, v):
@@ -37,14 +28,14 @@ def clockwise(curve):
   norm = norm_from_points(A, B, C)
   return norm[1] < 0
 
-def side(point):
-  if point[1] < 0:
-    side = 'left'
-  elif point[1] > 0:
-    side = 'right'
-  else:
-    side = 'ambiguous'
-  return side
+# def side(point):
+#   if point[1] < 0:
+#     side = 'left'
+#   elif point[1] > 0:
+#     side = 'right'
+#   else:
+#     side = 'ambiguous'
+#   return side
 
 ## Only needed for dummy routines
 import mimics
@@ -52,6 +43,14 @@ from mimics import segment
 from mimics import analyze
 
 import const # Contains definitions of all materials
+
+# Define parameters for planes and crop boxes to trim front of orbit
+NUM_PLANES = 10	# Number of planes to divide up orbit
+MULT_XY = 1.2   # Factor to expand the XY extents of the crop box
+MULT_Z = 1.5    # Factor to expand the Z extent of the first & last crop boxes
+SIZE_Y = -20    # Y extent of crop boxes
+
+CLOSING_DIST = 7 # Smartfill 
 
 # Segment orbital contents into these Materials & measure volume
 materials = {
@@ -63,18 +62,27 @@ materials = {
 from utils import *
 
 
-
-  # Main function -  called if file is run and not imported
-  if __name__ == '__main__':
-    
-  # If there is no "Bone Mask" mask then make one & corrresponding part.
+# Main function -  called if file is run and not imported
+if __name__ == '__main__':
+  
+  # If there is no mask called "Bone Mask" then make one & a corrresponding part.
   if mimics.data.objects.find("Bone Mask") is None:
   	mask_bone = material_mask("Bone Mask", const.MATL_BONE)
   	part_bone = mask_to_part("Bone", mask_bone)
   
   if TESTING: ##########################################################
+    # Fake mimics geometry objects
+    class Sphere:
+      def __init__(self, x, y, z, radius):
+        self.radius = radius
+        self.center = [x, y, z]
+    
+    class Spline:
+      def __init__(self, points):
+        self.points = points
+
     # Define the geometry that the user would normally enter
-    sphere1 = Sphere(11.776, -29.9621, -36.1569, 76.0900)
+    orbit = Sphere(11.776, -29.9621, -36.1569, 76.0900)
     spline_pts = [[-22.31, -46.94, 94.00],
                   [-32.22, -46.54, 92.10],
                   [-41.65, -42.97, 87.38],
@@ -100,7 +108,7 @@ from utils import *
         show_message_box=True, confirm=False, title=None
        )
     if mimics.data.objects.find("Sphere 1", False) == None:
-      sphere1 = mimics.analyze.indicate_sphere(
+       orbit = mimics.analyze.indicate_sphere(
         message="Indicate the globe using 3pts on the axial view", 
         show_message_box=True, confirm=True, title=None
       )
@@ -112,28 +120,28 @@ from utils import *
   (max_x, max_y, max_z) = [max(idx) for idx in list(zip(* spline1.points))]
   (min_x, min_y, min_z) = [min(idx) for idx in list(zip(* spline1.points))]
  
-  print(f"X is {min_x} to {max_x}\nY is {min_y} to {max_y}\nZ is {min_z} to {max_z}") 
+  print("Spline limits are:")
+  print(f"X {min_x} to {max_x}\nY {min_y} to {max_y}\nZ {min_z} to {max_z}") 
  
   delta_z = round(max_z - min_z, 0)
-  print(delta_z)
-  spacing_z = delta_z/const.NUM_PLANES
-    
+  spacing_z = delta_z/NUM_PLANES
+  print(f"Z span {delta_z} divided by {const.NUMPLANES} = spacing_z {spacing_z}")
+  
   # Create a list of plane origin points, each aligned to the orbit in the X,Y plane 
-  # and spaced in Z from min_z to min_z + delta_z (which is close to max_z)
-  orig_x = sphere1.center[0]
-  orig_y = sphere1.center[1]
+  # and spaced in Z from min_z to min_z + delta_z (approximately max_z)
+  orig_x =  orbit.center[0]
+  orig_y =  orbit.center[1]
   plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] for z in range(const.NUM_PLANES - 1)]
-  # Create planes using these origins and all in the X,Y plane (normal is Z+)
+  # Create planes using these origins paralle to the X,Y plane (normal is Z+)
   norm_z = [0, 0, 1]
   z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) for orig in plane_origins]
 
-  # Function to create a mimics.BoundingBox3D given two intesection points
+  # Function to create a mimics.BoundingBox3D given two plane intersection points.
   def make_crop_box(pt_up, pt_down):
-    # Calculate the extents of the cropping box.
     # Align the crop box along the XY line between the two intesection points, 
     # expanded slightly to ensure it covers the whole orbit
-    vector_x = [ 1.2 * (pt_up.x - pt_down.x ), 1.2 * (pt_up.y - pt_down.y ), 0]
-    vector_y = [0, -20, 0]       # -Y is anterior, so point towards front of face
+    vector_x = [ MULT_XY * (pt_up.x - pt_down.x), MULT_XY * (pt_up.y - pt_down.y), 0]
+    vector_y = [0, SIZE_Y, 0]    # -Y is anterior, so point towards front of face
     vector_z = [0, 0, spacing_z] # thickness is distance bwtween planes
     # Put the origin above the down intesection point, midway between the z planes
     origin = (pt_down.x, pt_down.y, pt_down.z + spacing_z / 2)
@@ -159,11 +167,11 @@ from utils import *
       print(f"did not find intersection for plane {plane}")
 
   # Adjust the first and last bounding box to ensure full overlap.
-  boxes[0].third_vector[2] = -1.5 * boxes[0].third_vector[2]  # first goes down
-  boxes[-1].third_vector[2] = 1.5 * boxes[-1].third_vector[2] # last goes up
+  boxes[0].third_vector[2] = -MULT_Z * boxes[0].third_vector[2]  # first goes down
+  boxes[-1].third_vector[2] = MULT_Z * boxes[-1].third_vector[2] # last goes up
    
   # Create the combined mask
-  combined_masks = mimics.segment.create_mask()
+  united_masks = mimics.segment.create_mask()
   # Loop through each plane again, create a mask, crop it, and Union it together.
   for bbox in boxes:
     # Create a mask, threshold to cover everything
@@ -172,18 +180,72 @@ from utils import *
     # Crop it with BoundingBox for this plane
     mimics.segment.crop_mask(m, bbox)
     # Union with the existing mask
-    combined_masks = mimics.segment.boolean_operations(combined_masks, m, 'Unite')
+    united_masks = mimics.segment.boolean_operations(united_masks, m, 'Unite')
+    #united_masks = add_masks(united_masks, m)
     
     pause 
             
-    mask_bone = material_mask("Bone Mask", const.MATL_BONE)
+    mask_bone = material_mask("Bone Mask", const.MATL_BONE) # Already made this above???
     mask_air = material_mask("Air Mask", const.MATL_AIR)
     
-    #boolean w air
-    combined_masks = mimics.segment.boolean_operations(combined_masks, mask_bone, 'Unite')
-    combined_masks = mimics.segment.boolean_operations(combined_masks, mask_air,  'Unite')
+    # Union complete crop mask with air and bone
+    united_masks = mimics.segment.boolean_operations(united_masks, mask_bone, 'Unite')
+    united_masks = mimics.segment.boolean_operations(united_masks, mask_air,  'Unite')
+    #united_masks = add_masks(united_masks, mask_bone)
+    #united_masks = add_masks(united_masks, mask_air)
     
-    smartfill_mask = mimics.segment.smart_fill_global(combined_masks, 7)
+    smartfill_mask = mimics.segment.smart_fill_global(united_masks, CLOSING_DIST)
+    
+    # Define the extents of the region to analyse, based on which side is being analyzed.
+    # This assumes a LPS coordinate system and that the midline is x == 0.
+    if   orbit.center[1] < 0: # Right side
+      x_lim = min_x - 10
+      x_delta = (max_x - min_x) + 20
+    elif orbit.center[1] > 0: # Left side
+      x_lim = max_x + 10
+      x_delta = (min_x - max_x) - 20
+    else:                     # On midline
+      print(f"ERROR: Can't tell which side to analyse (orbit at { orbit.x,  orbit.y,  orbit.z}")
+    box_orig = (x_lim, min_y - 5, min_z -15)
+    vector_x = [x_delta, 0, 0]
+    vector_y = [0, 80, 0]
+    vector_z = [0, 0, (max_z - min_z) + 30]
+
+    orbit_ROI = mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
+    
+    smartfill_mask = mimics.segment.crop_mask(smartfill_mask, orbit_ROI)
+    
+    part_temp = mimics.segment.calculate_part(smartfill_mask, 'High')
+    part_wrap = mimics.tools.wrap(part_temp, 0.2, 10, False, True, True)
+    wrapped_mask = mimics.segment.calculate_mask_from_part(part_wrap, None)
+    
+    orbit_vol = mimics.segment.boolean_operations(wrapped_mask, smartfill_mask, 'Minus')
+    orbit_vol = mimics.segment.morphology_operations(orbit_vol, 'Erode', 1, 8, None, None)
+    orbit_vol = mimics.segment.region_grow(orbit_vol, orbit_vol, sphere1.center, 'Axial', False, True, connectivity='6-connectivity') 
+    orbit_vol.name = "Orbital Volume"
+
+    #delete all masks (except the Orbital Volume mask...)
+    objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
+    for m in mimics.data.objects:
+      if m.name in objects_top keep:
+        print(f"Keeping {m.name} {m.type}")
+      else:
+        mimics.data.objects.delete(m)
+    
+    # Remove the Globe of the eye from the volume to analyse
+    # Amazingly, there does not appears to be a way to convert an object to a mask.
+    # convert sphere to mask, manually. 
+    mimics.dialogs.message_box("Convert the sphere object into a mask and rename the mask 'Globe'. Click okay to continue", title=None, ui_blocking=False)
+    globe_mask = mimics.data.masks.find("Globe", False)
+    if globe_mask is not None:
+        print("Globe Exists!")
+        intersect_vol_mask = mimics.segment.boolean_operations(orbit_vol, globe_mask, 'Minus')
+        intersect_vol_mask.name = "Intersect Mask"
+    else:
+        print("ERROR: Cant Find Globe Mask")
+ 
+
+
 
 ###############################
 
@@ -268,7 +330,7 @@ from utils import *
   print('\n'.join(map(str, [i.__dict__ for i in crop_masks.values()])))
 
 # Rob version
-  combined_masks = mimics.segment.create_mask()
+  united_masks = mimics.segment.create_mask()
   crop_masks_RED = []
   point_pairs = list(batched(intersect_points_RED, 2))
   last_pair = len(point_pairs) - 1
@@ -294,7 +356,7 @@ from utils import *
     m = mimics.segment.create_mask()
     mimics.segment.threshold(m, const.MIN_GV, const.MAX_GV)
     mimics.segment.crop_mask(m, crop_box)
-    combined_masks = mimics.segment.boolean_operations(combined_masks, m, 'Unite')
+    united_masks = mimics.segment.boolean_operations(united_masks, m, 'Unite')
     crop_masks_RED.append(m)
     
     
@@ -319,15 +381,15 @@ from utils import *
   boxes[0].third_vector[2] = -1.5 * boxes[0].third_vector[2]
   boxes[-1].third_vector[2] = 1.5 * boxes[-1].third_vector[2]
 
-  # Create the combined mask
-  combined_masks = mimics.segment.create_mask()
+  # Create the united mask
+  united_masks = mimics.segment.create_mask()
   for bbox in boxes:
     # Create a mask, threshold to cover everything
     m = mimics.segment.create_mask()
     mimics.segment.threshold(m, const.MIN_GV, const.MAX_GV)
     mimics.segment.crop_mask(m, bbox) # Crop it with BoundingBox for this plane
     # Then Union with the existing mask
-    combined_masks = mimics.segment.boolean_operations(combined_masks, m, 'Unite')
+    united_masks = mimics.segment.boolean_operations(united_masks, m, 'Unite')
     
   
   last_pair = len(point_pairs) - 1
@@ -353,6 +415,6 @@ from utils import *
     m = mimics.segment.create_mask()
     mimics.segment.threshold(m, const.MIN_GV, const.MAX_GV)
     mimics.segment.crop_mask(m, crop_box)
-    combined_masks = mimics.segment.boolean_operations(combined_masks, m, 'Unite')
+    united_masks = mimics.segment.boolean_operations(united_masks, m, 'Unite')
     crop_masks_RED.append(m)
     

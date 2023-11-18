@@ -1,5 +1,6 @@
 # Fake mimics.analyze module
 
+# Classes
 class Point:
     def __init__(self):
       self.x = None
@@ -34,6 +35,7 @@ class Plane:
     self.origin = origin
     self.normal = normal
 
+# Object creation functions
 
 def create_line(point1, point2):
   self = Line()

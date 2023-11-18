@@ -31,12 +31,12 @@ def batched(iterable, n):
       return
     yield batch
   
+# Geometry 
   
 # Helper functions for Mimics objects
-
 import mimics # done automatically by Mimics scripting environment
 
-def create_mask(name, thesh_lo, thresh_hi):
+def create_mask(name, thresh_lo, thresh_hi):
   """Convenience function to create & name a mimics.segment mask with given thresholds."""
   mask = mimics.segment.create_mask()
   mask.name = name
@@ -58,6 +58,9 @@ def mask_to_part(name, mask, quality = 'High'):
   part = mimics.segment.calculate_part(mask = mask, quality = quality)
   part.name = name
   return part
+  
+def add_masks(mask1, mask2):
+  return mimics.segment.boolean_operations(mask1, mask2, 'Unite')
   
 # A dataclass is like a record or c struct, with named attributes
 from dataclasses import dataclass

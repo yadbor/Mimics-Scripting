@@ -9,6 +9,13 @@ class Mask:
     self.lo = None
     self.hi = None
     self.n = 0
+    self.number_of_pixels = 0
+
+class Part:
+  def __init__(self, mask):
+    self.mask = mask
+    self.quality = None
+    self.volume = None
 
 def create_mask():
   return Mask()
@@ -20,6 +27,7 @@ def crop_mask(mask, bbox):
 def threshold(mask, lo, hi):
   mask.lo = lo
   mask.hi = hi
+  mask.number_of_pixels = 10 * (hi - lo)
   return mask
 
 def boolean_operations(mask1, mask2, op):
@@ -36,5 +44,13 @@ def boolean_operations(mask1, mask2, op):
       mask1.crop = mask2.crop
     elif mask2.crop != None:
       mask1.crop = max(mask1.crop, mask2.crop)
+    mask1.number_of_pixels += mask2.number_of_pixels
     mask1.n += 1 # increment the boolean count
   return mask1
+
+
+def calculate_part(mask, quality):
+  part = Part(mask)
+  part.quality = quality
+  part.volume = part.mask.number_of_pixels * 0.25
+  return part
