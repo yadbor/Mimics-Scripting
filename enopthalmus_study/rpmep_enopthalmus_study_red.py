@@ -3,6 +3,8 @@
 # Original  Ryan Collier 2022
 # This version  Robert Day  2023-11-18
 
+from result_logger import Path, log_to_file
+
 import const # useful 'constants'
 # Axis names for points stored as [X, Y, Z]
 X, Y, Z = 0, 1, 2
@@ -202,9 +204,12 @@ else:
 #create parts
 part_orbital_vol = mimics.segment.calculate_part(mask=intersect_vol_mask, quality='High')
 
+# Put the orbital volume first in the parts list
+parts = {}
+parts['orbital'] = part_orbital_vol
+
 # Create a list of masks and corresponding parts for each material in the materials dict
 masks = {}
-parts = {}
 for matl in materials.keys():
   masks[matl] = material_mask(matl + ' mask', materials[matl])
   masks[matl] = mimics.segment.boolean_operations(masks[matl], intersect_vol_mask, 'Intersect')
@@ -212,7 +217,7 @@ for matl in materials.keys():
     parts[matl] = mask_to_part(matl, masks[matl])
 
 
-
+# Discrete object version
 mask_air = mimics.segment.boolean_operations(material_mask("Air Mask", const.MATL_AIR), intersect_vol_mask, 'Intersect')
 if mask_air.number_of_pixels > 0:
   part_air = mask_to_part("Air", mask_air)
@@ -224,8 +229,6 @@ if mask_fat.number_of_pixels > 0:
 mask_muscle = mimics.segment.boolean_operations(material_mask("Muscle Mask", const.MATL_muscle), intersect_vol_mask, 'Intersect')
 if mask_muscle.number_of_pixels > 0:
  part_muscle = mask_to_part("Muscle", mask_muscle)
-
-  
 print(f"Orbital Volume (excluding globe) = {part_orbital_vol.volume}mm^3")
 if mask_air.number_of_pixels != 0:
     print(f"Air Volume = {part_air.volume}mm^3")
@@ -235,60 +238,19 @@ if mask_muscle.number_of_pixels != 0:
     print(f"Muscle Volume = {part_muscle.volume}mm^3")
 
 
-### RED CSV logging below
-# Get the user from a list at start of program
-from datetime import date # to get the current date
-today = date.today().isoformat()
-results = [user, today, part_orbital_vol.volume, part_air.volume, part_fat.volume, part_muscle.volume]
 
-# Better method that will automatically cope with changes to the measured volumes
-study_name = 'find the name of the project?'
+# CSV logging below
+result_log = Path('name_of_project_log.csv') # TODO: set this at top of program, or make it a configurable CONST
+
+study_name = 'find the name of the project?' # TODO: get from the project name somehow
 user = 'me' # TODO: pick from a list
 
-headers = ["user", "date", "study",    "Orbital Volume"] + [n + '_volume' for n in parts.keys()]
-results = [user,    today, study_name, part_orbital_vol.volume] + [p.volume for p in parts.values()]
+from datetime import date # to get the current date
+today = date.today().isoformat()
 
-def log_to_file(file_path, headers, results):
-  # Write current results to the log file in FILE_PATH
-  # Check if the same number of columns in headers and results
-  if len(results) != len(headers):
-    print("ERROR: there are {len(headers)} headers and {len(results)} results")
-    return
-  
-  # If the log file does not exist create it with a header row
-  if not file_path.exists():
-      with open(file_path, 'w', newline='') as log_csv:
-          # Start a new blank log with column headings in the first row
-          log_csv_write = csv.writer(log_csv)
-          log_csv_write.writerow(headers)
-  
-  # Append the current results (with autocloses at exit)
-  with open(file_path, 'a', newline='') as log_csv:
-      log_csv_append = csv.writer(log_csv, dialect = 'excel')
-      log_csv_append.writerow(results)
+#results = [user, today, part_orbital_vol.volume, part_air.volume, part_fat.volume, part_muscle.volume]
+# This method will automatically cope with changes to the measured volumes
+headers = ["user", "date", "study"] + [n + '_volume' for n in parts.keys()]
+results = [user,    today, study_name] + [p.volume for p in parts.values()]
 
-
-# Below from https://stackoverflow.com/questions/71275961/append-new-line-to-csv-file
-  
-##Each time you use the write w mode, it overwrites the file, deleting the old contents in the process.
-##
-##It might make more sense to first check if the file exists, and write the header row only if it doesn't. 
-##Here's one way to do that, and it shows the behaviour required in your question:
-
-import csv
-from pathlib import Path
-
-FILE_PATH = Path('log.csv')
-
-# Write current results to the log file in FILE_PATH
-# If the log file does not exist create it with a header row
-if not FILE_PATH.exists():
-    with open(FILE_PATH, 'w', newline='') as log_csv:
-        # Start a new blank log with column headings in the first row
-        log_csv_write = csv.writer(log_csv)
-        log_csv_write.writerow(["user", "date", "study", "Orbital Volume", "Air Volume", "Fat Volume", "Muscle Volume"])
-
-# Append the current results (with autocloses at exit)
-with open(FILE_PATH, 'a', newline='') as log_csv:
-    log_csv_append = csv.writer(log_csv, dialect = 'excel')
-    log_csv_append.writerow(results)
+log_to_file(result_log, headers, results)
