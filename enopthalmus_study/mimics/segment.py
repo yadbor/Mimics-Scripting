@@ -54,3 +54,6 @@ def calculate_part(mask, quality):
   part.quality = quality
   part.volume = part.mask.number_of_pixels * 0.25
   return part
+
+def smart_fill_global(mask, hole_closing_distance=2):
+  return mask

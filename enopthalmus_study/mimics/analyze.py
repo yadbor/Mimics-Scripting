@@ -2,19 +2,19 @@
 
 # Classes
 class Point:
-    def __init__(self):
-      self.x = None
-      self.y = None
-      self.z = None
+  def __init__(self):
+    self.x = None
+    self.y = None
+    self.z = None
 
-    def create(self, x, y, z):
-      self.p = [x, y, z]
-      self.x = x
-      self.y = y
-      self.z = z
-    
-    def __str__(self):
-      return f'[{self.x}, {self.y}, {self.z}]'
+  def create(self, x, y, z):
+    self.p = [x, y, z]
+    self.x = x
+    self.y = y
+    self.z = z
+  
+  def __str__(self):
+    return f'[{self.x}, {self.y}, {self.z}]'
 
 class Line:
   def __init__(self):
@@ -35,12 +35,23 @@ class Plane:
     self.origin = origin
     self.normal = normal
 
+class Sphere:
+  def __init__(self, x, y, z, radius):
+    self.radius = radius
+    self.center = [x, y, z]
+
+class Spline:
+  def __init__(self, points):
+    self.points = points
+
+
+
 # Object creation functions
 
 def create_line(point1, point2):
   self = Line()
-  self.point1 = point1
-  self.point2 = point2
+  self.point, = point1
+  self.point, = point2
   self.points = [self.point1, self.point2]
   return self
     
@@ -58,3 +69,13 @@ def create_point_as_line_and_plane_intersection(line, plane):
   self.y = line.point1[1] + ratio * (line.point2[1] - line.point1[1])
   self.z = plane.origin[2]
   return self
+
+# Dummy data return functions
+import dummy_data 
+dummy = dummy_data.tosalia # Can choose different data sets from dummy_data.py
+
+def indicate_spline(message, show_message_box=True, confirm=False, title=None):
+  return Spline(points = dummy.spline_points)
+
+def indicate_sphere(message, show_message_box=True, confirm=False, title=None):
+  return dummy.sphere

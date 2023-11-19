@@ -3,8 +3,6 @@
 
 # Define some useful "constants"
 
-NUM_PLANES = 10	# Number of planes to divide up orbit (TODO move to main code?)
-
 # Hounsfield Units (HU) for various substances and their Grey Value (GV)
 # conversions to use with mimics.segment.threshold(). Mimics routines all use GV.
 

@@ -7,3 +7,9 @@ BoundingBox3d = namedtuple('bbox', 'origin first_vector second_vector third_vect
 
 #def BoundingBox3d(orig, vector_x, vector_y, vector_z):
 #  return [orig, vector_x, vector_y, vector_z]
+
+class Object:
+  def __init__(self):
+    self.name = ''
+    return
+  
