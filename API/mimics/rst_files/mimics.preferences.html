@@ -1,0 +1,504 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.preferences module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.segment module" href="mimics.segment.html"/>
+        <link rel="prev" title="mimics.measure module" href="mimics.measure.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.preferences module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.preferences.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.preferences">
+<span id="mimics-preferences-module"></span><h1>mimics.preferences module<a class="headerlink" href="#module-mimics.preferences" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.enable_saving">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">enable_saving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.enable_saving" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API allows you to control whether the preferences are saved in the operating system (OS) storage (e.g. Windows Registry or the AppData folder of a given user account). The preferences values (regardless if they are set with API or wit GUI) are not lost after mimics.preferences.enable_saving(False) but are accumulated in operational memory. The values will be written into persistent storage (e.g. Windows Registry) when the script calls mimics.preferences.enable_saving(True). Note that the preference values which are accumulated while sabing is disable are lost if mimics.preferences.enable_saving(True) is not NOT called before the application terminates.</p>
+<p>You can disable saving preferences to isolate the current instance of the application from the other ones. This is important in case of batch file processing, massive data preparation, or running multiple instances of the application in parallel on the same PC.</p>
+<p>The API configures the save preferences mode ONLY for the current instance of the application, so after the restart, saving to OS storage will be enabled by default.</p>
+<p>If you repeat invoking the API with the same argument, it will not affect performance and will not result in performance degradation. However, if you invoke the API repeatedly changing the save preferences mode, it might cause time-consuming input/output operations in the file system and the Registry. Therefore, it is recommended to avoid switching saving mode ON/OFF unnecessarily.</p>
+<p>See also: mimics.preferences.is_saving_enabled(), mimics.preferences.set_value().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>bool</em>) – If False, the preferences are not saved in operating system storage until this API is called with the value True, or the host application is restarted.</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">enable_saving</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Since this call the preferences will not be stored in </span>
+<span class="c1"># Windows registry, however they will persists within the</span>
+<span class="c1"># current session of the host applciation.</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">is_saving_enabled</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.get_default_value">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preference_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.get_default_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>This API returns the default value for the preference for the current application instance.</p>
+<p>A list of fully specified preference IDs for the application can be received via the API mimics.preferences.get_registered_ids().</p>
+<p>See also: mimics.preferences.get_registered_ids(), mimics.preferences.set_value(), mimics.preferences.is_saving_enabled(), mimics.preferences.enable_saving().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>preference_id</strong> (<em>str</em>) – The fully qualified preference name (ID).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The default value and type of the preference parameter.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mimics.preferences.ValueTypes</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>KeyError (reason(s): [‘The preference named “[PREFERENCE_NAME]” is not found in the group “[GROUP_NAME]”.’, ‘The group of preferences named “[GROUP_NAME]” was is not found in the group “[GROUP]”.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example #1 - getting a boolean preference and displaying its value and type</span>
+<span class="n">preference_id</span> <span class="o">=</span> <span class="s2">&quot;3DSettings.UseDynamicBuffersForSmallObjects&quot;</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_default_value</span><span class="p">(</span><span class="n">preference_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Preference &#39;</span><span class="si">{</span><span class="n">preference_id</span><span class="si">}</span><span class="s2">&#39; == &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;, type == &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.get_registered_ids">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">get_registered_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preference_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.get_registered_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API provides a dictionary of fully qualified preference names (IDs) mapped to the preference type description for the current instance of Mimics.</p>
+<p>A preference type is a structure consisting of preference type in the Python type notation and possible parameter values for enumerations (optionally).</p>
+<p>Optionally, you can search for preferences with IDs containing a certain fragment of the preference ID.</p>
+<p>The returned preference IDs can be used to set preference values via the API mimics.preferences.set_value().</p>
+<p>See also: mimics.preferences.set_value(), mimics.preferences.get_value(), mimics.preferences.get_default_value().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>preference_filter</strong> (<em>str</em>) – (optional) Any fragment of the fully qualified preference name (ID).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary of fully qualified preference names (IDs) mapped to preference type descriptions.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Dict</em>[str, object]</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this extracts all preference info [name, type]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_registered_ids</span><span class="p">()</span>
+
+<span class="c1"># this extracts preferences info for ones that contain &#39;name_filter&#39; substring in path</span>
+<span class="n">name_filter</span> <span class="o">=</span> <span class="s1">&#39;ExportLandmarkPoints&#39;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_registered_ids</span><span class="p">(</span><span class="n">name_filter</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.get_value">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preference_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>This API returns the current preference value for the current application instance. The value is taken from the memory (important if saving preferences is disabled for the Mimics instance via the API enable_saving).</p>
+<p>A list of fully specified preference IDs for the application can be received via the API mimics.preferences.get_registered_ids().</p>
+<p>See also: mimics.preferences.get_registered_ids(), mimics.preferences.set_value(), mimics.preferences.is_saving_enabled(), mimics.preferences.enable_saving().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>preference_id</strong> (<em>str</em>) – The fully qualified preference name (ID).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value and type of the preference parameter.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mimics.preferences.ValueTypes</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>KeyError (reason(s): [‘The preference named “[PREFERENCE_NAME]” is not found in the group “[GROUP_NAME]”.’, ‘The group of preferences named “[GROUP_NAME]” was is not found in the group “[GROUP]”.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="c1"># Example #1 - getting integer setting</span>
+<span class="n">preference_id</span> <span class="o">=</span> <span class="s2">&quot;General.Segmentation.ThresholdRegionGrow.LowerThreshold&quot;</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">preference_id</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Preference &#39;</span><span class="si">{</span><span class="n">preference_id</span><span class="si">}</span><span class="s2">&#39; == &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Example #2 - getting a string preference</span>
+<span class="n">preference_id</span> <span class="o">=</span> <span class="s2">&quot;General.RemeshTool&quot;</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">preference_id</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Preference &#39;</span><span class="si">{</span><span class="n">preference_id</span><span class="si">}</span><span class="s2">&#39; == &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Example #3 - getting an enumeration preference</span>
+<span class="n">preference_id</span> <span class="o">=</span> <span class="s2">&quot;General.PixelUnits&quot;</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">preference_id</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">PixelUnits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Preference &#39;</span><span class="si">{</span><span class="n">preference_id</span><span class="si">}</span><span class="s2">&#39; == &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.is_saving_enabled">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">is_saving_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.is_saving_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API checks if the saving of preference settings to the operating system storage is currently enabled. See documentation of ‘mimics.preferences.enable_saving()’ for more details.’</p>
+<p>See also: mimics.preferences.enable_saving(), mimics.preferences.set_value().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current mode (ON/OFF) of saving preferences in the operating system storage. If False, the preferences are not saved but kept in memory until the application is restarted or the save mode is changed.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">mimics.logging</span>
+
+<span class="k">if</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">is_saving_enabled</span><span class="p">():</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Saving the preferences is enabled now, so that &quot;</span>
+                                                  <span class="s2">&quot;they will saved to the OS&#39;s persistent &quot;</span>
+                                                  <span class="s2">&quot;preference storage of registry (on Windows).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Saving the preferences is disable enabled now,&quot;</span>
+                                                  <span class="s2">&quot;so that they will only persit for the &quot;</span>
+                                                  <span class="s2">&quot;given session of the host application.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.reset_all_values">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">reset_all_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.reset_all_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API restores the default settings for all preference parameters for the current application instance.</p>
+<p>The restored default value will be saved or not saved in the operating system storage (e.g. Windows Registry) depending on the current mode for saving preferences (it can be specified via the API enable_saving).</p>
+<p>See also: mimics.preferences.get_registered_ids(), mimics.preferences.is_saving_enabled(), mimics.preferences.enable_saving().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">reset_all_values</span><span class="p">()</span>
+
+<span class="c1"># here we just check one preference to be in the default state</span>
+<span class="n">pref_id</span> <span class="o">=</span> <span class="s1">&#39;3DSettings.UseDynamicBuffersForSmallObjects&#39;</span>
+<span class="k">assert</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_default_value</span><span class="p">(</span><span class="n">pref_id</span><span class="p">)</span> <span class="o">==</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">pref_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.reset_value">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">reset_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preference_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.reset_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API restores the default preference setting for the current application instance.</p>
+<p>Warning: Be careful to avoid setting conflicting preference values. Modifying preference settings may sometimes result in inconsistent behavior or application crashes. If the application fails to launch after making changes, run Mimics Reset Settings from the Windows Start menu to restore all preferences to its defaults.</p>
+<p>The restored default value will be saved or not saved in the operating system storage (e.g. Windows Registry) depending on the current mode for saving preferences (it can be specified via the API enable_saving ). A list of fully specified preference IDs for the application can be received via the API mimics.preferences.get_registered_ids().</p>
+<p>See also: mimics.preferences.get_registered_ids(), mimics.preferences.is_saving_enabled(), mimics.preferences.enable_saving().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>preference_id</strong> (<em>str</em>) – The fully qualified preference name (ID).</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>KeyError (reason(s): [‘The preference named “[PREFERENCE_NAME]” is not found in the group “[GROUP_NAME]”.’, ‘The group of preferences named “[GROUP_NAME]” was is not found in the group “[GROUP]”.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pref_id</span> <span class="o">=</span> <span class="s1">&#39;3DSettings.UseDynamicBuffersForSmallObjects&#39;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">reset_value</span><span class="p">(</span><span class="n">preference_id</span><span class="o">=</span><span class="n">pref_id</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">pref_id</span><span class="p">)</span> <span class="o">==</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">get_default_value</span><span class="p">(</span><span class="n">pref_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.preferences.set_value">
+<span class="sig-prename descclassname"><span class="pre">mimics.preferences.</span></span><span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preference_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.preferences.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>This API allows setting value for a given preference for the current instance of Mimics.</p>
+<p>Warning: Be careful to avoid setting conflicting preference values. Modifying preference settings may sometimes result in inconsistent behavior or application crashes. If the application fails to launch after making changes, run Mimics Reset Settings from the Windows Start menu to restore all preferences to its defaults.</p>
+<p>The value will be saved or not saved in the operating system storage, depending on the current save preferences mode. The mode can be specified via the API enable_saving. A list of fully specified preference IDs for the application can be received via the API mimics.preferences.get_registered_ids().</p>
+<p>For preferences of string types, the ‘value’ paramater will get its string representation if it’s value is not a native Python string.</p>
+<dl class="simple">
+<dt>For enumerators, the type of a preference can be specified both as the member of a native enumeration type or a string value of the name. For example, all the options listed below are valid to set up the ImageStorageType preference:</dt><dd><ul class="simple">
+<li><p>mimics.preferences.set_value(“General.ImageStorageType”, mimics.preferences.ImageStorageType.Uncompressed)   # by enumeration type, the preferred way</p></li>
+<li><p>mimics.preferences.set_value(“General.ImageStorageType”, “mimics.preferences.ImageStorageType.Uncompressed”)</p></li>
+<li><p>mimics.preferences.set_value(“General.ImageStorageType”, “ImageStorageType.Uncompressed”)</p></li>
+<li><p>mimics.preferences.set_value(“General.ImageStorageType”, “Uncompressed”)</p></li>
+</ul>
+</dd>
+</dl>
+<p>The first method (by Python’s native enumeration type) is the most preferred because it provides the strongest type checks, whereas the string-based methods are provided for to support use case when Python native enums are not possible for cases, such as, when values is stored in text/init files.</p>
+<p>See also: mimics.preferences.get_registered_ids(), mimics.preferences.get_value(), mimics.preferences.is_saving_enabled(), mimics.preferences.enable_saving().</p>
+<dl class="field-list simple">
+<dt class="field-odd">param preference_id</dt>
+<dd class="field-odd"><p>The fully qualified preference name (ID).</p>
+</dd>
+<dt class="field-even">type preference_id</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param value</dt>
+<dd class="field-odd"><p>The value and type of the preference parameter.</p>
+</dd>
+<dt class="field-even">type value</dt>
+<dd class="field-even"><p>mimics.preferences.ValueTypes</p>
+</dd>
+<dt class="field-odd">exceptions</dt>
+<dd class="field-odd"><p>KeyError (reason(s): [‘The preference named “[PREFERENCE_NAME]” is not found in the group “[GROUP_NAME]”.’, ‘The group of preferences named “[GROUP_NAME]” was is not found in the group “[GROUP]”.’]), TypeError (reason(s): [‘The value “[RECEIVED_VALUE]” of type “[RECEIVED_TYPE]” does not match the expected type “[EXPECTED_TYPE]” of preference “[PREFERENCE_NAME]”.’]), ValueError (reason(s): [‘The value “[RECEIVED_VALUE]” of type “[RECEIVED_TYPE]” cannot be set to preference “[PREFERENCE_NAME]”: [TECHNICAL DETAILS].’])</p>
+</dd>
+<dt class="field-even">example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="c1"># Note:</span>
+<span class="c1">#   the following line with enable_saving() is to avoid </span>
+<span class="c1">#   saving the changes caused by running this examples</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">enable_saving</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Example #1 - setting integer setting</span>
+<span class="n">preference_id</span> <span class="o">=</span> <span class="s2">&quot;General.Segmentation.ThresholdRegionGrow.LowerThreshold&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">preference_id</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Example #2 - setting a string preference</span>
+<span class="n">preference_id</span> <span class="o">=</span> <span class="s2">&quot;General.RemeshTool&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">preference_id</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\path   o</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>emesh   ool.exe”)</p>
+<blockquote>
+<div><p># Example #3 - setting an enumeration preference
+preference_id = “General.PixelUnits”
+mimics.preferences.set_value(preference_id, mimics.preferences.PixelUnits.Hounsfield)</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.segment.html" class="btn btn-neutral float-right" title="mimics.segment module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.measure.html" class="btn btn-neutral" title="mimics.measure module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

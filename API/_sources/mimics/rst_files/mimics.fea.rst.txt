@@ -1,0 +1,7 @@
+mimics.fea module
+=================
+
+.. automodule:: mimics.fea
+   :members:
+   :undoc-members:
+   :show-inheritance:

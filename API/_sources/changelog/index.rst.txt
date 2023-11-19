@@ -1,0 +1,7 @@
+######################
+API Change Log
+######################
+
+.. only:: builder_html
+
+    Records of notable changes including new APIs, removed APIs and list of modified APIs (compared with Mimics 24.0) can be found in  :download:`Mimics Change Log <MimicsChangeLog.pdf>`.

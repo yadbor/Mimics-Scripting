@@ -1,0 +1,10 @@
+.. toctree::
+
+
+mimics module
+---------------
+
+.. automodule:: mimics
+    :members:
+    :undoc-members:
+    :show-inheritance:

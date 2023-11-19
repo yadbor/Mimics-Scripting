@@ -1,0 +1,66 @@
+Preparation for fluoroscopy
+-----------------------------
+
+Using the Mimics API you can control a set of functionalities that are contained in the view module of Mimics. This tutorial shows how to control the visibility of different objects in the project, how to activate/deactivate the 3D Mask preview in the 3D viewport, and how to prepare your project for fluoroscopy simulation.
+
+For this tutorial the Mimics project Heart.mcs from :file:`C:\\MedData\\DemoFiles` will be used. As a first a step, the project is opened in Mimics.
+
+.. code-block:: python
+
+	# Open Heart.mcs project
+	input_dir=r'C:\MedData\DemoFiles\Heart.mcs'
+	mimics.file.open_project(input_dir)
+
+The project by default contains masks and 3D parts for the following anatomies: LA, LV and Aorta. The following piece the code shows the hidden masks and selects all the masks.
+
+.. code-block:: python
+
+	# Show and select the masks
+	for m in mimics.data.masks:
+    	    if not m.visible:
+        	m.visible = True
+            m.selected = True
+
+The parts that are already present are deleted in the following step. Immediately afterwards the Mask 3D Preview is activated and you can inspect the result of the segmentation.
+
+.. code-block:: python
+
+	# Delete the parts
+	for p in mimics.data.parts:
+    	    mimics.data.parts.delete(p)
+
+	# Activate 3D preview
+	mimics.view.enable_mask_3d_preview()
+	mimics.dialogs.question_box(message="Please inspect the heart segmentation",buttons='OK')
+
+The following step calculates parts for each of the segmentation masks. All the changes after the manual editing of the masks will be applied in the parts. All the parts are calculated with Optimal quality and they are set to visible. Additionally the Mask 3D Preview is disabled.
+
+.. code-block:: python
+
+	# Create 3D parts
+	for m in mimics.data.masks:
+    	    p = mimics.segment.calculate_part(mask=m, quality='Optimal')
+   	      p.name = m.name
+    	    p.visible = True
+
+	# Step: Disable 3D preview
+	mimics.view.disable_mask_3d_preview()
+
+The following step is the preparation for fluoroscopy simulation. The objects that will be visualised in simulation are prepared with custom contrast. A fluoroscopy view is also created.
+
+.. code-block:: python
+
+	# Preparation for fluoroscopy
+	visualised_objects = []
+	contrast = 0.7
+	for p in mimics.data.parts:
+	    visualised_objects.append((p,contrast))
+	# Activate fluoroscopy
+	f = mimics.view.create_fluoroscopy_view_default()
+
+The final step is to activate the fluoroscopy simulation and apply all the setting that are defined in the preparation step above.
+
+.. code-block:: python
+
+	# Activate simulation
+	f.simulate(objects_contrast=visualised_objects)

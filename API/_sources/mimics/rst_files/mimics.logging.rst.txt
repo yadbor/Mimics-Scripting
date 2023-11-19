@@ -1,0 +1,7 @@
+mimics.logging module
+=====================
+
+.. automodule:: mimics.logging
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,19 @@
+.. _external_IDE:
+
+######################
+External IDE
+######################
+
+
+.. toctree:: 
+   :numbered:
+
+
+   Introduction.rst
+   Installation_guide_for_rpyc_and_PyQt5.rst
+   get_autocomplete_in_external_IDEs.rst   
+   Using_an_External_IDE.rst
+   JetBrains_PyCharm.rst
+
+
+   

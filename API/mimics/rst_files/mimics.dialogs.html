@@ -1,0 +1,376 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.dialogs module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.dicom module" href="mimics.dicom.html"/>
+        <link rel="prev" title="mimics.data module" href="mimics.data.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.dialogs module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.dialogs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.dialogs">
+<span id="mimics-dialogs-module"></span><h1>mimics.dialogs module<a class="headerlink" href="#module-mimics.dialogs" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.dialogs.has_predefined_answer">
+<span class="sig-prename descclassname"><span class="pre">mimics.dialogs.</span></span><span class="sig-name descname"><span class="pre">has_predefined_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialog_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.dialogs.has_predefined_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if there exists a predefined answer for pop up dialog.</p>
+<p>For the complete list of dialog IDs and possible answers see the help for the mimics.dialog.set_predefined_answer function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dialog_id</strong> (<em>str</em>) – Defines the dialog id.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if there is a predefined answer to the specified dialog or false otherwise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘No predefined answer allowed for dialog with ID’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.dialogs.message_box">
+<span class="sig-prename descclassname"><span class="pre">mimics.dialogs.</span></span><span class="sig-name descname"><span class="pre">message_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui_blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.dialogs.message_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a plain message box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – Message text in the box.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+<li><p><strong>ui_blocking</strong> (<em>bool</em>) – (optional) True if the message box should block UI or false otherwise.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;This is an example.&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">message_box</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">ui_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.dialogs.question_box">
+<span class="sig-prename descclassname"><span class="pre">mimics.dialogs.</span></span><span class="sig-name descname"><span class="pre">question_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buttons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Yes;</span> <span class="pre">No'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui_blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.dialogs.question_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a customized dialog box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – Question text in the box.</p></li>
+<li><p><strong>buttons</strong> (<em>str</em>) – (optional) Name of the buttons.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+<li><p><strong>ui_blocking</strong> (<em>bool</em>) – (optional) True if the question box should block UI or false otherwise.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Do you want to proceed?&quot;</span>
+<span class="n">btns</span> <span class="o">=</span> <span class="s2">&quot;Yes;No&quot;</span>
+<span class="n">ttl</span> <span class="o">=</span> <span class="s2">&quot;Question Box&quot;</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">question_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">buttons</span><span class="o">=</span><span class="n">btns</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">ttl</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.dialogs.reset_predefined_answer">
+<span class="sig-prename descclassname"><span class="pre">mimics.dialogs.</span></span><span class="sig-name descname"><span class="pre">reset_predefined_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialog_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.dialogs.reset_predefined_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset predefined answers to pop up dialogs.</p>
+<p>For the complete list of dialog IDs see the help for the mimics.dialog.set_predefined_answer function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dialog_id</strong> (<em>str</em>) – Defines the dialog id.</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘No predefined answer allowed for dialog with ID’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.dialogs.set_predefined_answer">
+<span class="sig-prename descclassname"><span class="pre">mimics.dialogs.</span></span><span class="sig-name descname"><span class="pre">set_predefined_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialog_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">answer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.dialogs.set_predefined_answer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Sets predefined answers to pop up dialogs. The following dialog_id and answer combinations are possible:</dt><dd><ul class="simple">
+<li><p>dialog_id: ChangeGantryTilt.SwitchOrientation, answers: Yes, No. Switch orientation when Gantry tilt.</p></li>
+<li><p>dialog_id: ChangeGantryTilt.ResliceProject, answers: Yes, No. reslice project when Gantry tilt.</p></li>
+<li><p>dialog_id: ReduceImages, answers: Current, Proposed, Cancel, 1, 2, 3, 4, 5. A data set with a small voxel size and a large amount of images will be loaded. To maintain proper performance a higher reduction is proposed. If no reduction is wanted value 1 should be chosen.</p></li>
+<li><p>dialog_id: OpenAutosavedDocument, answers: Yes, No. A backup of the project was found on disk. Would you like to load this project?. Note, that this predefined answer is ignored when running the application in the background mode.</p></li>
+<li><p>dialog_id: ProjectHasNotValidCS, answers: Yes, No. The project was created in an older version of Mimics. The coordinate system does not relate to the DICOM patient position. Do you want to continue?</p></li>
+<li><p>dialog_id: CannotConvertProject, answers: Yes, No. The project was created in an older version of Mimics. The project cannot be converted to the DICOM patient coordinate system, the objects will remain in the Mimics DICOM coordinate system. Do you want to continue?</p></li>
+<li><p>dialog_id: FixImagesPositioning, answers: Yes, No. The project was created in a version of Mimics that exports objects in the Mimics Coordinate System. Do you want to convert the project to work into the DICOM patient coordinate system?; The DICOM patient coordinate has been updated in Mimics 16.0. Do you want to convert the project accordingly?</p></li>
+<li><p>dialog_id: DeleteCprDependentObjects, answers: Yes, No. While modifying the properties of the resliced object, the depending objects will be invalidated. Do you want to delete them?</p></li>
+<li><p>dialog_id: RendererSwitchWarning, answers: Ok. Mimics could not switch to the selected 3D renderer. As a safety measure Mimics has switched to software rendering.</p></li>
+<li><p>dialog_id: ChangeOrientation, answers: ‘default’, ‘RAT’, ‘RAB’, etc. Set the orientation of the imported project.</p></li>
+<li><p>dialog_id: ExcludedImagesWarning, answers: Ok. The following image files will be excluded from the active image set because they collide with other image files on the same position or for another reason stated in the list. You can go to File / Organize Images to select the correct image file for the given positions.</p></li>
+<li><p>dialog_id: SaveDocumentBeforeReslice, answers: Yes, No. The document has been modified. Should it be saved before reslicing?</p></li>
+<li><p>dialog_id: SelectPixelSize, answers: ‘X’, ‘Y’. The imported project contains rectangular pixels. Only projects with square pixels are supported. Please specify the correct side.</p></li>
+<li><p>dialog_id: ContinueWithOutdatedDataModel, answers: Yes, No. The open project was created or modified in a version of Mimics which is no longer supported. Do you want to continue?</p></li>
+<li><p>dialog_id: SaveChangedProjectWhenLicenseLost, answers: Yes, No. It seems that the license is lost. The application will be closed. Do you want to save the project first?</p></li>
+<li><p>dialog_id: LicenseLostInformationDialog, answers: Ok. It seems that the license is lost. The application will be closed.</p></li>
+<li><p>dialog_id: TryRecoverBaseLicenseWhenLost, answers: Yes, No. It seems you lost your license. Do you want to try to recapture your license.</p></li>
+<li><p>dialog_id: EnablePromptUserAboutPotentialLosses, answers: Yes, No. This change might remove some objects from the project. Are you sure you want to continue?</p></li>
+<li><p>dialog_id: SaveChangedProject, answers: Yes, No. Do you want to save the project before exit?</p></li>
+<li><p>dialog_id: LoadingErrorWarning, answers: Ok. An exception was handled while loading.</p></li>
+<li><p>dialog_id: IncompatibleVersion, answers: Ok. The file was written with an incompatible version of the software.</p></li>
+<li><p>dialog_id: MGXPassword, answer: &lt;str&gt;. Provide the password for the MGX encrypted file.</p></li>
+<li><p>dialog_id: ContinueWithOutdatedProject, answers: Yes, No</p></li>
+<li><p>dialog_id: PBS.ProceedWithVariableSliceDistance, answers: Yes, No. The project has variable spacing between slices. PBS may take long to run and need more memory than in other projects. It is recommended to reslice your project. Do you want to proceed with PBS?</p></li>
+<li><p>dialog_id: PreferencesGPUMissingWarning, answers: Ok. Renderer from preferences is missing, optimal renderer will be selected automatically.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dialog_id</strong> (<em>str</em>) – Defines the dialog id.</p></li>
+<li><p><strong>answer</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – Defines the string answer to the dialog.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘No predefined answer for dialog with ID’, ‘This kind of answer for dialog with ID is not allowed’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d_id</span> <span class="o">=</span> <span class="s2">&quot;ProjectHasNotValidCS&quot;</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="s2">&quot;Yes&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="n">dialog_id</span><span class="o">=</span><span class="n">d_id</span><span class="p">,</span> <span class="n">answer</span><span class="o">=</span><span class="n">ans</span><span class="p">)</span>
+
+<span class="c1">################################################################</span>
+<span class="n">d_id</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">dialog_id</span><span class="o">.</span><span class="n">NOT_VALID_CS_IN_PROJECT</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">answer</span><span class="o">.</span><span class="n">Yes</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="n">dialog_id</span><span class="o">=</span><span class="n">d_id</span><span class="p">,</span> <span class="n">answer</span><span class="o">=</span><span class="n">ans</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.dicom.html" class="btn btn-neutral float-right" title="mimics.dicom module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.data.html" class="btn btn-neutral" title="mimics.data module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

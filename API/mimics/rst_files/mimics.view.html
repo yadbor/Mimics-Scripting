@@ -1,0 +1,1395 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.view module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="API Change Log" href="../../changelog/index.html"/>
+        <link rel="prev" title="mimics.utils module" href="mimics.utils.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.view module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.view.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.view">
+<span id="mimics-view-module"></span><h1>mimics.view module<a class="headerlink" href="#module-mimics.view" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.Camera">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">Camera</span></span><a class="headerlink" href="#mimics.view.Camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Camera object allows to operate with camera alignment, rotation and zooming. It can be received via mimics.views.View object.</p>
+<p>Camera contains properties that defines current camera position (See mimics.views.CameraSetting object for more details, it can be obtained via get_settings function call). All properties can be modified to change the Camera’s position.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.Camera.get_settings">
+<span class="sig-name descname"><span class="pre">get_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.Camera.get_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows to access current camera settings and modify them. Modifying returned object does not lead to mimics.views.View object change. Does not work in background mode, to get settings without UI, please use mimics.view.create_camera_settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Camera settings</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mimics.view.CameraSettings" title="mimics.view.CameraSettings">mimics.view.CameraSettings</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.Camera.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.Camera.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates the camera according to the defined angles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>angles</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Rotation angles.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.Camera.set_settings">
+<span class="sig-name descname"><span class="pre">set_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_settings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.Camera.set_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies passed settings to the camera that leads to mimics.views.View object change. Note that passed values of view_center and zoom_point will be projected to the plane of the window, which is defined by up_vector and view_vector properties. Due to that fact, the final values of view_center and zoom_point will not necessarily match original variables from CameraSettings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>camera_settings</strong> (<a class="reference internal" href="#mimics.view.CameraSettings" title="mimics.view.CameraSettings"><em>mimics.view.CameraSettings</em></a>) – Camera settings to be applied.</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Up vector must be orthogonal to the view vector.’, ‘View vector for 2D views cannot be changed.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Camera.up_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">up_vector</span></span><a class="headerlink" href="#mimics.view.Camera.up_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Camera.view_center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">view_center</span></span><a class="headerlink" href="#mimics.view.Camera.view_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>A 3D point that is displayed at the center of the window. Note, that after changing this property, it will not necessarily match the passed value due to the fact that it is projected to the plane of the window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Camera.view_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">view_vector</span></span><a class="headerlink" href="#mimics.view.Camera.view_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘View vector for 2D views cannot be changed.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Camera.zoom_factor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zoom_factor</span></span><a class="headerlink" href="#mimics.view.Camera.zoom_factor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Zoom factor must be greater than 0.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Camera.zoom_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zoom_point</span></span><a class="headerlink" href="#mimics.view.Camera.zoom_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>A 3D point that preserves its position on the window after zooming. Note, that after changing this property, it will not necessarily match the passed value due to the fact that it is projected to the plane of the window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.Camera.zoom_to_bounding_box">
+<span class="sig-name descname"><span class="pre">zoom_to_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounding_box</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.Camera.zoom_to_bounding_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zooms to the defined bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bounding_box</strong> (<a class="reference internal" href="mimics.html#mimics.BoundingBox3d" title="mimics.BoundingBox3d"><em>mimics.BoundingBox3d</em></a>) – Bounding box</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Bounding box is not valid. Provide valid bounding box.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">CameraSettings</span></span><a class="headerlink" href="#mimics.view.CameraSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>CameraSettings allows to operate with camera alignment, rotation and zooming. It can be modified via up_vector, view_vector, view_center and zoom_factor.</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>up_vector and view_vector defines the rotation of the View. up_vector is aligned with Y-axis(top to bottom) of the window. view_vector is an eye vector, this vector is orthogonal to the screen and directed from the user. If passed vectors are not orthogonal, up_vector is set as orthogonal to view_vector in the plane determined by up and view vectors</p></li>
+<li><p>view_center allows to set camera center - it is a 3D point that is moved to the center of the window.</p></li>
+<li><p>zoom_factor is a ratio to default window zooming. Default zooming is selected as a bounding box of all visible objects inscribed in the window. Default zoom factor equals 1.</p></li>
+<li><p>zoom_point is a 3D point that preserves its position on the window after zooming.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings.up_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">up_vector</span></span><a class="headerlink" href="#mimics.view.CameraSettings.up_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings.view_center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">view_center</span></span><a class="headerlink" href="#mimics.view.CameraSettings.view_center" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings.view_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">view_vector</span></span><a class="headerlink" href="#mimics.view.CameraSettings.view_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings.zoom_factor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zoom_factor</span></span><a class="headerlink" href="#mimics.view.CameraSettings.zoom_factor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Zoom factor must be greater than 0.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings.zoom_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zoom_point</span></span><a class="headerlink" href="#mimics.view.CameraSettings.zoom_point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.CameraSettings.zoom_to_bounding_box">
+<span class="sig-name descname"><span class="pre">zoom_to_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.CameraSettings.zoom_to_bounding_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zooming to the required zoom point in the required bounding box with the required zoom factor. This method updates view_center property according to the bounding box center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bbox</strong> (<a class="reference internal" href="mimics.html#mimics.BoundingBox3d" title="mimics.BoundingBox3d"><em>mimics.BoundingBox3d</em></a>) – Bounding box.</p></li>
+<li><p><strong>zoom_factor</strong> (<em>SupportsFloat</em>) – (optional) Zoom factor with regard to bounding box. If the value is ‘1’ bounding box is fully inscribed into view.</p></li>
+<li><p><strong>zoom_center</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) Point to zoom into.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Bounding box is not valid. Pass point and three vectors.’, ‘Bounding box is not valid. Provide valid bounding box.’, ‘Zoom factor must be greater then 0.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">Fluoroscopy</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Fluoroscopy view visualizes the region of interest in different view angles.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.attenuation_coefficient">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attenuation_coefficient</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.attenuation_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.cran_caud_angle">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cran_caud_angle</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.cran_caud_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Cranial &amp; Caudal angle. Positive values correspond to Cranial angle, negative values correspond to Caudal angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.distance_source_to_detector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distance_source_to_detector</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.distance_source_to_detector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.distance_source_to_patient">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distance_source_to_patient</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.distance_source_to_patient" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.lao_rao_angle">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lao_rao_angle</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.lao_rao_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The LAO &amp; RAO angle. Positive values correspond to RAO angle, negative values correspond to LAO angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.normalize_contrast">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normalize_contrast</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.normalize_contrast" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Fluoroscopy.simulation_mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simulation_mode</span></span><a class="headerlink" href="#mimics.view.Fluoroscopy.simulation_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fluoroscopy view mode: to be applied on activation or immediately</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.PanoramicReslice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">PanoramicReslice</span></span><a class="headerlink" href="#mimics.view.PanoramicReslice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Panoramic reslice view that visualizes image data along a curve.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.PanoramicReslice.cross_section_height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cross_section_height</span></span><a class="headerlink" href="#mimics.view.PanoramicReslice.cross_section_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cross-sectional height determines the height of the images in the plane perpendicular to the panoramic curve. The value should not be less than the pixel size value and should not exceed the images height. None is used for the height of images</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>SupportsFloat</em>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Passed value is not in allowed range determined by images pixel size and dimensions.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.PanoramicReslice.cross_section_length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cross_section_length</span></span><a class="headerlink" href="#mimics.view.PanoramicReslice.cross_section_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cross-sectional length determines the length of the images in the plane perpendicular to the panoramic curve. The value should not be less than the pixel size value and should not exceed the bigger from the images’ dimensions. None is used for “Optional” cross section length. “Optional” value calculated by application automatically.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>SupportsFloat</em>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Passed value is not in allowed range determined by images pixel size and dimensions.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.PanoramicReslice.geometry_points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometry_points</span></span><a class="headerlink" href="#mimics.view.PanoramicReslice.geometry_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>A set of points creating a smooth panoramic curve passing through the input points indicated by user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Sequence</em>[<em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.PanoramicReslice.points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#mimics.view.PanoramicReslice.points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Points defined by the user, that are used as an input data to create a panoramic curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Sequence</em>[<em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Not enough points to build a spline (len(points) &lt; 2).’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.Reslice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">Reslice</span></span><a class="headerlink" href="#mimics.view.Reslice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Reslice view visualizes the images in a selected direction.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.auto_resize_to_imagedata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">auto_resize_to_imagedata</span></span><a class="headerlink" href="#mimics.view.Reslice.auto_resize_to_imagedata" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#mimics.view.Reslice.height" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Height should not be in a specific range for the current Mimics project’]), RuntimeError (reason(s): [“Can’t set custom height to Reslice object if ‘auto_resize_to_imagedata’ attribute is True. To set the height please first change ‘auto_resize_to_imagedata’ to False”])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.normal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal</span></span><a class="headerlink" href="#mimics.view.Reslice.normal" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#mimics.view.Reslice.origin" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.reslice_step">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reslice_step</span></span><a class="headerlink" href="#mimics.view.Reslice.reslice_step" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.rotate_xyz">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rotate_xyz</span></span><a class="headerlink" href="#mimics.view.Reslice.rotate_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.Reslice.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#mimics.view.Reslice.width" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Width should not be in a specific range for the current Mimics project.’]), RuntimeError (reason(s): [“Can’t set custom width to Reslice object if ‘auto_resize_to_imagedata’ attribute is True. To set the width please first change ‘auto_resize_to_imagedata’ to False”])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.View">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">View</span></span><a class="headerlink" href="#mimics.view.View" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An object describing view in Mimics’s layouts. (Coronal, Axial, Sagittal, 3D etc.)</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.View.base_object">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base_object</span></span><a class="headerlink" href="#mimics.view.View.base_object" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object">mimics.Object</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.View.get_camera">
+<span class="sig-name descname"><span class="pre">get_camera</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.View.get_camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns mimics.view.View object that allows to operate with camera alignment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.View.get_widget">
+<span class="sig-name descname"><span class="pre">get_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.View.get_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an PyQt5’ QWidget (or a QWidget-derived class) instance of Qt widget (window) that represents a view.</p>
+<p>If your script is going to use the instance a lot or too often, it is recommended</p>
+<p>to store the instance at the Python side to be re-used within your function. However, it is highly not recommended to store this</p>
+<p>QWidget object for long time, because views are highly mutable objects (e.g. they can be created/deleted when layout is change) and that can result</p>
+<p>in the QWidget to be deleted. Note, that referencing to a delete QWidget will results in Python exception (see documentation of the PtQt and sip).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of PyQt5.QtWidgets.QWidget</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>mimics.gui.PyQt5.QtWidgets.QWidget</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’]), ImportError (reason(s): [‘PyQt library is either not installed, mis-configured or its version mis-matches version of Qt in the host application.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.View.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#mimics.view.View.height" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.View.image_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image_data</span></span><a class="headerlink" href="#mimics.view.View.image_data" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.ImageData’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.View.is_under_mouse">
+<span class="sig-name descname"><span class="pre">is_under_mouse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.View.is_under_mouse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true the mouse cursor is currently within the given view</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if mouse cursor is within the given view</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.View.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#mimics.view.View.type" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.view.View.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#mimics.view.View.width" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.view.ViewToImageTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">ViewToImageTransform</span></span><a class="headerlink" href="#mimics.view.ViewToImageTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.view.ViewToImageTransform.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.ViewToImageTransform.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the input 3d point to a point on the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Point to be transformed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>2D point.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.clear_log">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">clear_log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.clear_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the log.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_camera_settings">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_camera_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_camera_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates default camera settings, which can be customized and set to the camera.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Camera settings</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mimics.view.CameraSettings" title="mimics.view.CameraSettings">mimics.view.CameraSettings</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_fluoroscopy_view_default">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_fluoroscopy_view_default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_fluoroscopy_view_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Fluoroscopy object. Default (axial view) plane will be used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Fluoroscopy object.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy">mimics.view.Fluoroscopy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_fluoroscopy_view_with_analyze_plane">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_fluoroscopy_view_with_analyze_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_fluoroscopy_view_with_analyze_plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Fluoroscopy object. Analysis plane is required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>plane</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a>) – A plane to generate a Fluoroscopy object from it.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A Fluoroscopy object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy">mimics.view.Fluoroscopy</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">planes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fl</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_fluoroscopy_view_with_analyze_plane</span><span class="p">(</span><span class="n">plane</span><span class="o">=</span><span class="n">pln</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_fluoroscopy_view_with_reslice_plane">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_fluoroscopy_view_with_reslice_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_fluoroscopy_view_with_reslice_plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a fluoroscopy object. Reslice plane is required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>plane</strong> (<a class="reference internal" href="#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a>) – A plane to generate a Fluoroscopy object from it.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A fluoroscopy object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy">mimics.view.Fluoroscopy</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">reslice_planes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fl</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_fluoroscopy_view_with_reslice_plane</span><span class="p">(</span><span class="n">plane</span><span class="o">=</span><span class="n">pln</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_panoramic_reslice">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_panoramic_reslice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_section_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_section_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_panoramic_reslice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates reslice object along a specified spline (panoramic curve).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>Sequence</em><em>[</em><em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em><em>]</em>) – The source points.</p></li>
+<li><p><strong>cross_section_length</strong> (<em>Optional</em><em>[</em><em>SupportsFloat</em><em>]</em>) – (optional) The cross-sectional length determines the length of the images in the plane perpendicular to the curve. The value should not be less than the pixel size value and should not exceed the bigger from the images’ dimensions. By default - None. None represents “Optional” cross section length (value calculated by application automatically).</p></li>
+<li><p><strong>cross_section_height</strong> (<em>Optional</em><em>[</em><em>SupportsFloat</em><em>]</em>) – (optional) The cross-sectional height determines the height of the images in the plane perpendicular to the panoramic curve. The value should not be less than the pixel size value and should not exceed the images height. By default - None. None is used for the height of images</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Panoramic curve.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.view.PanoramicReslice" title="mimics.view.PanoramicReslice">mimics.view.PanoramicReslice</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Cross section length should be in range %1-%2’, ‘Cross section height should be in range %1-%2’, ‘At least two points must be indicated’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># given that we have at least one spline created</span>
+<span class="n">spline</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">splines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># create panoramic with default (&quot;Optimal&quot;) cross_section_length</span>
+<span class="n">panoramic</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_panoramic_reslice</span><span class="p">(</span><span class="n">spline</span><span class="p">)</span>
+
+<span class="c1"># create panoramic with default (&quot;Optimal&quot;) cross_section_length</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">spline</span><span class="o">.</span><span class="n">points</span>
+<span class="n">panoramic_from_points</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_panoramic_reslice</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+<span class="c1"># second parameter allows to set explicit cross_section_length</span>
+<span class="n">panoramic_with_custom_cross_section_length</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_panoramic_reslice</span><span class="p">(</span><span class="n">spline</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_resliced_view_default">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_resliced_view_default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_resliced_view_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default MPR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Reslice plane.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mimics.view.Reslice" title="mimics.view.Reslice">mimics.view.Reslice</a></p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_resliced_view_default</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_resliced_view_with_plane">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_resliced_view_with_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_resliced_view_with_plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reslices the stack of images along a specified plane. As a result, three orthogonal views are obtained with original view parallel to the selected plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>plane</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a>) – The reference plane.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reslice plane.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.view.Reslice" title="mimics.view.Reslice">mimics.view.Reslice</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">planes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fl</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_resliced_view_with_plane</span><span class="p">(</span><span class="n">plane</span><span class="o">=</span><span class="n">pln</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.create_view_to_image_transform">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">create_view_to_image_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.create_view_to_image_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the transformation of a view from the patient’s coordinate system to the screen coordinate system (image pixels). If image_width or image_height are None then width and height are taken as screen resolution size. The transformation can be used to transform a point from the patient’s coordinate system to the screen (image) coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view</strong> (<a class="reference internal" href="#mimics.view.View" title="mimics.view.View"><em>mimics.view.View</em></a>) – View for transform calculation.</p></li>
+<li><p><strong>camera_settings</strong> (<a class="reference internal" href="#mimics.view.CameraSettings" title="mimics.view.CameraSettings"><em>mimics.view.CameraSettings</em></a>) – (optional) Camera settings for transform calculation.</p></li>
+<li><p><strong>image_width</strong> (<em>int</em>) – (optional) View width.</p></li>
+<li><p><strong>image_height</strong> (<em>int</em>) – (optional) View height.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Transformation of a view from the patient’s coordinate system to the image pixel coordinate system.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.view.ViewToImageTransform" title="mimics.view.ViewToImageTransform">mimics.view.ViewToImageTransform</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>RuntimeError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pnt</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">()</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;3D&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">v</span><span class="p">:</span>
+    <span class="n">tr</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_view_to_image_transform</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">tr_pnt</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pnt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coordinates of the clicked point:&quot;</span><span class="p">,</span><span class="n">pnt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coordinates of the transformed point:&quot;</span><span class="p">,</span><span class="n">tr_pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.disable_mask_3d_preview">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">disable_mask_3d_preview</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.disable_mask_3d_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the mask 3D preview.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.disable_overlay">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">disable_overlay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.disable_overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables overlay.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.disable_transparency">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">disable_transparency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.disable_transparency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the transparency of the Parts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.enable_mask_3d_preview">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">enable_mask_3d_preview</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.enable_mask_3d_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the mask 3D preview.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.enable_overlay">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">enable_overlay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.enable_overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables overlay.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.enable_transparency">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">enable_transparency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.enable_transparency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the transparency of the Parts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.export_simulated_fluoroscopy">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">export_simulated_fluoroscopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluoroscopy_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colored_objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'autodetect'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.export_simulated_fluoroscopy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports fluoroscopy simulated image to file. Can simulate defined objects in color</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – path to result file, file extension will be used to detect output format if not explicitely specified by file_type.</p></li>
+<li><p><strong>fluoroscopy_object</strong> (<a class="reference internal" href="#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy"><em>mimics.view.Fluoroscopy</em></a>) – Pre-configured object used for simulation</p></li>
+<li><p><strong>colored_objects</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em>) – Objects, that shall be simulated in color</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – (optional) width of result image, pixels. Value range: [1,65535]</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – (optional) height of result image, pixels. Value range: [1,65535]</p></li>
+<li><p><strong>image_type</strong> (<em>str</em>) – (optional) format of output file, preferred over filename extension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>RuntimeError (reason(s): [‘failed to simulate to file. Might be because of I/O error or incompatible output format’]), ValueError (reason(s): [‘incompatible output format’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\my_file.bmp&quot;</span>
+<span class="n">objs</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">points</span><span class="p">]</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">create_fluoroscopy_view_default</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">objects_contrast</span> <span class="o">=</span> <span class="p">[])</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">export_simulated_fluoroscopy</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">fluoroscopy_object</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">colored_objects</span><span class="o">=</span><span class="n">objs</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.get_camera">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">get_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.get_camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets current camera of a selected view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>view</strong> (<a class="reference internal" href="#mimics.view.View" title="mimics.view.View"><em>mimics.view.View</em></a>) – View to get the camera for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Camera of a selected view.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.view.Camera" title="mimics.view.Camera">mimics.view.Camera</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>RuntimeError (reason(s): [‘The given view is not valid anymore. Probably it was removed due to layout recalculation.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">views</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">views</span>
+<span class="n">cmr</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">get_camera</span><span class="p">(</span><span class="n">views</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">cmr</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.get_log">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">get_log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.get_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get entire user log text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>User log text</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.hide_log_panel">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">hide_log_panel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.hide_log_panel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hides the log panel.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.hide_reference_planes">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">hide_reference_planes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.hide_reference_planes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the visualization of the reference planes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.is_mask_3d_preview_enabled">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">is_mask_3d_preview_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.is_mask_3d_preview_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the state of the mask 3D preview.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>State of the mask 3D preview.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.is_maximized">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">is_maximized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.is_maximized" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the defined view is maximized to full screen or false otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>view</strong> (<a class="reference internal" href="#mimics.view.View" title="mimics.view.View"><em>mimics.view.View</em></a>) – View that should be checked.</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Invalid view.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Axial&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">v</span><span class="p">:</span>
+    <span class="n">maximized</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">is_maximized</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">maximized</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.is_overlay_enabled">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">is_overlay_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.is_overlay_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if overlay is enabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.is_transparency_enabled">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">is_transparency_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.is_transparency_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the state of the transparency of the Parts..</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>State of the transparency of the Parts.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.maximize_view">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">maximize_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.maximize_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximizes defined view to fullscreen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>view_type</strong> (<a class="reference internal" href="#mimics.view.View" title="mimics.view.View"><em>mimics.view.View</em></a>) – View that should be maximized.</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Invalid view.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">views</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">maximize_view</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.navigate_to">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">navigate_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.navigate_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Navigates to a certain position in the image dataset by defining a point. All images are immediately updated to show the defined point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the point to which navigation should be done.</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">navigate_to</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.restore_view">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">restore_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.restore_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the view to the default viewport settings of the user.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.set_contrast">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">set_contrast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.set_contrast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the contrast.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lower_point</strong> (<em>Tuple</em><em>[</em><em>SupportsInt</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) Lower contrast point.</p></li>
+<li><p><strong>upper_point</strong> (<em>Tuple</em><em>[</em><em>SupportsInt</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) Upper contrast point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Lower contrast point should be in range from 0 to 1’, ‘Upper contrast point should be in range from 0 to 1’, ‘Upper contrast point should be higher then lower contrast point’, ‘Lower contrast point should be in range from 0 to maximum gray value of the project’, ‘Upper contrast point should be in range from 0 to maximum gray value of the project’, ‘Upper contrast point should be higher then lower contrast point’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_contrast</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),(</span><span class="mi">230</span><span class="p">,</span><span class="mf">0.8</span><span class="p">))</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_contrast</span><span class="p">(</span><span class="n">upper_point</span><span class="o">=</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_contrast</span><span class="p">(</span><span class="n">lower_point</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_contrast</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">255</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.set_layout">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">set_layout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reslices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.set_layout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the layout. If the defined value is equal to the current layout - it will be recalculated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layout_name</strong> (<em>str</em>) – Name of the layout. Attributes of mimics.Layouts can be passed as the layout_name argument, e.g. mimics.Layouts.Layout3D</p></li>
+<li><p><strong>*</strong> (<em>None</em>) – </p></li>
+<li><p><strong>images</strong> (<em>Union</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><em>Iterable</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em><em>, </em><em>None</em><em>]</em>) – (optional) Images. They depends on the layout</p></li>
+<li><p><strong>reslices</strong> (<em>Union</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><em>Iterable</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em><em>, </em><em>None</em><em>]</em>) – (optional) Reslices. They depends on the layout</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Unsupported layout name’, ‘Invalid number of Images’, ‘Invalid number of Reslices’, ‘Invalid Image’, ‘Invalid Slicer’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Layouts</span><span class="o">.</span><span class="n">Layout3D</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">images</span><span class="o">=</span><span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">set_layout</span><span class="p">(</span><span class="n">layout_name</span><span class="o">=</span><span class="n">l</span><span class="p">,</span> <span class="n">images</span><span class="o">=</span><span class="n">im</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.show_log_panel">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">show_log_panel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.show_log_panel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the log panel.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.view.show_reference_planes">
+<span class="sig-prename descclassname"><span class="pre">mimics.view.</span></span><span class="sig-name descname"><span class="pre">show_reference_planes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.view.show_reference_planes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the visualization of the reference planes.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../changelog/index.html" class="btn btn-neutral float-right" title="API Change Log" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.utils.html" class="btn btn-neutral" title="mimics.utils module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+Get autocomplete in external IDEs
+--------------------------------------
+
+To get autocomplete functionality similar to the one of Mimics console and editor to external editors you can follow the steps below depending on the Python interpreter that you use to script.
+
+**Step 1**:
+A .whl file is included in the installer of Mimics. This file is located in the :file:`Help\\API` folder of the Mimics installation directory. Locate the file and copy the full path to it.
+
+**Step 2**:
+Follow the steps described in the section :ref:`2.2 Installing extra packages <extra_packages>` of the Introduction section of this guide to install the .whl package and type the following command:
+
+.. code-block:: bash
+
+	pip install <full path to the .whl file that is copied in Step 1>
+
+
+**Note:** It is recommended to surround the whole path with quotes.
+
+The autocomplete functionality is now available in your external editor. Make sure that you use the correct interpreter in your external editor to get Mimics autocomplete.
+
+**Known issues**
+
+- Materialise does not guarantee the correct functionality of the API functions that are used as context managers. An example of a context manager is the :py:func:`mimics.disabled_gui_update`. Context managers allow you to allocate and release resources precisely when you want to. The most widely used example of context managers is the :py:func:`with` statement. While using Mimics with an External IDE you can use the equivalent code instead.
+
+.. code-block:: python
+
+  try: 
+    # commands
+    
+  except:  
+  
+    # commands
+  
+  finally: 
+  
+    # commands
+    
+
+- Materialise does not guarantee the correct functionality of the returned type memoryview. For details about the functions that return the memoryview type see the documentation of Mimics API (e.g: method :py:func:`get_voxel_buffer()` of the class :py:func:`mimics.segment.Mask`)  

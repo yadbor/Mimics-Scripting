@@ -1,0 +1,70 @@
+Access to Part Triangles and Points
+--------------------------------------
+
+Note: To run the following tutorial the NumPy library should be installed. To install external Python libraries, see the Section 2.3 of the Introduction.
+
+The Mimics API also supports low-level data access to images, masks and 3D parts (or STLs). This tutorial shows how to access the nodes (points) and triangles of a part. The Mimics project Heart.mcs from :file:`C:\\MedData\\DemoFiles` will be used. As a first a  step, the project will be loaded in Mimics.
+
+.. code-block:: python
+
+	# Import the required libraries
+  try:
+      import numpy as np  # First need to install numpy package for Python. Type pip install numpy in your cmd
+  except ImportError as ie:
+      print("================================================================")
+      print("=== The 3rd party Python package 'numpy' is not installed! ===")
+      print("=== To install it, use 'pip install numpy' in your cmd!    ===")
+      print("================================================================")
+      raise
+	# Open Heart.mcs project
+	input_dir=r'C:\MedData\DemoFiles\Heart.mcs'
+	mimics.file.open_project(input_dir)
+
+Next, get the relevant part.
+
+.. code-block:: python
+
+	# Get the LV part
+	p = mimics.data.parts.find("LV")
+
+To access the nodes and triangles of this part and read them as NumPy arrays, see the code below.
+
+.. code-block:: python
+
+	if p is not None:
+	# Get a copy of nodes and triangles
+		nodes,triangles = p.get_triangles()
+	# Read them with numpy
+		nodes = np.asarray(nodes)
+		print(len(nodes))
+		triangles = np.asarray(triangles)
+
+Next we try to find the node that has the biggest distance from the origin of the World Coordinate System (WCS).
+
+.. code-block:: python
+
+	# Find the node that is the furthest from the WCS origin
+		mx = []
+		for m in nodes:
+			mx.append(np.linalg.norm(m))
+		i_mx = mx.index(max(mx))
+
+In the following step the closest node to the WCS is calculated.
+
+.. code-block:: python
+
+	# Find the node that is the closest to the WCS
+		mn = []
+		for m in nodes:
+			mn.append(np.linalg.norm(m))
+		i_mn = mn.index(min(mn))
+
+As a last step the distance between those two nodes (points) will be calculated.
+
+.. code-block:: python
+
+	# Calculate the distance
+		d = mimics.measure.create_distance_measurement(list(nodes[i_mx]),list(nodes[i_mn]))
+	else:
+		print("The part LV could not be found.")
+

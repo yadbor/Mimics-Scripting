@@ -1,0 +1,24 @@
+.. Mimics API documentation master file, created by
+   sphinx-quickstart on Fri Sep 23 14:34:01 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+
+*******************
+Scripting Guide
+*******************
+Table of Contents
+==================
+
+.. toctree::
+ 
+      
+   introduction/index.rst      
+   mimics/rst_files/index.rst
+   changelog/index.rst
+   external_IDE/index.rst
+   tutorials/index.rst
+   
+   
+
+

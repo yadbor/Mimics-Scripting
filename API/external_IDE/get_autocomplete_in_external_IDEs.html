@@ -1,0 +1,252 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Get autocomplete in external IDEs &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="External IDE" href="index.html"/>
+        <link rel="next" title="4. Using an External IDE" href="Using_an_External_IDE.html"/>
+        <link rel="prev" title="2. Installation guide for RPyC" href="Installation_guide_for_rpyc_and_PyQt5.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">External IDE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation_guide_for_rpyc_and_PyQt5.html">2. Installation guide for RPyC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Get autocomplete in external IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using_an_External_IDE.html">4. Using an External IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JetBrains_PyCharm.html">5. JetBrains PyCharm and Mimics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">External IDE</a> &raquo;</li>
+      
+    <li><span class="section-number">3. </span>Get autocomplete in external IDEs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/external_IDE/get_autocomplete_in_external_IDEs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="get-autocomplete-in-external-ides">
+<h1><span class="section-number">3. </span>Get autocomplete in external IDEs<a class="headerlink" href="#get-autocomplete-in-external-ides" title="Permalink to this headline">¶</a></h1>
+<p>To get autocomplete functionality similar to the one of Mimics console and editor to external editors you can follow the steps below depending on the Python interpreter that you use to script.</p>
+<p><strong>Step 1</strong>:
+A .whl file is included in the installer of Mimics. This file is located in the <code class="file docutils literal notranslate"><span class="pre">Help\API</span></code> folder of the Mimics installation directory. Locate the file and copy the full path to it.</p>
+<p><strong>Step 2</strong>:
+Follow the steps described in the section <a class="reference internal" href="../introduction/installation.html#extra-packages"><span class="std std-ref">2.2 Installing extra packages</span></a> of the Introduction section of this guide to install the .whl package and type the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install &lt;full path to the .whl file that is copied <span class="k">in</span> Step <span class="m">1</span>&gt;
+</pre></div>
+</div>
+<p><strong>Note:</strong> It is recommended to surround the whole path with quotes.</p>
+<p>The autocomplete functionality is now available in your external editor. Make sure that you use the correct interpreter in your external editor to get Mimics autocomplete.</p>
+<p><strong>Known issues</strong></p>
+<ul class="simple">
+<li><p>Materialise does not guarantee the correct functionality of the API functions that are used as context managers. An example of a context manager is the <a class="reference internal" href="../mimics/rst_files/mimics.html#mimics.disabled_gui_update" title="mimics.disabled_gui_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.disabled_gui_update()</span></code></a>. Context managers allow you to allocate and release resources precisely when you want to. The most widely used example of context managers is the <code class="xref py py-func docutils literal notranslate"><span class="pre">with()</span></code> statement. While using Mimics with an External IDE you can use the equivalent code instead.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+  <span class="c1"># commands</span>
+
+<span class="k">except</span><span class="p">:</span>
+
+  <span class="c1"># commands</span>
+
+<span class="k">finally</span><span class="p">:</span>
+
+  <span class="c1"># commands</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Materialise does not guarantee the correct functionality of the returned type memoryview. For details about the functions that return the memoryview type see the documentation of Mimics API (e.g: method <code class="xref py py-func docutils literal notranslate"><span class="pre">get_voxel_buffer()</span></code> of the class <a class="reference internal" href="../mimics/rst_files/mimics.segment.html#mimics.segment.Mask" title="mimics.segment.Mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.segment.Mask()</span></code></a>)</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Using_an_External_IDE.html" class="btn btn-neutral float-right" title="4. Using an External IDE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Installation_guide_for_rpyc_and_PyQt5.html" class="btn btn-neutral" title="2. Installation guide for RPyC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

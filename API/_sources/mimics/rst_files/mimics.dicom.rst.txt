@@ -1,0 +1,7 @@
+mimics.dicom module
+===================
+
+.. automodule:: mimics.dicom
+   :members:
+   :undoc-members:
+   :show-inheritance:

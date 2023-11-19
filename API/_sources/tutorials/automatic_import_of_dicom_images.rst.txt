@@ -1,0 +1,23 @@
+Automatic import of DICOM images
+----------------------------------
+Using the Mimics API, the user can automate the import of DICOM images. As input, we assume there is a directory containing DICOM images (this could be a single study, or multiple studies). By using :py:func:`mimics.file.import_dicom_images` with the default parameters, the DICOM files are imported.
+
+.. code-block:: python
+
+      input_dir=r"C:\MedData\DemoFiles\DICOM_Airway"
+      mimics.dialogs.set_predefined_answer("ChangeOrientation", "default")
+      mimics.file.import_dicom_images(source_folder=input_dir)   
+
+By default, upon opening the project Mimics will display a dialog box asking for confirmation of the orientation of the images. If desired, this dialog can be suppressed by setting a predefined answer for it. 
+
+The last step is to anonymize the active image set in Mimics. Use :py:func:`mimics.file.anonymize_project` to anonymize the project.
+
+
+.. code-block:: python
+
+      mimics.file.anonymize_active_image()
+
+
+
+
+

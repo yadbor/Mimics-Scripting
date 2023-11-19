@@ -1,0 +1,66 @@
+Femur segmentation
+--------------------
+
+In this tutorial basic operations to the lower limb are illustrated. The right femur and the pelvis are segmented and basic operations are performed to the masks and the 3D parts. 
+
+First, the project Hip.mcs is opened from :file:`C:\\MedData\\DemoFiles` and thresholding is performed. (More basic explanation on segmentation functionality can be found in the tutorial on Skull segmentation.).
+
+.. code-block:: python
+
+	# Open the project
+	mimics.file.open_project(r'C:\MedData\DemoFiles\Hip.mcs')
+	 # Create an empty mask        
+	mask_a = mimics.segment.create_mask()
+	mask_a.name = "Lower limb"
+	# Perform thresholding with selected min and max values
+	mimics.segment.threshold(mask=mask_a,threshold_min=1250,threshold_max=2650) # thresholds are set in gray values
+
+To fill holes in the active mask, use :py:func:`mimics.segment.fill_holes`.
+
+.. code-block:: python
+
+	#Fill holes in the segmentation mask
+	mimics.segment.fill_holes(mask_a)
+
+The next step is to perform Region Growing and segment the right femur. (Basic explanation on Region Growing can be found in the tutorial on Skull segmentation.)
+
+.. code-block:: python
+
+	# Create a point that will be used fot the region growing operation
+	point_1 = mimics.analyze.indicate_point(title="Region growing point",message= "Please indicate a point on the part of interest")
+	# Region growing. The original mask is preserved
+	mask_b = mimics.segment.region_grow(point=point_1,input_mask=mask_a,target_mask=None,slice_type="Axial",keep_original_mask=True)
+	#mimics.data.points.delete(point_1)
+	mask_b.name = "Segmented right femur"
+
+The segmented right femur mask is renamed to *Segmented right femur*. In case pelvis and left femur need to be obtained in a separate mask, the Boolean Operation *Minus* can be performed. A new mask is created and is then renamed to *Pelvis and left femur*.
+
+.. code-block:: python
+
+	# Perform the boolean operation ""Minus"" to take the anatomy of interest".
+	mask_c = mimics.segment.boolean_operations(mask_a=mimics.data.masks.find("Lower limb"), mask_b=mimics.data.masks.find("Segmented right femur"), operation="Minus")
+	mask_c.name ="Pelvis and left femur"
+
+The final step is to smooth the parts, export them to STL files, save the project and exit Mimics. For the smoothing operation, a smoothing factor of 0.6 is selected and the original parts are preserved.
+
+.. code-block:: python
+
+	#Calculation of the 3D parts
+	part_a = mimics.segment.calculate_part(mask=mimics.data.masks.find("Segmented right femur"),quality="High")      
+	part_b = mimics.segment.calculate_part(mask=mimics.data.masks.find("Pelvis and left femur"),quality="High")      
+	# Smooth 3D parts 
+	objects = mimics.data.parts
+	for part in objects:
+	    part.visible = False
+	    smoothed_part = mimics.tools.smooth(object_to_smooth=part,smooth_factor=0.6,keep_originals=True)
+	    smoothed_part.visible = True
+	    # Export the STL
+	    mimics.file.export_part(object_to_convert=smoothed_part,file_name="C:\MedData\\" + smoothed_part.name + ".stl")
+	# Save the project
+	mimics.file.save_project()
+
+
+
+
+
+

@@ -1,0 +1,627 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.events module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.fea module" href="mimics.fea.html"/>
+        <link rel="prev" title="mimics.dicom module" href="mimics.dicom.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.events module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.events.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.events">
+<span id="mimics-events-module"></span><h1>mimics.events module<a class="headerlink" href="#module-mimics.events" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.events.Subscription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.events.</span></span><span class="sig-name descname"><span class="pre">Subscription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notification_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'after'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singleshot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_enabled_if_modal_gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.events.Subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>RAII object that unsubscribes from notification when removed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.events.Subscription.is_active">
+<span class="sig-name descname"><span class="pre">is_active</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.events.Subscription.is_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the subscription is active.</p>
+<p>Subscriptions are immediatelly active after they have been created with ‘mimics.events.subscribe()’.</p>
+<p>Call mimics.events.Subscription.unsubscribe() against the subscription object in question to de-activate it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the given subscription is active, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.events.Subscription.unsubscribe">
+<span class="sig-name descname"><span class="pre">unsubscribe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.events.Subscription.unsubscribe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsubscribes from notification. If the given subscription already unsubscribed, then calling the method is noop (in this case, mimics.events.Subscription.is_active() returns False).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.events.subscribe">
+<span class="sig-prename descclassname"><span class="pre">mimics.events.</span></span><span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notification_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'after'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singleshot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_enabled_if_modal_gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.events.subscribe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new subscription for a specific notification. Whenever specific notification occures - defined callback function will be called.</p>
+<dl class="simple">
+<dt>Supported notifications names:</dt><dd><ul class="simple">
+<li><p>‘doc_opened’ : is triggered when a Project is opened. Callback function has no arguments. Supports both ‘before’ and ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘doc_saved’ : is triggered when current opened Project is about to be saved or after it has been saved. Callback function has no arguments. Supports both ‘before’ and ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘doc_closed’ : is triggered when current opened Project is closed. Callback function has no arguments. Supports both ‘before’ and ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘app_closed’ : is triggered when the application is closed. Callback function has no arguments. Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘pm_tab_closed’ : is triggered when the Project Management tab (e.g. ‘Masks’, ‘Objects’, etc.) is closed. In case the whole Project Management panel is closed - separate notifications for all visible PM tabs will be triggered. Callback function has 1 argument - id of the PM tab that was closed (type : str). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘pm_tab_docked’ : is triggered when the Project Management tab (e.g. ‘Masks’, ‘Objects’, etc.) is docked to any place in other suitable Widget. By default all PM Tabs are docked to Project Management panel. Callback function has 1 argument - id of the PM tab that was docked (type : str). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘pm_tab_undocked’ : is triggered when the Project Management tab (e.g. ‘Masks’, ‘Objects’, etc.) is undocked to floating position. By default all PM Tabs are docked to Project Management panel. Callback function has 1 argument - id of the PM tab that was undocked (type : str). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_added’ : is triggered when any mimics.Object or derived class object has been added to currently opened Project. Callback function has 1 argument - mimics.Object or derived class object that has been added (exact type depends of the added object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_deleted’ : is triggered when any mimics.Object or derived class object is deleted from currently opened Project. Callback function has 1 argument - mimics.Object or derived class object that has been deleted (exact type depends of the deleted object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_geometry_changed’ : is triggered when the geometry of mimics.Object`s or derived class object`s geometry in current opened Project is changed (position, geometrical properties, etc.) Callback function has 1 argument - mimics.Object or derived class object which geometry was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_relation_changed’ : is triggered when the relation (link to specific Image data for Objects) of mimics.Object`s or derived class object`s in current opened Project is changed. Callback function has 1 argument - mimics.Object or derived class object which relation was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_label_changed’ : is triggered when the name of mimics.Object`s or derived class object`s in current opened Project is changed. Callback function has 1 argument - mimics.Object or derived class object which name was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_metadata_changed’ : is triggered when the metadata of mimics.Object`s or derived class object`s in current opened Project is changed. Callback function has 1 argument - mimics.Object or derived class object which metadata was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_visual_state_changed’ : is triggered when the visibility of mimics.Object or derived class object in current opened Project is changed. Callback function has 1 argument - mimics.Object or derived class object which visibility was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_selection_changed’ : is triggered when the selection of mimics.Object or derived class object in current opened Project is changed. Callback function has 1 argument - mimics.Object or derived class object which selection was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘obj_changed’ : is triggered when any mimics.Object or derived class object in current opened Project is changed. This notification is general and is triggered whenever any child notification is triggered : ‘obj_geometry_changed’, ‘obj_relation_changed’, ‘obj_label_changed’, ‘obj_metadata_changed’, ‘obj_visual_state_changed’. Not triggered when object is deleted, use ‘obj_deleted’ notification_name instead. Callback function has 1 argument - mimics.Object or derived class object which was changed (exact type depends of the changed object type: mimics.Object or derived type). Supports only ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+<li><p>‘timer’ : is triggered every time interval defined in ‘timeout’ (in milliseconds). In case ‘singleshot’ parameter is True - event is triggered only once after time defined in ‘timeout’ (in milliseconds) passes. Callback function has no arguments. Supports both ‘before’ and ‘after’ notification_type. For detailed example see the ‘Example’ section below.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>notification_name</strong> (<em>str</em>) – Name of the notification. Check function description to see all supported notification names.</p></li>
+<li><p><strong>callback</strong> (<em>collections.abc.Callable</em>) – Callback function that will be called when notification is triggered. Check function description or ‘Example’ section to see required signature for callback function for a specific notification.</p></li>
+<li><p><strong>*</strong> (<em>None</em>) – </p></li>
+<li><p><strong>notification_type</strong> (<em>str</em>) – (optional) Defines whether callback should be triggered before or after the operation or event.</p></li>
+<li><p><strong>timeout</strong> (<em>int</em>) – (optional) Timeout interval of the timer event in milliseconds. Applicable only to the ‘timer’ notification_name, otherwise ignored.</p></li>
+<li><p><strong>singleshot</strong> (<em>bool</em>) – (optional) Defines repetition of the timer event. If True then defined callback will triggred only once. Applicable only to the ‘timer’ notification_name, otherwise ignored.</p></li>
+<li><p><strong>is_enabled_if_modal_gui</strong> (<em>bool</em>) – (optional) By default value (or False), in order to implicit support for hard to diagnose situations, the timers notifications are put on hold while modal GUI is active. This can be overridden by providing True value for this parameter, if so, extra attention is needed while modifying data is the callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>RAII object that removes the subscription when deleted. It should be stored in a variable.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.events.Subscription" title="mimics.events.Subscription">mimics.events.Subscription</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [“Notification ‘&lt;notification_name&gt;’ does not exists. Please provide a valid notification name.”, “Notification ‘&lt;notification_name&gt;’ is not supported for the subscription type ‘before/after’.”, “‘timeout’ parameter is required while setting a ‘timer’ notification.”]), TypeError (reason(s): [“‘timeout’ parameter is expected only for a ‘timer’ notification_name. None is expected.”, “‘singleshot’ parameter is expected only for a ‘timer’ notification_name. None is expected.”, “‘is_enabled_if_modal_gui’ parameter is expected only for a ‘timer’ notification_name. None is expected.”, “Unsupported notification type ‘&lt;notification_type&gt;’ is provided for notification ‘&lt;notification_name&gt;’.”])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="k">def</span> <span class="nf">on_app_closed</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Application closed&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_app_closed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;app_closed&quot;</span><span class="p">,</span> <span class="n">on_app_closed</span><span class="p">)</span>
+
+
+<span class="c1">#Example 2</span>
+<span class="c1"># Currently it is impossible to interrupt project opening via notification callback</span>
+<span class="k">def</span> <span class="nf">on_before_doc_opened</span><span class="p">(</span><span class="n">project_path</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project is about to be opened: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">project_path</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_before_doc_opened</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;doc_opened&quot;</span><span class="p">,</span> <span class="n">on_before_doc_opened</span><span class="p">,</span> <span class="n">notification_type</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_after_doc_opened</span><span class="p">(</span><span class="n">project_path</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project is opened: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">project_path</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_after_doc_opened</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;doc_opened&quot;</span><span class="p">,</span> <span class="n">on_after_doc_opened</span><span class="p">,</span> <span class="n">notification_type</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Currently it is impossible to interrupt project closing via notification callback</span>
+<span class="k">def</span> <span class="nf">on_before_doc_closed</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project is about to be closed&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_before_doc_closed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;doc_closed&quot;</span><span class="p">,</span> <span class="n">on_before_doc_closed</span><span class="p">,</span> <span class="n">notification_type</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_after_doc_closed</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project is closed&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_after_doc_closed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;doc_closed&quot;</span><span class="p">,</span> <span class="n">on_after_doc_closed</span><span class="p">,</span> <span class="n">notification_type</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_before_doc_saving</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project is about to be saved&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception occurred: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">sub_before_doc_saving</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;doc_saved&quot;</span><span class="p">,</span> <span class="n">on_before_doc_saving</span><span class="p">,</span> <span class="n">notification_type</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_after_doc_saved</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project has been saved&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception occurred: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">sub_after_doc_saved</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;doc_saved&quot;</span><span class="p">,</span> <span class="n">on_after_doc_saved</span><span class="p">,</span> <span class="n">notification_type</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#Example 3</span>
+<span class="k">def</span> <span class="nf">on_pm_tab_closed</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pm tab closed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">index</span>
+
+
+<span class="n">sub_pm_tab_closed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;pm_tab_closed&quot;</span><span class="p">,</span> <span class="n">on_pm_tab_closed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_pm_tab_docked</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pm tab docked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">index</span>
+
+
+<span class="n">sub_pm_tab_docked</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;pm_tab_docked&quot;</span><span class="p">,</span> <span class="n">on_pm_tab_docked</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_pm_tab_undocked</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pm tab undocked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">index</span>
+
+
+<span class="n">sub_pm_tab_undocked</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;pm_tab_undocked&quot;</span><span class="p">,</span> <span class="n">on_pm_tab_undocked</span><span class="p">)</span>
+
+
+<span class="c1">#Example 4</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_added</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object added: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_added</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_added&quot;</span><span class="p">,</span> <span class="n">on_obj_added</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_deleted</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object deleted: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_deleted</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_deleted&quot;</span><span class="p">,</span> <span class="n">on_obj_deleted</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_geometry_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object geometry changed: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_geometry_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_geometry_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_geometry_changed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_relation_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object relation changed: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">. &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_relation_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_relation_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_relation_changed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_label_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object name changed: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_label_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_label_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_label_changed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_metadata_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object metadata changed: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_metadata_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_metadata_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_metadata_changed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_visual_state_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object visibility changed: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_visual_state_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_visual_state_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_visual_state_changed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_selection_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object selection changed: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_selection_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_selection_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_selection_changed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_obj_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object modified: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;obj_changed&quot;</span><span class="p">,</span> <span class="n">on_obj_changed</span><span class="p">)</span>
+
+
+<span class="c1">#Example 5</span>
+<span class="k">def</span> <span class="nf">on_timer</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timer tick&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_timer</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">,</span> <span class="n">on_timer</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">on_timer_singleshot</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timer singleshot&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">sub_timer_singleshot</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">,</span> <span class="n">on_timer_singleshot</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">singleshot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1">#Example 6</span>
+<span class="k">def</span> <span class="nf">on_timer</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timer tick&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+<span class="n">sub_timer</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">,</span> <span class="n">on_timer</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The subscriptiom is active: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sub_timer</span><span class="o">.</span><span class="n">is_active</span><span class="p">()))</span>
+
+<span class="n">sub_timer</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The subscriptiom is active: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sub_timer</span><span class="o">.</span><span class="n">is_active</span><span class="p">()))</span>
+
+
+<span class="k">def</span> <span class="nf">on_timer_singleshot</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timer singleshot&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception occured: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+<span class="n">sub_timer_singleshot</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">,</span> <span class="n">on_timer_singleshot</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">singleshot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The singleshot subscriptiom is active: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sub_timer_singleshot</span><span class="o">.</span><span class="n">is_active</span><span class="p">()))</span>
+<span class="k">while</span> <span class="n">sub_timer_singleshot</span><span class="o">.</span><span class="n">is_active</span><span class="p">():</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">update_gui</span><span class="p">()</span>  <span class="c1"># this is too let timers notifications to be processed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The singleshot timer has been triggered, thus the subscription is not active anymore automatically (is_active() = </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sub_timer_singleshot</span><span class="o">.</span><span class="n">is_active</span><span class="p">()))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.events.unsubscribe_all">
+<span class="sig-prename descclassname"><span class="pre">mimics.events.</span></span><span class="sig-name descname"><span class="pre">unsubscribe_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.events.unsubscribe_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsubscribes from all notifications.</p>
+<p>Use ‘mimics.events.Subscription.unsubscribe()’ method to unsubscribe from individual notications for the ‘Subscription’ object obtained with ‘mimics.events.subscribe()’ API while subscribing.</p>
+<dl class="simple">
+<dt>Important:</dt><dd><ul class="simple">
+<li><p>This API shall only be used in extreme situations and/or for diagnostic or debugs purposes.</p></li>
+<li><p>It is so because this API unsubscribes not only notification of the given script or scripting plugin, but all ‘your’ AND somebody else’s notificaitons, thus ‘destroying’ logic of other scripting plugin which are loaded now.</p></li>
+<li><p>A safer way is to unsubsribe on individual notification basis. See more in documentation for ‘mimics.events.Subscription.unsubscribe()’.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Attention:</span>
+<span class="c1">#  * the sample below is not for usage in production code</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">DIAGNOSTIC_MODE</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">def</span> <span class="nf">on_object_changed</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">mimics</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">DIAGNOSTIC_MODE</span>
+
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Notification received, object: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">DIAGNOSTIC_MODE</span><span class="p">:</span>
+        <span class="c1"># Note:</span>
+        <span class="c1">#  * for diagnostic purposes, i would like to clear ALL (mine and others)</span>
+        <span class="c1">#    subscriptions because i would like to test how it works </span>
+        <span class="c1">#    with a single event or signle object first</span>
+        <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">unsubscribe_all</span><span class="p">()</span>
+        <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s2">&quot;All subscriptions have been dropped!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Do some manipulation with the objects</span>
+    <span class="c1"># Note: some of them might be changing manipulations</span>
+    <span class="c1">#       which will result sending &quot;enclosed&quot; recursive event</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Changed on-fly: &quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="n">sub_obj_changed</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">notification_name</span><span class="o">=</span><span class="s2">&quot;obj_changed&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">on_object_changed</span><span class="p">)</span>
+<span class="c1"># Instructions:</span>
+<span class="c1"># * execute script and change some of the objects with GUI</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.fea.html" class="btn btn-neutral float-right" title="mimics.fea module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.dicom.html" class="btn btn-neutral" title="mimics.dicom module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

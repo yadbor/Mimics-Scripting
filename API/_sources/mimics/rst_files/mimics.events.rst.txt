@@ -1,0 +1,7 @@
+mimics.events module
+====================
+
+.. automodule:: mimics.events
+   :members:
+   :undoc-members:
+   :show-inheritance:

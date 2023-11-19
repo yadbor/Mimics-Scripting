@@ -1,0 +1,341 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. CT Heart landmarking and segmentation &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="8. Access to Part Triangles and Points" href="access_to_part_triangles_and_points.html"/>
+        <link rel="prev" title="6. Preparation for fluoroscopy" href="preparation_for_fluoroscopy.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="automatic_import_of_dicom_images.html">1. Automatic import of DICOM images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="semi_automatic_import_of_standard_images.html">2. Semi-automatic import of standard images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skull_segmentation.html">3. Skull segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="femur_segmentation.html">4. Femur segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="landmarks_and_measurements_in_the_shoulder.html">5. Landmarks and measurements in the shoulder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fluoroscopy.html">6. Preparation for fluoroscopy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. CT Heart landmarking and segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_to_part_triangles_and_points.html">8. Access to Part Triangles and Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch_between_Mimics_and_3matic.html">9. Switch between Mimics and 3-matic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">10. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4D_heart_cineloop_in_parts.html">11. 4D heart cineloop in parts</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li><span class="section-number">7. </span>CT Heart landmarking and segmentation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/ct_heart_landmarking_and_segmentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="ct-heart-landmarking-and-segmentation">
+<h1><span class="section-number">7. </span>CT Heart landmarking and segmentation<a class="headerlink" href="#ct-heart-landmarking-and-segmentation" title="Permalink to this headline">¶</a></h1>
+<p>Note: To run the following tutorial the NumPy library should be installed. To install external Python libraries, see the Section 2.3 of the Introduction.</p>
+<p>For this tutorial the Mimics project Heart.mcs from <code class="file docutils literal notranslate"><span class="pre">C:\MedData\DemoFiles</span></code> will be used.</p>
+<p>The tutorial shows how to prepare for applying the CT heart segmentation tool. A series of function calls is created and controls the script. One function is created for each operation that will be performed. The main operations are thresholding, landmarking, calculation of CT heart segmentation masks and calculation of 3D parts. Appropriate naming is used for the respective functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Main function.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Open Heart.mcs project</span>
+    <span class="n">input_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\MedData\DemoFiles\Heart.mcs&#39;</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span>
+
+    <span class="c1"># Create masks for the heart</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">activate_thresholding</span><span class="p">()</span>
+            <span class="n">m</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">MASK</span>
+
+    <span class="c1"># Indicate the landmarking</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">LANDMARKS</span><span class="p">:</span>
+        <span class="n">indicate_landmark</span><span class="p">(</span><span class="n">LANDMARKS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+
+    <span class="c1"># Perform CT heart segmentation</span>
+    <span class="n">calc_ct_heart</span><span class="p">()</span>
+
+    <span class="c1"># Create of the 3D parts</span>
+    <span class="n">create_3d_parts</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>On the top of the script the required libraries must be imported and the required constants must be declared.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="c1"># Import the numpy library that is useful for some operations</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># First need to install numpy package for Python. Type pip install numpy in your cmd</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ie</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================================================================&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== The 3rd party Python package &#39;numpy&#39; is not installed! ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== To install it, use &#39;pip install numpy&#39; in your cmd!    ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================================================================&quot;</span><span class="p">)</span>
+    <span class="k">raise</span>
+<span class="c1"># Define a shortcut</span>
+<span class="n">md</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span>
+<span class="c1"># Constants declaration</span>
+<span class="n">MASK</span> <span class="o">=</span> <span class="s2">&quot;Heart&quot;</span>
+<span class="n">LANDMARKS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;RA&quot;</span><span class="p">,</span> <span class="s2">&quot;RA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LA&quot;</span><span class="p">,</span> <span class="s2">&quot;LA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LV&quot;</span><span class="p">,</span> <span class="s2">&quot;LV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RV&quot;</span><span class="p">,</span> <span class="s2">&quot;RV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AO&quot;</span><span class="p">,</span> <span class="s2">&quot;AO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PA&quot;</span><span class="p">,</span> <span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">SEED_RADIUS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">RA</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">LA</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">LV</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">RV</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">AO</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+    <span class="n">PA</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">SEED_COLOR</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">RA</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">LA</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">LV</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">205</span><span class="p">),</span>
+    <span class="n">RV</span><span class="o">=</span><span class="p">(</span><span class="mi">145</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">AO</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">PA</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">MASKS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;RA&quot;</span><span class="p">,</span> <span class="s2">&quot;LA&quot;</span><span class="p">,</span> <span class="s2">&quot;LV&quot;</span><span class="p">,</span> <span class="s2">&quot;RV&quot;</span><span class="p">,</span> <span class="s2">&quot;AO&quot;</span><span class="p">,</span> <span class="s2">&quot;PA&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first function that is called after opening the Heart.mcs project is activate_thresholding(). This launches the thresholding tool where you can select the desired thresholds and modify the crop box. Furthermore the newly created mask is renamed.</p>
+<p>After the thresholding, there is a <em>for</em> loop that calls the function indicate_landmark() for each landmark, as they are declared in the constants. During each call of this function, the user clicks and selects the position of the landmark. The indicator of the intersection lines navigates to the location of the selected coordinates and finally a sphere is selected in that position. The name, the radius and the color of each sphere is defined and controlled by the constants that are defined in the top of the script.  See the indicate_landmark() function below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">indicate_landmark</span><span class="p">(</span><span class="n">pid</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">pdef</span> <span class="o">=</span> <span class="n">LANDMARKS</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Indicate </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pdef</span><span class="p">),</span>
+                                            <span class="n">confirm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_message_box</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">mimics</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">navigate_to</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+    <span class="n">pnt</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">analyze</span><span class="o">.</span><span class="n">create_sphere_center_radius</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">SEED_RADIUS</span><span class="p">[</span><span class="n">pdef</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">pnt</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pdef</span>
+    <span class="n">pnt</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SEED_COLOR</span><span class="p">[</span><span class="n">pdef</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>The following function that is called is the calc_ct_heart() that performs the segmentation of the different anatomical parts of the heart. After the segmentation masks are created, the colors of the spheres are assigned to the masks respectively. For the calc_ct_heart() function see the code below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_ct_heart</span><span class="p">():</span>
+    <span class="n">heart</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">MASK</span><span class="p">)</span>
+    <span class="n">seeds</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">md</span><span class="o">.</span><span class="n">spheres</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">LANDMARKS</span><span class="p">:</span>
+            <span class="n">seeds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">calculate_ct_heart_from_mask</span><span class="p">(</span><span class="n">mask</span> <span class="o">=</span> <span class="n">heart</span><span class="p">,</span> <span class="n">seed_points</span><span class="o">=</span><span class="n">seeds</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">md</span><span class="o">.</span><span class="n">masks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">MASKS</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SEED_COLOR</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>The last function that is called is the create_3d_parts(). This function creates parts from the masks that are the result of the segmentation and assigns the correct name to them.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_3d_parts</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">md</span><span class="o">.</span><span class="n">masks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">LANDMARKS</span><span class="p">:</span>
+            <span class="n">par</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">calculate_part</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;Medium&quot;</span><span class="p">)</span>
+            <span class="n">par</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>To summarize, the sequence of the functions that is presented performs the required actions to segment the anatomy from a CT heart dataset. Masks and 3D parts with correct naming and color are created as output.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="access_to_part_triangles_and_points.html" class="btn btn-neutral float-right" title="8. Access to Part Triangles and Points" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="preparation_for_fluoroscopy.html" class="btn btn-neutral" title="6. Preparation for fluoroscopy" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

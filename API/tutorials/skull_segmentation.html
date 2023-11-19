@@ -1,0 +1,268 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Skull segmentation &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="4. Femur segmentation" href="femur_segmentation.html"/>
+        <link rel="prev" title="2. Semi-automatic import of standard images" href="semi_automatic_import_of_standard_images.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="automatic_import_of_dicom_images.html">1. Automatic import of DICOM images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="semi_automatic_import_of_standard_images.html">2. Semi-automatic import of standard images</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Skull segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="femur_segmentation.html">4. Femur segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="landmarks_and_measurements_in_the_shoulder.html">5. Landmarks and measurements in the shoulder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation_for_fluoroscopy.html">6. Preparation for fluoroscopy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ct_heart_landmarking_and_segmentation.html">7. CT Heart landmarking and segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_to_part_triangles_and_points.html">8. Access to Part Triangles and Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch_between_Mimics_and_3matic.html">9. Switch between Mimics and 3-matic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_metadata.html">10. Working with Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4D_heart_cineloop_in_parts.html">11. 4D heart cineloop in parts</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      
+    <li><span class="section-number">3. </span>Skull segmentation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/skull_segmentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="skull-segmentation">
+<h1><span class="section-number">3. </span>Skull segmentation<a class="headerlink" href="#skull-segmentation" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial some basic segmentation features of Mimics are presented using the project Mimi.mcs, as available in <code class="file docutils literal notranslate"><span class="pre">C:\MedData\DemoFiles</span></code>. The first step is to open the project using <a class="reference internal" href="../mimics/rst_files/mimics.file.html#mimics.file.open_project" title="mimics.file.open_project"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.file.open_project()</span></code></a>. All the previously open projects will be closed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>      <span class="c1"># Open the project</span>
+      <span class="n">input_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\MedData\DemoFiles\Mimi.mcs&#39;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To perform thresholding, an empty mask is created first using <a class="reference internal" href="../mimics/rst_files/mimics.segment.html#mimics.segment.create_mask" title="mimics.segment.create_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.segment.create_mask()</span></code></a> and is renamed to <em>Bone</em>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an empty mask</span>
+<span class="n">mask_a</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">create_mask</span><span class="p">()</span>
+<span class="n">mask_a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Bone&quot;</span>
+</pre></div>
+</div>
+<p>The next step is to perform Thresholding with <code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.segment.thresholding()</span></code> and save the result in the mask <em>Bone</em> that is previously created. The minimum and the maximum threshold values need to be supplied as input. Note that the Mimics Python API currently always uses gray values (not Hounsfield units).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform thresholding with selected min and max values</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">mask_a</span><span class="p">,</span><span class="n">threshold_min</span><span class="o">=</span><span class="mi">1250</span><span class="p">,</span><span class="n">threshold_max</span><span class="o">=</span><span class="mi">2800</span><span class="p">)</span> <span class="c1"># thresholds are set in gray values</span>
+</pre></div>
+</div>
+<p>The next step is to perform Region Growing. First a new point is created on the anatomical part that will be the input for the Region Growing operation. In the below example, a new mask is created and the original mask is preserved. The new mask is renamed to <em>Segmented Skull</em>. Next, the point is deleted since it was needed only for the Region Growing operation. In case you don’t have a license for the Analyze module, a mimics.Point object cannot be created. In this case it is recommended to use <a class="reference internal" href="../mimics/rst_files/mimics.segment.html#mimics.segment.activate_region_grow" title="mimics.segment.activate_region_grow"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.segment.activate_region_grow()</span></code></a> instead of the <a class="reference internal" href="../mimics/rst_files/mimics.segment.html#mimics.segment.region_grow" title="mimics.segment.region_grow"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.segment.region_grow()</span></code></a> API.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a point that will be used fot the region growing operation</span>
+<span class="n">point_1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">analyze</span><span class="o">.</span><span class="n">indicate_point</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Region growing point&quot;</span><span class="p">,</span><span class="n">message</span><span class="o">=</span> <span class="s2">&quot;Please indicate a point on the part of interest&quot;</span><span class="p">)</span>
+<span class="n">point_2</span> <span class="o">=</span> <span class="n">point_1</span><span class="o">.</span><span class="n">coordinates</span>
+<span class="n">point_2</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">point_2</span><span class="p">)</span>
+<span class="c1"># Region growing. The original mask is preserved</span>
+<span class="n">mask_b</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">region_grow</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="n">point_2</span><span class="p">,</span><span class="n">input_mask</span><span class="o">=</span><span class="n">mask_a</span><span class="p">,</span><span class="n">target_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">slice_type</span><span class="o">=</span><span class="s2">&quot;Axial&quot;</span><span class="p">,</span><span class="n">keep_original_mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mask_b</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Segmented skull&quot;</span>
+</pre></div>
+</div>
+<p>Calculation of the 3D part and exporting it as STL is the following step. Using <a class="reference internal" href="../mimics/rst_files/mimics.segment.html#mimics.segment.calculate_part" title="mimics.segment.calculate_part"><code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.segment.calculate_part()</span></code></a> and  <code class="xref py py-func docutils literal notranslate"><span class="pre">mimics.file.export_stl()</span></code> the part is calculated with the given quality and afterwards exported as an STL. The name and location where it will be saved should be specified.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Calculation of the 3D part</span>
+<span class="n">part_a</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">calculate_part</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Segmented skull&quot;</span><span class="p">),</span><span class="n">quality</span><span class="o">=</span><span class="s2">&quot;High&quot;</span><span class="p">)</span>
+<span class="c1"># Export the STL</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">export_part</span><span class="p">(</span><span class="n">object_to_convert</span><span class="o">=</span><span class="n">part_a</span><span class="p">,</span><span class="n">file_name</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\skull_of_Mimi.stl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The final step for this tutorial is to save the project and exit Mimics</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the project</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">save_project</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="femur_segmentation.html" class="btn btn-neutral float-right" title="4. Femur segmentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="semi_automatic_import_of_standard_images.html" class="btn btn-neutral" title="2. Semi-automatic import of standard images" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

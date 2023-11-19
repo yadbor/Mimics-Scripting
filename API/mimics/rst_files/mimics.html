@@ -1,0 +1,2471 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.align module" href="mimics.align.html"/>
+        <link rel="prev" title="Materialise Mimics Medical API" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<section id="module-mimics">
+<span id="mimics-module"></span><h1>mimics module<a class="headerlink" href="#module-mimics" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.BoundingBox2d">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">BoundingBox2d</span></span><a class="headerlink" href="#mimics.BoundingBox2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>2D bounding box, dedicated for the screen coordinates.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox2d.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#mimics.BoundingBox2d.height" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox2d.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#mimics.BoundingBox2d.origin" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[int, int]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox2d.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#mimics.BoundingBox2d.width" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.BoundingBox3d">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">BoundingBox3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">third_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.BoundingBox3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>3D bounding box, dedicated for the spatial coordinates.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox3d.first_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">first_vector</span></span><a class="headerlink" href="#mimics.BoundingBox3d.first_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox3d.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#mimics.BoundingBox3d.origin" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox3d.second_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">second_vector</span></span><a class="headerlink" href="#mimics.BoundingBox3d.second_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.BoundingBox3d.third_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">third_vector</span></span><a class="headerlink" href="#mimics.BoundingBox3d.third_vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.ContrastFunctionObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">ContrastFunctionObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0.0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0.0]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ContrastFunctionObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contains the lower and upper contrast points.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ContrastFunctionObject.lower_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lower_point</span></span><a class="headerlink" href="#mimics.ContrastFunctionObject.lower_point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[int, float]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ContrastFunctionObject.upper_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">upper_point</span></span><a class="headerlink" href="#mimics.ContrastFunctionObject.upper_point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[int, float]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.DataContainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">DataContainer</span></span><a class="headerlink" href="#mimics.DataContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Flat container which contains all application objects.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainer.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainer.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>objects</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>[</em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em><em>, </em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><a class="reference internal" href="#mimics.DataContainer" title="mimics.DataContainer"><em>mimics.DataContainer</em></a><em>]</em>) – Objects to be deleted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainer.duplicate">
+<span class="sig-name descname"><span class="pre">duplicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainer.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Duplicates the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object</strong> (<a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a>) – Object to be duplicated.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of the defined object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>RuntimeError (reason(s): [‘Could not duplicate this object. It may be due to the fact that object is non-copiable (e.g. mimics.ImageData).’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainer.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainer.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters container`s elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> (<em>str</em>) – Expression matching the name of the object.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether expression is a regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of objects names of which correspond to the regular expression shall be returned. In case of no object with such name an empty list should be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainer.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainer.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the object by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Object’s name.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether name is regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If exactly one object in the container has the defined name, the object shall be returned. If more than one object in the container has the defined name, only the first of these objects shall be returned. In case of no object in the container has the defined name, the built-in Python constant None shall be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainer.move_objects">
+<span class="sig-name descname"><span class="pre">move_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_index_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainer.move_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes native objects order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_index_position</strong> (<em>int</em>) – New container position for the first of the provided objects.</p></li>
+<li><p><strong>objects</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>[</em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em><em>, </em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><a class="reference internal" href="#mimics.DataContainer" title="mimics.DataContainer"><em>mimics.DataContainer</em></a><em>]</em>) – Objects to be reordered.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.DataContainerBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">DataContainerBase</span></span><a class="headerlink" href="#mimics.DataContainerBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Flat container which contains all application objects.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainerBase.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainerBase.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters container`s element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> (<em>str</em>) – Expression matching the name of the object</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether expression is a regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of objects names of which correspond to the regular expression shall be returned. In case of no object with such name an empty list should be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.DataContainerBase.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.DataContainerBase.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the object by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Object`s name.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether name is regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If exactly one object in the container has the defined name, the object shall be returned. If more than one object in the container has the defined name, only the first of these objects shall be returned. In case of no object in the container has the defined name, the built-in Python constant None shall be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.DataContainerBaseIterator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">DataContainerBaseIterator</span></span><a class="headerlink" href="#mimics.DataContainerBaseIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Iterator for mimics.DataContainerBase class</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.DicomTag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">DicomTag</span></span><a class="headerlink" href="#mimics.DicomTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The DICOM tag class.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.DicomTag.children">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">children</span></span><a class="headerlink" href="#mimics.DicomTag.children" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Tuple</em>[<em>Dict</em>[<em>Tuple</em>[int, int], <a class="reference internal" href="#mimics.DicomTag" title="mimics.DicomTag">mimics.DicomTag</a>]], NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.DicomTag.description">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#mimics.DicomTag.description" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.DicomTag.length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#mimics.DicomTag.length" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.DicomTag.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.DicomTag.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.DicomTag.vr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vr</span></span><a class="headerlink" href="#mimics.DicomTag.vr" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.ImageData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">ImageData</span></span><a class="headerlink" href="#mimics.ImageData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Image data is a matrix of voxels.</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>is_dicom_data_modified: Indicates if the DICOM related data (e.g. Pixel Data or values of the DICOM tags) of images has been modified by the application after the project was created through importing original DICOM image files. The ‘True’ value is assigned to the property after certain operations with the project, e.g., reslice of images, cropping the images or scatter removal. The property is set to ‘False’ for projects created on Mimics platform version 24 or older.</p></li>
+<li><p>storage_type: Specifies how the DICOM tags and imagedata are stored (see also: mimics.file.ImageDataStorageType).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.active">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">active</span></span><a class="headerlink" href="#mimics.ImageData.active" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_dicom_frame_indices">
+<span class="sig-name descname"><span class="pre">get_dicom_frame_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_dicom_frame_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of indices of all (selected and not selected) image frames of an image stack created from a multiframe DICOM file. Elements of the list may contain ‘None’ if specific frames were not imported from a multiframe DICOM in some cases. ‘None’ is returned if all the slices are created by importing single frame DICOM files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple of integral frame indices or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[<em>List</em>[<em>Optional</em>[int]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_dicom_tags">
+<span class="sig-name descname"><span class="pre">get_dicom_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_dicom_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DICOM tags dictionary of this image data except from the tags of the image pixels information. It is recommended to cache the dictionary into a variable if your script needs to refer to the DICOM dictionary several times. In order to get the pixel information of images mimics.ImageData.get_voxel_buffer API can be used. Each time a new instance of dictionary is returned, consequently to achieve better performance of API assign it first to a variable (cached).  Note that tags are returned in decimal format, you can convert it to hexadecimal format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_index</strong> (<em>int</em>) – (optional) Index of image in image set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DICOM tags for this image data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Dict</em>[<em>Tuple</em>[int, int], <a class="reference internal" href="#mimics.DicomTag" title="mimics.DicomTag">mimics.DicomTag</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_grey_value">
+<span class="sig-name descname"><span class="pre">get_grey_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_grey_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates grey value in the defined coordinates in image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point_coordinates</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Point coordinates in project units.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Grey value of image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_image_information">
+<span class="sig-name descname"><span class="pre">get_image_information</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_image_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns information about this image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Image information for this image data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mimics.ImageInformation" title="mimics.ImageInformation">mimics.ImageInformation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_voxel_buffer">
+<span class="sig-name descname"><span class="pre">get_voxel_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_voxel_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a 3D image copy as 16-bit 3D array of grey value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>16-bit 3D array of grey value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>memoryview</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_voxel_center">
+<span class="sig-name descname"><span class="pre">get_voxel_center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_of_voxel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_voxel_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates coordinates of the voxel center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index_of_voxel</strong> (<em>ThreeItemsIterable</em><em>[</em><em>int</em><em>, </em><em>int</em><em>, </em><em>int</em><em>]</em>) – Voxel index in the image data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Voxel center’s coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[float, float, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImageData.get_voxel_indexes">
+<span class="sig-name descname"><span class="pre">get_voxel_indexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImageData.get_voxel_indexes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates voxel indexes in image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point_coordinates</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Point inside of voxel.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Voxel coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[int, int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.is_dicom_data_modified">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_dicom_data_modified</span></span><a class="headerlink" href="#mimics.ImageData.is_dicom_data_modified" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.linked_objects">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linked_objects</span></span><a class="headerlink" href="#mimics.ImageData.linked_objects" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.logical_dimensions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">logical_dimensions</span></span><a class="headerlink" href="#mimics.ImageData.logical_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Sequence</em>[<em>SupportsInt</em>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.logical_slice_distance">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">logical_slice_distance</span></span><a class="headerlink" href="#mimics.ImageData.logical_slice_distance" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.physical_dimensions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">physical_dimensions</span></span><a class="headerlink" href="#mimics.ImageData.physical_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Sequence</em>[<em>SupportsInt</em>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.pixel_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pixel_size</span></span><a class="headerlink" href="#mimics.ImageData.pixel_size" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.registration_transformation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">registration_transformation</span></span><a class="headerlink" href="#mimics.ImageData.registration_transformation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="#mimics.Transformation" title="mimics.Transformation">mimics.Transformation</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.storage_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">storage_type</span></span><a class="headerlink" href="#mimics.ImageData.storage_type" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;enum ‘ImageDataStorageType’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.ImageData.user_dicom_percentage">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">user_dicom_percentage</span></span><a class="headerlink" href="#mimics.ImageData.user_dicom_percentage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.ImageInformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">ImageInformation</span></span><a class="headerlink" href="#mimics.ImageInformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Information about specific image data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.ImagesContainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">ImagesContainer</span></span><a class="headerlink" href="#mimics.ImagesContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Flat container which contains all image data objects.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>objects</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>[</em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em><em>, </em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><a class="reference internal" href="#mimics.DataContainer" title="mimics.DataContainer"><em>mimics.DataContainer</em></a><em>]</em>) – Objects to be deleted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.duplicate">
+<span class="sig-name descname"><span class="pre">duplicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>mimics.ImageData objects cannot be duplicated via API. To produce a copy of a certain mimics.ImageData object, you can (export and) re-import DICOM images of the mimics.ImageData object in question.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object</strong> (<a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a>) – Object to be duplicated.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of the defined object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>RuntimeError (reason(s): [‘Could not duplicate this object. It may be due to the fact that object is non-copiable (e.g. mimics.ImageData).’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters container`s elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> (<em>str</em>) – Expression matching the name of the object.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether expression is a regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of objects names of which correspond to the regular expression shall be returned. In case of no object with such name an empty list should be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the object by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Object’s name.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether name is regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If exactly one object in the container has the defined name, the object shall be returned. If more than one object in the container has the defined name, only the first of these objects shall be returned. In case of no object in the container has the defined name, the built-in Python constant None shall be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.Object" title="mimics.Object">mimics.Object</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.get_active">
+<span class="sig-name descname"><span class="pre">get_active</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.get_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Active Image Data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>mimics.ImageData</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mimics.ImageData" title="mimics.ImageData">mimics.ImageData</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.move_objects">
+<span class="sig-name descname"><span class="pre">move_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_index_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.move_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes native objects order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_index_position</strong> (<em>int</em>) – New container position for the first of the provided objects.</p></li>
+<li><p><strong>objects</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>[</em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>]</em><em>, </em><a class="reference internal" href="#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><a class="reference internal" href="#mimics.DataContainer" title="mimics.DataContainer"><em>mimics.DataContainer</em></a><em>]</em>) – Objects to be reordered.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.reset_sorting">
+<span class="sig-name descname"><span class="pre">reset_sorting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.reset_sorting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the original order of images within each study.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>TypeError (reason(s): [‘Object cannot be converted to a required type’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ImagesContainer.set_active">
+<span class="sig-name descname"><span class="pre">set_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ImagesContainer.set_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes Active Image Data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="#mimics.ImageData" title="mimics.ImageData"><em>mimics.ImageData</em></a>) – Image that will be set as active one</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if the operation was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>TypeError (reason(s): [‘Object cannot be converted to a required type’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Layouts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Layouts</span></span><a class="headerlink" href="#mimics.Layouts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><a class="reference external" href="./mimics.html#mimics.LayoutsContainer">Container</a> with string attributes that can be used as an input for <a class="reference external" href="./mimics.view.html#mimics.view.set_layout">mimics.view.set_layout</a> API.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.LayoutsContainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">LayoutsContainer</span></span><a class="headerlink" href="#mimics.LayoutsContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>List of available layouts.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.LicenseError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">LicenseError</span></span><a class="headerlink" href="#mimics.LicenseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An exception that is raised when calling an API without access to the necessary license module. Consult the specific exception text in the Mimics log for information about the missing license(s).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Metadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><a class="headerlink" href="#mimics.Metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Container which contains metadata for specific object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Metadata.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Metadata.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates new metadata item with provided name and value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Metadata item`s name.</p></li>
+<li><p><strong>value</strong> (<em>str</em>) – Metadata item`s value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Metadata.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Metadata.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes first metadata item with provided name if it exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>items</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>[</em><a class="reference internal" href="#mimics.MetadataItem" title="mimics.MetadataItem"><em>mimics.MetadataItem</em></a><em>]</em><em>, </em><a class="reference internal" href="#mimics.Metadata" title="mimics.Metadata"><em>mimics.Metadata</em></a><em>, </em><a class="reference internal" href="#mimics.MetadataItem" title="mimics.MetadataItem"><em>mimics.MetadataItem</em></a><em>, </em><em>str</em><em>]</em>) – Metadata items to be deleted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Metadata.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Metadata.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters container`s elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> (<em>str</em>) – Expression matching the name of the metadata item</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether expression is a regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of metadata item names of which correspond to the regular expression shall be returned. In case of no object with such name an empty list should be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="#mimics.MetadataItem" title="mimics.MetadataItem">mimics.MetadataItem</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Metadata.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Metadata.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the metadata item by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Metadata item`s name.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether name is regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If exactly one metadata item in the container has the defined name, the item shall be returned. If more than one metadata item in the container has the defined name, only the first one shall be returned. In case of no metadata item in the container has the defined name, the built-in Python constant None shall be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.MetadataItem" title="mimics.MetadataItem">mimics.MetadataItem</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.MetadataItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">MetadataItem</span></span><a class="headerlink" href="#mimics.MetadataItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Metadata items has name and value.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.MetadataItem.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mimics.MetadataItem.name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.MetadataItem.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.MetadataItem.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.NoUIAvailable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">NoUIAvailable</span></span><a class="headerlink" href="#mimics.NoUIAvailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An exception that is raised when a script running in the background mode attempts to call a UI-dependent API. Such APIs, most likely from mimics.view module, can only be called in the foreground mode. For more information about running scripts in the background mode, please consult section ‘Execute Mimics and scripts from Windows Command Prompt’ of the Scripting Guide.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.NotSpecifiedType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">NotSpecifiedType</span></span><a class="headerlink" href="#mimics.NotSpecifiedType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used by some methods as default argument</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Object">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Object</span></span><a class="headerlink" href="#mimics.Object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object is a general term to describe a structure in Mimics. It contains common properties for all child classes.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.color">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#mimics.Object.color" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Each color component should be in range 0..1’, ‘Tuple should contain 3 elements(RGB)’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.guid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">guid</span></span><a class="headerlink" href="#mimics.Object.guid" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.image">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#mimics.Object.image" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="#mimics.ImageData" title="mimics.ImageData">mimics.ImageData</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#mimics.Object.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.Metadata’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mimics.Object.name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.selected">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">selected</span></span><a class="headerlink" href="#mimics.Object.selected" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Object.visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">visible</span></span><a class="headerlink" href="#mimics.Object.visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.OperationBlocked">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">OperationBlocked</span></span><a class="headerlink" href="#mimics.OperationBlocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An exception that is raised when the user calls an API that cannot be executed because an underlying functionality is blocked (disabled or unavalable) due to the current application state. For instance, mimics.gui.perform_action() throws this exception if the requested action is disabled</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Osteotomy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Osteotomy</span></span><a class="headerlink" href="#mimics.Osteotomy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Osteotomy - object that used for bone cut in CMF workflow.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.contours_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contours_visible</span></span><a class="headerlink" href="#mimics.Osteotomy.contours_visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>The visibility of osteotomy object contours on 2D views</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Osteotomy.get_representation">
+<span class="sig-name descname"><span class="pre">get_representation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Osteotomy.get_representation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns triangles surface - tuple of vertices (3D coordinates), triangles (vertices indices for triangle) and labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple of three memoryviews (point coordinates, triangle points indices, triangle labels).</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[<em>Tuple</em>[memoryview, memoryview, memoryview]]</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not create memoryview - STL contains no vertices/triangles.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.handler_coordinates">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">handler_coordinates</span></span><a class="headerlink" href="#mimics.Osteotomy.handler_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>The osteotomy object handlers in patient coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Dict</em>[str, <em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.has_pending_changes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_pending_changes</span></span><a class="headerlink" href="#mimics.Osteotomy.has_pending_changes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if object has pending thickness or handler changes and the STL representation should be updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.osteotomy_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">osteotomy_type</span></span><a class="headerlink" href="#mimics.Osteotomy.osteotomy_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The osteotomy object type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Osteotomy.set_pending_handler">
+<span class="sig-name descname"><span class="pre">set_pending_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Osteotomy.set_pending_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves osteotomy handler with handler_id to new coordinate. Force object to be recomputed. If corresponding recompute is not possible - the object will became “dirty” and osteotomy geometry will not change.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>handler_id</strong> (<em>str</em>) – Identifier of the osteotomy handler to be updated.</p></li>
+<li><p><strong>coordinate</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – New coordinate of the osteotomy handler to be updated.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>KeyError (reason(s): [‘The handler does not exist.’]), ValueError (reason(s): [‘The osteotomy object already has a pending handler, and the new pending handler cannot be applied until the object is updated.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Osteotomy.set_pending_thickness">
+<span class="sig-name descname"><span class="pre">set_pending_thickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thickness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Osteotomy.set_pending_thickness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the osteotomy pending thickness. Force object to be recomputed. If corresponding recompute is not possible - the object will became “dirty” and osteotomy geometry will not change.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thickness</strong> (<em>SupportsFloat</em>) – New osteotomy thickness.</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Invalid thickness value. The thickness value must be greater than or equal to 0.001.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.thickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">thickness</span></span><a class="headerlink" href="#mimics.Osteotomy.thickness" title="Permalink to this definition">¶</a></dt>
+<dd><p>The osteotomy object thickness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.transparency">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transparency</span></span><a class="headerlink" href="#mimics.Osteotomy.transparency" title="Permalink to this definition">¶</a></dt>
+<dd><p>The osteotomy object transparency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The transparency value must be in the range 0.0-1.0.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Osteotomy.triangles_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">triangles_visible</span></span><a class="headerlink" href="#mimics.Osteotomy.triangles_visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>The highlighting of triangles on 3D views.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Osteotomy.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">triangles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surfaces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Osteotomy.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates internal representation of osteotomy with provided data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> (<em>memoryview</em>) – Memoryview of floats with the stored vertices coordinates data inside.</p></li>
+<li><p><strong>triangles</strong> (<em>memoryview</em>) – Memoryview with the stored triangles (combination of 3 vertices that creates triangle).</p></li>
+<li><p><strong>surfaces</strong> (<em>memoryview</em>) – Memoryview that tells which surface triangle belongs to.</p></li>
+<li><p><strong>handlers</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>TMimicsPoint</em><em>]</em><em>]</em>) – (optional) Updated handlers coordinates for osteotomty.</p></li>
+<li><p><strong>thickness</strong> (<em>Optional</em><em>[</em><em>SupportsFloat</em><em>]</em>) – (optional) Osteotomy thickness.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Part">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Part</span></span><a class="headerlink" href="#mimics.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>A Part is a 3D object.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.color_scheme">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color_scheme</span></span><a class="headerlink" href="#mimics.Part.color_scheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns color scheme which was used for Vertex color visualization: preset name (string), sensitivity (float in range from 0.0 to 4.0), array of pairs of pixel intensity (integer values) and corresponding color (rgb values in the range [0 .. 1])</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Tuple</em>[str, float, <em>Dict</em>[int, <em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>]]], NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Sensitivity value should be in range 0..4.0’, ‘Scheme should contain at least two values’, ‘Each color component should be in range 0..1’, ‘Intensity values should be in image data gray value range’]), RuntimeError (reason(s): [‘Color scheme can be defined for an object assigned to active image stack only’, “Editing object’s color scheme is not permitted”])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.contours_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contours_visible</span></span><a class="headerlink" href="#mimics.Part.contours_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.dimension_delta">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dimension_delta</span></span><a class="headerlink" href="#mimics.Part.dimension_delta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not get delta of bounding box - STL is invalid or empty’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.dimension_max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dimension_max</span></span><a class="headerlink" href="#mimics.Part.dimension_max" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not get max point of bounding box - STL is invalid or empty’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.dimension_min">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dimension_min</span></span><a class="headerlink" href="#mimics.Part.dimension_min" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not get min point of bounding box - STL is invalid or empty’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Part.get_active_color_mask">
+<span class="sig-name descname"><span class="pre">get_active_color_mask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Part.get_active_color_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an active color mask - array of colors (rgb values in the range [0 .. 1]), per vertex per triangle (the order is aligned with get_triangles output).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>memoryview of floats</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>memoryview</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not create memoryview - STL has no active color mask’, ‘Could not create memoryview - the active color mask is empty’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Part.get_triangles">
+<span class="sig-name descname"><span class="pre">get_triangles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Part.get_triangles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns triangles surface - tuple of vertices (3D coordinates) and triangles (combination of vertices that creates it).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple of two memoryviews of floats.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Tuple</em>[memoryview, memoryview]</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not create memoryview - STL contains no vertices/triangles’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Part.get_vertices">
+<span class="sig-name descname"><span class="pre">get_vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Part.get_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of coordinates of this part’s vertices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>memoryview of floats</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>memoryview</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Could not create memoryview - STL contains no vertices/triangles’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.number_of_points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_of_points</span></span><a class="headerlink" href="#mimics.Part.number_of_points" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.number_of_triangles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_of_triangles</span></span><a class="headerlink" href="#mimics.Part.number_of_triangles" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.quality">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quality</span></span><a class="headerlink" href="#mimics.Part.quality" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.surface_area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surface_area</span></span><a class="headerlink" href="#mimics.Part.surface_area" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.transparency">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transparency</span></span><a class="headerlink" href="#mimics.Part.transparency" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘The transparency value must be in the range 0.0-1.0.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.triangles_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">triangles_visible</span></span><a class="headerlink" href="#mimics.Part.triangles_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#mimics.Part.type" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.visualization">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">visualization</span></span><a class="headerlink" href="#mimics.Part.visualization" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘This visualization type is not assigned yet’]), RuntimeError (reason(s): [‘Setting this visualization option is not permitted’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Part.volume">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#mimics.Part.volume" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.ProjectNotLoaded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">ProjectNotLoaded</span></span><a class="headerlink" href="#mimics.ProjectNotLoaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>When Mimics is launched from the executable, there is no project loaded into Mimics by default. An exception is raised when attempting to access project-dependent functionality without a project loaded in Mimics. Open a project in Mimics to continue.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Transaction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Transaction</span></span><a class="headerlink" href="#mimics.Transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Transaction is a context manager, that allows to unite separate operations into the one transaction.</p>
+<dl class="simple">
+<dt>The constructor of the class accepts two parameters:</dt><dd><ul class="simple">
+<li><p>transaction_name: str - name of the transaction which will be shown on the undo/redo GUI.</p></li>
+<li><p>delay_opening: bool = False - if True, the underlying transaction of the host application is is not created util the use does some action. This allows to use transaction GUI interactive scripts that need to have undo/redo button enabled, which can be achieved by specifying delay_opening=True.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Transaction.commit">
+<span class="sig-name descname"><span class="pre">commit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Transaction.commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commits all included operations.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Transaction.is_open">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_open</span></span><a class="headerlink" href="#mimics.Transaction.is_open" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Transaction.rollback">
+<span class="sig-name descname"><span class="pre">rollback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Transaction.rollback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rollbacks all included operations.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.Transformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><a class="headerlink" href="#mimics.Transformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Object that represents transformation in patient coordinate system</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.Transformation.invert">
+<span class="sig-name descname"><span class="pre">invert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.Transformation.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invert this transformation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>RuntimeError (reason(s): [‘Cannot access the Transformation object. Probably it was removed’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Transformation.matrix">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">matrix</span></span><a class="headerlink" href="#mimics.Transformation.matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transformation matrix as a matrix 4x4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>List</em>[<em>List</em>[<em>SupportsFloat</em>]]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>RuntimeError (reason(s): [‘Cannot access the Transformation object. Probably it was removed’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Transformation.rotation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rotation</span></span><a class="headerlink" href="#mimics.Transformation.rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotation angles in degrees around the three axes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>RuntimeError (reason(s): [‘Cannot access the Transformation object. Probably it was removed’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.Transformation.translation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">translation</span></span><a class="headerlink" href="#mimics.Transformation.translation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translation along the three axes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>RuntimeError (reason(s): [‘Cannot access the Transformation object. Probably it was removed’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.UserInterrupted">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">UserInterrupted</span></span><a class="headerlink" href="#mimics.UserInterrupted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An exception that is raised when a running script is interrupted by the user, for example by calling the ‘mimics.cancel_active_tool()’ API.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.ViewsContainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">ViewsContainer</span></span><a class="headerlink" href="#mimics.ViewsContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Flat container which contains all views.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ViewsContainer.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_data=&lt;mimics.NotSpecifiedType</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reslice_plane=&lt;mimics.NotSpecifiedType</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ViewsContainer.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters container`s elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#mimics.NotSpecifiedType" title="mimics.NotSpecifiedType"><em>mimics.NotSpecifiedType</em></a><em>]</em>) – (optional) Expression matching the name of the view.</p></li>
+<li><p><strong>image_data</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#mimics.ImageData" title="mimics.ImageData"><em>mimics.ImageData</em></a><em>, </em><em>None</em><em>, </em><a class="reference internal" href="#mimics.NotSpecifiedType" title="mimics.NotSpecifiedType"><em>mimics.NotSpecifiedType</em></a><em>]</em>) – (optional) Image data related to the view.</p></li>
+<li><p><strong>reslice_plane</strong> (<em>Union</em><em>[</em><a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a><em>, </em><em>None</em><em>, </em><a class="reference internal" href="#mimics.NotSpecifiedType" title="mimics.NotSpecifiedType"><em>mimics.NotSpecifiedType</em></a><em>]</em>) – (optional) Reslice plane related to the view.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether expression is a regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of objects names of which correspond to the regular expression shall be returned. In case of no object with such name an empty list should be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="mimics.view.html#mimics.view.View" title="mimics.view.View">mimics.view.View</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’]), KeyError (reason(s): [‘Wrong key. Few strings’, “Wrong key. Few ImageData’s”, “Wrong key. Few ReslicePlane’s”])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.ViewsContainer.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name=&lt;mimics.NotSpecifiedType</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_data=&lt;mimics.NotSpecifiedType</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reslice_plane=&lt;mimics.NotSpecifiedType</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.ViewsContainer.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the object by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#mimics.NotSpecifiedType" title="mimics.NotSpecifiedType"><em>mimics.NotSpecifiedType</em></a><em>]</em>) – (optional) View`s name.</p></li>
+<li><p><strong>image_data</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#mimics.ImageData" title="mimics.ImageData"><em>mimics.ImageData</em></a><em>, </em><em>None</em><em>, </em><a class="reference internal" href="#mimics.NotSpecifiedType" title="mimics.NotSpecifiedType"><em>mimics.NotSpecifiedType</em></a><em>]</em>) – (optional) Image data related to the view.</p></li>
+<li><p><strong>reslice_plane</strong> (<em>Union</em><em>[</em><a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a><em>, </em><em>None</em><em>, </em><a class="reference internal" href="#mimics.NotSpecifiedType" title="mimics.NotSpecifiedType"><em>mimics.NotSpecifiedType</em></a><em>]</em>) – (optional) Reslice plane related to the view.</p></li>
+<li><p><strong>regex</strong> (<em>bool</em>) – (optional) Defines whether name is regular expression or not. Default value is false.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If exactly one object in the container has the defined name, the object shall be returned. If more than one object in the container has the defined name, only the first of these objects shall be returned. In case of no object in the container has the defined name, the built-in Python constant None shall be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.view.html#mimics.view.View" title="mimics.view.View">mimics.view.View</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Specified regular expression is not valid’]), KeyError (reason(s): [‘Wrong key. Few strings’, “Wrong key. Few ImageData’s”, “Wrong key. Few ReslicePlane’s”])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.activate_crash_sending_dialog">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">activate_crash_sending_dialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.activate_crash_sending_dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an error report and attaches files which are given as parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>files</strong> (<em>Iterable</em><em>[</em><em>TFilenameToRead</em><em>]</em>) – (optional) List of the paths to the files to attach to the error report.</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Error reporting is not available’]), RuntimeError (reason(s): [‘Cannot generate error report’]), OSError (reason(s): [‘Cannot attach file(s)’]), FileNotFoundError (reason(s): [‘Cannot find file(s)’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extra_files_to_be_attached</span> <span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\DemoFiles\DICOM_Airway\J_50230713_0.dcm&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\DemoFiles\DICOM_Airway\J_50230713_1.dcm&quot;</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">activate_crash_sending_dialog</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="n">extra_files_to_be_attached</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.cancel_active_tool">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">cancel_active_tool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.cancel_active_tool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Immediately closes the currently active tool or measurement. All progress in the closed tool or measurement is lost.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.create_transformation">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">create_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.create_transformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new rigid transformation with corresponding matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>matrix</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>SupportsFloat</em><em>]</em><em>]</em>) – Rigid 4x4 transformation matrix.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>New transformation object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.Transformation" title="mimics.Transformation">mimics.Transformation</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Matrix should contain 4 rows’, ‘Matrix should contain 4 columns’, ‘The transformation cannot be created. Only rigid transformations can be created.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">create_transformation</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.disable_modules_reload">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">disable_modules_reload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.disable_modules_reload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off automatic reloading of all previously loaded user-defined modules before executing a script for the current session. By default, modules reload is on. Any changes to the source code of previously imported modules will not be reflected in the current session of Mimics.</p>
+<p>See also: ‘mimics.enable_modules_reload()’, ‘mimics.not_reloading_modules()’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.disable_update_gui">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">disable_update_gui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.disable_update_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the continuous period updates of the Mimics UI and events/messages processing after every API call, for the current session. By default, UI update is on. You can use it to speed up the runtime of scripts in case you don’t require visual feedback through the UI, e.g. when running loops or calculation scripts. You can switch the UI update back on in the same session or script by calling ‘mimics.enable_update_gui()’ or use the context manager ‘mimics.disabled_gui_update()’ instead of both APIs. Experienced users can manage UI update manually by calling ‘mimics.disable_update_gui()’ at the start of a script and then explicitly calling ‘mimics.update_gui()’ only when needed.</p>
+<p>See also: ‘mimics.enable_update_gui()’, ‘mimics.disabled_gui_update()’, ‘mimics.update_gui()’, ‘mimics.is_update_gui_enabled()’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mimics</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">def</span> <span class="nf">demo_updates</span><span class="p">(</span><span class="n">force_an_update</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="mi">25</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">force_an_update</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">mimics</span><span class="o">.</span><span class="n">disable_update_gui</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some prints() statements in the outer try.&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">mimics</span><span class="o">.</span><span class="n">disable_update_gui</span><span class="p">()</span>  <span class="c1"># recursive call are supported</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some prints() statements in the inner try.&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">force_an_update</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;But we force everything to printed immediately.&quot;</span><span class="p">)</span>
+                <span class="n">mimics</span><span class="o">.</span><span class="n">update_gui</span><span class="p">()</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">mimics</span><span class="o">.</span><span class="n">enable_update_gui</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># it is important to enable it back</span>
+        <span class="c1"># otherwise, the updating subsystem will be corrupted.</span>
+        <span class="c1"># for safety reasons, consider using a context manager &#39;with mimics.disabled_gui_update()&#39;.</span>
+        <span class="n">mimics</span><span class="o">.</span><span class="n">enable_update_gui</span><span class="p">()</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finished.&quot;</span><span class="p">)</span>
+
+
+<span class="n">demo_updates</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">demo_updates</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.disabled_gui_update">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">disabled_gui_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.disabled_gui_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>A context manager that will call ‘mimics.disable_update_gui()’ before the execution of the context script and will call ‘mimics.enable_update_gui()’ afterwards. This will turn off the continuous update of the Mimics UI and eventmessage processing after every API call during script execution and will turn it on (return to default settings) afterwards. You can use this to achieve a speedup in script execution times.</p>
+<p>See also: ‘mimics.enable_update_gui()’, ‘mimics.disable_update_gui()’, ‘mimics.update_gui()’, ‘mimics.is_update_gui_enabled()’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This example illustrates effect of different update policies:</span>
+<span class="c1"># 1. default option - enabled PERIODICAL updates (this is a balanced option)</span>
+<span class="c1"># 2. disabling updates - balance is tiled towards the speed (sacrificing updating the user)</span>
+<span class="c1"># 3. forcing (frequent) updates - balance is tiled towards updating the GUI (sacrificing the speed).</span>
+<span class="c1">#    This illustrates that too frequent GUI updates may degrade the performance of the scrip.</span>
+<span class="c1">#    So, it shall be used in situations when the user really needs to be updated frequently,</span>
+<span class="c1">#    otherwise use default option #1 - the default one.</span>
+
+<span class="kn">import</span> <span class="nn">mimics</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="n">NUM_ITERATIONS</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">measurements</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">force_updates</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - iteration: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> we add some text to make it heavier to handle&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">force_updates</span><span class="p">:</span>
+            <span class="n">mimics</span><span class="o">.</span><span class="n">update_gui</span><span class="p">()</span>
+
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">process</span><span class="p">(</span><span class="n">force_updates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="n">NUM_ITERATIONS</span><span class="p">)</span>
+<span class="n">measurements</span><span class="p">[</span><span class="s2">&quot;Option.1 - default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">mimics</span><span class="o">.</span><span class="n">disabled_gui_update</span><span class="p">():</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">force_updates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="n">NUM_ITERATIONS</span><span class="p">)</span>
+<span class="n">measurements</span><span class="p">[</span><span class="s2">&quot;Option.2 - disabling updates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="k">with</span> <span class="n">mimics</span><span class="o">.</span><span class="n">disabled_gui_update</span><span class="p">():</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">force_updates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="n">NUM_ITERATIONS</span> <span class="o">//</span> <span class="n">factor</span><span class="p">)</span>
+<span class="n">measurements</span><span class="p">[</span><span class="s2">&quot;Option.3 - forcing frequent updates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Measurement results for </span><span class="si">{</span><span class="n">NUM_ITERATIONS</span><span class="si">}</span><span class="s2"> iterations:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">measurements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+<span class="c1"># The output for 10 000 iterations can be like (depends on the performance of the PC):</span>
+<span class="c1">#    Measurement results for 10000 iterations:</span>
+<span class="c1">#    - Option.1 - default: 2.9 seconds</span>
+<span class="c1">#    - Option.2 - disabling updates: 2.0 seconds</span>
+<span class="c1">#    - Option.3 - forcing frequent updates: 1087.1 seconds</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.enable_modules_reload">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">enable_modules_reload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.enable_modules_reload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on automatic reloading of all previously loaded user-defined modules before executing a script for the current session in case it was previously turned off, e.g. by calling ‘mimics.disable_modules_reload()’. By default, modules reload is on. This is useful if you have edited the imported module source file (e.g. using an external editor) and want to try out the new version without restarting the application.  Since it is not officially recommended to reload built-in or dynamically loaded modules, only python modules located in the current working folder and subfolders will be reloaded.</p>
+<p>See also: ‘mimics.disable_modules_reload()’, ‘mimics.not_reloading_modules()’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.enable_update_gui">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">enable_update_gui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.enable_update_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the continuous periodic updates of the Mimics UI and events/messages processing after every API call in case it was previously turned off, e.g. by calling ‘mimics.disable_update_gui()’. By default, UI update is on. The frequency of updates is ~5 timers per second.</p>
+<p>See also: ‘mimics.disable_update_gui()’, ‘mimics.disabled_gui_update()’, ‘mimics.update_gui’, ‘mimics.is_update_gui_enabled()’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notes:</span>
+<span class="c1">#  1. Find a more detailed examples in the documentation for mimics.disable_update_gui() API.</span>
+
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="n">mimics</span><span class="o">.</span><span class="n">disable_update_gui</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;doing computations...&quot;</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># it is important to enable it back</span>
+    <span class="c1"># otherwise, the updating subsystem will be corrupted.</span>
+    <span class="c1"># for safety reasons, consider using a context manager &#39;with mimics.disabled_gui_update()&#39;.</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">enable_update_gui</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.get_dicom_tags">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">get_dicom_tags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.get_dicom_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DICOM tags dictionary of the study except from the tags of the image pixels information. In order to get the pixel information of images mimics.ImageData.get_voxel_buffer API can be used. Each time a new instance of dictionary is returned, consequently to achieve better performance of API assign it first to a variable (cached). Note that tags are returned in decimal format, you can convert it to hexadecimal format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DICOM tags of the currently opened project for active image data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Dict</em>[<em>Tuple</em>[int, int], <a class="reference internal" href="#mimics.DicomTag" title="mimics.DicomTag">mimics.DicomTag</a>]</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mimics</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">import_images</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\MedData\DemoFiles\DICOM_Airway&quot;</span><span class="p">)</span>
+<span class="c1"># Getting dicom tags in order to cache them in a variable (for speed)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">get_dicom_tags</span><span class="p">()</span>
+
+<span class="c1"># Getting tag value by its group and id</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">tags</span><span class="p">[</span><span class="mh">0x0028</span><span class="p">,</span> <span class="mh">0x0010</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+
+<span class="c1"># If you want to iterate over all tags (not accessing their child tags) you can use</span>
+<span class="c1"># standard Python dict iteration</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tags</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">hex</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Getting tags in different formats: hex, dec</span>
+<span class="k">for</span>  <span class="n">key</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(</span><span class="si">{0}</span><span class="s1">,</span><span class="si">{1}</span><span class="s1">) = (</span><span class="si">{0:04X}</span><span class="s1">,</span><span class="si">{1:04X}</span><span class="s1">) | </span><span class="si">{2}</span><span class="s1"> | </span><span class="si">{3}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+
+<span class="c1"># If a tag contains a list of values you can iterate it like a list</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="n">tags</span><span class="p">[</span><span class="mh">0x0012</span><span class="p">,</span> <span class="mh">0x0064</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elem</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">elem</span><span class="p">),</span> <span class="n">elem</span><span class="p">)</span>
+
+<span class="c1"># As you will notice, some DICOM tag element are just plain tag/value pairs.</span>
+<span class="c1"># Others though can contain nested tags, so in general DICOM is a tree-like structure.</span>
+<span class="c1"># E.g. patients name usually lies in a single tag `(0x10, 0x10)`.</span>
+<span class="c1"># Per-frame Functional Groups Sequence `(0x5200, 0x9230)`, on the other hand</span>
+<span class="c1"># contains a sequence of nested DICOM Tag elements.</span>
+<span class="c1"># To access them please use `.children` on the tag object</span>
+<span class="c1"># (`.children` is set to `None` in case no nested tags are present)</span>
+
+<span class="n">child_tags</span> <span class="o">=</span> <span class="n">tags</span><span class="p">[</span><span class="mh">0x0012</span><span class="p">,</span> <span class="mh">0x0064</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">child_tags</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">hex</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># To get tags from particular image</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_dicom_tags</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tags</span><span class="p">[</span><span class="mh">0x0008</span><span class="p">,</span> <span class="mh">0x0018</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.get_registry_path">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">get_registry_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.get_registry_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the root path to the settings of the current instance of Mimics in the Windows Registry.</p>
+<p>Note that  the name of the registry hive (such as ‘HKEY_CURRENT_USER’, see details at  <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/sysinfo/registry-hives">https://docs.microsoft.com/en-us/windows/win32/sysinfo/registry-hives</a>) is not included into the returned string.</p>
+<p>See also: mimics.logging.get_logs_path().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>path to the Registry key, e.g. SOFTWAREMaterialiseMaterialise Mimics Medical.0 Beta’</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The example enumerates and prints list of key at the root level.</span>
+<span class="c1"># of the registry of the give application session.</span>
+<span class="c1"># It also asserts presence of sub-keys when preference serialization is enabled.</span>
+<span class="kn">import</span> <span class="nn">winreg</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="n">reg_key_path</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">get_registry_path</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading the keys from path: &#39;</span><span class="si">{</span><span class="n">reg_key_path</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+
+<span class="n">num_of_subkeys</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">winreg</span><span class="o">.</span><span class="n">OpenKey</span><span class="p">(</span><span class="n">winreg</span><span class="o">.</span><span class="n">HKEY_CURRENT_USER</span><span class="p">,</span> <span class="n">reg_key_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+            <span class="n">sub_key</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">EnumKey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; * sub-key at </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">sub_key</span><span class="si">}</span><span class="s2">&#39;;&quot;</span><span class="p">)</span>
+            <span class="n">num_of_subkeys</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+    <span class="c1"># this is expected if more then 1000 sub-keys present or registry is not created yet</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Error while reading registry&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">ex</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total: </span><span class="si">{</span><span class="n">num_of_subkeys</span><span class="si">}</span><span class="s2"> sub-key(ss) found.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">mimics</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">is_saving_enabled</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">num_of_subkeys</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;There must be sub-keys present preference saving enabled.&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.get_version">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns current full Mimics version. The version includes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>application name (may include company name);</p></li>
+<li><p>flavor (e.g. ‘Medical’);</p></li>
+<li><p>A.B.C.D version number (e.g 24.0.0.427);</p></li>
+<li><p>Stage (e.g. Alpha, Beta)</p></li>
+</ul>
+</div></blockquote>
+<p>Example: Materialise Mimics Medical 24.0.0.427.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>full Mimics version</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.indicate_coordinate">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">indicate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Please</span> <span class="pre">indicate</span> <span class="pre">coordinate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_message_box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.indicate_coordinate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a dialog which asks the user to create a point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – (optional) Dialog description.</p></li>
+<li><p><strong>show_message_box</strong> (<em>bool</em>) – (optional) Defines whether message box should be shown or not. If false then all other parameters are ignored.</p></li>
+<li><p><strong>confirm</strong> (<em>bool</em>) – (optional) If true, it displays the OK button and waits for the user to click it to confirm the object placement.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Coordinates that can be used for point creation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[float, float, float]</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Please indicate coordinates of Point 1&#39;</span>
+<span class="n">tit</span> <span class="o">=</span> <span class="s1">&#39;Point 1&#39;</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">indicate_coordinate</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">tit</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.is_update_gui_enabled">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">is_update_gui_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.is_update_gui_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True (by default) if the continuous update of the Mimics UI and events/messages processing after every API call for the current session is on and False otherwise. This behavior can be managed by calling mimics.disable_update_gui() and mimics.enable_update_gui() APIs.</p>
+<p>See also: ‘mimics.enable_update_gui()’, ‘mimics.disable_update_gui()’, ‘mimics.disabled_gui_update()’, ‘mimics.update_gui()’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>State of continuous UI updates.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notes:</span>
+<span class="c1">#  1. Find a more detailed examples in the documentation for mimics.disable_update_gui() API.</span>
+
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;with a context manager&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gui update status (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">is_update_gui_enabled</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="k">with</span> <span class="n">mimics</span><span class="o">.</span><span class="n">disabled_gui_update</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gui update status (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">is_update_gui_enabled</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># False</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;doing computations...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gui update status (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">is_update_gui_enabled</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
+
+
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;using direct APIs&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gui update status (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">is_update_gui_enabled</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">disable_update_gui</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gui update status (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">is_update_gui_enabled</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># False</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;doing computations...&quot;</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># it is important to enable it back</span>
+    <span class="c1"># otherwise, the updating subsystem will be corrupted.</span>
+    <span class="c1"># for safety reasons, consider using a context manager &#39;with mimics.disabled_gui_update()&#39;.</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">enable_update_gui</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gui update status (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">is_update_gui_enabled</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.move_object">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">move_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.move_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates an object along x,y,z direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entity</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>, </em><a class="reference internal" href="#mimics.Osteotomy" title="mimics.Osteotomy"><em>mimics.Osteotomy</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere"><em>mimics.analyze.Sphere</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point"><em>mimics.analyze.Point</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Spline" title="mimics.analyze.Spline"><em>mimics.analyze.Spline</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder"><em>mimics.analyze.Cylinder</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line"><em>mimics.analyze.Line</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Circle" title="mimics.analyze.Circle"><em>mimics.analyze.Circle</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a><em>]</em>) – The object to be moved.</p></li>
+<li><p><strong>offset</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Offset from the original position in x, y, z direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">move_object</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">obj</span> <span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="n">vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.not_reloading_modules">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">not_reloading_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.not_reloading_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to the list of user-defined modules that should not be reloaded. If any user-defined module that is imported to a script should not be reloaded while the script is running then its name (same as in the ‘import’ statement) should be appended to the given list. By default, all user-defined modules will be reloaded and the returned list is empty. In case you don’t want any of the user-defined modules to be reloaded, disable this functionality completely by calling ‘mimics.disable_modules_reload()’</p>
+<p>See also: ‘mimics.enable_modules_reload()’, ‘mimics.disable_modules_reload()’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The list of names of the user-defined modules that should not be reloaded automatically.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Iterable</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.rotate_object_around_axis">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">rotate_object_around_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_origin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.rotate_object_around_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates an object around X, Y or Z axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entity</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere"><em>mimics.analyze.Sphere</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point"><em>mimics.analyze.Point</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Spline" title="mimics.analyze.Spline"><em>mimics.analyze.Spline</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder"><em>mimics.analyze.Cylinder</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line"><em>mimics.analyze.Line</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Circle" title="mimics.analyze.Circle"><em>mimics.analyze.Circle</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a><em>]</em>) – The object to rotate.</p></li>
+<li><p><strong>axis</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Direction of the axis of the rotation.</p></li>
+<li><p><strong>angle</strong> (<em>SupportsFloat</em>) – Angle of the rotation (in degrees)</p></li>
+<li><p><strong>rotation_origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Center of the rotation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ang_deg</span> <span class="o">=</span> <span class="mi">180</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">rotate_object_around_axis</span><span class="p">(</span><span class="n">entity</span> <span class="o">=</span> <span class="n">obj</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">vec</span><span class="p">,</span> <span class="n">angle</span> <span class="o">=</span> <span class="n">ang_deg</span> <span class="p">,</span> <span class="n">rotation_origin</span><span class="o">=</span><span class="n">origin</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.rotate_object_around_inertia_axis">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">rotate_object_around_inertia_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_origin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.rotate_object_around_inertia_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates a part around its inertia axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entity</strong> (<a class="reference internal" href="#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – The Part to rotate.</p></li>
+<li><p><strong>angles</strong> (<em>ThreeItemsIterable</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – An (x,y,z) tuple or list with values representing the angles along each major axis (in degrees)</p></li>
+<li><p><strong>rotation_origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Center of the rotation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ang_deg</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">rotate_object_around_inertia_axis</span><span class="p">(</span><span class="n">entity</span> <span class="o">=</span> <span class="n">obj</span><span class="p">,</span> <span class="n">angles</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">ang_deg</span><span class="p">),</span> <span class="n">rotation_origin</span><span class="o">=</span><span class="n">origin</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.rotate_object_around_views">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">rotate_object_around_views</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_origin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.rotate_object_around_views" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates an object with the defined angles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entity</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>, </em><a class="reference internal" href="#mimics.Osteotomy" title="mimics.Osteotomy"><em>mimics.Osteotomy</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere"><em>mimics.analyze.Sphere</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point"><em>mimics.analyze.Point</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Spline" title="mimics.analyze.Spline"><em>mimics.analyze.Spline</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder"><em>mimics.analyze.Cylinder</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line"><em>mimics.analyze.Line</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Circle" title="mimics.analyze.Circle"><em>mimics.analyze.Circle</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a><em>]</em>) – The object to rotate.</p></li>
+<li><p><strong>angles</strong> (<em>ThreeItemsIterable</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – An (x,y,z) tuple or list with values representing the angles along each major axis (in degrees)</p></li>
+<li><p><strong>rotation_origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Center of the rotation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ang_deg</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">rotate_object_around_views</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">ang_deg</span><span class="p">),</span> <span class="n">rotation_origin</span><span class="o">=</span><span class="n">origin</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.segmentation_box">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">segmentation_box</span></span><a class="headerlink" href="#mimics.segmentation_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>3D bounding box dependent on image data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.toggle_script_listener">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">toggle_script_listener</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.toggle_script_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles the ‘Script Listener’, which allows running and debugging of scripts via an external IDE. For more information, please consult section ‘External IDE’ of the Scripting Guide.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>RuntimeError (reason(s): [‘Listener is already activated in other instance of Mimics.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.transform_objects">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">transform_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.transform_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms provided object(s) with transformation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objects</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>[</em><em>Union</em><em>[</em><a class="reference internal" href="#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point"><em>mimics.analyze.Point</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line"><em>mimics.analyze.Line</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Circle" title="mimics.analyze.Circle"><em>mimics.analyze.Circle</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere"><em>mimics.analyze.Sphere</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder"><em>mimics.analyze.Cylinder</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Spline" title="mimics.analyze.Spline"><em>mimics.analyze.Spline</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a><em>, </em><a class="reference internal" href="#mimics.Osteotomy" title="mimics.Osteotomy"><em>mimics.Osteotomy</em></a><em>]</em><em>]</em><em>, </em><em>Union</em><em>[</em><a class="reference internal" href="#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point"><em>mimics.analyze.Point</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line"><em>mimics.analyze.Line</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Circle" title="mimics.analyze.Circle"><em>mimics.analyze.Circle</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere"><em>mimics.analyze.Sphere</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder"><em>mimics.analyze.Cylinder</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Spline" title="mimics.analyze.Spline"><em>mimics.analyze.Spline</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a><em>, </em><a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a><em>, </em><a class="reference internal" href="#mimics.Osteotomy" title="mimics.Osteotomy"><em>mimics.Osteotomy</em></a><em>]</em><em>]</em>) – Object or container of objects to transform.</p></li>
+<li><p><strong>transformation</strong> (<a class="reference internal" href="#mimics.Transformation" title="mimics.Transformation"><em>mimics.Transformation</em></a>) – Transformation object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Provided transformation cannot be empty’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">transformations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">transform_objects</span><span class="p">(</span><span class="n">objects</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">transformation</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.update_gui">
+<span class="sig-prename descclassname"><span class="pre">mimics.</span></span><span class="sig-name descname"><span class="pre">update_gui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.update_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forces the application to repaint (if some repainintg were pending) and to process all pending events/messages until there are no more events/messages to process. You can call this function occasionally when your script is performing a long operation (e.g. copying a file) to keep the application responsive. Available events are events queued before the function call. This means that events that are posted while the script/API runs will be queued until a later round of event processing.</p>
+<p>See also: ‘mimics.enable_update_gui()’, ‘mimics.disable_update_gui()’, ‘mimics.disabled_gui_update()’ , ‘mimics.is_update_gui_enabled()’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This sample illustrates the following approach:</span>
+<span class="c1"># * we have the script runs several extensive computations that update the views a lot,</span>
+<span class="c1">#   by for instance, modifying many objects.</span>
+<span class="c1">#   in the example below, these actions are &#39;simulated&#39; with sleep() calls.</span>
+<span class="c1"># * the updates take time, so, in order to speed-up, we disable GUI update which</span>
+<span class="c1">#   is done with a context manager Python syntax.</span>
+<span class="c1"># * but, keeping the screen frozen for TOO long, might make a wrong impression on the user,</span>
+<span class="c1">#   thus, to prevent it, we call updates (at specific moments) to entertain the user by</span>
+<span class="c1">#   showing progress</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">do_heavy_computation</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">duration_in_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>    
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">finish_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">+</span> <span class="n">duration_in_sec</span>
+    <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">finish_time</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+
+<span class="c1"># Start of a sequence of heavy computation and update the user from time to time.</span>
+<span class="c1"># This will print output in 3 batches. # Note, that removing &#39;with mimics.disabled_gui_update()&#39;</span>
+<span class="c1"># will result in print more often (see comments for disabled_gui_update()).</span>
+<span class="k">with</span> <span class="n">mimics</span><span class="o">.</span><span class="n">disabled_gui_update</span><span class="p">():</span>
+    <span class="n">do_heavy_computation</span><span class="p">(</span><span class="s2">&quot;Section.1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">update_gui</span><span class="p">()</span>  <span class="c1"># let the user see results of Section.1</span>
+
+    <span class="n">do_heavy_computation</span><span class="p">(</span><span class="s2">&quot;Section.2&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">update_gui</span><span class="p">()</span>  <span class="c1"># let the user see results of Section.2</span>
+
+    <span class="n">do_heavy_computation</span><span class="p">(</span><span class="s2">&quot;Section.3&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">update_gui</span><span class="p">()</span>  <span class="c1"># let the user see results of Section.3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.align.html" class="btn btn-neutral float-right" title="mimics.align module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Materialise Mimics Medical API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+mimics.cineloop module
+======================
+
+.. automodule:: mimics.cineloop
+   :members:
+   :undoc-members:
+   :show-inheritance:

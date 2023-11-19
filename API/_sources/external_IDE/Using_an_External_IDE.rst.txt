@@ -1,0 +1,21 @@
+Using an External IDE
+-----------------------
+
+Users are now able to run and debug scripts via an External IDE with the proper configurations described below:
+It is accessible via Script menu→ Toggle Script Listener.
+
+.. image:: Toggle_listener.png
+   :scale: 100 %
+   :align: center
+
+Once activated a logger message will appear “Mimics script listener is active” as seen below. This indicates that the previously configured connection to the external IDE is active and scripts can be run and debugged.
+
+.. image:: mimics_script_listener_on.png
+   :scale: 100 %
+   :align: center
+
+Once the work with the external IDE is complete you can then toggle the listener off which will close the connection between the IDE and Mimics. This will produce a logger message shown in the log panel “Mimics script listener is stopped”.
+
+.. image:: mimics_script_listener_off.png
+   :scale: 100 %
+   :align: center

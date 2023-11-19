@@ -1,0 +1,328 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.align module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.analyze module" href="mimics.analyze.html"/>
+        <link rel="prev" title="mimics module" href="mimics.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.align module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.align.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.align">
+<span id="mimics-align-module"></span><h1>mimics.align module<a class="headerlink" href="#module-mimics.align" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.align.align_to_coordinate_system">
+<span class="sig-prename descclassname"><span class="pre">mimics.align.</span></span><span class="sig-name descname"><span class="pre">align_to_coordinate_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cs_origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_top_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cs_top_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_front_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cs_front_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.align.align_to_coordinate_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aling Object to coordinate system. Object orientation is described via origin and two vectors.</p>
+<p>Coordinate system to align with is also described via origin and two vectors.</p>
+<p>This function moves Object’s origin to CS origin.</p>
+<p>If top_vector’s for Object and CS are specified - rotates the object and aligns Object top_vector with CS top_vector.</p>
+<p>If front_vector’s for Object and CS are specified - rotates the object around top_vector to align Object’s front_vector with CS front_vector</p>
+<p>All vectors are optional, but they are paired: Object top_vector cannot be used without CS top_vector, also Object front_vector cannot be used without CS front_vector,</p>
+<p>All vectors should be non zero-length vectors. Front_vectors cannot be used without top_vectors.</p>
+<p>To indicate valid CS, Object top_vector and Object front_vector should be non-collinear, also CS top_vector and CS front_vector should be non-collinear.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object</strong> (<a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a>) – The object to be aligned.</p></li>
+<li><p><strong>object_origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Object origin in object coordinate system. The object will be moved to align this Object origin to CS origin.</p></li>
+<li><p><strong>cs_origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – CS origin in world coordinate system. The object will be moved to align Object origin to this CS origin.</p></li>
+<li><p><strong>object_top_vector</strong> (<em>Optional</em><em>[</em><em>TMimicsVector</em><em>]</em>) – (optional) Object top_vector in object coordinate system. The object will be rotated in 3D-space to align this Object top_vector to CS top_vector.</p></li>
+<li><p><strong>cs_top_vector</strong> (<em>Optional</em><em>[</em><em>TMimicsVector</em><em>]</em>) – (optional) CS top_vector in world coordinate system. The object will be rotated in 3D-space to align Object top_vector to this CS top_vector.</p></li>
+<li><p><strong>object_front_vector</strong> (<em>Optional</em><em>[</em><em>TMimicsVector</em><em>]</em>) – (optional) Object front_vector in object coordinate system. The object will be rotated around CS top_vector to align this Object front_vector to CS front_vector</p></li>
+<li><p><strong>cs_front_vector</strong> (<em>Optional</em><em>[</em><em>TMimicsVector</em><em>]</em>) – (optional) CS front_vector in world coordinate system. The object will be rotated around CS top_vector to align Object front_vector to this CS front_vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [“‘object_top_vector’ is present and ‘cs_top_vector’ is missing.”, “‘cs_top_vector’ is present and ‘object_top_vector’ is missing.”, “‘object_front_vector’ is present and ‘cs_front_vector’ is missing.”, “‘cs_front_vector’ is present and ‘object_front_vector’ is missing.”, “Both ‘object_top_vector’ and ‘cs_top_vector’ are missing or invalid, while both ‘object_front_vector’ and ‘cs_front_vector’ are present.”, “‘object_top_vector’ is a zero-length vector.”, “‘cs_top_vector’ is a zero-length vector.”, “‘object_front_vector’ is a zero-length vector.”, “‘cs_front_vector’ is a zero-length vector.”, “‘object_top_vector’ and ‘object_front_vector’ are collinear”, “‘cs_top_vector’ and ‘cs_front_vector’ are collinear”]), RuntimeError (reason(s): [‘Cannot calculate the angle between Object top_vector and CS top_vector’, ‘Cannot calculate the angle between Object front_vector and CS front_vector’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">p_copy</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># just moves object to the world origin</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">align</span><span class="o">.</span><span class="n">align_to_coordinate_system</span><span class="p">(</span>
+  <span class="nb">object</span><span class="o">=</span><span class="n">p_copy</span><span class="p">,</span>
+  <span class="n">object_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">cs_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># moves object to the world origin</span>
+<span class="c1"># then rotates it to align object top_vector(0,0,1) with world Z-axis(0,0,1)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">align</span><span class="o">.</span><span class="n">align_to_coordinate_system</span><span class="p">(</span>
+  <span class="nb">object</span><span class="o">=</span><span class="n">p_copy</span><span class="p">,</span>
+  <span class="n">object_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">cs_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">object_top_vector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+  <span class="n">cs_top_vector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># moves object to the world origin</span>
+<span class="c1"># then rotates it to align object top_vector(0,0,1) with world Z-axis(0,0,1)</span>
+<span class="c1"># then rotates it around world Z-axis to align object front_vector(0,1,0) with world X-axis(1,0,0)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">align</span><span class="o">.</span><span class="n">align_to_coordinate_system</span><span class="p">(</span>
+  <span class="nb">object</span><span class="o">=</span><span class="n">p_copy</span><span class="p">,</span>
+  <span class="n">object_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">cs_origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">object_top_vector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+  <span class="n">cs_top_vector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+  <span class="n">object_front_vector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">cs_front_vector</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.align.orient_plane_facing_to">
+<span class="sig-prename descclassname"><span class="pre">mimics.align.</span></span><span class="sig-name descname"><span class="pre">orient_plane_facing_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opposite_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_around_x_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.align.orient_plane_facing_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flips (if necessary) the normal of the plane so that the place faces the point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plane</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a>) – Plane to orient</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Point, in direction to which, face (normal) of the plane will be oriented to.</p></li>
+<li><p><strong>opposite_direction</strong> (<em>bool</em>) – (optional) If True plane will be flipped (if necessary) in order to face the opposite direction.</p></li>
+<li><p><strong>rotate_around_x_axis</strong> (<em>bool</em>) – (optional) If True plane will be flipped (if necessary) by rotating around the X-axis of the plane, otherwise around the Y-axis.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘the point cannot lay on the plane’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create pointing &#39;down&#39; the Z axis</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">analyze</span><span class="o">.</span><span class="n">create_plane_origin_and_normal</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">normal</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># then orient the plane &#39;pl&#39; to face the point (20, 20, 20) </span>
+<span class="c1"># the normal will be flipped to point &#39;up&#39; the Z axis</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">align</span><span class="o">.</span><span class="n">orient_plane_facing_to</span><span class="p">(</span><span class="n">plane</span><span class="o">=</span><span class="n">pl</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">normal</span><span class="p">)</span>  <span class="c1"># it will print (0, 0, 1)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.analyze.html" class="btn btn-neutral float-right" title="mimics.analyze module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.html" class="btn btn-neutral" title="mimics module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

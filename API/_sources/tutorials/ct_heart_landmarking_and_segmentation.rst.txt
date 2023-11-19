@@ -1,0 +1,129 @@
+CT Heart landmarking and segmentation
+--------------------------------------
+
+Note: To run the following tutorial the NumPy library should be installed. To install external Python libraries, see the Section 2.3 of the Introduction.
+
+For this tutorial the Mimics project Heart.mcs from :file:`C:\\MedData\\DemoFiles` will be used.
+
+The tutorial shows how to prepare for applying the CT heart segmentation tool. A series of function calls is created and controls the script. One function is created for each operation that will be performed. The main operations are thresholding, landmarking, calculation of CT heart segmentation masks and calculation of 3D parts. Appropriate naming is used for the respective functions.
+
+.. code-block:: python
+
+    def main():
+        """Main function."""
+
+        # Open Heart.mcs project
+        input_dir = r'C:\MedData\DemoFiles\Heart.mcs'
+        mimics.file.open_project(input_dir)
+
+        # Create masks for the heart
+        m = mimics.segment.activate_thresholding()
+		m.name = MASK
+
+        # Indicate the landmarking
+        for l in LANDMARKS:
+            indicate_landmark(LANDMARKS.index(l))
+
+        # Perform CT heart segmentation
+        calc_ct_heart()
+
+        # Create of the 3D parts
+        create_3d_parts()
+
+On the top of the script the required libraries must be imported and the required constants must be declared. 
+
+.. code-block:: python
+
+    import mimics
+
+    # Import the numpy library that is useful for some operations
+    try:
+        import numpy as np  # First need to install numpy package for Python. Type pip install numpy in your cmd
+    except ImportError as ie:
+        print("================================================================")
+        print("=== The 3rd party Python package 'numpy' is not installed! ===")
+        print("=== To install it, use 'pip install numpy' in your cmd!    ===")
+        print("================================================================")
+        raise
+    # Define a shortcut
+    md = mimics.data
+    # Constants declaration
+    MASK = "Heart"
+    LANDMARKS = (
+        "RA", "RA",
+        "LA", "LA",
+        "LV", "LV",
+        "RV", "RV",
+        "AO", "AO",
+        "PA", "PA",
+    )
+
+    SEED_RADIUS = dict(
+        RA=10.0,
+        LA=10.0,
+        LV=10.0,
+        RV=10.0,
+        AO=8.0,
+        PA=8.0,
+    )
+
+    SEED_COLOR = dict(
+        RA=(0, 255, 255),
+        LA=(255, 0, 255),
+        LV=(255, 205, 205),
+        RV=(145, 112, 255),
+        AO=(255, 0, 0),
+        PA=(0, 0, 255),
+    )
+
+    MASKS = ("RA", "LA", "LV", "RV", "AO", "PA")
+
+The first function that is called after opening the Heart.mcs project is activate_thresholding(). This launches the thresholding tool where you can select the desired thresholds and modify the crop box. Furthermore the newly created mask is renamed.
+
+
+After the thresholding, there is a *for* loop that calls the function indicate_landmark() for each landmark, as they are declared in the constants. During each call of this function, the user clicks and selects the position of the landmark. The indicator of the intersection lines navigates to the location of the selected coordinates and finally a sphere is selected in that position. The name, the radius and the color of each sphere is defined and controlled by the constants that are defined in the top of the script.  See the indicate_landmark() function below.
+
+.. code-block:: python
+
+    def indicate_landmark(pid: int):
+        pdef = LANDMARKS[pid]
+        try:
+            coords = mimics.indicate_coordinate(message="Indicate {} ".format(pdef),
+                                                confirm=False, show_message_box=True)
+        except InterruptedError:
+            return False
+
+        mimics.view.navigate_to(coords)
+        pnt = mimics.analyze.create_sphere_center_radius(coords, SEED_RADIUS[pdef.split()[0]])
+        pnt.name = pdef
+        pnt.color = tuple(np.array(SEED_COLOR[pdef.split()[0]]) / 255)
+        return
+
+The following function that is called is the calc_ct_heart() that performs the segmentation of the different anatomical parts of the heart. After the segmentation masks are created, the colors of the spheres are assigned to the masks respectively. For the calc_ct_heart() function see the code below.
+
+.. code-block:: python
+
+    def calc_ct_heart():
+        heart = md.masks.find(MASK)
+        seeds = []
+        for p in md.spheres:
+            if p.name in LANDMARKS:
+                seeds.append(p)
+        mimics.segment.calculate_ct_heart_from_mask(mask = heart, seed_points=seeds)
+        for p in md.masks:
+            if p.name in MASKS:
+                p.color = tuple(np.array(SEED_COLOR[p.name.split()[0]]) / 255)
+        return
+
+The last function that is called is the create_3d_parts(). This function creates parts from the masks that are the result of the segmentation and assigns the correct name to them.
+
+.. code-block:: python
+
+    def create_3d_parts():
+        for p in md.masks:
+            if p.name in LANDMARKS:
+                par = mimics.segment.calculate_part(p, "Medium")
+                par.name = p.name
+        return
+
+To summarize, the sequence of the functions that is presented performs the required actions to segment the anatomy from a CT heart dataset. Masks and 3D parts with correct naming and color are created as output.

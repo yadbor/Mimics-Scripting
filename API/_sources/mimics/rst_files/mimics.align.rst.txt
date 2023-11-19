@@ -1,0 +1,7 @@
+mimics.align module
+===================
+
+.. automodule:: mimics.align
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+mimics.analyze module
+=====================
+
+.. automodule:: mimics.analyze
+   :members:
+   :undoc-members:
+   :show-inheritance:

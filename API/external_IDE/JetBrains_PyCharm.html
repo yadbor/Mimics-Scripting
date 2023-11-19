@@ -1,0 +1,236 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. JetBrains PyCharm and Mimics &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="External IDE" href="index.html"/>
+        <link rel="next" title="Tutorials" href="../tutorials/index.html"/>
+        <link rel="prev" title="4. Using an External IDE" href="Using_an_External_IDE.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">External IDE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation_guide_for_rpyc_and_PyQt5.html">2. Installation guide for RPyC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_autocomplete_in_external_IDEs.html">3. Get autocomplete in external IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using_an_External_IDE.html">4. Using an External IDE</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. JetBrains PyCharm and Mimics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">External IDE</a> &raquo;</li>
+      
+    <li><span class="section-number">5. </span>JetBrains PyCharm and Mimics</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/external_IDE/JetBrains_PyCharm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="jetbrains-pycharm-and-mimics">
+<h1><span class="section-number">5. </span>JetBrains PyCharm and Mimics<a class="headerlink" href="#jetbrains-pycharm-and-mimics" title="Permalink to this headline">¶</a></h1>
+<p>In this section the main steps that you need to follow to ensure the correct communication between Mimics and an external IDE are demonstrated. PyCharm will be used as an example but the steps are common for others. For more details about the setup of each IDE please see the documentation that is provided together with the IDE of your preference.</p>
+<p>For PyCharm, follow the next steps:</p>
+<ol class="arabic">
+<li><p>Install RPyC package if you use a Python interpreter of your preference. This package is already installed for the built-in Python interpreter. For details see the section 2 of the External IDE.</p></li>
+<li><p>Install the latest version of PyCharm Community</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.jetbrains.com/pycharm/download/#section=windows">https://www.jetbrains.com/pycharm/download/#section=windows</a></p>
+</div></blockquote>
+</li>
+<li><p>Launch PyCharm, click on <strong>File</strong> → <strong>Settings</strong>. Expand the section “Project :” and make sure that the desired interpreter is selected in the subsection “Project Interpreter”.</p></li>
+<li><p>Restart or force refresh PyCharm. Activate “Toggle Script Listener” in Mimics. Ensure that you start your script with “import mimics” and you can now run and debug your python scripts from PyCharm.</p></li>
+</ol>
+<p>Disclaimer: All external IDEs mentioned in this section of the scripting guide are property of their respective owners.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tutorials/index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Using_an_External_IDE.html" class="btn btn-neutral" title="4. Using an External IDE" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

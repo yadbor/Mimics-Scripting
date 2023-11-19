@@ -1,0 +1,295 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Python installation &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="Introduction" href="index.html"/>
+        <link rel="next" title="3. Mimics IDE" href="editor.html"/>
+        <link rel="prev" title="1. Introduction" href="general_introduction.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Python installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-mimics-for-scripting">2.1. Configuring Mimics for scripting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-python-autocompletion-and-quick-help-into-an-external-ide-optional">2.2. Installing Python autocompletion and quick-help into an external IDE (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-extra-packages-optional">2.3. Installing extra packages (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">3. Mimics IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview_api.html">4. Scripting in Mimics Quick Start Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+      
+    <li><span class="section-number">2. </span>Python installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/introduction/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="python-installation">
+<h1><span class="section-number">2. </span>Python installation<a class="headerlink" href="#python-installation" title="Permalink to this headline">¶</a></h1>
+<p>To use scripting in Mimics, Python 3.8 needs to be installed, as explained in this section.</p>
+<section id="configuring-mimics-for-scripting">
+<h2><span class="section-number">2.1. </span>Configuring Mimics for scripting<a class="headerlink" href="#configuring-mimics-for-scripting" title="Permalink to this headline">¶</a></h2>
+<p>Scripting features require the following Python package and libraries to run effectively:</p>
+<ul class="simple">
+<li><p>Python version must be 3.8.x.</p></li>
+<li><p>mimics-24.0.0.XYZ-py3-none-any.whl package is required to make autocompletion and quick-help work in the external IDE.</p></li>
+<li><p>RPyC package is needed to make debugging in external IDE work via the ‘Script Listener’ feature of Mimics. The RPyC package is also required to enable connecting an external IDE-embedded Python console to Mimics via the ‘Script listener’.</p></li>
+<li><p>Make sure you set the interpreter path to the Python that you have installed, as described in the next section.</p></li>
+</ul>
+<p>Users are required to install a 64-bit version of Python 3.8 which can be obtained from the following website <a class="reference external" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
+<p><strong>Step 1:</strong> It is recommended to use the executable installer for convenience.</p>
+<a class="reference internal image-reference" href="../_images/download-python.png"><img alt="Download Python" class="align-center" src="../_images/download-python.png" style="width: 392.0px; height: 275.2px;" /></a>
+<p><strong>Step 2:</strong> Run the executable in administrator mode and choose the custom installation.</p>
+<p><strong>Step 3:</strong> Set desired installation location, e.g. <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python38</span></code>.</p>
+<a class="reference internal image-reference" href="../_images/python-installation.png"><img alt="Python Installation Advanced Options" class="align-center" src="../_images/python-installation.png" style="width: 532.8000000000001px; height: 328.0px;" /></a>
+<p><strong>Step 4:</strong> After a successful installation you may close the wizard and start Mimics.</p>
+<p><strong>Step 5:</strong> Go to <strong>File</strong> → <strong>Preferences</strong> → <strong>Scripting</strong> and make sure that the path to the Python interpreter is set correctly. You should manually set the path to the local directory that contains the Python installation, e.g. <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python38</span></code>.</p>
+<a class="reference internal image-reference" href="../_images/preferences-scripting-filled.png"><img alt="Mimics Scripting Preferences" class="align-center" src="../_images/preferences-scripting-filled.png" style="width: 497.6px; height: 542.4px;" /></a>
+<p>The Scripting library path is set by default in <code class="file docutils literal notranslate"><span class="pre">C:\MedData\Scripts</span></code>. In that location you can find all the tutorial scripts that are included in the installer. You can set the path to the scripting directory of your preference. Any scripts present in the specified folder are automatically registered in the menu <strong>Script</strong> → <strong>Scripting Library</strong>.</p>
+</section>
+<section id="installing-python-autocompletion-and-quick-help-into-an-external-ide-optional">
+<span id="extra-packages"></span><h2><span class="section-number">2.2. </span>Installing Python autocompletion and quick-help into an external IDE (optional)<a class="headerlink" href="#installing-python-autocompletion-and-quick-help-into-an-external-ide-optional" title="Permalink to this headline">¶</a></h2>
+<p>The editors and the consoles embedded in Mimics come with out-of-the-box autocompletion of Python API, parameters and attributes. However, in order to enable the autocompletion or quick help in an external IDE (such as PyCharm or MS Visual Studio with Python extensions) the following package needs to be installed in the Python interpreter which is used in your active project in the IDE. The installation is done using the standard Python installation tool <strong>pip</strong>, which is the recommended tool from Python Packaging Authority (PyPA) for installing Python packages. Normally, this tool is present in any recent Python installation (of version &gt;=3.*).
+The following actions need to be done:</p>
+<p><strong>1.</strong> Launch the Windows command line (<strong>cmd</strong>) as Windows Administrator and use the <strong>cd</strong> command to change the directory to the one that contains the <strong>pip.exe</strong> file. This is located in the Scripts subfolder of the Python 3.8 installation location.</p>
+<p><strong>2.</strong> Locate the file <strong>mimics-24.0.0.XYZ-py3-none-any.whl</strong>. If you installed Mimics in the default location, the file should usually be located inside the folder <strong>C:\Program Files\Materialise\Mimics 24.0\Help\API</strong>. Copy this file to the folder where the <strong>pip.exe</strong> file of Step 1 is located.</p>
+<p><strong>3.</strong> Go back to the Windows command line window of Step 1. Type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install mimics-24.0.0.XYZ-py3-none-any.whl
+</pre></div>
+</div>
+<p>The ‘XYZ’ should be replaced with the exact build number you have in the installation. The <strong>mimics-24.0.0.XYZ-py3-none-any.whl</strong> can be deleted after the installation has finished.</p>
+</section>
+<section id="installing-extra-packages-optional">
+<h2><span class="section-number">2.3. </span>Installing extra packages (optional)<a class="headerlink" href="#installing-extra-packages-optional" title="Permalink to this headline">¶</a></h2>
+<p>If desired, install additional Python packages or libraries such as NumPy or SciPy. If you already have installed a Python 3.8 version that contains the external Python libraries of your preference, please follow the instructions above to set as default this Python interpreter. Note, however, your PC requires the Internet connection while doing these installation steps.</p>
+<p>To install external Python packages you can use <strong>pip</strong>, which is the recommended tool from Python Packaging Authority (PyPA) for installing Python packages. If you install a full version of Python 3.8, the pip library is included in the installation folder.</p>
+<p>Below you can find a simple example of how to install NumPy and PyQt. First, launch the Windows command line (<strong>cmd</strong>) as Windows Administrator and use the <strong>cd</strong> command to change the directory to the one that contains the <strong>pip.exe</strong> file. This is located in the Scripts subfolder of the Python 3.8 installation location. Then type the following to install NumPy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy
+</pre></div>
+</div>
+<p>If you need PyQt 5, please note that Mimics 24.0 requires the version to be 5.15. Type the following if you want to install PyQt 5.15.1:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install <span class="nv">PyQt5</span><span class="o">==</span><span class="m">5</span>.15.1
+</pre></div>
+</div>
+<p>or (if the previous command line fails), type this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install <span class="nv">PyQt5</span><span class="o">==</span><span class="m">5</span>.15
+</pre></div>
+</div>
+<p>If you would like to install PyQt versions 4, 6 (if/when it is available), download the corresponding WHL file and store in the folder where <strong>pip.exe</strong> is. Type the following (the exact version may differ from that in the command <strong>4.11.4</strong>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install PyQt4-4.11.4-cp37-cp37m-win_amd64.whl
+</pre></div>
+</div>
+<p>After those commands, the NumPy and PyQt5 (or its other version) are now normally installed to your system. For more information please visit the following page: <a class="reference external" href="https://packaging.python.org/installing/">https://packaging.python.org/installing/</a>.</p>
+<p>It is recommended, before importing PyQt with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import PyQt5.QtWidgets
+
+import PyQt5.QtCore
+
+import PyQt5.QtGui
+</pre></div>
+</div>
+<p>to initialize PyQt bindings with Mimics utility function</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mimics.utils.initialize_pyqt<span class="o">(</span>True/False<span class="o">)</span>.
+</pre></div>
+</div>
+<p>This gives benefits of extended error checking and extra diagnostics of incompatibilities between Mimics hosting application and the given PyQt5 installation at run-time. For example: a versions mismatching related error. See description of mimics.utils.initialize_pyqt() for more details.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="editor.html" class="btn btn-neutral float-right" title="3. Mimics IDE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="general_introduction.html" class="btn btn-neutral" title="1. Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

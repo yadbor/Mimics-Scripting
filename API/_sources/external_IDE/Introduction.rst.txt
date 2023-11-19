@@ -1,0 +1,10 @@
+Introduction
+==========================
+
+Mimics is compatible with external Integrated Development Environments (IDE). This new functionality allows users to write, run and debug scripts through external IDEs like PyCharm, Eclipse and Visual Studio.
+
+External IDEs facilitates users to:
+
+•	Manage complex scripts with multiple files
+•	Edit and refactor code 
+•	Manage the package and the environment

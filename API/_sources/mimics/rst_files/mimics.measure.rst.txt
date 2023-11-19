@@ -1,0 +1,7 @@
+mimics.measure module
+=====================
+
+.. automodule:: mimics.measure
+   :members:
+   :undoc-members:
+   :show-inheritance:

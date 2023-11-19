@@ -1,0 +1,17 @@
+JetBrains PyCharm and Mimics
+------------------------------
+
+In this section the main steps that you need to follow to ensure the correct communication between Mimics and an external IDE are demonstrated. PyCharm will be used as an example but the steps are common for others. For more details about the setup of each IDE please see the documentation that is provided together with the IDE of your preference.
+
+For PyCharm, follow the next steps:
+
+1) Install RPyC package if you use a Python interpreter of your preference. This package is already installed for the built-in Python interpreter. For details see the section 2 of the External IDE.
+
+2) Install the latest version of PyCharm Community 
+
+		https://www.jetbrains.com/pycharm/download/#section=windows
+3) Launch PyCharm, click on **File** → **Settings**. Expand the section "Project :" and make sure that the desired interpreter is selected in the subsection "Project Interpreter".
+
+4) Restart or force refresh PyCharm. Activate “Toggle Script Listener” in Mimics. Ensure that you start your script with “import mimics” and you can now run and debug your python scripts from PyCharm.
+
+Disclaimer: All external IDEs mentioned in this section of the scripting guide are property of their respective owners. 

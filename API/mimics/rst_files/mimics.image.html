@@ -1,0 +1,559 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.image module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.logging module" href="mimics.logging.html"/>
+        <link rel="prev" title="mimics.file module" href="mimics.file.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.image module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.image.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.image">
+<span id="mimics-image-module"></span><h1>mimics.image module<a class="headerlink" href="#module-mimics.image" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.BinomialBlurFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">BinomialBlurFilter</span></span><a class="headerlink" href="#mimics.image.BinomialBlurFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.image.Filter" title="mimics.image.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.image.Filter</span></code></a></p>
+<p>Blurring filters are traditionally used to remove noise from images, by attenuating high spatial frequencies. The Binomial blur filter computes a nearest neighbor average along each dimension.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.BinomialBlurFilter.number_of_iterations">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_of_iterations</span></span><a class="headerlink" href="#mimics.image.BinomialBlurFilter.number_of_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.CurvatureFlowFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">CurvatureFlowFilter</span></span><a class="headerlink" href="#mimics.image.CurvatureFlowFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.image.Filter" title="mimics.image.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.image.Filter</span></code></a></p>
+<p>The Curvature flow filter performs an edge-preserving smoothing on the images. The iso-contours of the images are viewed as level sets, where the pixels with a particular gray value form one level set. The diffusion speed is proportional to the curvature of the contours. Therefore, areas of high curvature will diffuse faster than areas with low curvature. Hence, small jagged noise artifacts disappear quickly, while large scale artifacts evolve slowly, thereby preserving sharp boundaries between objects.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.CurvatureFlowFilter.number_of_iterations">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_of_iterations</span></span><a class="headerlink" href="#mimics.image.CurvatureFlowFilter.number_of_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.CurvatureFlowFilter.time_step">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_step</span></span><a class="headerlink" href="#mimics.image.CurvatureFlowFilter.time_step" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘float’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.DiscreteGaussianFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">DiscreteGaussianFilter</span></span><a class="headerlink" href="#mimics.image.DiscreteGaussianFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Discrete Gaussian filter computes the convolution of the image with a Gaussian kernel for calculating the transformation to apply to each voxel. This filter is used typically to smooth and reduce the image detail, preserving the edges for low variances..</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.DiscreteGaussianFilter.gaussian_variance">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gaussian_variance</span></span><a class="headerlink" href="#mimics.image.DiscreteGaussianFilter.gaussian_variance" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.DiscreteGaussianFilter.max_kernel_width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_kernel_width</span></span><a class="headerlink" href="#mimics.image.DiscreteGaussianFilter.max_kernel_width" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.Filter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><a class="headerlink" href="#mimics.image.Filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Filter is a general object for the image filters.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.GradientMagnitudeFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">GradientMagnitudeFilter</span></span><a class="headerlink" href="#mimics.image.GradientMagnitudeFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.image.Filter" title="mimics.image.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.image.Filter</span></code></a></p>
+<p>The magnitude of the image gradient is extensively used in image analysis, mainly to help in the determination of object contours and the separation of homogenous regions. The gradient magnitude filter computes the magnitude of the image gradient at each pixel location. This filter does not apply any smoothing to the image before computing the gradients. The results can, therefore, be sensitive to noise.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.MeanFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">MeanFilter</span></span><a class="headerlink" href="#mimics.image.MeanFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.image.Filter" title="mimics.image.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.image.Filter</span></code></a></p>
+<p>The mean filter is commonly used for simple image noise reduction. Each output pixel is computed by finding the statistical mean of the gray-level values surrounding the corresponding input pixel. Note that this filter is sensitive to the presence of outliers in the neighborhood and does not preserve the image edges.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.MeanFilter.radius">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#mimics.image.MeanFilter.radius" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.image.MedianFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">MedianFilter</span></span><a class="headerlink" href="#mimics.image.MedianFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mimics.image.Filter" title="mimics.image.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.image.Filter</span></code></a></p>
+<p>The median filter is particularly useful to reduce speckle noise and salt and pepper noise. Its edge-preserve nature makes it useful in cases where edge blurring is undesirable. This filter computes the value of each output pixel as the statistical median of the neighborhood of values around the corresponding input pixel.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.image.MedianFilter.radius">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#mimics.image.MedianFilter.radius" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘int’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.apply_filters">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">apply_filters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.apply_filters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the filters to the image set and turns on the visualization of the filtered images .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filters</strong> (<em>List</em><em>[</em><a class="reference internal" href="#mimics.image.Filter" title="mimics.image.Filter"><em>mimics.image.Filter</em></a><em>]</em>) – List of filters which should be applied to the image set.</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">BinomialBlurFilter</span><span class="p">()</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">MedianFilter</span><span class="p">()</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">apply_filters</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.calculate_automatic_registration">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">calculate_automatic_registration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_fixed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_moving</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region_of_interest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.calculate_automatic_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes automatic Image Registration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_fixed</strong> (<a class="reference internal" href="mimics.html#mimics.ImageData" title="mimics.ImageData"><em>mimics.ImageData</em></a>) – The fixed image.</p></li>
+<li><p><strong>image_moving</strong> (<a class="reference internal" href="mimics.html#mimics.ImageData" title="mimics.ImageData"><em>mimics.ImageData</em></a>) – The moving image.</p></li>
+<li><p><strong>translation</strong> (<em>ThreeItemsIterable</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) Initial translation (prealignment) in the patient coordinate system.</p></li>
+<li><p><strong>region_of_interest</strong> (<a class="reference internal" href="mimics.segment.html#mimics.segment.Mask" title="mimics.segment.Mask"><em>mimics.segment.Mask</em></a>) – (optional) Region of interest on the fixed image.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Registration transformation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.html#mimics.Transformation" title="mimics.Transformation">mimics.Transformation</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fixed_image</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">moving_image</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">transformation</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">calculate_automatic_registration</span><span class="p">(</span><span class="n">fixed_image</span><span class="p">,</span> <span class="n">moving_image</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transformation</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.hide_filtered_images">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">hide_filtered_images</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.hide_filtered_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off filtered images visualization.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.reduce_scatter">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">reduce_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strength</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.reduce_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes or (partially) filters out metal artifacts, which are the result of metal in the FOV, on CT/CBCT images by providing a prior-made metal mask and filtering the specified image stack with a defined tolerance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_data</strong> (<a class="reference internal" href="mimics.html#mimics.ImageData" title="mimics.ImageData"><em>mimics.ImageData</em></a>) – Image stack with metal artifacts that you want to be filtered.</p></li>
+<li><p><strong>mask</strong> (<a class="reference internal" href="mimics.segment.html#mimics.segment.Mask" title="mimics.segment.Mask"><em>mimics.segment.Mask</em></a>) – Mask to be used by the filtering algorithm. You need to create this mask before launching the tool. This mask should indicate exactly where the metal is located in the images. It should contain all metal structures in the FOV but not the artifacts themselves (including the artifacts in   this mask will greatly diminish the effects of the tool). Pay attention to include as much metal in the mask as possible. If you are faced with a choice, preference should be given to a mask that includes some non-metal pixels over a mask not encompassing all of the metal.</p></li>
+<li><p><strong>strength</strong> (<em>SupportsFloat</em>) – Tolerance value that determines how strongly the metal artifacts will be reduced. Higher values result in more filtering but increase the risk of ‘overfiltering’ and blurring certain anatomical features. The filtering strength parameter should be a value between 0.01 and 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new image stack containing the filtered images is created and added to the project. The new image stack will be named as follows: ‘Reduce Scatter [filtering strength] � [original name]’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.html#mimics.ImageData" title="mimics.ImageData">mimics.ImageData</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Parameters are somehow incorrect from algorithm point of view’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CT project with no metal mask</span>
+<span class="n">f</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\MedData\DemoFiles\Mandible.mcs&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">open_project</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">create_mask</span><span class="p">()</span>
+
+<span class="c1"># some metal detection intensities range</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">threshold_min</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">threshold_max</span><span class="o">=</span><span class="mi">4095</span><span class="p">)</span>
+
+<span class="c1"># strength value should be in range [0.0, 1.0]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">reduce_scatter</span><span class="p">(</span><span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">get_active</span><span class="p">(),</span> <span class="n">m</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.reslice_project">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">reslice_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slice_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_image_data_coordinate_system</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.reslice_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports a resliced version of the current project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Start point of the reslicing.</p></li>
+<li><p><strong>end_point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – End point of the reslicing.</p></li>
+<li><p><strong>rotation_angle</strong> (<em>int</em>) – Rotation angle of the bounding box around the axis defined by the start and end points.</p></li>
+<li><p><strong>image_width</strong> (<em>SupportsFloat</em>) – The width of the images in the resliced project.</p></li>
+<li><p><strong>image_height</strong> (<em>SupportsFloat</em>) – The height of the images in the resliced project.</p></li>
+<li><p><strong>slice_distance</strong> (<em>SupportsFloat</em>) – The slice increment of the resliced project.</p></li>
+<li><p><strong>pixel_size</strong> (<em>SupportsFloat</em>) – The pixel size of the resliced project.</p></li>
+<li><p><strong>update_image_data_coordinate_system</strong> (<em>bool</em>) – If true, the origin of the coordinate system will be updated to the upper left corner of the first image in the stack, with the axes along the main directions of the image stack.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Width out of appropriate range’, ‘Height out of appropriate range’, ‘Slice distance out of appropriate range’, ‘Pixel size out of appropriate range’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ep</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ang</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">i_w</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">i_h</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">reslice_project</span><span class="p">(</span><span class="n">start_point</span><span class="o">=</span><span class="n">sp</span><span class="p">,</span>
+                                  <span class="n">end_point</span><span class="o">=</span><span class="n">ep</span><span class="p">,</span>
+                                  <span class="n">rotation_angle</span><span class="o">=</span><span class="n">ang</span><span class="p">,</span>
+                                  <span class="n">image_width</span><span class="o">=</span><span class="n">i_w</span><span class="p">,</span>
+                                  <span class="n">image_height</span><span class="o">=</span><span class="n">i_h</span><span class="p">,</span>
+                                  <span class="n">slice_distance</span><span class="o">=</span><span class="n">sd</span><span class="p">,</span>
+                                  <span class="n">pixel_size</span><span class="o">=</span><span class="n">ps</span><span class="p">,</span>
+                                  <span class="n">update_image_data_coordinate_system</span><span class="o">=</span><span class="kc">False</span>
+                                 <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.reslice_project_bbox">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">reslice_project_bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corner_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slice_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_image_data_coordinate_system</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.reslice_project_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports a resliced version of the current project using the given bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>corner_point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Corner point of the bounding box.</p></li>
+<li><p><strong>x_axis</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Vector that defines the length and the direction of the cropping box in x-axis. E.g (5,0,0).</p></li>
+<li><p><strong>y_axis</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Vector that defines the length and the direction of the cropping box in y-axis. E.g (0,3.2,0).</p></li>
+<li><p><strong>z_axis</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Vector that defines the length and the direction of the cropping box in z-axis. E.g (0,0,7).</p></li>
+<li><p><strong>slice_distance</strong> (<em>SupportsFloat</em>) – The slice increment of the resliced project.</p></li>
+<li><p><strong>pixel_size</strong> (<em>SupportsFloat</em>) – The pixel size of the resliced project.</p></li>
+<li><p><strong>update_image_data_coordinate_system</strong> (<em>bool</em>) – If true, the origin of the coordinate system will be updated to the upper left corner of the first image in the stack, with the axes along the main directions of the image stack.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Slice distance out of appropriate range’, ‘Pixel size out of appropriate range’, ‘Axis vector length is 0’, ‘Axes are parallel’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">reslice_project_bbox</span><span class="p">(</span><span class="n">corner_point</span><span class="o">=</span><span class="n">cp</span><span class="p">,</span>
+                                  <span class="n">x_axis</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                                  <span class="n">y_axis</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                                  <span class="n">z_axis</span><span class="o">=</span><span class="n">z</span><span class="p">,</span>
+                                  <span class="n">slice_distance</span><span class="o">=</span><span class="n">sd</span><span class="p">,</span>
+                                  <span class="n">pixel_size</span><span class="o">=</span><span class="n">ps</span><span class="p">,</span>
+                                  <span class="n">update_image_data_coordinate_system</span><span class="o">=</span><span class="kc">False</span>
+                                 <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.image.show_filtered_images">
+<span class="sig-prename descclassname"><span class="pre">mimics.image.</span></span><span class="sig-name descname"><span class="pre">show_filtered_images</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.image.show_filtered_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on filtered images visualization. Filters will be reapplied to the image set so this operation may take a few minutes.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.logging.html" class="btn btn-neutral float-right" title="mimics.logging module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.file.html" class="btn btn-neutral" title="mimics.file module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

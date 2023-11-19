@@ -1,0 +1,105 @@
+Switch between Mimics and 3-matic
+--------------------------------------
+
+Many workflows require the use of multiple tools from Mimics and 3-matic. With scripting is possible to automate such workflows and use tools from both software packages. This tutorial shows how to continue the workflow in 3-matic while working in Mimics. The results of 3-matic are returned to Mimics and the script continues in Mimics. You can have the scripts of 3-matic and Mimics in different *.py files or in the same file. For this tutorial a single-file script approach is selected. The Mimics project Heart.mcs from :file:`C:\\MedData\\DemoFiles` is used. 3-matic is used for some advanced operations that are not available in Mimics, consequently there is no 3-matic project loaded. 
+
+Since there is only one script used that contains both Mimics and 3-matic part, as a first step we need to check in which software the script runs: 
+
+.. code-block:: python
+
+    # One script is used for both Mimics and 3-matic. 
+    # For that reason we have to check if we are in Mimics or in 3-matic 
+    try:
+        import trimatic
+    except:
+        in_3matic = False
+    else:
+        in_3matic = True
+    SHARED_OBJ = "Union"
+
+Next, the Mimics part is presented. The selected Mimics project is opened and the masks of interest (LA, LV and Aorta) are located. 
+
+.. code-block:: python
+
+    #If True we are in Mimics
+    if not in_3matic:
+        # Open Heart.mcs Mimics project
+        path = r"C:\MedData\DemoFiles\Heart.mcs"
+        mimics.file.open_project(path)
+        # Find the masks of interest
+        masks_names = ["LA","LV", "Aorta"]
+        masks = []
+        for m in masks_names:
+            mask = mimics.data.masks.find(m)
+            if mask:
+                print("Mask "+ m +" is present.")
+                masks.append(mask)
+            
+            
+            
+In the next step the masks are united to one, using boolean operations, and the Part of the union is created. The Part is exported as STL in the directory where the *.py file of the script is located (use of the special purpose attribute __file__). Furthermore a *.txt file is created where basic log functionality is kept. This *.txt file is also used to transfer required information between Mimics and 3-matic.
+
+.. code-block:: python
+
+        # Unite masks
+        if len(masks) == 3:
+            un1 = mimics.segment.boolean_operations(masks[0],masks[1],"Unite")
+            union = mimics.segment.boolean_operations(un1,masks[2],"Unite")
+            union.name  = SHARED_OBJ
+            # Create the Part of the Union mask
+            union_part = mimics.segment.calculate_part(union)
+            union_part.name = SHARED_OBJ
+            #Export the Union Part in the location of the script
+            root_path_of_script = os.path.split(os.path.abspath(__file__))[0]
+            path_of_stl = os.path.join(root_path_of_script,union_part.name + ".stl")
+            mimics.file.export_part(union_part,path_of_stl)
+            with open(os.path.join(os.path.split(__file__)[0],"my_temp.txt"),"w") as f:
+                f.write(path_of_stl)
+                f.write("File is created!\n")
+
+As it is mentioned in the introduction of this tutorial, 3-matic is launched from the Mimics part of the script. To achieve this, a built-in Python module called subprocess is used. This module is used in general to activate new processes, connect to their input, output and error pipes and obtain their return codes. In this tutorial the Popen constructor of the subprocess module is used. Please note that this is not the only way to perform the following step. After 3-matic is launched, the script that runs in Mimics will wait until the activated subprocess of 3-matic returns it's result code. 
+
+.. code-block:: python
+
+            #Prepare to run 3-matic
+            trimatic = mimics.file.get_path_to_3matic()
+            if not trimatic:
+                slogging.error("Path to 3-matic was not found. Please setup it via File-Preferences on General tab in 3-matic Path section")
+            command = trimatic 
+            args = ("-run_script", __file__, path_of_stl,f.name)
+            process = subprocess.Popen((command,) + args, shell=False, stdout=subprocess.PIPE)
+            process.wait()
+
+When the child 3-matic subprocess ends, then the Mimics script will continue. The script reads from the *.txt file the paths of two STL files that are exported from 3-matic (see below for the scripting part of 3-matic) and it loads them to Mimics. Additionally the *.txt file that is used for information transfer purposes, is deleted.
+
+.. code-block:: python
+
+            with open(f.name,"r")as f:
+                lines = f.readlines()
+            os.remove(f.name)
+            for i in range(2):
+                mimics.file.import_stl(lines[i+1].strip())
+        else:
+            print("Please check if a mask is missing! Three masks are required.")
+
+
+This it the end of the Mimics part of the script. The 3-matic part follows. The first step is to read the arguments that are passed from Mimics to 3-matic through the subprocess. The arguments are the path of the exported STL file (Union.stl) and the full path of the *.txt file. Next, a plane is fitted to the imported part (Union) and it is used to cut the part. As a result, two parts are created that are exported in the directory of the *.py file. The full path of the exported parts is written in the *.txt file. Those paths are read from Mimics to import the STLs in Mimics as it is explained above.  
+
+.. code-block:: python
+
+    #If True we are in 3-matic
+    else:
+        path_of_stl = sys.argv[1]
+        f = sys.argv[2]
+        trimatic.import_part_stl(path_of_stl)
+        part = trimatic.find_parts(SHARED_OBJ)
+        if part:
+            plane = trimatic.create_plane_fit(part[0])
+            cut_parts = trimatic.cut(part[0],plane)
+            exp = trimatic.export_stl_ascii(cut_parts,os.path.split(os.path.abspath(__file__))[0])
+            with open(f,"a") as f:
+                f.write(exp[0]+"\n")
+                f.write(exp[1])
+            print("To continue please close 3-matic!")
+
+Please note that you have to close 3-matic after it finishes the operations to terminate the subprocess and continue.

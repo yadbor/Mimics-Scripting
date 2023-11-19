@@ -1,0 +1,7 @@
+mimics.experimental module
+==========================
+
+.. automodule:: mimics.experimental
+   :members:
+   :undoc-members:
+   :show-inheritance:

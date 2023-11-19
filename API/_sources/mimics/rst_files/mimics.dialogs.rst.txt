@@ -1,0 +1,7 @@
+mimics.dialogs module
+=====================
+
+.. automodule:: mimics.dialogs
+   :members:
+   :undoc-members:
+   :show-inheritance:

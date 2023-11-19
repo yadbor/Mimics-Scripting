@@ -1,0 +1,705 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.logging module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.measure module" href="mimics.measure.html"/>
+        <link rel="prev" title="mimics.image module" href="mimics.image.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.logging module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.logging.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.logging">
+<span id="mimics-logging-module"></span><h1>mimics.logging module<a class="headerlink" href="#module-mimics.logging" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.flush">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flushes the log MEMORY buffers to the files on the hard disk. This ensures that all logging records, including those which are currently buffered in memory, will be read if you open one of the log files while a session is still open.</p>
+<p>See more explanations in mimics.logging.get_user_log_file_path(), mimics.logging.get_system_log_file_path() documentation.</p>
+<p>See also: mimics.logging.get_user_log_file_path(), mimics.logging.get_system_log_file_path().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This example demonstrates how flush() API affects completeness of</span>
+<span class="c1"># the most fresh (tail) user log records in the log file.</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">read_tail_of_user_log_without_flushing</span><span class="p">(</span><span class="n">tail_size_in_char</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">log_path</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_user_log_file_path</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span><span class="o">.</span><span class="n">st_size</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">tail_size_in_char</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># if a file is smaller than tail_size_in_char UTF-16 chars</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  <span class="c1"># open as binary to be able to seek reliably</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">SEEK_SET</span><span class="p">)</span>
+        <span class="c1"># ATTENTION: mimics log files are in 16 bits Unicode format</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-16&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">find_message_in_the_tail_of_log</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ln</span> <span class="ow">in</span> <span class="n">read_tail_of_user_log_without_flushing</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">ln</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The message has been found!&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The message has NOT been found!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">if</span> <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_logging_level</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs logging level higher than &#39;DEBUG&#39;.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># we flush at the very start to have predictable (no buffered log records) situation</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="c1"># write the message to the log in INFO (buffered way) -&gt; so we will be able to find it later</span>
+    <span class="n">MSG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Some random (</span><span class="si">{</span><span class="n">randrange</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="si">}</span><span class="s2">) text message to write and to find later.&quot;</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">MSG</span><span class="p">)</span>
+
+    <span class="n">found</span> <span class="o">=</span> <span class="n">find_message_in_the_tail_of_log</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="n">found</span><span class="p">,</span> <span class="s2">&quot;the last log record shall not be found in the tail, because flushing has not taken place yet,&quot;</span>
+
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="n">found</span> <span class="o">=</span> <span class="n">find_message_in_the_tail_of_log</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">found</span><span class="p">,</span> <span class="s2">&quot;the last log record shall shall be found after the flush().&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.get_logging_level">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">get_logging_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.get_logging_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Mimics logging level. The logging levels are expressed in the way how it is done in standard Python’s module ‘logging’. See respectful documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns Mimics logging level</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">level</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_logging_level</span><span class="p">()</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.get_logs_path">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">get_logs_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.get_logs_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the folder containing the log files for the current session of Mimics. Note that Mimics supports several logs, namely:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>User log files :: a log of user activities; the default names of the files are MIS_yyy_mm_dd_hh_mm_ss_PID.txt;</p></li>
+<li><p>System log :: a log containing records about events that occur within Mimics itself; the default names of the files are MIS_yyy_mm_dd_hh_mm_ss_PID.log;</p></li>
+<li><p>DNB log files :: a log of events in the DICOM Network bridge library  that is used for connection of Mimics with PACSs; the default names of the files are <a href="#id1"><span class="problematic" id="id2">PACS_</span></a> yyy_mm_dd_hh_mm_ss_PID.log.txt;</p></li>
+<li><p>PACS uploader log :: a log of events that occur when  sending files to a PACS; the default names of the files are <a href="#id3"><span class="problematic" id="id4">Uploader_</span></a> yyy_mm_dd_hh_mm_ss_PID.log;</p></li>
+<li><p>SCD client log :: a log of events that occur while communication of Mimics with SurgiCase Drive (Mimics Viewer) services; the default names of the files are <a href="#id5"><span class="problematic" id="id6">FileTransfers_</span></a> yyy_mm_dd_hh_mm_ss_PID.log.</p></li>
+</ul>
+</div></blockquote>
+<p>Here, yy, mm, dd, hh, ss corresponds to the date of creation of the file (year, month, date, hour, min, sec), PID is the process identification number.</p>
+<p>See also: mimics.logging.get_user_log_file_path(), mimics.logging.get_system_log_file_path(), mimics.get_registry_path().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Path to the folder with log files, e.g. ‘C:/Users/[USER]/AppData/Local/Materialise/Materialise Mimics Medical/24.0.0.357/Logs’.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="n">logs_path</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_logs_path</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Listing logging content in &#39;</span><span class="si">{</span><span class="n">logs_path</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">logs_path</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">logs_path</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">subdirectories</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">logs_path</span><span class="p">):</span>
+    <span class="n">stripped_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">root</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="n">logs_path</span><span class="p">):]</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;         - </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stripped_root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.get_system_log_file_path">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">get_system_log_file_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.get_system_log_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the system log file for the current session of Mimics. The returned path can be changed by the command line parameter “-save_system_log &lt;filename.txt&gt;”.  The log file is written in (UTF-16 Unicode encoding) with the BOM marker at the start of the file.</p>
+<p>Note about memory buffering: for performance reasons, the application writes log messages by groups. This means that, at a given moment of time, if one reads a log’s file content, he/she cannot be sure if the last records were already added to the file or they are still being buffered in memory.
+To ensure that the last records are written to the log file, the script can/must invoke mimics.logging.flush().  Despite, setting “Extending diagnostic” = On  also makes sure that buffering latest log records is not activated and that all the records are always in the log file (see Preferences/Log page or command switch “-logging_level debug”), it is not recommended to count/use on this approach in production because keeping “Extending diagnostic” always ON may degrade the performance.</p>
+<p>See also: mimics.logging.flush().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>path to the system log file path for the current session</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="c1"># This example demonstrates how one can reliably read</span>
+<span class="c1"># a certain (controlled as number of chars to read) amount of</span>
+<span class="c1"># the most fresh (tail) system log records</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">read_tail_of_system_log</span><span class="p">(</span><span class="n">tail_size_in_char</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="c1"># Before reading last records of the log file, it is mandatory</span>
+    <span class="c1"># to make sure that all the memory buffered content are flushed to</span>
+    <span class="c1"># the file system.</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="n">log_path</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_system_log_file_path</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span><span class="o">.</span><span class="n">st_size</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">tail_size_in_char</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># if a file is smaller than tail_size_in_char UTF-16 chars</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  <span class="c1"># open as binary to be able to seek reliably</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">SEEK_SET</span><span class="p">)</span>
+        <span class="n">log_bytes</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">log_bytes</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">log_bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span> <span class="ow">and</span> <span class="n">log_bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFE</span><span class="p">:</span>  <span class="c1"># the BOM marker</span>
+                <span class="n">log_bytes</span> <span class="o">=</span> <span class="n">log_bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+
+    <span class="c1"># ATTENTION: mimics log files are in 16 bits Unicode format</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-16&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+
+<span class="c1"># write the  message to the log -&gt; so we will be able to find it later</span>
+<span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Some text message to write and to find later.&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">MSG</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Location of the system log file: &#39;</span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_system_log_file_path</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39; and printing tail of it.&quot;</span><span class="p">)</span>
+
+<span class="n">found_pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ln</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">read_tail_of_system_log</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">MSG</span> <span class="ow">in</span> <span class="n">ln</span><span class="p">:</span>
+        <span class="n">found_pos</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The MSG is found at </span><span class="si">{</span><span class="n">found_pos</span><span class="si">}</span><span class="s2">th line of the tail.&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#Example 2</span>
+<span class="c1"># This example demonstrates how one can reliably read</span>
+<span class="c1"># entire content of the system log file.</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">read_system_log</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="c1"># Before reading last records of the log file, it is mandatory</span>
+    <span class="c1"># to make sure that all the memory buffered content are flushed to</span>
+    <span class="c1"># the file system.</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_system_log_file_path</span><span class="p">(),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">content</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFE</span><span class="p">:</span>  <span class="c1"># the BOM marker</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-16&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Some text message to write.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Location of the system log file: &#39;</span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_system_log_file_path</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39; and printing all records:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ln</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">read_system_log</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.get_user_log_file_path">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">get_user_log_file_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.get_user_log_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the user log file for the current session of Mimics. The returned path can be changed by the command line parameter “-save_log &lt;filename.txt&gt;”.  The log file is written in (UTF-16 Unicode encoding) with the BOM marker at the start of the file.</p>
+<p>Note about memory buffering: for performance reasons, the application writes log messages by groups. This means that, at a given moment of time, if one reads a log’s file content, he/she cannot be sure if the last records were already added to the file or they are still being buffered in memory.
+To ensure that the last records are written to the log file, the script can/must invoke mimics.logging.flush().  Despite, setting “Extending diagnostic” = On  also makes sure that buffering latest log records is not activated and that all the records are always in the log file (see Preferences/Log page or command switch “-logging_level debug”), it is not recommended to count/use on this approach in production because keeping “Extending diagnostic” always ON may degrade the performance.</p>
+<p>See also: mimics.logging.flush().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>file path to the user log file path for the current session</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="c1"># This example demonstrates how one can reliably read</span>
+<span class="c1"># a certain (controlled as number of chars to read) amount of</span>
+<span class="c1"># the most fresh (tail) user log records.</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">read_tail_of_user_log</span><span class="p">(</span><span class="n">tail_size_in_char</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="c1"># Before reading last records of the log file, it is mandatory</span>
+    <span class="c1"># to make sure that all the memory buffered content are flushed to</span>
+    <span class="c1"># the file system.</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="n">log_path</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_user_log_file_path</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span><span class="o">.</span><span class="n">st_size</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">tail_size_in_char</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># if a file is smaller than tail_size_in_char UTF-16 chars</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  <span class="c1"># open as binary to be able to seek reliably</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">SEEK_SET</span><span class="p">)</span>
+        <span class="n">log_bytes</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">log_bytes</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">log_bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span> <span class="ow">and</span> <span class="n">log_bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFE</span><span class="p">:</span>  <span class="c1"># the BOM marker</span>
+                <span class="n">log_bytes</span> <span class="o">=</span> <span class="n">log_bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+    <span class="c1"># ATTENTION: mimics log files are in 16 bits Unicode format</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-16&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+
+<span class="c1"># write the  message to the log -&gt; so we will be able to find it later</span>
+<span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Some text message to write and to find later.&quot;</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">MSG</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Location of the user log file: &#39;</span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_user_log_file_path</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39; and printing tail of it.&quot;</span><span class="p">)</span>
+
+<span class="n">found_pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ln</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">read_tail_of_user_log</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">MSG</span> <span class="ow">in</span> <span class="n">ln</span><span class="p">:</span>
+        <span class="n">found_pos</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The MSG is found at </span><span class="si">{</span><span class="n">found_pos</span><span class="si">}</span><span class="s2">th line of the tail.&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#Example 2</span>
+<span class="c1"># This example demonstrates how one can reliably read</span>
+<span class="c1"># entire content of the user log file.</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="k">def</span> <span class="nf">read_user_log</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="c1"># Before reading last records of the log file, it is mandatory</span>
+    <span class="c1"># to make sure that all the memory buffered content are flushed to</span>
+    <span class="c1"># the file system.</span>
+    <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_user_log_file_path</span><span class="p">(),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">content</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFE</span><span class="p">:</span>  <span class="c1"># the BOM marker</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-16&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Some text message to write.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Location of the system log file: &#39;</span><span class="si">{</span><span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_user_log_file_path</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39; and printing all records:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ln</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">read_user_log</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.log_system_message">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">log_system_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.log_system_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows to redirect log message to Mimics system log.</p>
+<p>It is possible to redirect all messages from any logging.Logger to Mimics system log via logging. Logger instance with name ‘mimics.system’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>int</em>) – Logging level. The list of possible values (as well as the rules of the application) of the logging level is following conventions of the standard Python module ‘logging’. The logging level can be controlled via the preference of the application and/or command line. See respectful documentation.</p></li>
+<li><p><strong>message</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Message to be logged. For robustness (especially in trouble-shooting and diagnostic scenarios), the application also accepts a value of an arbitrary type (including None, in which case, it is converted to ‘None’ text).</p></li>
+<li><p><strong>kwargs</strong> (<em>Union</em><em>[</em><em>Dict</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – (optional) Optional dictionary of key:value pairs which will be logged in the tabular format after the message. Keys and values can be of arbitrary types. The application uses string representation of keys and values to convert them to text before logging. The conversion takes after checking the logging for performance reasons, so, for the ‘logging.DEBUG’ it is highly recommended to pass the parameters of an event being logged in ‘kwargs’ parameter (in contrast to formatting them unconditionally into the ‘message’ argument). For robustness (especially in trouble-shooting and diagnostic scenarios), the application also accepts values of an arbitrary type (including None, in which case, it is ignored).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="c1"># print single log message to Mimics system log</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;debug message&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;info message&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;warning message&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># print single log message with a table of Windows environment variables</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Environment:&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">))</span>
+
+
+<span class="c1"># redirect all log messages from example_logger to Mimics system log</span>
+<span class="n">ms_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;mimics.system&quot;</span><span class="p">)</span>
+
+<span class="n">example_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;example&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ms_logger</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#Example 2</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="c1"># print single log message with diagnostic information about parameters with which a function is called</span>
+<span class="k">def</span> <span class="nf">parameters_logger</span><span class="p">(</span><span class="n">function_to_decorate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">parameters_logger_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_system_message</span><span class="p">(</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+            <span class="s2">&quot;Function is called with:&quot;</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="s2">&quot; - name&quot;</span><span class="p">:</span> <span class="n">function_to_decorate</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="s2">&quot; - the positional&quot;</span><span class="p">:</span> <span class="n">args</span><span class="p">,</span>
+                <span class="s2">&quot; - keyword arguments&quot;</span><span class="p">:</span> <span class="n">kwargs</span>
+            <span class="p">})</span>
+        <span class="n">function_to_decorate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parameters_logger_impl</span>
+
+
+<span class="nd">@parameters_logger</span>
+<span class="k">def</span> <span class="nf">my_function_move_part</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">mimics</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;doing something with obj, action: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">action</span><span class="p">))</span>
+
+
+<span class="n">my_function_move_part</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="s2">&quot;my object&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">my_function_move_part</span><span class="p">(</span><span class="s2">&quot;my object&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">my_function_move_part</span><span class="p">([</span><span class="s2">&quot;complex&quot;</span><span class="p">,</span> <span class="s2">&quot;object&quot;</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.logging.log_user_message">
+<span class="sig-prename descclassname"><span class="pre">mimics.logging.</span></span><span class="sig-name descname"><span class="pre">log_user_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.logging.log_user_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows to redirect log message to Mimics user log.</p>
+<p>It is possible to redirect all messages from any logging.Logger to Mimics user log via logging. Logger instance with name ‘mimics.user’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>int</em>) – Logging level. The list of possible values (as well as the rules of the application) of the logging level is following conventions of the standard Python module ‘logging’. The logging level can be controlled via the preference of the application and/or command line. See respectful documentation.</p></li>
+<li><p><strong>message</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Message to be logged. For robustness (especially in trouble-shooting and diagnostic scenarios), the application also accepts a value of an arbitrary type (including None, in which case, it is converted to ‘None’ text).</p></li>
+<li><p><strong>kwargs</strong> (<em>Union</em><em>[</em><em>Dict</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – (optional) Optional dictionary of key:value pairs which will be logged in the tabular format after the message. Keys and values can be of arbitrary types. The application uses string representation of keys and values to convert them to text before logging. The conversion takes after checking the logging for performance reasons, so, for the ‘logging.DEBUG’ it is highly recommended to pass the parameters of an event being logged in ‘kwargs’ parameter (in contrast to formatting them unconditionally into the ‘message’ argument). For robustness (especially in trouble-shooting and diagnostic scenarios), the application also accepts values of an arbitrary type (including None, in which case, it is ignored).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+<span class="c1"># print single log message to Mimics user log</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;debug message&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;info message&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;warning message&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>
+
+<span class="c1"># print single log message to Mimics user log with a table of parameters</span>
+<span class="n">pressure</span> <span class="o">=</span> <span class="mi">760</span>
+<span class="n">patient_name</span> <span class="o">=</span> <span class="s2">&quot;Karl&quot;</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="mf">36.7</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+                                <span class="s2">&quot;Healthiness state:&quot;</span><span class="p">,</span>
+                                <span class="p">{</span><span class="s2">&quot;Pressure&quot;</span><span class="p">:</span> <span class="n">pressure</span><span class="p">,</span> <span class="s2">&quot;Patient name&quot;</span><span class="p">:</span> <span class="n">patient_name</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">})</span>
+
+<span class="c1"># redirect all log messages from example_logger to Mimics user log</span>
+<span class="n">ms_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;mimics.user&quot;</span><span class="p">)</span>
+
+<span class="n">example_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;example&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ms_logger</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+<span class="n">example_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#Example 2</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+
+
+<span class="c1"># print single log message with diagnostic information about </span>
+<span class="c1"># parameters with which a function is called</span>
+<span class="k">def</span> <span class="nf">parameters_logger</span><span class="p">(</span><span class="n">function_to_decorate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">parameters_logger_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">mimics</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">log_user_message</span><span class="p">(</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+            <span class="s2">&quot;Function is called with:&quot;</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="s2">&quot; - name&quot;</span><span class="p">:</span> <span class="n">function_to_decorate</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="s2">&quot; - the positional&quot;</span><span class="p">:</span> <span class="n">args</span><span class="p">,</span>
+                <span class="s2">&quot; - keyword arguments&quot;</span><span class="p">:</span> <span class="n">kwargs</span>
+            <span class="p">})</span>
+        <span class="n">function_to_decorate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parameters_logger_impl</span>
+
+
+<span class="nd">@parameters_logger</span>
+<span class="k">def</span> <span class="nf">my_function_move_part</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">mimics</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;doing something with obj, action: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">action</span><span class="p">))</span>
+
+
+<span class="n">my_function_move_part</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="s2">&quot;my object&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">my_function_move_part</span><span class="p">(</span><span class="s2">&quot;my object&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">my_function_move_part</span><span class="p">([</span><span class="s2">&quot;complex&quot;</span><span class="p">,</span> <span class="s2">&quot;object&quot;</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.measure.html" class="btn btn-neutral float-right" title="mimics.measure module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.image.html" class="btn btn-neutral" title="mimics.image module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

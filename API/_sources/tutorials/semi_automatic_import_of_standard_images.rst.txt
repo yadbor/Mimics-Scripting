@@ -1,0 +1,14 @@
+Semi-automatic import of standard images
+------------------------------------------
+
+The user can automate the import of Bitmap or JPEG images. As input, we assume there is a directory containing all images. 
+The scan resolution in x, y, and z dimensions is required as input to ensure correct dimensions of the volumes and 3D objects. This information is typically provided by the radiologist who performed the scan. Use :py:func:`mimics.file.import_standard_images` with the parameters mentioned above.
+
+.. code-block:: python
+
+	input_dir=r"C:\MedData\DemoFiles\BMP_Leg"
+  mimics.dialogs.set_predefined_answer(mimics.dialogs.dialog_id.CHANGE_ORIENTATION, "RAB")
+  mimics.file.import_standard_images(source_folder=input_dir,xy_resolution=1,z_resolution=1,patient_name="MimMat")    
+
+
+By default, Mimics will display a dialog box asking for confirmation of the orientation of the images. If desired, this dialog can be suppressed by setting a predefined answer for it. For instance, we could select the orientation RAB as mentioned above. By default the :py:func:`mimics.file.import_standard_images` will open Mimics and show the images. Note that the Mimics project is not saved.

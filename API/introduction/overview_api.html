@@ -1,0 +1,438 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Scripting in Mimics Quick Start Guide &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="Introduction" href="index.html"/>
+        <link rel="next" title="Materialise Mimics Medical API" href="../mimics/rst_files/index.html"/>
+        <link rel="prev" title="3. Mimics IDE" href="editor.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">2. Python installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">3. Mimics IDE</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Scripting in Mimics Quick Start Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#show-hide-editor-and-console">4.1. Show/hide Editor and Console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-a-script">4.2. Run a script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execute-mimics-and-scripts-from-windows-command-prompt-cmd">4.3. Execute Mimics and scripts from Windows Command Prompt (CMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clean-variables-and-workspace">4.4. Clean variables and workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started-with-the-mimics-api">4.5. Getting started with the Mimics API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-mimics-api">4.6. Using the Mimics API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-hounsfield-and-grayvalues-pixel-units">4.7. Working with Hounsfield and Grayvalues pixel units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-to-mimics-objects">4.8. Access to Mimics objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-to-the-properties-of-mimics-objects">4.9. Access to the properties of Mimics objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activate-mimics-tools-with-python">4.10. Activate Mimics tools with Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#display-and-suppress-dialog-boxes">4.11. Display and suppress dialog boxes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+      
+    <li><span class="section-number">4. </span>Scripting in Mimics Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/introduction/overview_api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="scripting-in-mimics-quick-start-guide">
+<h1><span class="section-number">4. </span>Scripting in Mimics Quick Start Guide<a class="headerlink" href="#scripting-in-mimics-quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<section id="show-hide-editor-and-console">
+<h2><span class="section-number">4.1. </span>Show/hide Editor and Console<a class="headerlink" href="#show-hide-editor-and-console" title="Permalink to this headline">¶</a></h2>
+<p>To show or hide the Mimics Editor or Console, click on the menu <strong>Script</strong> and select <strong>Toggle Editor</strong> or <strong>Toggle Console</strong>.</p>
+<a class="reference internal image-reference" href="../_images/toggle_editor_console.png"><img alt="../_images/toggle_editor_console.png" class="align-center" src="../_images/toggle_editor_console.png" style="width: 436.8px; height: 98.4px;" /></a>
+</section>
+<section id="run-a-script">
+<h2><span class="section-number">4.2. </span>Run a script<a class="headerlink" href="#run-a-script" title="Permalink to this headline">¶</a></h2>
+<p>There are several ways to run a script.</p>
+<p>A first method is via the Mimics Editor. Click on the menu <strong>Script</strong> and <strong>Toggle Editor</strong>. In the window of the editor, click on the button <img alt="open" src="../_images/open.png" /> to browse to your script. After selecting the script, it will appear in the Editor window. Click on the button <img alt="run" src="../_images/run.png" /> (or press F5 or CTRL-R) to execute it.</p>
+<p>A second method is via the <strong>Run Script</strong> button in the <strong>Script</strong> menu. This allows you to select your script and run it.</p>
+<a class="reference internal image-reference" href="../_images/run_script_from_script.png"><img alt="../_images/run_script_from_script.png" class="align-center" src="../_images/run_script_from_script.png" style="width: 432.8px; height: 96.80000000000001px;" /></a>
+<p>A third method to run a script is via <strong>Scripting Library</strong>. Please note that you need to configure your scripting preferences in order to make scripts visible in the <strong>Scripting Library</strong> menu. For details see Section 2.2 of the Introduction. Once you have configured your preferences, scripts will appear in the <strong>Scripting Library</strong> and you can run the scripts with a single click.</p>
+<a class="reference internal image-reference" href="../_images/run_from_scripting_lib.png"><img alt="../_images/run_from_scripting_lib.png" class="align-center" src="../_images/run_from_scripting_lib.png" style="width: 438.40000000000003px; height: 146.4px;" /></a>
+</section>
+<section id="execute-mimics-and-scripts-from-windows-command-prompt-cmd">
+<h2><span class="section-number">4.3. </span>Execute Mimics and scripts from Windows Command Prompt (CMD)<a class="headerlink" href="#execute-mimics-and-scripts-from-windows-command-prompt-cmd" title="Permalink to this headline">¶</a></h2>
+<p>You can run Mimics and scripts from the Windows Command Prompt (cmd). You can find the available options in the cmd by typing <strong>-h</strong> or <strong>-help</strong> as a parameter in cmd (see below). For Materialise Mimics Medical 24.0 use the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="s2">&quot;C:\Program Files\Materialise\Mimics Medical 24.0&quot;</span>
+
+MimicsMedical.exe -h
+
+MimicsMedical.exe -help
+</pre></div>
+</div>
+<p>For Materialise Mimics 24.0:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="s2">&quot;C:\Program Files\Materialise\Mimics 24.0&quot;</span>
+
+Mimics.exe -h
+
+Mimics.exe -help
+</pre></div>
+</div>
+<p>The available options and their description are shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>MimicsMedical.exe <span class="o">[</span>-help<span class="o">]</span> <span class="o">[</span>-background_mode<span class="o">]</span> <span class="o">[</span>-kill<span class="o">]</span> <span class="o">[</span>-save_log &lt;filename.txt&gt;<span class="o">]</span> <span class="o">[</span>-run_script &lt;script_name.py <span class="o">[</span>args<span class="o">]</span>&gt;<span class="o">]</span>
+
+-h, -help                Display this <span class="nb">help</span>
+-b, -background_mode     Runs the application without GUI <span class="o">(</span><span class="k">in</span> the background<span class="o">)</span>. Quits the application after task completion
+-k, -kill                Quits the application after task completion
+-save_log &lt;filename.txt&gt; Saves all logger messages to a file specified
+-r, -run_script          Runs a python script.
+script_name.py           Name of the python script to run
+<span class="o">[</span>args<span class="o">]</span>                   Optional parameters to pass into the python script.  They can be accessed using sys.argv<span class="o">[</span>n<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Example:</strong></p>
+<p>In folder <code class="file docutils literal notranslate"><span class="pre">C:\MedData\Scripts</span></code> there is a copy of the tutorials. To run the import_dicom.py file from Windows command prompt, type the following (it is assumed that Materialise Mimics Medical 24.0 is installed in C: drive for this example):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="s2">&quot;C:\Program Files\Materialise\Mimics Medical 24.0&quot;</span>
+
+MimicsMedical.exe -b -run_script <span class="s2">&quot;C:\MedData\Scripts\import_dicom.py&quot;</span>
+</pre></div>
+</div>
+<p>For Materialise Mimics 24.0:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="s2">&quot;C:\Program Files\Materialise\Mimics 24.0&quot;</span>
+
+Mimics.exe -b -run_script <span class="s2">&quot;C:\MedData\Scripts\import_dicom.py&quot;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> It is recommended to surround the full path with quotes.</p>
+</section>
+<section id="clean-variables-and-workspace">
+<h2><span class="section-number">4.4. </span>Clean variables and workspace<a class="headerlink" href="#clean-variables-and-workspace" title="Permalink to this headline">¶</a></h2>
+<p>In general, a namespace uniquely identifies a set of names so that there is no ambiguity when objects having different origins but identical names are combined. In essence, a namespace in Python is a mapping of every name you have defined to corresponding objects. Different namespaces can co-exist at a given time but are completely isolated. A namespace containing all the built-in names is created when you start the Python interpreter and exists as long you don’t exit.</p>
+<p>The Mimics Editor and Mimics console have a shared namespace. Consequently, when you execute a script from the Editor which creates certain Python variables, these variables will be accessible from the Mimics Console too, and vice versa. This allows for easy experimentation and debugging while writing scripts. Scripts that run via Run Script use the same shared namespace with Console and Editor. In contrast, scripts that are executed from the Scripting Library are executed in each run in their own namespace, which is not shared with other namespaces like Editor and Console. This is to allow for clean execution of your scripts.</p>
+<p>There are several ways to clean the namespaces if desired. You can clean the namespace shared between Editor and Console by clicking on the <strong>Script</strong> menu and <strong>Clear All</strong> (see image below).</p>
+<a class="reference internal image-reference" href="../_images/clear_all_script.png"><img alt="../_images/clear_all_script.png" class="align-center" src="../_images/clear_all_script.png" style="width: 429.6px; height: 97.60000000000001px;" /></a>
+<p>Another way to clean the namespace of Editor and Console is to right-click on the Console in Mimics and select <strong>Clear All</strong> as shown below.</p>
+<a class="reference internal image-reference" href="../_images/clear_all_console.png"><img alt="../_images/clear_all_console.png" class="align-center" src="../_images/clear_all_console.png" style="width: 252.0px; height: 211.20000000000002px;" /></a>
+<p>Alternatively, you can clean the namespaces implicitly prior to running scripts from any execution source. This option applies only for the namespace created by the run from Editor, Console or Run script. This setting is accessible from the menu <strong>Edit</strong> in <strong>Preferences</strong> (see image below).</p>
+<a class="reference internal image-reference" href="../_images/clear_all_prefs.png"><img alt="../_images/clear_all_prefs.png" class="align-center" src="../_images/clear_all_prefs.png" style="width: 596.8000000000001px; height: 108.0px;" /></a>
+</section>
+<section id="getting-started-with-the-mimics-api">
+<h2><span class="section-number">4.5. </span>Getting started with the Mimics API<a class="headerlink" href="#getting-started-with-the-mimics-api" title="Permalink to this headline">¶</a></h2>
+<p>Python interaction with Mimics is done via the Mimics Application Programming Interface (API). Via this API, it is possible to call many of the regular Mimics features (segmentation, measurements, etc), access the objects in a Mimics project, etc. A complete overview of the API can be found in the “Mimics API” section. Below we explain the basic concept by means of a simple example.</p>
+<p>The required module is called <strong>mimics</strong>. This module comes as part of the Mimics installation, and is imported automatically when using Mimics (so there is no need to import it explicitly when executing a Python script within Mimics). Accessing the Mimics API is done via this module, as illustrated below.</p>
+<a class="reference internal image-reference" href="../_images/api.png"><img alt="../_images/api.png" class="align-center" src="../_images/api.png" style="width: 770.4000000000001px; height: 216.0px;" /></a>
+</section>
+<section id="using-the-mimics-api">
+<h2><span class="section-number">4.6. </span>Using the Mimics API<a class="headerlink" href="#using-the-mimics-api" title="Permalink to this headline">¶</a></h2>
+<p>Like many programming languages, Python supports Object Oriented Programming. This is the basis of the Mimics API as well: each object is an instance of a class. Dot notation is used as the way to say to an instance to use one of the functions or properties of the class it belongs to. For instance, the method <em>create_mask</em> can be called to create a new object of type <em>mimics.Mask</em> as follows.</p>
+<a class="reference internal image-reference" href="../_images/useapi.png"><img alt="../_images/useapi.png" class="align-center" src="../_images/useapi.png" style="width: 770.4000000000001px; height: 150.4px;" /></a>
+<p>The Mimics API is organized into submodules, reflecting the structure of the regular Mimics menus. For instance, there are submodules <em>mimics.file</em>, <em>mimics.segment</em>, <em>mimics.analyze</em>, etc. In addition, the Mimics API includes several other useful modules and classes as listed in the “Mimics API” section.</p>
+<p>You can use <em>Ctrl</em> + <em>Space</em> to get autocomplete. Note that autocomplete works for names of methods, arguments, variables, etc. To confirm the selection of the module (i.e: mimics.segment), functionality (i.e: mimics.segment.threshold()) or argument ((i.e: mimics.segment.threshold(mask=))) you can use <em>Tab</em> or <em>Enter</em>.</p>
+</section>
+<section id="working-with-hounsfield-and-grayvalues-pixel-units">
+<h2><span class="section-number">4.7. </span>Working with Hounsfield and Grayvalues pixel units<a class="headerlink" href="#working-with-hounsfield-and-grayvalues-pixel-units" title="Permalink to this headline">¶</a></h2>
+<p>In the regular Mimics UI you can choose to work with Hounsfield units or gray values. You can modify the setting in the <strong>Preferences</strong> in the <strong>File</strong> menu (in the tab <strong>General</strong>). The Mimics API, however, works <strong>only</strong> with gray values (i.e., all API methods that work with thresholds etc assume that the unit is gray values), regardless of your preference setting. If you need to work with Hounsfield units, there are two Mimics APIs that will assist you: HU2GV converts from Hounsfield Units (HU) to Gray Values (GV), and GV2HU does vice versa. Below is an example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Values in HU</span>
+<span class="n">low_hu</span> <span class="o">=</span> <span class="mi">240</span>
+<span class="n">high_hu</span> <span class="o">=</span> <span class="mi">3071</span>
+
+<span class="c1"># Convert values to GV</span>
+<span class="n">low_gv</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">HU2GV</span><span class="p">(</span><span class="n">low_hu</span><span class="p">)</span>
+<span class="n">high_gv</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">HU2GV</span><span class="p">(</span><span class="n">high_hu</span><span class="p">)</span>
+
+<span class="c1"># Use the tool with the converted values</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">m</span><span class="p">,</span><span class="n">threshold_min</span><span class="o">=</span><span class="n">low_gv</span><span class="p">,</span><span class="n">threshold_max</span><span class="o">=</span><span class="n">high_gv</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="access-to-mimics-objects">
+<h2><span class="section-number">4.8. </span>Access to Mimics objects<a class="headerlink" href="#access-to-mimics-objects" title="Permalink to this headline">¶</a></h2>
+<p>A frequently used class is <em>mimics.data</em>, which allows you to access most of the types of Mimics objects that are present in the Mimics project management tab (masks, parts, measurements, planes, points, reslice views, etc).</p>
+<p>Below are some examples on how to access parts and masks in the project <em>Heart.mcs</em> that is included in the installation of Mimics (MedData folder). This project contains three masks with names LA, LV and Aorta, and the respective parts.</p>
+<p>To access the first mask of the project:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First mask of the project</span>
+<span class="n">mask1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To access the mask with name LA:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mask LA</span>
+<span class="n">mask1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;LA&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above example there is only one matching mask (one mask with the name “LA”). When there are multiple matching results, <em>find</em> will return only one result, but the Mimics API also has a similar method <em>filter</em> that returns all matches. Note that <em>find</em> and <em>filter</em> also support regular expressions.</p>
+<p>To assign the part with name Aorta to a variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find part Aorta</span>
+<span class="n">mask1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Aorta&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To delete the mask LV:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete LV mask</span>
+<span class="n">lv</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;LV&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">lv</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To duplicate all the masks and parts:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Duplicate all the masks and parts of the opened project</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="p">:</span>
+       <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">:</span>
+       <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To explore which Mimics objects are accessible with Mimics API you can type <em>mimics.data.</em> in the Editor or Console. Autocomplete will show the full list of types of objects that are availabe in the data container.</p>
+</section>
+<section id="access-to-the-properties-of-mimics-objects">
+<h2><span class="section-number">4.9. </span>Access to the properties of Mimics objects<a class="headerlink" href="#access-to-the-properties-of-mimics-objects" title="Permalink to this headline">¶</a></h2>
+<p>Most of the Mimics objects can be accessed with scripting and are reprented as a class in Mimics API. In Python attribute reference is the most common understood action. Consequently to refer to the properties of a Mimics object you can simply refer to the attributes of the instance of the class that the Mimics object is assigned to. See the examples below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first mask that is included in the mask container is assigned to variable m</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># To access the attributes of this instance of mimics.segment.Mask class use the dot notation.</span>
+<span class="c1"># That way you can access properties of the Mimics mask that is assigned to variable m. See below:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">average_value</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">color</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">number_of_pixels</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">get_voxel_buffer</span><span class="p">()</span>
+
+<span class="c1"># To get a list of the valid attributes(built-in and special) for that object, type the following:</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="activate-mimics-tools-with-python">
+<h2><span class="section-number">4.10. </span>Activate Mimics tools with Python<a class="headerlink" href="#activate-mimics-tools-with-python" title="Permalink to this headline">¶</a></h2>
+<p>Using the Mimics API you can not only perform most of the operations in Mimics via API calls but you can also launch or ‘activate’ some of the regular Mimics tools with their regular graphical user interface. For example, thresholding is an operation that can be performed in the following two ways. The first is to perform thresholding as part of a script without interaction with the user. All the parameters required are defined in the script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Thresholding without user interaction</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">l_t</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">h_t</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">m</span><span class="p">,</span><span class="n">threshold_min</span><span class="o">=</span><span class="n">l_t</span><span class="p">,</span> <span class="n">threshold_max</span><span class="o">=</span><span class="n">h_t</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second way is by activating the thresholding tool. You can interactively choose the low and the high threshold that will be applied to the chosen mask (see the image below). The script will continue after you confirm your choice.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Thresholding with user interaction</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">activate_thresholding</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/activate_tool.png"><img alt="../_images/activate_tool.png" class="align-center" src="../_images/activate_tool.png" style="width: 547.2px; height: 380.8px;" /></a>
+<p><strong>Note:</strong> Currently, only a limited number of selected tools have such an ‘activate’ API.</p>
+</section>
+<section id="display-and-suppress-dialog-boxes">
+<h2><span class="section-number">4.11. </span>Display and suppress dialog boxes<a class="headerlink" href="#display-and-suppress-dialog-boxes" title="Permalink to this headline">¶</a></h2>
+<p>In the previous section it was briefly explained that there are some tools that can be activated with scripting and require interaction with the user. Using the Mimics API you can additionaly create your own dialog boxes or even suppress those that automatically appear in Mimics (e.g. change orientation of DICOM images). Below you can find an example on how to suppress some of the built in dialog boxes of Mimics with predefined answers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set predefined answers to suppress some of the built in dialog boxes</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="s2">&quot;CannotConvertProject&quot;</span><span class="p">,</span> <span class="s2">&quot;Yes&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="s2">&quot;ProjectHasNotValidCS&quot;</span><span class="p">,</span> <span class="s2">&quot;Yes&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="s2">&quot;ChangeOrientation&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="s2">&quot;FixImagesPositioning&quot;</span><span class="p">,</span> <span class="s2">&quot;Yes&quot;</span><span class="p">)</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">set_predefined_answer</span><span class="p">(</span><span class="s2">&quot;SaveChangedProject&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Code that imports DICOM images</span>
+<span class="c1"># ...</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>In the Mimics API there is the possibility to create your own dialog boxes that can give you customised interaction with the script. Below you can find an example on how to create a dialog box with some predefined list of possible answers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create customised dialog boxes with scripting</span>
+<span class="c1"># ...</span>
+<span class="c1"># Code that performs an operation</span>
+<span class="c1"># ...</span>
+<span class="n">sel</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">question_box</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please indicate the region to continue&quot;</span><span class="p">,</span> <span class="n">buttons</span><span class="o">=</span><span class="s2">&quot;LA;LV;Aorta&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Region Selection&quot;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/dialog_box.png"><img alt="../_images/dialog_box.png" class="align-center" src="../_images/dialog_box.png" style="width: 688.0px; height: 164.8px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mimics/rst_files/index.html" class="btn btn-neutral float-right" title="Materialise Mimics Medical API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="editor.html" class="btn btn-neutral" title="3. Mimics IDE" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

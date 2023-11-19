@@ -1,0 +1,51 @@
+Landmarks and measurements in the shoulder
+--------------------------------------------
+
+In this tutorial some basic segmentation, landmarking and measurements operations are illustrated on the project Shoulder.mcs from :file:`C:\\MedData\\DemoFiles`. The first step is to open the project and perform thresholding, region growing  and calculation of the 3D part. (More explanation on those steps can be found in the tutorials on Skull segmentation and Femur segmentation.) 
+
+.. code-block:: python
+
+	# Open the project
+	mimics.file.open_project(r'C:\MedData\DemoFiles\Shoulder.mcs')
+	 # Create an empty mask        
+	mask_a = mimics.segment.create_mask()
+	# Perform thresholding with selected min and max values
+	mimics.segment.threshold(mask=mask_a,threshold_min=1250,threshold_max=2800) # thresholds are set in gray values
+	mask_a.name = "Shoulder"
+	# Create a point that will be used fot the region growing operation
+	point_1 = mimics.analyze.indicate_point(title="Region growing point",message= "Please indicate a point on the part of interest")
+	# Region growing. The original mask is preserved
+	mask_b = mimics.segment.region_grow(point=point_1,input_mask=mask_a,target_mask=None,slice_type="Axial",keep_original_mask=True)
+	mimics.data.points.delete(point_1)
+	mask_b.name = "Segmented shoulder"
+	#Calculation of the 3D part
+	part = mimics.segment.calculate_part(mask=mimics.data.masks.find("Segmented shoulder"),quality="High")
+
+The next step is to indicate the landmarks in the area of interest on the shoulder. Two points are selected on the scapula and one point on the humerus. Using  :py:func:`mimics.analyze.indicate_point` the user can indicate the points in the place of interest. In this tutorial the points on the scapula are indicated first and the point on the humerus follows.
+
+.. code-block:: python
+
+	# Set the anatomical landmarks of the shoulder        
+	anatomical_landmarks = ["Acromion","Coracoid process","Humerus"]
+	for point in anatomical_landmarks:
+	    p = mimics.analyze.indicate_point(title=point,message= "Please indicate a point on the {}".format(point))
+	    p.name = point
+
+The following step is to calculate the distance between the points on the scapula and the point on the humerus. For each distance to be measured, the points in the data container are found, the measurement is created using :py:func:`mimics.measure.create_distance` and is renamed.
+
+.. code-block:: python
+
+	# Create distance measurement between coracoid & acromion and humerus
+	m = mimics.measure.create_distance_measurement(point1=mimics.data.points.find("Acromion").coordinates,point2=mimics.data.points.find("Humerus").coordinates)
+	m.name = "Acromion-Humerus"
+	m = mimics.measure.create_distance_measurement(point1=mimics.data.points.find("Coracoid process").coordinates,point2=mimics.data.points.find("Humerus").coordinates)
+	m.name = "Coracoid process-Humerus"
+
+Finally, the angle defined by those 3 landmarks (with the point on the Humerus as centerpoint of the angle) is calculated using :py:func:`mimics.measure.create_angle`. The final step is to save the project and exit Mimics.
+
+.. code-block:: python
+
+	# Create Angle measurement between  the three landmarks in the shoulder area	
+	mimics.measure.create_angle_measurement(point1=mimics.data.points.find("Acromion").coordinates,point2=mimics.data.points.find("Humerus").coordinates,point3=mimics.data.points.find("Coracoid process").coordinates)
+	# Save the project
+	mimics.file.save_project()

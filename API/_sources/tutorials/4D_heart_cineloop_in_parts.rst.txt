@@ -1,0 +1,62 @@
+4D heart cineloop in parts
+--------------------------------------
+The heart is a moving tissue and often one image set is produced for each phase of the cardiac cycle. To visualise the motion of the heart in the 2D slices you can use the Cineloop tool of Mimics. You can access it via View menu → Cineloop.
+
+This script will help you to create the cineloop for the Parts that correspond to the segmentated anatomy of the different phases of the cardiac cycle. 
+
+Before you start the script you need to segment the phases of the cardiac cycle and create parts out of the masks. Make sure that you name the parts that represent the same anatomy with the same name. For example the part that represents the Aorta in all the phases should have the same name everywhere in order to be taken into account from the script. In case you want to run the script immediately after the segmentation (only the masks are present) set the CALCULATE_PARTS_FROM_MASKS variable to True. This action will create automatically the Parts from the Masks and will link them in the respective image sets. Additionally, correct names and colors will be set. After you get the Parts calculated, save the project and set the CALCULATE_PARTS_FROM_MASKS to False. Afterwards you can create the video again from different viewing angles of your choice without calculating again the Parts from the Masks.
+
+The output of this script is a video that shows the motion of the heart accross the cardiac cycle in a specific angle of your choice.
+
+
+**Before you run the script:**
+
+
+- Segment the image sets that you want to be visualised the 4D Parts Cineloop.
+- Make sure that you have installed the required packages to run this script. To create the video a special Python package, Open CV, is required. You can find more information about the package in the following link:
+  https://pypi.org/project/opencv-python/
+
+For instructions on how to install a Python package, please refer to Section 2.3 of the Introduction of this guide.
+
+- Check the configuration part of the script below and modify if needed the parameters:
+
+.. code-block:: python
+
+      # Here is the configuration area of the script.
+      # List the names of the anatomy of the Left Heart that you want to visualise in the video.
+      # In the provided script it is assumed that Left Atrium is LA, Left Ventricle is LV and Aorta is Aorta
+      LEFT_HEART = ["LA", "LV", "Aorta"]
+      # List the names of the anatomy of the Right Heart that you want to visualise in the video.
+      # In the provided script it is assumed that Right Atrium is RA, Right Ventricle is RV and Pulmonary Artery is PA
+      RIGHT_HEART = ["RA", "RV", "PA"]
+      # Here you select with part of the heart to visualise in the video.
+      HEART = LEFT_HEART + RIGHT_HEART
+      # The name (prefix) of the folder where the screenshots and the video will be saved. The suffix of the folder is the
+      # name of the Mimics file from where you run the script.
+      TARGET_FOLDER_NAME = "Output"
+      # Name of the file of the output video
+      VIDEO_NAME = "Cineloop_in_parts"
+      #Frames per second of the video. You can change this value to make the heart beating faster or slower.
+      FRAMES = 12
+      # If you want to visualise a logo in your video, the logo should be placed in the same folder as the script.
+      # If you do not want a logo to be visualised, just leave the script empty. Example: LOGO = ""
+      LOGO = "mat_logo.jpg"
+      # To calculate first the 3D Parts from the segmentation masks, set the value of the variable below to True.
+      # In case you have the Parts already calculated, you can leave it to False
+      CALCULATE_PARTS_FROM_MASKS = False
+
+
+- Last action before running the script is to set up your 3D view since it is the view of the interest for this script. Visualise the parts that belong to one cardiac phase and position them in the 3D view in the way that you want to be visualised in the video. Mimics will apply the same visualisation position to all the parts that belong to different phases. You do not need to make visible a specific combination of parts before you run the script.
+- As a last step you need to run the script and get the results. To run the script click on the Script menu → Run Script. Select the file in your local directory and confirm your selection.
+
+
+**Output of the script:**
+
+
+The output of the scripts is:
+
+- A folder where all the created files are stored. This folder is created in the same level as the script and it is named Output.
+- The Output folder contains screenshots of the parts tht are visualised for each cardiac phase. Those screenshots are used to create the video.
+- A log file where you can see details about which cardiac phases and which part are visualised in the video. This file is also stored in the level of the script.
+
+

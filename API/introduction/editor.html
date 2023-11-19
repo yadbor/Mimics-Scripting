@@ -1,0 +1,250 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Mimics IDE &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../index.html"/>
+        <link rel="up" title="Introduction" href="index.html"/>
+        <link rel="next" title="4. Scripting in Mimics Quick Start Guide" href="overview_api.html"/>
+        <link rel="prev" title="2. Python installation" href="installation.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">2. Python installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Mimics IDE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#editor">3.1. Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-console">3.2. Python console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scripting-library">3.3. Scripting Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-ide">3.4. External IDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview_api.html">4. Scripting in Mimics Quick Start Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mimics/rst_files/index.html">Materialise Mimics Medical API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+      
+    <li><span class="section-number">3. </span>Mimics IDE</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/introduction/editor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="mimics-ide">
+<h1><span class="section-number">3. </span>Mimics IDE<a class="headerlink" href="#mimics-ide" title="Permalink to this headline">¶</a></h1>
+<p>Mimics IDE is the environment that provides comprehensive facilites to Mimics users to develop scripts. Mimics IDE consists of an <strong>Editor</strong>, a <strong>Console</strong> and a <strong>Scripting Library</strong>.</p>
+<section id="editor">
+<h2><span class="section-number">3.1. </span>Editor<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h2>
+<p>Mimics comes with a built-in editor. The editor can be accessed via the Mimics menu: <strong>Script</strong> → <strong>Toggle Editor</strong>. The editor will open in a separate window.</p>
+<a class="reference internal image-reference" href="../_images/editor.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/editor.png" style="width: 869.6px; height: 704.0px;" /></a>
+<p>In the editor you can create a new project via the <img alt="new" src="../_images/new.png" /> button. To save a project click the <img alt="save" src="../_images/save.png" /> or <img alt="saveas" src="../_images/saveas.png" /> button. To open an existing project click the <img alt="open" src="../_images/open.png" /> button.
+In the left panel of the editor window, the user can view all the scripts present in the selected folder. Clicking on a script will open it in the editor. To run the script, click the <img alt="run" src="../_images/run.png" /> button or press F5 or CTRL-R. To access the help page of the Mimics API click to the <img alt="help" src="../_images/help.png" /> button.</p>
+</section>
+<section id="python-console">
+<h2><span class="section-number">3.2. </span>Python console<a class="headerlink" href="#python-console" title="Permalink to this headline">¶</a></h2>
+<p>An alternative method for executing Python commands is via the built-in Python console in Mimics. You can show or hide the console via the Mimics menu: <strong>Script</strong> → <strong>Toggle Console</strong>.</p>
+<a class="reference internal image-reference" href="../_images/console.png"><img alt="Mimics Script Editor" class="align-center" src="../_images/console.png" style="width: 1455.0px; height: 946.0px;" /></a>
+</section>
+<section id="scripting-library">
+<h2><span class="section-number">3.3. </span>Scripting Library<a class="headerlink" href="#scripting-library" title="Permalink to this headline">¶</a></h2>
+<p>A third way method for executing Python scripts is via the Mimics menu <strong>Script</strong> → <strong>Scripting Library</strong>.</p>
+<p>As explained earlier, you can specify a path to a particular script directory via <strong>File</strong> → <strong>Preferences</strong> → <strong>Scripting</strong> in Mimics. Any scripts present in the specified folder will automatically be registered under the Scripting Library. It is then possible to execute such scripts with a single click. This is the ideal method for users who need to execute a script without needing to see or modify the script. (You need to restart Mimics for the changes to become effective.)</p>
+</section>
+<section id="external-ide">
+<h2><span class="section-number">3.4. </span>External IDE<a class="headerlink" href="#external-ide" title="Permalink to this headline">¶</a></h2>
+<p>Mimics is compatible with with external Integrated Development Environments (IDE). You can run your script from an external IDE. For more information see the section External IDE of the scripting guide.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="overview_api.html" class="btn btn-neutral float-right" title="4. Scripting in Mimics Quick Start Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="2. Python installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+          <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+          <script src="../_static/jquery.js"></script>
+          <script src="../_static/underscore.js"></script>
+          <script src="../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.data module &mdash; Materialise Mimics Scripting Guide documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Materialise Mimics Scripting Guide documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics API" href="index.html"/>
+        <link rel="next" title="mimics.events module" href="mimics.events.html"/>
+        <link rel="prev" title="mimics.dialogs module" href="mimics.dialogs.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mimics API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Mimics API</a> &raquo;</li>
+      
+    <li>mimics.data module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-mimics.data">
+<span id="mimics-data-module"></span><h1>mimics.data module<a class="headerlink" href="#module-mimics.data" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mimics.data.analytical_primitives">
+<code class="descclassname">mimics.data.</code><code class="descname">analytical_primitives</code><a class="headerlink" href="#mimics.data.analytical_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for all the analytical primitives (e.g: <a href="./mimics.analyze.html#mimics.analyze.Point">mimics.analyze.Point</a>, <a href="./mimics.analyze.html#mimics.analyze.Sphere">mimics.analyze.Sphere</a>, <a href="./mimics.analyze.html#mimics.analyze.Line">mimics.analyze.Line</a>, etc).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.angle_measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">angle_measurements</code><a class="headerlink" href="#mimics.data.angle_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.measure.html#mimics.measure.Angle">mimics.measure.Angle</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.area_measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">area_measurements</code><a class="headerlink" href="#mimics.data.area_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for <a href="./mimics.measure.html#mimics.measure.Area">mimics.measure.Area</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.centerline_measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">centerline_measurements</code><a class="headerlink" href="#mimics.data.centerline_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for all the centerline measurements (e.g: <a href="./mimics.measure.html#mimics.measure.CenterlineBestFitDiameter">mimics.measure.CenterlineBestFitDiameter</a>, <a href="./mimics.measure.html#mimics.measure.CenterlineCircumference">mimics.measure.CenterlineCircumference</a>, <a href="./mimics.measure.html#mimics.measure.CenterlineMaximalDiameter">mimics.measure.CenterlineMaximalDiameter</a>).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.centerlines">
+<code class="descclassname">mimics.data.</code><code class="descname">centerlines</code><a class="headerlink" href="#mimics.data.centerlines" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Centerline">mimics.analyze.Centerline</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.circles">
+<code class="descclassname">mimics.data.</code><code class="descname">circles</code><a class="headerlink" href="#mimics.data.circles" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Circle">mimics.analyze.Circle</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.cylinders">
+<code class="descclassname">mimics.data.</code><code class="descname">cylinders</code><a class="headerlink" href="#mimics.data.cylinders" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Cylinder">mimics.analyze.Cylinder</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.diameter_measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">diameter_measurements</code><a class="headerlink" href="#mimics.data.diameter_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.measure.html#mimics.measure.Diameter">mimics.measure.Diameter</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.distance_measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">distance_measurements</code><a class="headerlink" href="#mimics.data.distance_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.measure.html#mimics.measure.Distance">mimics.measure.Distance</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.fluoroscopy_views">
+<code class="descclassname">mimics.data.</code><code class="descname">fluoroscopy_views</code><a class="headerlink" href="#mimics.data.fluoroscopy_views" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.view.html#mimics.view.Fluoroscopy">mimics.view.Fluoroscopy</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.images">
+<code class="descclassname">mimics.data.</code><code class="descname">images</code><a class="headerlink" href="#mimics.data.images" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.html#mimics.ImageData">mimics.ImageData</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.lines">
+<code class="descclassname">mimics.data.</code><code class="descname">lines</code><a class="headerlink" href="#mimics.data.lines" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Line">mimics.analyze.Line</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.masks">
+<code class="descclassname">mimics.data.</code><code class="descname">masks</code><a class="headerlink" href="#mimics.data.masks" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.segment.html#mimics.segment.Mask">mimics.segment.Mask</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">measurements</code><a class="headerlink" href="#mimics.data.measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for all the measurements objects (e.g, <a href="./mimics.measure.html#mimics.measure.Area">mimics.measure.Area</a>, <a href="./mimics.measure.html#mimics.measure.Distance">mimics.measure.Distance</a>, etc).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.meshes">
+<code class="descclassname">mimics.data.</code><code class="descname">meshes</code><a class="headerlink" href="#mimics.data.meshes" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.fea.html#mimics.fea.SubvolumeMesh">mimics.fea.SubvolumeMesh</a> and <a href="./mimics.fea.html#mimics.fea.VolumeMesh">mimics.fea.VolumeMesh</a> objects.</p>
+</dd></dl>
+
+ <dl class="function">
+<dt id="mimics.data.metadata">
+<code class="descclassname">mimics.data.</code><code class="descname">metadata</code><a class="headerlink" href="#mimics.data.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.Metadata">Container</a> for the <a href="./mimics.html#mimics.MetadataItem">mimics.MetadataItem</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.objects">
+<code class="descclassname">mimics.data.</code><code class="descname">objects</code><a class="headerlink" href="#mimics.data.objects" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for all the <a href="./mimics.html#mimics.Object">mimics.Object</a> objects including images, parts, measurements, analytical primitives, fluoroscopy and respliced planes, etc.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.parts">
+<code class="descclassname">mimics.data.</code><code class="descname">parts</code><a class="headerlink" href="#mimics.data.parts" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.html#mimics.Part">mimics.Part</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.planes">
+<code class="descclassname">mimics.data.</code><code class="descname">planes</code><a class="headerlink" href="#mimics.data.planes" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Plane">mimics.analyze.Plane</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.points">
+<code class="descclassname">mimics.data.</code><code class="descname">points</code><a class="headerlink" href="#mimics.data.points" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Point">mimics.analyze.Point</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.position_difference_measurements">
+<code class="descclassname">mimics.data.</code><code class="descname">position_difference_measurements</code><a class="headerlink" href="#mimics.data.position_difference_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.measure.html#mimics.measure.PositionDifference">mimics.measure.PositionDifference</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.reslice_planes">
+<code class="descclassname">mimics.data.</code><code class="descname">reslice_planes</code><a class="headerlink" href="#mimics.data.reslice_planes" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.view.html#mimics.view.Reslice">mimics.view.Reslice</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.spheres">
+<code class="descclassname">mimics.data.</code><code class="descname">spheres</code><a class="headerlink" href="#mimics.data.spheres" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Sphere">mimics.analyze.Sphere</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.splines">
+<code class="descclassname">mimics.data.</code><code class="descname">splines</code><a class="headerlink" href="#mimics.data.splines" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainer">Container</a> for the <a href="./mimics.analyze.html#mimics.analyze.Spline">mimics.analyze.Spline</a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mimics.data.views">
+<code class="descclassname">mimics.data.</code><code class="descname">view</code><a class="headerlink" href="#mimics.data.views" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="./mimics.html#mimics.DataContainerBase">Container</a> for the active <a href="./mimics.view.html#mimics.view.View">mimics.view.View</a> objects.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.fea.html" class="btn btn-neutral float-right" title="mimics.fea module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.dialogs.html" class="btn btn-neutral" title="mimics.dialogs module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Materialise NV. This guide is part of Materialise Mimics 24.0 Reference Guide.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

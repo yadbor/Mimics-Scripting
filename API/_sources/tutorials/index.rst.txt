@@ -1,0 +1,23 @@
+######################
+Tutorials
+######################
+
+
+**Note:** You can find the Python files (.py) of the tutorials in the installation directory of Materialise software, inside the Mimics installation folder: :file:`\\..\\Help\\Tutorial Scripts`. Additionaly, a copy of the scripts is created in  :file:`C:\\MedData\\Scripts`. In that location you can also save your Python scripts. This is the default path of the Scripting library. See in Section 2.2 how to modify Mimics preferences for the Scripting library.
+
+.. toctree:: 
+   :numbered:
+
+
+   
+   automatic_import_of_dicom_images.rst
+   semi_automatic_import_of_standard_images.rst
+   skull_segmentation.rst
+   femur_segmentation.rst
+   landmarks_and_measurements_in_the_shoulder.rst
+   preparation_for_fluoroscopy.rst
+   ct_heart_landmarking_and_segmentation.rst
+   access_to_part_triangles_and_points.rst
+   switch_between_Mimics_and_3matic.rst
+   working_with_metadata.rst
+   4D_heart_cineloop_in_parts.rst

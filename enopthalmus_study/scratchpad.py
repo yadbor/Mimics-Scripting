@@ -226,3 +226,17 @@ else:
     united_masks = mimics.segment.boolean_operations(united_masks, m, 'Unite')
     crop_masks_RED.append(m)
     
+
+
+# Part from triangles
+# in Mimics API help under mimcs.segment
+import numpy as np
+p = mimics.data.parts[0]
+v,t = p.get_triangles()
+v = np.array(v)
+t = np.array(t)
+for i in range(len(v)):
+    v[i] = v[i]+100
+mimics.segment.create_part(v,t)
+
+

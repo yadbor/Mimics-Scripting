@@ -1,0 +1,376 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.utils module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.view module" href="mimics.view.html"/>
+        <link rel="prev" title="mimics.tools module" href="mimics.tools.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.utils module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.utils">
+<span id="mimics-utils-module"></span><h1>mimics.utils module<a class="headerlink" href="#module-mimics.utils" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.utils.initialize_pyqt">
+<span class="sig-prename descclassname"><span class="pre">mimics.utils.</span></span><span class="sig-name descname"><span class="pre">initialize_pyqt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">throw_exception_on_error</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.utils.initialize_pyqt" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Initializes PyQt5 and checks compatibility between the application and PyQt5 and produces warning and logs messages if potential incompatibilities are found (such as version mismatch).</p>
+<p>The API initializes PyQt5 in a step-by-step manner checking compatibility after each step. That makes it a preferred method initialize PyQt Python packages.</p>
+<p>The recommended pattern is the following: before the first time import statements are executed:</p>
+<blockquote>
+<div><p>&gt; import PyQt5</p>
+<p>&gt; from PyQt5 import QtWidgets</p>
+</div></blockquote>
+<p>It is recommended to check initialize and check compatibility between the application and PyQt5 packages by calling to:</p>
+<blockquote>
+<div><p>&gt; mimics.utils.initialize_pyqt(True)</p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p>&gt; error_text = mimics.utils.initialize_pyqt(False)</p>
+<p>&gt; if error_text</p>
+<p>&gt;     logging.error(error_text)</p>
+<p>&gt;         return</p>
+</div></blockquote>
+<p>The reasons it is recommended are the following: if there are mismatches in versions, or a debuggable version (so-called: debug build) of PyQt5 is installed on your PC whereas the application is non-debuggable mode (so-called: release build), or the other way around, then calling mimics.utils.initialize_pyqt() first gives more chances to capture the error before the native binary crash takes place due to above-mentioned incompatibilities.</p>
+<p>Also, mimics.utils.initialize_pyqt() will introduce throwing exceptions into PyQt5 API’s which are not allowed be called when PyQt5 is embedded into another native host application. Example of such PyQt5 APIs are creation of new instance of:</p>
+<blockquote>
+<div><p>&gt; QApplication()</p>
+<p>&gt; QGuiApplication()</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">param throw_exception_on_error</dt>
+<dd class="field-odd"><p>If True, then this API will raise a Python exception on initialization error, otherwise error text will be returned or None for successful initialization.</p>
+</dd>
+</dl>
+<p>Note, this argument does not have default to promote explicit decision making in every case about error handling strategy. The API allows for these two patterns in error handling: exceptions and error codes. See the examples for details.
+:type throw_exception_on_error: bool</p>
+<dl class="field-list simple">
+<dt class="field-odd">returns</dt>
+<dd class="field-odd"><p>None or error description</p>
+</dd>
+<dt class="field-even">rtype</dt>
+<dd class="field-even"><p>typing.Optional[str]</p>
+</dd>
+<dt class="field-odd">exceptions</dt>
+<dd class="field-odd"><p>ImportError (reason(s): [‘PyQt library is either not installed, mis-configured or its version mis-matches version of Qt in the host application.’])</p>
+</dd>
+<dt class="field-even">example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="c1"># use this approach if you need to show a less technical message text</span>
+
+<span class="c1"># Attention: this will load core PyQt5 binaries (can take time -&gt; in real life code,</span>
+<span class="c1">#             delay it as much as possible and convenient.</span>
+<span class="n">error_text</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">initialize_pyqt</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">error_text</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">error_text</span><span class="p">)</span>
+    <span class="c1"># exit or initialization of an alternative GUI or continuing gui-less</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">PyQt5</span>
+    <span class="kn">import</span> <span class="nn">PyQt5.QtCore</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PyQt5 package (v. </span><span class="si">{</span><span class="n">PyQt5</span><span class="o">.</span><span class="n">QtCore</span><span class="o">.</span><span class="n">qVersion</span><span class="p">()</span><span class="si">}</span><span class="s2">) has been successfully initialized.&quot;</span><span class="p">)</span>
+    <span class="c1"># continue normal execution...</span>
+
+
+<span class="c1">#Example 2</span>
+<span class="c1"># use this approach to simplify error handling, and where it is OK to show</span>
+<span class="c1"># full blown Python error text</span>
+
+<span class="c1"># Attention: this will load core PyQt5 binaries (can take time -&gt; in real life code,</span>
+<span class="c1">#             delay it as much as possible and convenient.</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">initialize_pyqt</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">PyQt5</span>
+<span class="kn">import</span> <span class="nn">PyQt5.QtCore</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PyQt5 package (v. </span><span class="si">{</span><span class="n">PyQt5</span><span class="o">.</span><span class="n">QtCore</span><span class="o">.</span><span class="n">qVersion</span><span class="p">()</span><span class="si">}</span><span class="s2">) has been successfully initialized.&quot;</span><span class="p">)</span>
+<span class="c1"># continue normal execution...</span>
+
+
+<span class="c1">#Example 3</span>
+<span class="c1"># This example illustrate the following:</span>
+<span class="c1">#   1. using mimics.utils.initialize_pyqt() API.</span>
+<span class="c1">#   2. illustrating the correct (safe) way to obtain the instance of the QApplication</span>
+<span class="kn">import</span> <span class="nn">mimics</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">caps</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">get_capabilities</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">caps</span><span class="o">.</span><span class="n">background_mode</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example is not supported in the background mode.</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl>
+<dt>“</dt><dd><blockquote>
+<div><p>“Switch to the foreground (normal) mode (see the command line –help for extra details).”)</p>
+</div></blockquote>
+<dl>
+<dt>else:</dt><dd><p># Attention: this will load core PyQt5 binaries (can take time -&gt; in real life code,
+#             delay it as much as possible and convenient.
+error_text = mimics.utils.initialize_pyqt(False)
+if error_text:</p>
+<blockquote>
+<div><p>print(f”Install PyQt5 first, technical info: {error_text}”)</p>
+</div></blockquote>
+<dl>
+<dt>else:</dt><dd><p>from PyQt5.QtWidgets import QApplication</p>
+<dl class="simple">
+<dt>try:</dt><dd><p>qapp = QApplication([sys.argv])</p>
+</dd>
+<dt>except TypeError:</dt><dd><p>print(“This is expected behaviour: the constructor is disabled after mimics.utils.initialize_pyqt().”)</p>
+</dd>
+<dt>else:</dt><dd><p>assert False, “Shall never get here”</p>
+</dd>
+</dl>
+<p># Important note:
+#   1. obtaining, or rather creating, an instance of QApplication via
+#       &gt; qapp = QApplication([sys.argv])
+#      is not supported and results in undefined behaviour. This is because
+#      an instance of QApplication is already created by C++ code of the
+#      host application.
+#   2. The QApplication([sys.argv]) method is valid (and mandatory) for
+#      standalone PyQt/PySide applications, but for the embedded ones
+#      (e.g. into Mimics), it is not supported and disabled (see the try/except above)
+#      after mimics.utils.initialize_pyqt() has been called.
+#   3. The correct way is not to create it, but to obtain it
+qapp = QApplication.instance()
+print(f”Type: {type(qapp)}, object: {qapp}”)  # for debug purposes</p>
+<p># print out some properties
+print(f”Organization: {qapp.organizationName()}”)
+print(f”Version: {qapp.applicationVersion ()}”)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.view.html" class="btn btn-neutral float-right" title="mimics.view module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.tools.html" class="btn btn-neutral" title="mimics.tools module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

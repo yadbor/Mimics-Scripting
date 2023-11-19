@@ -1,0 +1,147 @@
+Working with Metadata
+--------------------------------------
+
+Many workflows require the use of multiple tools from Mimics and 3-matic and the transfer of data between both products. With scripting it is possible to automate such workflows and use tools from both software packages. This tutorial shows how to continue the workflow in 3-matic while working in Mimics. Emphasis is put to the metadata that are attached to objects in Mimics and they are kept in 3-matic. More metadata are added in 3-matic. For this tutorial a single-file script approach is selected. The Mimics project Heart.mcs from :file:`C:\\MedData\\DemoFiles` is used. An empty 3-matic project is used and the Mimics project is imported.
+
+
+
+As a first step the required Python libraries are imported and the metadata templates that will be used in Mimics and 3-matic are defined. The template of Mimics contains information about the patient and the study and additionally a field for notes. The template of 3-matic is used to keep record of the processing of the parts. The templates are filled in with information from a non existing patient used for this tutorial.
+
+
+.. code-block:: python
+
+    # import required modules 
+    from collections import OrderedDict as od
+    import os
+    import sys
+    import subprocess
+    import logging
+    TEMPLATE = od([
+                ("Patient" , ""),
+                ("Study" , ""),
+                ("Notes","")
+                ])
+    TEMPLATE_3_MATIC = od([
+                ("Processed" , "False")
+                ])
+    ################################
+    PATIENT_A = od([
+                ("Patient" , "Mat patient"),
+                ("Study" , "CT Heart scan"),
+                ("Notes","")
+                ])
+    ################################
+    MIMICS_FILE_PATH = r"C:\MedData\DemoFiles"
+    MIMICS_FILE_NAME = "Heart.mcs"
+    PARTS_OF_INTEREST = ["LA", "LV", "Aorta"] 
+    ################################
+
+
+Since there is a single script approach used that contains both Mimics and 3-matic part, as a first step we need to check in which software the script runs: 
+
+.. code-block:: python
+
+    # One script is used for this tutorial for both Mimics and 3-matic. 
+    # For that reason we have to check if we are in Mimics or in 3-matic 
+    in_mimics = False
+    try:
+        import mimics
+        if mimics.get_version():
+            in_mimics = True
+    except:
+        pass
+
+
+Next, the Mimics part is presented. The selected Mimics project is opened and all the potentially existing metadata linked to part will be deleted. In this tutorial we are interested in the parts LA, LV and Aorta that exist in the loaded Mimics project. Those parts are grouped in a list so they can be easily used later.
+
+.. code-block:: python
+
+    if in_mimics:
+        parts = []
+        # Open Mimics project
+        mimics.file.open_project(os.path.join(MIMICS_FILE_PATH, MIMICS_FILE_NAME))
+        # For this exercise we will remove all the metadata from the Mimics project
+        for p in mimics.data.parts:
+            for md in p.metadata:
+                p.metadata.delete(md.name)
+        # Group the required parts
+        mdp = mimics.data.parts
+        for p in PARTS_OF_INTEREST:
+            parts.append(mdp[p])
+
+In the next step the template of the metadata that is defined in the beginning of this script is attached to all the parts that are listed above. Additionally the template is filled with  patient information that is provided in the beginning of the script. 
+
+.. code-block:: python
+
+        # Assign the template as metadata to all the parts of interest
+        l = list(TEMPLATE.items())
+        for p in parts:
+            for i in range(len(TEMPLATE)):
+                p.metadata.create(l[i][0],l[i][1])
+        # Fill the metadata template
+        patient_a = list(PATIENT_A.items())
+        for p in parts:
+            for i in range(len(PATIENT_A)):
+                p.metadata[l[i][0]].value = patient_a[i][1]
+
+
+Slightly before switching to 3-matic the Mimics project is saved. As it is mentioned in the introduction of this tutorial, 3-matic is launched from the Mimics part of the script. To achieve this, a built-in Python module called subprocess is used. This module is used in general to activate new processes, connect to their input, output and error pipes and obtain their return codes. In this tutorial the Popen constructor of the subprocess module is used.
+
+.. code-block:: python
+
+        # Save Mimics project
+        mimics.file.save_project()
+        #Prepare to run 3-matic
+        trimatic = mimics.file.get_path_to_3matic()
+        if not trimatic:
+            logging.error("Path to 3-matic was not found. Please setup it via File-Preferences on General tab in 3-matic Path section")
+        command = trimatic 
+        args = ("-run_script", __file__)
+        process = subprocess.Popen((command,) + args, shell=False, stdout=subprocess.PIPE)
+
+
+This it the end of the Mimics part of the script. The 3-matic part follows. The first step is to import the Mimics project. Similar to what happened to Mimics, the parts of interest are grouped for further use.
+
+.. code-block:: python
+
+    else:
+        parts = []
+
+        trimatic.import_project(os.path.join(MIMICS_FILE_PATH, MIMICS_FILE_NAME))
+        # Group the required parts
+        tp = trimatic.get_parts()
+        for p in tp:
+            if p.name in PARTS_OF_INTEREST:
+                parts.append(p)
+
+
+As a next step, the metadata template that will be used in 3-matic will be attached to the Parts imported in 3-matic. After that, all the parts will be smoothed. The metadata will be preserved during the smoothing operation.
+
+.. code-block:: python
+
+        # Assign the template as metadata elements to all the parts of interest
+        l3m = list(TEMPLATE_3_MATIC.items())
+        for p in parts:
+            for i in range(len(TEMPLATE_3_MATIC)):
+                mdata = p.get_metadata()
+                mdata.create(l3m[i][0],l3m[i][1])
+        # Smooth all the imported parts
+        trimatic.smooth(entities = parts) 
+
+As a last step the metadata of the Parts in 3-matic will be updated. More specifically the section Notes that was added via the Mimics template and the section Processed that was added in 3-matic will be filled.
+
+.. code-block:: python
+
+        # Add the info that the parts are smoothed and processed
+        l = list(TEMPLATE.items())
+        for p in parts:
+            mdata = p.get_metadata()
+            notes = mdata.find(l[2][0],l[2][1])
+            if notes:
+                notes.value = "Part is smoothed with default values"
+            processed = mdata.find(l3m[0][0],l3m[0][1])
+            if processed:
+                processed.value = "True"
+
+
+

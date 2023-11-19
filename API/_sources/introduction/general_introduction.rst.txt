@@ -1,0 +1,6 @@
+Introduction
+==============
+
+For a general introduction about Mimics, please refer to Mimics Reference guide under **Help** → **User Guide**.
+
+Mimics supports Python scripting. For many of the available Mimics features, a Python API is now included in Mimics. You can write your own Python scripts, using those Mimics features that are available via scripting. This allows you to automate your workflows. Mimics includes a script editor and a scripting console.

@@ -1,0 +1,404 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.tools module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.utils module" href="mimics.utils.html"/>
+        <link rel="prev" title="mimics.simulate module" href="mimics.simulate.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.measure.html">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.tools module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.tools.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.tools">
+<span id="mimics-tools-module"></span><h1>mimics.tools module<a class="headerlink" href="#module-mimics.tools" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.tools.calculate_part_contours_on_plane">
+<span class="sig-prename descclassname"><span class="pre">mimics.tools.</span></span><span class="sig-name descname"><span class="pre">calculate_part_contours_on_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.tools.calculate_part_contours_on_plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates countour points of the intersection between the defined Part and a plane defined by the given origin and normal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – The Part.</p></li>
+<li><p><strong>origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Origin of the intersecting plane.</p></li>
+<li><p><strong>normal</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Normal of the intersecting plane.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Countour points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<em>List</em>[<em>Tuple</em>[float, float, float]]]</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">planes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cntr</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">calculate_part_contours_on_plane</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                                                    <span class="n">origin</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span>
+                                                    <span class="n">normal</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.tools.cut_with_plane">
+<span class="sig-prename descclassname"><span class="pre">mimics.tools.</span></span><span class="sig-name descname"><span class="pre">cut_with_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane_thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_originals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorting_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SortByVolume'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.tools.cut_with_plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts one or more Parts with a plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parts</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>]</em>) – Parts to cut.</p></li>
+<li><p><strong>plane</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Plane" title="mimics.analyze.Plane"><em>mimics.analyze.Plane</em></a>) – Plane that will be used for cutting.</p></li>
+<li><p><strong>plane_thickness</strong> (<em>SupportsFloat</em>) – (optional) Thickness of a cutting parallelepiped. If not specified, cutting will be performed with an infinite analytical plane.</p></li>
+<li><p><strong>keep_originals</strong> (<em>bool</em>) – (optional) If true, hides the original Parts but does not delete them.</p></li>
+<li><p><strong>split_result</strong> (<em>bool</em>) – (optional) If true, will split each of resulting Parts after cutting.</p></li>
+<li><p><strong>sorting_order</strong> (<em>str</em>) – (optional) Sorts the output result. ‘SortByVolume’ - sort result by volume, ‘SortByPlaneSide’ - sorts by direction of plane`s normal, when same direction sort by volume.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of Parts that is the result of cutting and splitting operations.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Parts list is empty.’, ‘Specified plane thickness is too small; it should be at least 0.01.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">part0</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">part1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plane</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">planes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">cut_with_plane</span><span class="p">([</span><span class="n">part0</span><span class="p">,</span> <span class="n">part1</span><span class="p">],</span> <span class="n">plane</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.tools.hollow">
+<span class="sig-prename descclassname"><span class="pre">mimics.tools.</span></span><span class="sig-name descname"><span class="pre">hollow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects_to_hollow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hollow_inside</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_originals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.tools.hollow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hollows parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objects_to_hollow</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>]</em>) – Parts to hollow.</p></li>
+<li><p><strong>hollow_inside</strong> (<em>bool</em>) – (optional) Hollowing direction: inside if True, outside if False.</p></li>
+<li><p><strong>thickness</strong> (<em>SupportsFloat</em>) – (optional) Wall thickness for hollowing operation.</p></li>
+<li><p><strong>keep_originals</strong> (<em>bool</em>) – (optional) If True, hides the original Parts but does not delete them.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of Parts that is the result of hollowing operation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>]</p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘List of parts to hollow is empty.’, ‘Specified thickness is too small; it should be at least 0.01.’, ‘Failed to hollow part. Please check the quality of the part and try again.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">part0</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">part1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">hollow</span><span class="p">([</span><span class="n">part0</span><span class="p">,</span> <span class="n">part1</span><span class="p">],</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.tools.smooth">
+<span class="sig-prename descclassname"><span class="pre">mimics.tools.</span></span><span class="sig-name descname"><span class="pre">smooth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_to_smooth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compensate_shrinkage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_originals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.tools.smooth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs smoothing of the Part. The result of smoothing operation is put in the Part’s list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_to_smooth</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – Part to be smoothed.</p></li>
+<li><p><strong>smooth_factor</strong> (<em>SupportsFloat</em>) – Determines how much smoothing is performed. Value range: [0, 1].</p></li>
+<li><p><strong>iterations</strong> (<em>int</em>) – (optional) Specifies the number of the iterations that are performed. Value range: [1, 500]</p></li>
+<li><p><strong>compensate_shrinkage</strong> (<em>bool</em>) – (optional) Determines the shrinkage of the object due to the smoothing. If true, the shrinkage of the object is countered.</p></li>
+<li><p><strong>keep_originals</strong> (<em>bool</em>) – (optional) Determines if the original objects are preserved. If true, the original objects are kept, otherwise they are deleted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A smoothed Part.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Cannot smooth empty STL’, ‘Smooth factor should be in range 0..1’, ‘Iterations count should be in range 1..500’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">it</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">object_to_smooth</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">smooth_factor</span><span class="o">=</span><span class="n">sf</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="n">it</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.tools.wrap">
+<span class="sig-prename descclassname"><span class="pre">mimics.tools.</span></span><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_to_wrap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smallest_detail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_closing_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilate_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protect_thin_walls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_originals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.tools.wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a wrapping surface of the selected object.</p>
+<p>This tool is particularly useful for medical parts, to filter small inclusions or close small holes. Furthermore, the function is a useful tool towards Finite Element Analysis, where an enveloping surface is needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_to_wrap</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – Part to be wrapped.</p></li>
+<li><p><strong>smallest_detail</strong> (<em>SupportsFloat</em>) – (optional) Corresponds to the size of the triangles of the new surface. Value range: [0.01, 10000]. If None, the default value is project’s pixel size multiplied by 2.</p></li>
+<li><p><strong>gap_closing_distance</strong> (<em>SupportsFloat</em>) – (optional) Determines the size of gaps that will be wrapped away via the operation. Value range: [0.01, 10000]. If None, the default value is project’s pixel size.</p></li>
+<li><p><strong>dilate_result</strong> (<em>bool</em>) – (optional) If true, the result after wrapping will be dilated such that the pixels around the extremities of the mask are included.</p></li>
+<li><p><strong>protect_thin_walls</strong> (<em>bool</em>) – (optional) Specifies the protection of the thin walls. If true, thin walls are preserved resulting to a slightly thicker model than the original one. If false, thin walls are not protected. Depending on the smallest detail it is possible that the walls with a thickness within the same range are collapsed.</p></li>
+<li><p><strong>keep_originals</strong> (<em>bool</em>) – (optional) Determines if the original objects are preserved. If true, the original objects are kept, otherwise they are deleted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A wrapped Part.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Cannot wrap empty STL’, ‘Smallest detail parameter should be in range from 0.01 to 10000’, ‘Gap closing distance parameter should be in range from 0.01 to 10000’]), MemoryError (reason(s): [‘Not enough memory to perform Wrap operation with defined parameters. Please adjust the parameters and try again.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">gcd</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">object_to_wrap</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">smallest_detail</span><span class="o">=</span><span class="n">sd</span><span class="p">,</span> <span class="n">gap_closing_distance</span><span class="o">=</span><span class="n">gcd</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.utils.html" class="btn btn-neutral float-right" title="mimics.utils module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.simulate.html" class="btn btn-neutral" title="mimics.simulate module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

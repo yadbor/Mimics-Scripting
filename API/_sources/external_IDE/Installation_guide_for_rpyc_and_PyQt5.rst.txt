@@ -1,0 +1,11 @@
+Installation guide for RPyC 
+-----------------------------
+
+To establish communication between Mimics and an external IDE the first step is to install the **RPyC 4.0.x** Python package. For instructions on how to install an external Python package see the section :ref:`2.2 Installing extra packages <extra_packages>` of the Introduction section of this guide. Use **pip** to install RPyC:
+
+.. code-block:: bash
+
+	pip install rpyc
+
+
+Once the package is installed successfully, you will need to configure your external IDE settings to work. In the following sections you can find  an example of how to connect to a commonly used external IDE for script development. This however does not indicate any official support or endorsement in regards to its compatibility with Mimics.

@@ -1,0 +1,58 @@
+Skull segmentation
+--------------------
+
+In this tutorial some basic segmentation features of Mimics are presented using the project Mimi.mcs, as available in :file:`C:\\MedData\\DemoFiles`. The first step is to open the project using :py:func:`mimics.file.open_project`. All the previously open projects will be closed.
+
+.. code-block:: python
+
+	# Open the project
+	input_dir = r'C:\MedData\DemoFiles\Mimi.mcs'
+  mimics.file.open_project(input_dir)
+
+To perform thresholding, an empty mask is created first using :py:func:`mimics.segment.create_mask` and is renamed to *Bone*.
+
+.. code-block:: python
+
+   # Create an empty mask        
+   mask_a = mimics.segment.create_mask()
+   mask_a.name = "Bone"
+
+
+The next step is to perform Thresholding with :py:func:`mimics.segment.thresholding` and save the result in the mask *Bone* that is previously created. The minimum and the maximum threshold values need to be supplied as input. Note that the Mimics Python API currently always uses gray values (not Hounsfield units).
+
+.. code-block:: python
+
+	# Perform thresholding with selected min and max values
+	mimics.segment.threshold(mask=mask_a,threshold_min=1250,threshold_max=2800) # thresholds are set in gray values
+
+The next step is to perform Region Growing. First a new point is created on the anatomical part that will be the input for the Region Growing operation. In the below example, a new mask is created and the original mask is preserved. The new mask is renamed to *Segmented Skull*. Next, the point is deleted since it was needed only for the Region Growing operation. In case you don't have a license for the Analyze module, a mimics.Point object cannot be created. In this case it is recommended to use :py:func:`mimics.segment.activate_region_grow` instead of the :py:func:`mimics.segment.region_grow` API.  
+
+.. code-block:: python
+           
+	# Create a point that will be used fot the region growing operation
+	point_1 = mimics.analyze.indicate_point(title="Region growing point",message= "Please indicate a point on the part of interest")
+	point_2 = point_1.coordinates
+	point_2 = tuple(point_2)
+	# Region growing. The original mask is preserved
+	mask_b = mimics.segment.region_grow(point=point_2,input_mask=mask_a,target_mask=None,slice_type="Axial",keep_original_mask=True)
+	mask_b.name = "Segmented skull"
+
+Calculation of the 3D part and exporting it as STL is the following step. Using :py:func:`mimics.segment.calculate_part` and  :py:func:`mimics.file.export_stl` the part is calculated with the given quality and afterwards exported as an STL. The name and location where it will be saved should be specified. 
+
+.. code-block:: python
+
+	#Calculation of the 3D part
+	part_a = mimics.segment.calculate_part(mask=mimics.data.masks.find("Segmented skull"),quality="High")
+	# Export the STL
+	mimics.file.export_part(object_to_convert=part_a,file_name=r"C:\MedData\skull_of_Mimi.stl")
+
+The final step for this tutorial is to save the project and exit Mimics
+
+.. code-block:: python
+
+           # Save the project
+           mimics.file.save_project()
+
+
+
+

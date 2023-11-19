@@ -1,0 +1,26 @@
+######################
+Materialise Mimics Medical API 
+######################
+
+
+.. toctree:: 
+   mimics.rst
+
+   mimics.align
+   mimics.analyze
+   mimics.cineloop
+   mimics.data
+   mimics.dialogs
+   mimics.dicom
+   mimics.events
+   mimics.fea
+   mimics.file
+   mimics.image
+   mimics.logging
+   mimics.measure
+   mimics.preferences
+   mimics.segment
+   mimics.simulate
+   mimics.tools
+   mimics.utils
+   mimics.view

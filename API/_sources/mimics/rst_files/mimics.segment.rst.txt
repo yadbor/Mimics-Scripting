@@ -1,0 +1,7 @@
+mimics.segment module
+=====================
+
+.. automodule:: mimics.segment
+   :members:
+   :undoc-members:
+   :show-inheritance:

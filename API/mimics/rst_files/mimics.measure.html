@@ -1,0 +1,2405 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mimics.measure module &mdash; Mimics Medical Scripting Guide  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Mimics Medical Scripting Guide  documentation" href="../../index.html"/>
+        <link rel="up" title="Materialise Mimics Medical API" href="index.html"/>
+        <link rel="next" title="mimics.preferences module" href="mimics.preferences.html"/>
+        <link rel="prev" title="mimics.logging module" href="mimics.logging.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Mimics Medical Scripting Guide
+          
+
+
+
+          
+            
+            <img src="../../_static/Materialise_Mimics_logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                25.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Materialise Mimics Medical API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mimics.html">mimics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.align.html">mimics.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.analyze.html">mimics.analyze module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.cineloop.html">mimics.cineloop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.data.html">mimics.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dialogs.html">mimics.dialogs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.dicom.html">mimics.dicom module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.events.html">mimics.events module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.fea.html">mimics.fea module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.file.html">mimics.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.image.html">mimics.image module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.logging.html">mimics.logging module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mimics.measure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.preferences.html">mimics.preferences module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.segment.html">mimics.segment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.simulate.html">mimics.simulate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.tools.html">mimics.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.utils.html">mimics.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mimics.view.html">mimics.view module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">API Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_IDE/index.html">External IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Mimics Medical Scripting Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Home</a> &raquo;</li>
+      
+          <li><a href="index.html">Materialise Mimics Medical API</a> &raquo;</li>
+      
+    <li>mimics.measure module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/mimics/rst_files/mimics.measure.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-mimics.measure">
+<span id="mimics-measure-module"></span><h1>mimics.measure module<a class="headerlink" href="#module-mimics.measure" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.Angle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">Angle</span></span><a class="headerlink" href="#mimics.measure.Angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Angle measurement.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><a class="headerlink" href="#mimics.measure.Angle.center" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.measure.Angle.get_reslice_object">
+<span class="sig-name descname"><span class="pre">get_reslice_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.Angle.get_reslice_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reslice plane that measurement is attached to. Only mimics.view.Reslice object is supported at the moment. If the measurement is attached to the reslice object of other types - None will be returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Referenced reslice plane.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[<a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice">mimics.view.Reslice</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.is_label_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_visible</span></span><a class="headerlink" href="#mimics.measure.Angle.is_label_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.is_unit_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_unit_visible</span></span><a class="headerlink" href="#mimics.measure.Angle.is_unit_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.part_of_center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_center</span></span><a class="headerlink" href="#mimics.measure.Angle.part_of_center" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.part_of_point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point1</span></span><a class="headerlink" href="#mimics.measure.Angle.part_of_point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.part_of_point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point2</span></span><a class="headerlink" href="#mimics.measure.Angle.part_of_point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point1</span></span><a class="headerlink" href="#mimics.measure.Angle.point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point2</span></span><a class="headerlink" href="#mimics.measure.Angle.point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.precision">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">precision</span></span><a class="headerlink" href="#mimics.measure.Angle.precision" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsInt’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Precision must be 0, 1 or 2’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.reflex_angle">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reflex_angle</span></span><a class="headerlink" href="#mimics.measure.Angle.reflex_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies if the angle is acute (always less than 180 degrees) or reflex (always more than 180 degrees).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.measure.Angle.set_reslice_object">
+<span class="sig-name descname"><span class="pre">set_reslice_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reslice_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.Angle.set_reslice_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measurement will be attached to the defined reslice object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reslice_object</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a><em>, </em><a class="reference internal" href="mimics.view.html#mimics.view.PanoramicReslice" title="mimics.view.PanoramicReslice"><em>mimics.view.PanoramicReslice</em></a><em>, </em><a class="reference internal" href="mimics.view.html#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy"><em>mimics.view.Fluoroscopy</em></a><em>]</em><em>]</em>) – (optional) Reslice object for the measurement to be attached.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Angle.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.Angle.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.Area">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">Area</span></span><a class="headerlink" href="#mimics.measure.Area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Area measurement.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#mimics.measure.Area.area" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.centroid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centroid</span></span><a class="headerlink" href="#mimics.measure.Area.centroid" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Such value is not defined for this Area.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.da">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">da</span></span><a class="headerlink" href="#mimics.measure.Area.da" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.dp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dp</span></span><a class="headerlink" href="#mimics.measure.Area.dp" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.geometry_points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometry_points</span></span><a class="headerlink" href="#mimics.measure.Area.geometry_points" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Sequence</em>[<em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.measure.Area.get_reslice_object">
+<span class="sig-name descname"><span class="pre">get_reslice_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.Area.get_reslice_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reslice plane that measurement is attached to. Only mimics.view.Reslice object is supported at the moment. If the measurement is attached to the reslice object of other types - None will be returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Referenced reslice plane.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[<a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice">mimics.view.Reslice</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_l_max_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_l_max_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_l_max_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_l_min_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_l_min_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_l_min_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_l_perpendicular_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_l_perpendicular_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_l_perpendicular_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_area_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_area_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_area_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_centroid_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_centroid_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_centroid_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_da_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_da_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_da_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_dp_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_dp_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_dp_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_l_max_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_l_max_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_l_max_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_l_min_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_l_min_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_l_min_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_l_perpendicular_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_l_perpendicular_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_l_perpendicular_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_perimeter_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_perimeter_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_perimeter_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.is_label_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_visible</span></span><a class="headerlink" href="#mimics.measure.Area.is_label_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.l_min">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">l_min</span></span><a class="headerlink" href="#mimics.measure.Area.l_min" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Such value is not defined for this Area.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.l_perpendicular">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">l_perpendicular</span></span><a class="headerlink" href="#mimics.measure.Area.l_perpendicular" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Such value is not defined for this Area.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.lmax">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lmax</span></span><a class="headerlink" href="#mimics.measure.Area.lmax" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Such value is not defined for this Area.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.perimeter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">perimeter</span></span><a class="headerlink" href="#mimics.measure.Area.perimeter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Area.points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#mimics.measure.Area.points" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Sequence</em>[<em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Point cannot be moved too close to other control point of the Area.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.measure.Area.set_reslice_object">
+<span class="sig-name descname"><span class="pre">set_reslice_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reslice_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.Area.set_reslice_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measurement will be attached to the defined reslice object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reslice_object</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a><em>, </em><a class="reference internal" href="mimics.view.html#mimics.view.PanoramicReslice" title="mimics.view.PanoramicReslice"><em>mimics.view.PanoramicReslice</em></a><em>, </em><a class="reference internal" href="mimics.view.html#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy"><em>mimics.view.Fluoroscopy</em></a><em>]</em><em>]</em>) – (optional) Reslice object for the measurement to be attached.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineBestFitDiameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineBestFitDiameter</span></span><a class="headerlink" href="#mimics.measure.CenterlineBestFitDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The diameter of the circle that fits the best in a control point. The center of the circle lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineBestFitDiameter.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineBestFitDiameter.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineBestFitDiameter.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineBestFitDiameter.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineBestFitDiameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineBestFitDiameter.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCircumference">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineCircumference</span></span><a class="headerlink" href="#mimics.measure.CenterlineCircumference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The perimeter of a contour in a control point. The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCircumference.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineCircumference.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCircumference.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineCircumference.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCircumference.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineCircumference.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCurvature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineCurvature</span></span><a class="headerlink" href="#mimics.measure.CenterlineCurvature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The curvature measurement at the defined point.  The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCurvature.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineCurvature.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCurvature.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineCurvature.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineCurvature.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineCurvature.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineEllipticity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineEllipticity</span></span><a class="headerlink" href="#mimics.measure.CenterlineEllipticity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The ellipticity of the best fit ellipse in a contour in a control point. The control point of the measurement lies on the centerline. The center of the ellipse and the control point can be different.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineEllipticity.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineEllipticity.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineEllipticity.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineEllipticity.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineEllipticity.radius_major">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius_major</span></span><a class="headerlink" href="#mimics.measure.CenterlineEllipticity.radius_major" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineEllipticity.radius_minor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius_minor</span></span><a class="headerlink" href="#mimics.measure.CenterlineEllipticity.radius_minor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineEllipticity.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineEllipticity.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicDiameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineHydraulicDiameter</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The hydraulic diameter of the contour in a control point. The hydraulic diameter is defined as : 4*(surface X-section area) / (circumference of the X-section). The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicDiameter.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicDiameter.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicDiameter.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicDiameter.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicDiameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicDiameter.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicRatio">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineHydraulicRatio</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The hydraulic ratio of a contour in a control point. Hydraulic ratio is defined as the ratio of the hydraulic diameter to the subscribing diameter of the X-section. The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicRatio.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicRatio.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicRatio.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicRatio.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineHydraulicRatio.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineHydraulicRatio.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMaximalDiameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineMaximalDiameter</span></span><a class="headerlink" href="#mimics.measure.CenterlineMaximalDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The diameter of the subscribing circle in a control point. The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMaximalDiameter.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineMaximalDiameter.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMaximalDiameter.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineMaximalDiameter.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMaximalDiameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineMaximalDiameter.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMinimalDiameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineMinimalDiameter</span></span><a class="headerlink" href="#mimics.measure.CenterlineMinimalDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The diameter of the inscribing circle in a control point. The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMinimalDiameter.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineMinimalDiameter.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMinimalDiameter.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineMinimalDiameter.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineMinimalDiameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineMinimalDiameter.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineSectionalArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineSectionalArea</span></span><a class="headerlink" href="#mimics.measure.CenterlineSectionalArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The area of the contour in a control point. The control point of the measurement lies on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineSectionalArea.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineSectionalArea.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineSectionalArea.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.CenterlineSectionalArea.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineSectionalArea.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineSectionalArea.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineTortuosity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">CenterlineTortuosity</span></span><a class="headerlink" href="#mimics.measure.CenterlineTortuosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The tortuosity between two points on the centerline. The tortuosity is defined as: T= 1 - (linear distance / distance along the branch). The control points of the measurement lie on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineTortuosity.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.CenterlineTortuosity.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineTortuosity.point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point1</span></span><a class="headerlink" href="#mimics.measure.CenterlineTortuosity.point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineTortuosity.point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point2</span></span><a class="headerlink" href="#mimics.measure.CenterlineTortuosity.point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.CenterlineTortuosity.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.CenterlineTortuosity.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.Diameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">Diameter</span></span><a class="headerlink" href="#mimics.measure.Diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Diameter measurement.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.center_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_point</span></span><a class="headerlink" href="#mimics.measure.Diameter.center_point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.normal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal</span></span><a class="headerlink" href="#mimics.measure.Diameter.normal" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.part_of_point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point1</span></span><a class="headerlink" href="#mimics.measure.Diameter.part_of_point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.part_of_point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point2</span></span><a class="headerlink" href="#mimics.measure.Diameter.part_of_point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.part_of_point3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point3</span></span><a class="headerlink" href="#mimics.measure.Diameter.part_of_point3" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point1</span></span><a class="headerlink" href="#mimics.measure.Diameter.point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Point cannot be moved too close to other points of Diameter.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point2</span></span><a class="headerlink" href="#mimics.measure.Diameter.point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Point cannot be moved too close to other points of Diameter.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.point3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point3</span></span><a class="headerlink" href="#mimics.measure.Diameter.point3" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Point cannot be moved too close to other points of Diameter.’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Diameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.Diameter.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.Distance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">Distance</span></span><a class="headerlink" href="#mimics.measure.Distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>Distance measurement.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.measure.Distance.get_reslice_object">
+<span class="sig-name descname"><span class="pre">get_reslice_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.Distance.get_reslice_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reslice plane that measurement is attached to. Only mimics.view.Reslice object is supported at the moment. If the measurement is attached to the reslice object of other types - None will be returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Referenced reslice plane.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[<a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice">mimics.view.Reslice</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.is_label_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_label_visible</span></span><a class="headerlink" href="#mimics.measure.Distance.is_label_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.is_unit_visible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_unit_visible</span></span><a class="headerlink" href="#mimics.measure.Distance.is_unit_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘bool’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.part_of_point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point1</span></span><a class="headerlink" href="#mimics.measure.Distance.part_of_point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.part_of_point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">part_of_point2</span></span><a class="headerlink" href="#mimics.measure.Distance.part_of_point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part">mimics.Part</a>, NoneType]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point1</span></span><a class="headerlink" href="#mimics.measure.Distance.point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point2</span></span><a class="headerlink" href="#mimics.measure.Distance.point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.precision">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">precision</span></span><a class="headerlink" href="#mimics.measure.Distance.precision" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsInt’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>False</p>
+</dd>
+<dt class="field-odd">Exceptions</dt>
+<dd class="field-odd"><p>ValueError (reason(s): [‘Precision must be 0, 1 or 2’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mimics.measure.Distance.set_reslice_object">
+<span class="sig-name descname"><span class="pre">set_reslice_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reslice_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.Distance.set_reslice_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measurement will be attached to the defined reslice object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reslice_object</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a><em>, </em><a class="reference internal" href="mimics.view.html#mimics.view.PanoramicReslice" title="mimics.view.PanoramicReslice"><em>mimics.view.PanoramicReslice</em></a><em>, </em><a class="reference internal" href="mimics.view.html#mimics.view.Fluoroscopy" title="mimics.view.Fluoroscopy"><em>mimics.view.Fluoroscopy</em></a><em>]</em><em>]</em>) – (optional) Reslice object for the measurement to be attached.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Distance.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.Distance.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.DistanceOverCenterline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">DistanceOverCenterline</span></span><a class="headerlink" href="#mimics.measure.DistanceOverCenterline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The shortest distance between two points along the centerline. The control points of the measurement lie on the centerline.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.DistanceOverCenterline.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.DistanceOverCenterline.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.DistanceOverCenterline.point1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point1</span></span><a class="headerlink" href="#mimics.measure.DistanceOverCenterline.point1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.DistanceOverCenterline.point2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point2</span></span><a class="headerlink" href="#mimics.measure.DistanceOverCenterline.point2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.DistanceOverCenterline.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.DistanceOverCenterline.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘typing.SupportsFloat’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.MeasurementValue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">MeasurementValue</span></span><a class="headerlink" href="#mimics.measure.MeasurementValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An object with particular measurement.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.MeasurementValue.unit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unit</span></span><a class="headerlink" href="#mimics.measure.MeasurementValue.unit" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.MeasurementValue.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mimics.measure.MeasurementValue.value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.MeasurementValue.value_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value_name</span></span><a class="headerlink" href="#mimics.measure.MeasurementValue.value_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘str’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mimics.measure.Triad">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">Triad</span></span><a class="headerlink" href="#mimics.measure.Triad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">mimics.Object</span></code></a></p>
+<p>The tangent, normal and binormal vectors in a point that lies on the centerline. Color of the tangent, normal, and binormal vectors is yellow, green, and blue respectively.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Triad.binormal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binormal</span></span><a class="headerlink" href="#mimics.measure.Triad.binormal" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Triad.centerline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centerline</span></span><a class="headerlink" href="#mimics.measure.Triad.centerline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>&lt;class ‘mimics.analyze.Centerline’&gt;</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Triad.normal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal</span></span><a class="headerlink" href="#mimics.measure.Triad.normal" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Triad.point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><a class="headerlink" href="#mimics.measure.Triad.point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Point" title="mimics.analyze.Point">mimics.analyze.Point</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Sphere" title="mimics.analyze.Sphere">mimics.analyze.Sphere</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mimics.measure.Triad.tangent">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tangent</span></span><a class="headerlink" href="#mimics.measure.Triad.tangent" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><em>Union</em>[<em>Iterable</em>[<em>SupportsFloat</em>, <em>SupportsFloat</em>, <em>SupportsFloat</em>], <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Line" title="mimics.analyze.Line">mimics.analyze.Line</a>, <a class="reference internal" href="mimics.analyze.html#mimics.analyze.Cylinder" title="mimics.analyze.Cylinder">mimics.analyze.Cylinder</a>]</p>
+</dd>
+<dt class="field-even">Read-only</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.calculate_translation">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">calculate_translation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.calculate_translation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the translation of the inertial coordinate systems of two geometrically identical Parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part1</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – The reference Part.</p></li>
+<li><p><strong>part2</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – The target Part.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The translation between two parts.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Tuple</em>[float, float, float]</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">dif</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">calculate_translation</span><span class="p">(</span><span class="n">part1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">part2</span><span class="o">=</span><span class="n">p2</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">dif</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_angle_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_angle_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_angle_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an angle measurement. Three points are required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point1</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the first point.</p></li>
+<li><p><strong>point2</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the second point.</p></li>
+<li><p><strong>point3</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the third point.</p></li>
+<li><p><strong>part_of_point1</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – (optional) Part of the first point.</p></li>
+<li><p><strong>part_of_point2</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – (optional) Part of the second point.</p></li>
+<li><p><strong>part_of_point3</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – (optional) Part of the third point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Angle Measurement object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Angle" title="mimics.measure.Angle">mimics.measure.Angle</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Point does not lie on corresponding Part’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ang</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_angle_measurement</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">point2</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">point3</span><span class="o">=</span><span class="n">p3</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_area_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_area_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reslice_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_area_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an area measurement. At least three points are required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>Sequence</em><em>[</em><em>TMimicsPoint</em><em>]</em>) – Coordinates of the points.</p></li>
+<li><p><strong>normal</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) Normal to project the points on.</p></li>
+<li><p><strong>reslice_object</strong> (<a class="reference internal" href="mimics.view.html#mimics.view.Reslice" title="mimics.view.Reslice"><em>mimics.view.Reslice</em></a>) – (optional) Reslice plane that measurement is attached to.</p></li>
+<li><p><strong>snap</strong> (<em>bool</em>) – (optional) Indicates whether the connecting lines should be snapped to the image gradient.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Area Measurement object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Area" title="mimics.measure.Area">mimics.measure.Area</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Cannot create Area from less than 3 points.’, ‘Input points are not on one plane.’, ‘Input points are on the same line.’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">]</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_area_measurement</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">l</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_best_fit_diameter_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_best_fit_diameter_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_best_fit_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a diameter of the circle that fits the best in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Best Fit Diameter Centerline measurement</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineBestFitDiameter" title="mimics.measure.CenterlineBestFitDiameter">mimics.measure.CenterlineBestFitDiameter</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_best_fit_diameter_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_circumference_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_circumference_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_circumference_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a perimeter of a contour in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Circumference measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineCircumference" title="mimics.measure.CenterlineCircumference">mimics.measure.CenterlineCircumference</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_circumference_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_curvature_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_curvature_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_curvature_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a curvature measurement in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Curvature measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineCurvature" title="mimics.measure.CenterlineCurvature">mimics.measure.CenterlineCurvature</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_curvature_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_diameter_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_diameter_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a diameter measurement. Three points are required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point1</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the first point.</p></li>
+<li><p><strong>point2</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the second point.</p></li>
+<li><p><strong>point3</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the third point.</p></li>
+<li><p><strong>part_of_point1</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>]</em>) – (optional) Part of the first point.</p></li>
+<li><p><strong>part_of_point2</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>]</em>) – (optional) Part of the second point.</p></li>
+<li><p><strong>part_of_point3</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a><em>]</em>) – (optional) Part of the third point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Diameter Measurement object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Diameter" title="mimics.measure.Diameter">mimics.measure.Diameter</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ang</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_diameter_measurement</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">point2</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">point3</span><span class="o">=</span><span class="n">p3</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_distance_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_distance_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_of_point2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_distance_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a distance measurement. Two points are required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point1</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the first point.</p></li>
+<li><p><strong>point2</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the second point.</p></li>
+<li><p><strong>part_of_point1</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – (optional) Part of the first point.</p></li>
+<li><p><strong>part_of_point2</strong> (<a class="reference internal" href="mimics.html#mimics.Part" title="mimics.Part"><em>mimics.Part</em></a>) – (optional) Part of the second point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Distance Measurement object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Distance" title="mimics.measure.Distance">mimics.measure.Distance</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dis</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_distance_measurement</span><span class="p">(</span><span class="n">point1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">point2</span><span class="o">=</span><span class="n">p2</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">dis</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_distance_over_centerline_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_distance_over_centerline_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_distance_over_centerline_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a shortest distance between two points along the centerline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point1</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the first point.</p></li>
+<li><p><strong>point2</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the second point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Distance Over Centerline measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.DistanceOverCenterline" title="mimics.measure.DistanceOverCenterline">mimics.measure.DistanceOverCenterline</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.449587</span><span class="p">,</span> <span class="mf">9.486663</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.842714</span><span class="p">]</span>
+<span class="n">pnt2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">33.300992</span><span class="p">,</span> <span class="mf">13.586411</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.170290</span><span class="p">]</span>
+
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_distance_over_centerline_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point1</span><span class="o">=</span><span class="n">pnt1</span><span class="p">,</span> <span class="n">point2</span><span class="o">=</span><span class="n">pnt2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_ellipticity_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_ellipticity_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_ellipticity_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an ellipticity of the best fit ellipse in a contour in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Ellipticity measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineEllipticity" title="mimics.measure.CenterlineEllipticity">mimics.measure.CenterlineEllipticity</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_ellipticity_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_hydraulic_diameter_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_hydraulic_diameter_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_hydraulic_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a hydraulic diameter of the contour in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Hydraulic Diameter measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineHydraulicDiameter" title="mimics.measure.CenterlineHydraulicDiameter">mimics.measure.CenterlineHydraulicDiameter</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_hydraulic_diameter_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_hydraulic_ratio_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_hydraulic_ratio_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_hydraulic_ratio_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a hydraulic ratio of a contour in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Hydraulic Ratio measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineHydraulicRatio" title="mimics.measure.CenterlineHydraulicRatio">mimics.measure.CenterlineHydraulicRatio</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_hydraulic_ratio_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_maximal_diameter_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_maximal_diameter_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_maximal_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a diameter of the subscribing circle in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Maximal Diameter measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineMaximalDiameter" title="mimics.measure.CenterlineMaximalDiameter">mimics.measure.CenterlineMaximalDiameter</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_maximal_diameter_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_minimal_diameter_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_minimal_diameter_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_minimal_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a diameter of the inscribing circle in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Minimal Diameter measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineMinimalDiameter" title="mimics.measure.CenterlineMinimalDiameter">mimics.measure.CenterlineMinimalDiameter</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_minimal_diameter_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_sectional_area_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_sectional_area_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_sectional_area_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an area of the contour in a control point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Sectional Area measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineSectionalArea" title="mimics.measure.CenterlineSectionalArea">mimics.measure.CenterlineSectionalArea</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_sectional_area_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_tortuosity_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_tortuosity_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_tortuosity_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a tortuosity between two points on the centerline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point1</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the first point.</p></li>
+<li><p><strong>point2</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – Coordinates of the second point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tortuosity measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.CenterlineTortuosity" title="mimics.measure.CenterlineTortuosity">mimics.measure.CenterlineTortuosity</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.449587</span><span class="p">,</span> <span class="mf">9.486663</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.842714</span><span class="p">]</span>
+<span class="n">pnt2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">33.300992</span><span class="p">,</span> <span class="mf">13.586411</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.170290</span><span class="p">]</span>
+
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_tortuosity_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point1</span><span class="o">=</span><span class="n">pnt1</span><span class="p">,</span> <span class="n">point2</span><span class="o">=</span><span class="n">pnt2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.create_triad_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">create_triad_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centerline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.create_triad_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a tangent, normal and binormal vectors in a point that lies on the centerline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centerline</strong> (<a class="reference internal" href="mimics.analyze.html#mimics.analyze.Centerline" title="mimics.analyze.Centerline"><em>mimics.analyze.Centerline</em></a>) – The Centerline.</p></li>
+<li><p><strong>point</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – A point of the centerline where the measurement is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Triad measurement on Centerline</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Triad" title="mimics.measure.Triad">mimics.measure.Triad</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Centerline Measurement Point should be placed directly on Centerline’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cntrln</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">centerlines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">27.177012</span><span class="p">,</span> <span class="mf">8.756953</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.053557</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_triad_measurement</span><span class="p">(</span><span class="n">centerline</span><span class="o">=</span><span class="n">cntrln</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">pnt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.get_bounding_box">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">get_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.get_bounding_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates a bounding box for the defined object(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objects</strong> (<em>Union</em><em>[</em><a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a><em>, </em><em>GenericObjectIterable</em><em>]</em>) – Object(s) for which the common bounding box needs to be calculated.</p></li>
+<li><p><strong>first_axis</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) First axis of the resulting bounding box.</p></li>
+<li><p><strong>second_axis</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – (optional) Second axis of the resulting bounding box.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Bounding box object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.html#mimics.BoundingBox3d" title="mimics.BoundingBox3d">mimics.BoundingBox3d</a></p>
+</dd>
+<dt class="field-even">Exceptions</dt>
+<dd class="field-even"><p>ValueError (reason(s): [‘Input axes should be perpendicular.’, ‘Cannot calculate bounding box of a non-existing object.’, ‘Bounding box of an object is invalid’])</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">get_bounding_box</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.get_label_position">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">get_label_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.get_label_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the placement of the measurement label on the specified view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measurement</strong> (<a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a>) – Measurement with the label.</p></li>
+<li><p><strong>view</strong> (<a class="reference internal" href="mimics.view.html#mimics.view.View" title="mimics.view.View"><em>mimics.view.View</em></a>) – View to work with.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Bounding box object that defines the placement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="mimics.html#mimics.BoundingBox2d" title="mimics.BoundingBox2d">mimics.BoundingBox2d</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">]</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_area_measurement</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">l</span><span class="p">)</span>
+<span class="n">meas</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">area_measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">get_label_position</span><span class="p">(</span><span class="n">measurement</span><span class="o">=</span><span class="n">meas</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.indicate_angle_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">indicate_angle_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Please</span> <span class="pre">indicate</span> <span class="pre">three</span> <span class="pre">points</span> <span class="pre">for</span> <span class="pre">angle</span> <span class="pre">measurement.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_message_box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.indicate_angle_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a dialog which asks the user to indicate points for the angle measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – (optional) Description of the dialog.</p></li>
+<li><p><strong>show_message_box</strong> (<em>bool</em>) – (optional) Defines whether the message box should be shown or not. If false then all other parameters are ignored</p></li>
+<li><p><strong>confirm</strong> (<em>bool</em>) – (optional) If true, it displays the OK button and waits for the user to click it to confirm object placement.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Angle Measurement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Angle" title="mimics.measure.Angle">mimics.measure.Angle</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Please indicate Angle 1&#39;</span>
+<span class="n">cnfrm</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tit</span> <span class="o">=</span> <span class="s1">&#39;Point 1&#39;</span>
+<span class="n">ang</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">indicate_angle_measurement</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">confirm</span><span class="o">=</span><span class="n">cnfrm</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">tit</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.indicate_area_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">indicate_area_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Please</span> <span class="pre">indicate</span> <span class="pre">points</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">area</span> <span class="pre">measurement.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_message_box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.indicate_area_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a dialog which asks the user to indicate points for the area measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – (optional) Description of the dialog.</p></li>
+<li><p><strong>show_message_box</strong> (<em>bool</em>) – (optional) Defines whether the message box should be shown or not. If false then all other parameters are ignored</p></li>
+<li><p><strong>confirm</strong> (<em>bool</em>) – (optional) If true, it displays the OK button and waits for the user to click it to confirm object placement.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Area Measurement object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Area" title="mimics.measure.Area">mimics.measure.Area</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Please indicate Area 1&#39;</span>
+<span class="n">cnfrm</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tit</span> <span class="o">=</span> <span class="s1">&#39;Point 1&#39;</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">indicate_area_measurement</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">confirm</span><span class="o">=</span><span class="n">cnfrm</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">tit</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.indicate_diameter_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">indicate_diameter_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Please</span> <span class="pre">indicate</span> <span class="pre">three</span> <span class="pre">points</span> <span class="pre">for</span> <span class="pre">diameter</span> <span class="pre">measurement.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_message_box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.indicate_diameter_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a dialog which asks the user to indicate points for the diameter measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – (optional) Description of the dialog.</p></li>
+<li><p><strong>show_message_box</strong> (<em>bool</em>) – (optional) Defines whether the message box should be shown or not. If false then all other parameters are ignored</p></li>
+<li><p><strong>confirm</strong> (<em>bool</em>) – (optional) If true, it displays the OK button and waits for the user to click it to confirm object placement.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Diameter Measurement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Diameter" title="mimics.measure.Diameter">mimics.measure.Diameter</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Please indicate Diameter 1&#39;</span>
+<span class="n">cnfrm</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tit</span> <span class="o">=</span> <span class="s1">&#39;Point 1&#39;</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">indicate_diameter_measurement</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">confirm</span><span class="o">=</span><span class="n">cnfrm</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">tit</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.indicate_distance_measurement">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">indicate_distance_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Please</span> <span class="pre">indicate</span> <span class="pre">two</span> <span class="pre">points</span> <span class="pre">for</span> <span class="pre">distance</span> <span class="pre">measurement.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_message_box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.indicate_distance_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a dialog which asks the user to indicate points for the distance measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – (optional) Description of the dialog.</p></li>
+<li><p><strong>show_message_box</strong> (<em>bool</em>) – (optional) Defines whether the message box should be shown or not. If false then all other parameters are ignored</p></li>
+<li><p><strong>confirm</strong> (<em>bool</em>) – (optional) If true, it displays the OK button and waits for the user to click it to confirm object placement.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – (optional) Title of the dialog.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Distance Measurement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mimics.measure.Distance" title="mimics.measure.Distance">mimics.measure.Distance</a></p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Please indicate Distance 1&#39;</span>
+<span class="n">cnfrm</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tit</span> <span class="o">=</span> <span class="s1">&#39;Point 1&#39;</span>
+<span class="n">dis</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">indicate_distance_measurement</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">confirm</span><span class="o">=</span><span class="n">cnfrm</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">tit</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mimics.measure.set_label_position">
+<span class="sig-prename descclassname"><span class="pre">mimics.measure.</span></span><span class="sig-name descname"><span class="pre">set_label_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mimics.measure.set_label_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies the placement of the measurement label on the specified view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measurement</strong> (<a class="reference internal" href="mimics.html#mimics.Object" title="mimics.Object"><em>mimics.Object</em></a>) – Measurement with the label.</p></li>
+<li><p><strong>view</strong> (<a class="reference internal" href="mimics.view.html#mimics.view.View" title="mimics.view.View"><em>mimics.view.View</em></a>) – View to work with.</p></li>
+<li><p><strong>origin</strong> (<em>Tuple</em><em>[</em><em>SupportsFloat</em><em>, </em><em>SupportsFloat</em><em>]</em>) – 2D coordinates of the origin of the new position of the measurement label.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">65</span><span class="p">)</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">create_distance_measurement</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">mimics</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimics</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">v</span><span class="p">,(</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mimics.preferences.html" class="btn btn-neutral float-right" title="mimics.preferences module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mimics.logging.html" class="btn btn-neutral" title="mimics.logging module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Materialise NV. This guide is part of the Materialise Mimics Medical 25.0 Reference Guide - L-102332-02.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+          <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+          <script src="../../_static/jquery.js"></script>
+          <script src="../../_static/underscore.js"></script>
+          <script src="../../_static/doctools.js"></script>
+      
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

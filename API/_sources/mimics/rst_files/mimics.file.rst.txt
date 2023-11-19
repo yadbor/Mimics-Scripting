@@ -1,0 +1,7 @@
+mimics.file module
+==================
+
+.. automodule:: mimics.file
+   :members:
+   :undoc-members:
+   :show-inheritance:

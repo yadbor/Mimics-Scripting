@@ -1,0 +1,7 @@
+mimics.preferences module
+=========================
+
+.. automodule:: mimics.preferences
+   :members:
+   :undoc-members:
+   :show-inheritance:
