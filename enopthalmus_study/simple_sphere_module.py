@@ -87,12 +87,19 @@ def simple_sphere(radius = 1, centre = [0, 0, 0], depth = 0):
 if __name__ == '__main__':
 
     (T, X, Y, Z) = simple_sphere(depth = 4)
-
+    
+    # Combine the X, Y, & Z components into a single array of vertices V
+    #mimics.segment.create_part probably wants V & T (see below)
     V = [[x, y, z] for x, y, z in list(zip(X, Y, Z))]
 
     print(T)
     print('\n')
-    #print(X)
-    #print(Y) 
-    #print(Z)
-
+    
+    # import numpy as np
+    # p = mimics.data.parts[0]
+    # v,t = p.get_triangles()
+    # v = np.array(v)
+    # t = np.array(t)
+    # for i in range(len(v)):
+    #     v[i] = v[i]+100
+    # mimics.segment.create_part(v,t)
