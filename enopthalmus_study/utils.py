@@ -49,7 +49,7 @@ def mask_from_material(name, material):
   else:
     lo_gv = material.lo
     hi_gv = material.hi  
-  return create_mask(name, lo_gv, hi_gv)
+  return mask_from_thesholds(name, lo_gv, hi_gv)
 
 def mask_to_part(name, mask, quality = 'High'):
   """Convenience function to create & name a mimics.segment part from an existing mask."""

@@ -24,8 +24,7 @@ X, Y, Z = 0, 1, 2
 
 from utils import looped_pairwise
 
-import const # Contains definitions of all materials
-
+import materials # Contains definitions of all materials
 # Define a Material data structure and some helper functions
 from utils import Material, material_mask, mask_to_part
 # Segment orbital contents into these Materials & measure volume
@@ -42,6 +41,17 @@ if mimics.data.objects.find("Bone Mask") is None:
 # else use the exisitng mask
 
 # TODO: What about creating the Air mask here as well?
+
+## This version assumes that the mimcs project has already had the 
+## bone mask and at least one eye defined.
+## Each eye consists of a spline for the orbital border, a sphere for the globe and
+## optionally a point marking the apex of the orbit.
+
+## THe bone mask will be the last mask defined in the project.
+## This allows for the basic thresholded bone mask to be refined by, for example, extractng a connected region.
+  
+## The spline, sphere and point for each eye are identified, based on their X coordinat.
+## CT data go from -ve X on the Right to +ve X on the Left, but because the patient might be scanned 
 
 #User Inputs
 if mimics.data.objects.find("Spline 1", False) == None:

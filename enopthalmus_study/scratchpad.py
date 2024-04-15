@@ -239,4 +239,3 @@ for i in range(len(v)):
     v[i] = v[i]+100
 mimics.segment.create_part(v,t)
 
-

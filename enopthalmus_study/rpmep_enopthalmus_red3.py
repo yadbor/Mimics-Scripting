@@ -11,37 +11,42 @@ from mimics import segment
 from mimics import analyze
 from mimics import data
 
-# Define parameters for planes and crop boxes to trim front of orbit
-NUM_PLANES = 10	# Number of planes to divide up orbit
-MULT_XY = 1.2   # Factor to expand the XY extents of the crop box
-MULT_Z = 1.5    # Factor to expand the Z extent of the first & last crop boxes
-SIZE_Y = -20    # Y extent of crop boxes
+import const # Constant definitions
 
-CLOSING_DIST = 7 # For smartfill 
+# Helper functions to clean up mainline code (just call mimics functions)
+from utils import mask_from_material, mask_to_part
+from utils import masks_unite, masks_subtract, masks_intersect
 
-# Axis names for points stored as [X, Y, Z]
-X, Y, Z = 0, 1, 2
-
-from utils import looped_pairwise
-
-import const # Contains definitions of all materials
-
-# Define a Material data structure and some helper functions
-from utils import Material, material_mask, mask_to_part
+import materials # Contains definitions of all materials for analysis
 # Segment orbital contents into these Materials & measure volume
-materials = {
-  'air'    : const.MATL_AIR, 
-  'fat'    : const.MATL_FAT,
-  'muscle' : const.MATL_MUSCLE
+orbit_materials = {
+  'air'    : materials.MATL_AIR, 
+  'fat'    : materials.MATL_FAT,
+  'muscle' : materials.MATL_MUSCLE
 }
 
 # If there is no "Bone Mask" mask the make a bone mask and part
 if mimics.data.objects.find("Bone Mask") is None:
-  mask_bone = material_mask("Bone Mask", const.MATL_BONE)
+  mask_bone = mask_from_material("Bone Mask", materials.MATL_BONE)
   part_bone = mask_to_part("Bone", mask_bone)
 # else use the exisitng mask
+  
+# Assume the last mask created is the one to use for analysis.
+# Generally where will only be one mask, which will be the bone mask
 
-# TODO: What about creating the Air mask here as well?
+# Also need a background mask for everything that is air
+mask_air = mask_from_material("Air Mask", materials.MATL_AIR)
+
+## This version assumes that the mimcs project has already had the 
+## bone mask and at least one eye defined.
+## Each eye consists of a spline for the orbital border, a sphere for the globe and
+## optionally a point marking the apex of the orbit.
+
+## THe bone mask will be the last mask defined in the project.
+## This allows for the basic thresholded bone mask to be refined by, for example, extractng a connected region.
+  
+## The spline, sphere and point for each eye are identified, based on their X coordinat.
+## CT data go from -ve X on the Right to +ve X on the Left, but because the patient might be scanned 
 
 #User Inputs
 if mimics.data.objects.find("Spline 1", False) == None:
@@ -57,6 +62,7 @@ if mimics.data.objects.find("Sphere 1", False) == None:
     
 #Check if already calculated orbital volume
 if mimics.data.objects.find("Orbital Volume", False) is None:
+
   # Create Orbital Volume from orbital_rim and globe_sphere
   
   # Decompose the spline into straight lines between each pair of points in the spline.
@@ -76,20 +82,22 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
   print(f"Y is {min_y} to {max_y}")
   print(f"Z is {min_z} to {max_z}")
   
-  # Save the orbital rim infor for logging
+  # Save the orbital rim info for logging
   orbital_rim_info = {}
 
-  delta_z = max_z - min_z
-  approx_delta_z = round(delta_z, 0)
-  spacing_z = approx_delta_z/const.NUM_PLANES
+  #delta_z = max_z - min_z
+  #approx_delta_z = round(delta_z, 0)
+  delta_z = round((max_z - min_z), 0) # round it to the nearest integer
+  spacing_z = delta_z/NUM_PLANES
   
-  print(f"Make {const.NUM_PLANES} planes {spacing_z} apart to span {approx_delta_z}")
+  print(f"Make {NUM_PLANES} planes {spacing_z} apart to span {delta_z}")
     
   # Create a list of plane origin points, matching the orbit in the X,Y plane 
-  # and spaced in Z from min_z to min_z + approx_delta_z (approximately max_z)
+  # and spaced in Z from min_z to min_z + delta_z (approximately max_z)
   orig_x =  orbit.center[X]
   orig_y =  orbit.center[Y]
-  plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] for z in range(const.NUM_PLANES - 1)]
+  plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] 
+                   for z in range(NUM_PLANES - 1)]
   # Create planes using these origins paralle to the X,Y plane (normal is Z+)
   norm_z = [0, 0, 1]
   z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) for orig in plane_origins]
@@ -112,16 +120,21 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
   for plane in z_planes:
     pt_up, pt_down = None, None
     for line in spline_lines:
+      # If a line crosses this plane it will have one endpoint above the plane and one below. 
+      # Any given line may not cross this plane, in which case both these will be False
       from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z]) # TODO: should this be >=
       from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z]) # TODO: should this be =<
       if (from_above):
         pt_up = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
       if (from_below):
         pt_down = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
-
-    if pt_up is not None and pt_down is not None:
-      boxes.extend(make_crop_box(pt_up, pt_down))
+    
+      # A line will only cross a single plane once. Stop when have found one in each direction.
+      if (pt_up is not None) and (pt_down is not None):
+        boxes.extend(make_crop_box(pt_up, pt_down)) # add the current crop box to the list
+        break # We have found that line for this plane   
     else:
+      # Fell through the loop without breaking
       print(f"did not find intersection for plane {plane}")
 
   # Adjust the first and last bounding box to ensure full overlap.
@@ -132,21 +145,21 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
   united_masks = mimics.segment.create_mask()
   # Loop through each box, create a mask, crop it with the box, and Union it together.
   for bbox in boxes:
-    # Create a mask, threshold to cover everything
-    m = mimics.segment.create_mask()
-    mimics.segment.threshold(m, const.MIN_GV, const.MAX_GV)
+    # Create a mask, thresholding it to fill everything
+    m = mimics.segment.threshold(mimics.segment.create_mask(), 
+                                 materials.MIN_GV, materials.MAX_GV)
     # Crop it with BoundingBox for this plane
     mimics.segment.crop_mask(m, bbox)
     # Union with the existing mask
-    united_masks = mimics.segment.boolean_operations(united_masks, m, 'Unite')
+    united_masks = masks_unite(united_masks, m)
     
   # united_masks is now everything in front of the orbit rim defined by orbital_rim
   # out to 
 
   # Unite with Bone and Air masks
-  united_masks = mimics.segment.boolean_operations(united_masks, mask_bone, 'Unite')
+  united_masks = masks_unite(united_masks, mask_bone)
   
-  mask_air = material_mask("Air Mask", const.MATL_AIR)
+  mask_air = mask_from_material("Air Mask", materials.MATL_AIR)
   united_masks = mimics.segment.boolean_operations(united_masks, mask_air, 'Unite')
   # Fill the combined masks
   smartfill_mask = mimics.segment.smart_fill_global(united_masks, 7)
@@ -216,7 +229,7 @@ mimics.dialogs.message_box("Convert the sphere object into a mask and rename the
 globe_mask = mimics.data.objects.find("Globe", False)
 
 # DUMMY: create a Globe mask
-globe_mask = material_mask("Bone Mask", const.MATL_BONE)
+globe_mask = mask_from_material("Bone Mask", materials.MATL_BONE)
 
 if globe_mask is not None:
     print("Globe Exists!")
@@ -228,26 +241,27 @@ else:
 # create parts
 part_orbital_vol = mimics.segment.calculate_part(mask=intersect_vol_mask, quality='High')
 
-# Create a list of masks and corresponding parts for each material in the materials dict
+# Create a list of masks and corresponding parts for each material 
+# in the orbit_materials dict.
 # Put the orbital volume first in the parts list
 parts = {'orbital': part_orbital_vol}
 masks = {'orbital': intersect_vol_mask}
-for matl in materials.keys():
-  masks[matl] = material_mask(matl + ' mask', materials[matl])
+for matl in orbit_materials.keys():
+  masks[matl] = mask_from_material(matl + ' mask', orbit_materials[matl])
   masks[matl] = mimics.segment.boolean_operations(masks[matl], intersect_vol_mask, 'Intersect')
   if masks[matl].number_of_pixels > 0:
     parts[matl] = mask_to_part(matl, masks[matl])
 
 # # Discrete object version
-# mask_air = mimics.segment.boolean_operations(material_mask("Air Mask", const.MATL_AIR), intersect_vol_mask, 'Intersect')
+# mask_air = mimics.segment.boolean_operations(mask_from_material("Air Mask", materials.MATL_AIR), intersect_vol_mask, 'Intersect')
 # if mask_air.number_of_pixels > 0:
 #   part_air = mask_to_part("Air", mask_air)
 # 
-# mask_fat = mimics.segment.boolean_operations(material_mask("Fat Mask", const.MATL_FAT), intersect_vol_mask, 'Intersect')
+# mask_fat = mimics.segment.boolean_operations(mask_from_material("Fat Mask", materials.MATL_FAT), intersect_vol_mask, 'Intersect')
 # if mask_fat.number_of_pixels > 0:
 #  part_fat = mask_to_part("Fat", mask_fat)
 # 
-# mask_muscle = mimics.segment.boolean_operations(material_mask("Muscle Mask", const.MATL_MUSCLE), intersect_vol_mask, 'Intersect')
+# mask_muscle = mimics.segment.boolean_operations(mask_from_material("Muscle Mask", materials.MATL_MUSCLE), intersect_vol_mask, 'Intersect')
 # if mask_muscle.number_of_pixels > 0:
 #  part_muscle = mask_to_part("Muscle", mask_muscle)
 #  
