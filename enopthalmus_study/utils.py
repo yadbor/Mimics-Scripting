@@ -1,10 +1,10 @@
 # Utilities to help scripting Mimics from python
-# 1.0  Rob Day  2023-11-13
+# 2.0  Rob Day  2024-04-15
 
 # Specialised iterators. Most are in recent version of itertools
 from itertools import tee, zip_longest, islice
 
-# Need to define pairwise() itertools for python 3.7 doesn't have it.
+# Need to define pairwise() as itertools for python 3.7 doesn't have it.
 # Slight variation to return a list() and not a zip object.
 def pairwise(iterable):
   """Return consecutive overlapping pairs from a list. pairwise('ABCDEFG') --> AB BC CD DE EF FG."""
@@ -31,19 +31,17 @@ def batched(iterable, n):
       return
     yield batch
   
-# Geometry 
-  
 # Helper functions for Mimics objects
 import mimics # done automatically by Mimics scripting environment
 
-def create_mask(name, thresh_lo, thresh_hi):
+def mask_from_thesholds(name, thresh_lo, thresh_hi):
   """Convenience function to create & name a mimics.segment mask with given thresholds."""
   mask = mimics.segment.create_mask()
   mask.name = name
   mimics.segment.threshold(mask, thresh_lo, thresh_hi)
   return mask
 
-def material_mask(name, material):
+def mask_from_material(name, material):
   """Convenience function to create & name a mimics.segment mask from a material definition."""
   if material.units == "HU":
     lo_gv = mimics.segment.HU2GV(material.lo)
@@ -59,15 +57,27 @@ def mask_to_part(name, mask, quality = 'High'):
   part.name = name
   return part
   
-def add_masks(mask1, mask2):
+def masks_unite(mask1, mask2):
+  """Convenience function to do a boolean Unite on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Unite')
-  
-# A dataclass is like a record or c struct, with named attributes
-from dataclasses import dataclass
-# Define a class to hold the thresholds for each material
-@dataclass
-class Material:
-  """Class to hold a material definition, given by hi & lo thresholds. units can be 'HU' (default) or 'GV'"""
-  lo: int
-  hi: int
-  units: str = 'HU' # can be HU or GR for Grey Values
+
+def masks_subtract(mask1, mask2):
+  """Convenience function to do a boolean Difference on two masks."""
+  return mimics.segment.boolean_operations(mask1, mask2, 'Difference')
+
+def masks_intersect(mask1, mask2):
+  """Convenience function to do a boolean Intersect on two masks."""
+  return mimics.segment.boolean_operations(mask1, mask2, 'Intersect')
+
+# Geometry    
+from collections import namedtuple
+
+def spline_geometry(spline):
+  """Calculate the min, max, centroid and (otionally) span) of a given mimics.spline."""
+  Desc = namedtuple("Desc", ["max", "min", "mean", "span"])
+  max_point = [max(idx) for idx in list(zip(* spline.points))]
+  min_point = [min(idx) for idx in list(zip(* spline.points))]
+  span = [(a - b) for a, b in zip(max_point, min_point)]
+  mean = [(a + b) / 2.0 for a, b in zip(max_point, min_point)]
+
+  return Desc(max_point, min_point, mean, span)

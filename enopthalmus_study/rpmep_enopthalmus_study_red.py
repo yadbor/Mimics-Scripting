@@ -192,12 +192,12 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
   orbit_vol.name = "Orbital Volume"
   
     # Delete all masks (except the Orbital Volume mask...)
-    objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
-    for m in mimics.data.objects:
-      if m.name in objects_to_keep:
-        print(f"Keeping {m.name} {m.type}")
-      else:
-        mimics.data.objects.delete(m)
+  objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
+  for m in mimics.data.objects:
+    if m.name in objects_to_keep:
+      print(f"Keeping {m.name} {m.type}")
+    else:
+      mimics.data.objects.delete(m)
 
 # End of: if mimics.data.objects.find("Orbital Volume", False) is None
 ## Have a calcuated Orbital Volume, either this time or on a previous run.
