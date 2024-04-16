@@ -27,23 +27,34 @@ orbit_materials = {
   'fat'    : materials.MATL_FAT,
   'muscle' : materials.MATL_MUSCLE
 }
-
-# If there is no "Bone Mask" mask the make a bone mask and part
-if mimics.data.objects.find("Bone Mask") is None:
-  mask_bone = mask_from_material("Bone Mask", materials.MATL_BONE)
-  part_bone = mask_to_part("Bone", mask_bone)
-# else use the exisitng mask
   
 # Assume the last mask created is the one to use for analysis.
 # Generally where will only be one mask, which will be the bone mask
 
-# Make a new bone mask to use the fill_holes and keep_largest options
+# Ignore any previously defined bone mask and make a new one 
+# to use the fill_holes and keep_largest options
 mask_bone = mask_from_material("bone", materials.MATL_BONE)
 mimics.segment.fill_holes(mask_bone)
 mimics.segment.keep_largest(mask_bone)
 
+# Check number of eyes & that they have the parts
+num_eyes = len(mimics.data.spheres)
+if num_eyes == 2: # both eyes
+  # Determine side by comparing eyes
+  if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
+    sides = ('right', 'left')
+  else:
+    sides = ('left', 'right')
+elif num_eyes == 1:
+  # Only one eye so compare to midline (X == 0)
+  if mimics.data.spheres[0].center[X] < 0:
+    sides = ('right', )
+  else:
+    sides = ('left', )
+else:
+  # No eyes!
 
-
+for 
 # 
 
 globe_mask = mimics.segment.calculate_mask_from_part(globe_part, target_mask=None)
