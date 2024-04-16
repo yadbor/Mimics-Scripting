@@ -3,6 +3,7 @@
 # Original  Ryan Collier 2022
 # This version  Robert Day  2023-11-18
 
+import mimics.segment
 from result_logger import Path, log_to_file
 
 ## Only needed for dummy routines
@@ -14,11 +15,13 @@ from mimics import data
 import const # Constant definitions
 
 # Helper functions to clean up mainline code (just call mimics functions)
-from utils import mask_from_material, mask_to_part
+from utils import mask_from_material, mask_to_part, mask_from_thesholds
 from utils import masks_unite, masks_subtract, masks_intersect
+from utils import spline_geometry
 
 import materials # Contains definitions of all materials for analysis
-# Segment orbital contents into these Materials & measure volume
+# Segment orbital contents into these Materials & measure volumes
+# Define a new material in materials.py and add here to include in the analysis.
 orbit_materials = {
   'air'    : materials.MATL_AIR, 
   'fat'    : materials.MATL_FAT,
@@ -33,6 +36,17 @@ if mimics.data.objects.find("Bone Mask") is None:
   
 # Assume the last mask created is the one to use for analysis.
 # Generally where will only be one mask, which will be the bone mask
+
+# Make a new bone mask to use the fill_holes and keep_largest options
+mask_bone = mask_from_material("bone", materials.MATL_BONE)
+mimics.segment.fill_holes(mask_bone)
+mimics.segment.keep_largest(mask_bone)
+
+
+
+# 
+
+globe_mask = mimics.segment.calculate_mask_from_part(globe_part, target_mask=None)
 
 # Also need a background mask for everything that is air
 mask_air = mask_from_material("Air Mask", materials.MATL_AIR)

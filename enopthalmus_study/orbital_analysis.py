@@ -1,8 +1,8 @@
 
+from const import * # CONSTANT definitions for this project (* is safe as only consts in file)
 
 # A dataclass is like a record or c struct, with named attributes
 from dataclasses import dataclass
-
 # A dataclass to hold all of the geomtery for an eye
 @dataclass
 class Eye_data:
@@ -10,8 +10,6 @@ class Eye_data:
   globe: mimics.analyze.Sphere = None
   tip: mimics.analyze.Point = None
   side: str = None
-
-import const # CONSTANT definitions for this project
 
 # Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points.
 def make_crop_box(pt_up, pt_down, spacing_z):
@@ -44,7 +42,7 @@ def make_orbit_mask(eye):
   rim_geom = utils.spline_geometry(rim)
   # How tall is the orbital rim?
   delta_z = round(rim_geom.span[Z], 0) # Round the nearest whole number
-  spacing = delta_z/const.NUM_PLANES
+  spacing = delta_z/NUM_PLANES
   
   # Make a list of plane origin points, matching the globe in the X,Y plane 
   # and spaced in Z from min_z to (min_z + delta_z) (approximately max_z)
