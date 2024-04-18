@@ -6,16 +6,6 @@ import materials # Material definitions (used to make masks)
 import mimics # API to access mimics (not needed inside mimics)
 import mimics.analyze # API to access mimics (not needed inside mimics)
 
-# A dataclass is like a record or c struct, with named attributes
-from dataclasses import dataclass
-# A dataclass to hold all of the geomtery for an eye
-@dataclass
-class Eye_data:
-  rim: mimics.analyze.Spline = None
-  globe: mimics.analyze.Sphere = None
-  tip: mimics.analyze.Point = None
-  side: str = None
-
 # Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points.
 def make_crop_box(pt_up, pt_down, spacing_z):
   """Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points.
