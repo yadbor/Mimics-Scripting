@@ -9,7 +9,7 @@ import numpy as np # Only used for np.array() in bounding box construction
 from const import * # CONSTANT definitions for this project (* is safe as only consts)
 import utils # Utility functions to simplify code
 
-from orbital_analysis import make_orbit_mask
+from orbital_analysis import make_orbit_mask, make_orbit_ROI
 from result_logger import log_to_file         # Write measurements to a .CSV file 
 
 import mimics # API to access mimics
@@ -96,35 +96,19 @@ for p in projects:
     point = mimics.data.points[eye]
     side_label = side + ' ' # add a trailing space to make nice labels
     
-    # Get the rim extents 
-    rim_geometry = utils.spline_geometry(rim)
-    min_pt = rim_geometry.min_point
-    max_pt = rim_geometry.max_point
-  
-    # make an orbit mask, given the rim and globe
+    # Make an orbit mask, given the rim and globe
     mask_union = make_orbit_mask(rim, globe)
 
     # Union the orbit mask with Bone and Air masks
     mask_union = utils.masks_unite(mask_union, mask_bone)
     mask_union = utils.masks_unite(mask_union, mask_air)
-
-
-
     # Fill the combined masks
     mask_smartfill = mimics.segment.smart_fill_global(mask_union, 7)
   
-    # Expand the bbox beyond the rim by +/- 10 X and +/- 15 Z
-    # with Y extending -5 and out 80. Could go to max_pt[Y] + 80
-    expand = (10, 5, 15) # I think X should be more
+    # Make an ROI around the rim, extending past it 
+    orbit_ROI = make_orbit_ROI(rim)
 
-    box_orig = np.array(min_pt) - np.array(expand)
-    vector_x = (max_pt[X] - min_pt[X] + (2 * expand[X]), 0, 0)
-    vector_y = (0, 80, 0)
-    vector_z = (0, 0, max_pt[Z] - min_pt[Z] + (2 * expand[Z]))
-    
-    orbit_ROI = mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
-
-    # Crop the filled mask and create a part
+    # Crop the filled mask with the orbit ROI and convert to a part
     mask_smartfill = mimics.segment.crop_mask(mask_smartfill, orbit_ROI)
     part_smartfill = utils.part_from_mask(mask_smartfill)
     
@@ -158,16 +142,7 @@ for p in projects:
       masks[matl] = utils.masks_intersect(masks[matl], mask_intersect_vol)
       if masks[matl].number_of_pixels > 0:
         parts[matl] = utils.part_from_mask(side_label + matl, masks[matl])
-
-    
-    # # Delete all masks (except the Orbital Volume mask...)
-    # objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
-    # for m in mimics.data.objects:
-    #   if m.name in objects_to_keep:
-    #     print(f"Keeping {m.name} {m.type}")
-    #   else:
-    #     mimics.data.objects.delete(m)
-
+ 
     # extract the results for this eye
     volumes[side] = {side_label + name: part.volume for name, part in parts.items()}
 

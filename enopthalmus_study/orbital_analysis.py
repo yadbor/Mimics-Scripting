@@ -100,3 +100,22 @@ def make_orbit_mask(rim, globe):
 
   # The union of all the masks is now everything in front of the orbital rim
   return(mask_union)
+
+def make_orbit_ROI(rim):
+  # Get the rim extents 
+  rim_geometry = utils.spline_geometry(rim)
+  min_pt = rim_geometry.min_point
+  max_pt = rim_geometry.max_point
+
+  # Make a bounding box that extends beyond the rim by +/- 10 X and +/- 15 Z
+  # with Y extending -5 and out 80. Could go to max_pt[Y] + 80 ?
+
+  expand = (10, 5, 15) # I think X should be more
+
+  box_orig = (min_pt[X] - expand[X], min_pt[Y] - expand[Y], min_pt[Z] - expand[Z])
+  vector_x = (max_pt[X] - min_pt[X] + (2 * expand[X]), 0, 0)
+  vector_y = (0, 80, 0)
+  vector_z = (0, 0, max_pt[Z] - min_pt[Z] + (2 * expand[Z]))
+  
+  orbit_ROI = mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
+  return orbit_ROI
