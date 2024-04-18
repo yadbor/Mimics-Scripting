@@ -4,7 +4,9 @@
 import os # for scandir() etc
 import re # for regexp matching
 
-from const import * # CONSTANT definitions for this project (* is safe as only consts in file)
+import numpy as np # Only used for np.array() in bounding box construction
+
+from const import * # CONSTANT definitions for this project (* is safe as only consts)
 import utils # Utility functions to simplify code
 
 from orbital_analysis import make_orbit_mask
@@ -44,7 +46,6 @@ for p in projects:
   project_info = mimics.file.get_project_information()
   info_dict = {k:extract_info(project_info, v) for k, v in info_fields.items()}
 
-
   # 1. make mask_bone and part_bone
 
   # Ignore any previously defined bone mask and make a new one 
@@ -58,118 +59,120 @@ for p in projects:
   # Also need a background mask for *everything* that is air
   mask_air = utils.mask_from_material("Air Mask", materials.MATL_AIR)
 
-  # Determine which geometry is on which side, based on the location of the eyeballs
+  # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
+  #    X+ to the patient's Left
+  #    Y+ to the patient's Posterior
+  #    Z+ to the patient's Superior
+  # Determine which geometry is on which side, based JUST on the location of the eyeballs
   num_eyes = len(mimics.data.spheres)
   if num_eyes == 2:
-      # Look for eye on right hand side of the scan
-      if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
-          eyes = 'right', 'left'
-      else:
-          eyes = 'left', 'right'
+    # Look for eye on right hand side of the scan. If not it must be on the left.
+    if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
+      eyes = 'right', 'left'
+    else:
+      eyes = 'left', 'right'
   elif num_eyes == 1:
-      # No eye to compare so compare against approximate centreline
-      if mimics.data.spheres[0].center[X] < 0:
-          eyes = 'right',  # note the trailing comma to make this a singleton tuple
-      else:
-          eyes = 'left', 
+    # No eye to compare with, so compare against approximate centreline
+    if mimics.data.spheres[0].center[X] < 0:
+      eyes = 'right',  # note the trailing comma to make this a singleton tuple
+    else:
+      eyes = 'left', 
   else:
-      # ERROR - too many or too few eyes ## TODO - add some actual error catching code here
+    print(f'Wrong number of eyes! Expects one ot two, have {num_eyes}')
+    break # ERROR - too many or too few eyes, so move to next project
 
-  # Analyze each eye in the project    
-  for eye, side in emumerate(eyes):
-      rim = mimics.data.splines[eye]
-      globe = mimics.data.spheres[eye]
-      point = mimics.data.points[eye]
-      side_label = side + ' ' # add a trailing space to make nice labels
-      
-      # Get the rim extents 
-      rim_geometry = utils.spline_geometry(rim)
-      min_pt = rim_geometry.min_point
-      max_pt = rim_geometry.max_point
+  # This could be more robust, as it assumes that each eye component is measured
+  # in the same order - i.e. all the left components before the right components
+  # So could do left rim, left globe, left point, right rim, right globe, right point
+  # or left rim, right rim, left globe, right globe, left point, right point, etc.
+  # Could test each indiviual component and either save in a dict or 
+  # name them in mimics.data.{spheres|splines|points}
+
+  volumes = {} # Create a blank dict to hold measured volumes for each eye
+  # Analyze each eye in the project
+  for eye, side in enumerate(eyes):
+    rim = mimics.data.splines[eye]
+    globe = mimics.data.spheres[eye]
+    point = mimics.data.points[eye]
+    side_label = side + ' ' # add a trailing space to make nice labels
     
-      # make an orbit mask, given the rim and globe
-      mask_union = make_orbit_mask(rim, globe)
+    # Get the rim extents 
+    rim_geometry = utils.spline_geometry(rim)
+    min_pt = rim_geometry.min_point
+    max_pt = rim_geometry.max_point
+  
+    # make an orbit mask, given the rim and globe
+    mask_union = make_orbit_mask(rim, globe)
 
-      # Union the orbit mask with Bone and Air masks
-      mask_union = utils.masks_unite(mask_union, mask_bone)
-      mask_union = utils.masks_unite(mask_union, mask_air)
+    # Union the orbit mask with Bone and Air masks
+    mask_union = utils.masks_unite(mask_union, mask_bone)
+    mask_union = utils.masks_unite(mask_union, mask_air)
 
-      # Fill the combined masks
-      mask_smartfill = mimics.segment.smart_fill_global(mask_union, 7)
+
+
+    # Fill the combined masks
+    mask_smartfill = mimics.segment.smart_fill_global(mask_union, 7)
+  
+    # Expand the bbox beyond the rim by +/- 10 X and +/- 15 Z
+    # with Y extending -5 and out 80. Could go to max_pt[Y] + 80
+    expand = (10, 5, 15) # I think X should be more
+
+    box_orig = np.array(min_pt) - np.array(expand)
+    vector_x = (max_pt[X] - min_pt[X] + (2 * expand[X]), 0, 0)
+    vector_y = (0, 80, 0)
+    vector_z = (0, 0, max_pt[Z] - min_pt[Z] + (2 * expand[Z]))
     
-      # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS. That is:
-      #    X+ to the patient's Left
-      #    Y+ to the patient's Posterior
-      #    Z+ to the patient's Superior
+    orbit_ROI = mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
 
-      # Calculate an expanded bounding box to cover all of the objects of interest.
-      # This doesn't depend on side, but the origin of the box will.
-      # Expand beyond the origin by [-10, -5, -15] (10 right, 5 anterior, 15 inferior)
-      # that is make a bbox covering the rim, extending +/- 10 X and +/- 15 Z
-      # with Y extingin -5 and out 80. COuld go to max_pt[Y] + 80
-      # TODO: replace these numbers with CONSTANTS or something
-      box_orig = (min_pt[X] - 10, min_pt[Y] - 5, min_pt[Z] - 15)
-      vector_x = [(max_pt[X] - min_pt[X]) + 20, 0, 0]
-      vector_y = [0, 80, 0]
-      vector_z = [0, 0, (max_pt[Z] - min_pt[Z]) + 30]
+    # Crop the filled mask and create a part
+    mask_smartfill = mimics.segment.crop_mask(mask_smartfill, orbit_ROI)
+    part_smartfill = utils.part_from_mask(mask_smartfill)
+    
+    # Here could use code to improve the bone surface, as at
+    # https://github.com/Pythonsegmenter/Orbital-floor-maxillar-sinus-reconstruction
+    # also at https://gist.github.com/Pythonsegmenter/bf9c0df43c9d6260e35ad4b786faf90c
+    
+    part_wrap = mimics.tools.wrap(part_smartfill, 0.2, 10, False, True, True)
+    mask_wrapped = mimics.segment.calculate_mask_from_part(part_wrap, None)
 
-      # expand = (10, 5, 15) # I think X should be more
-      # box_orig = [a - b for a,b in zip(min_pt, expand)]
-      # box_orig = (min_pt[X] - expand[X], min_pt[Y] - expand[Y], min_pt[Z] - expand[Z}])
-      # box_orig = np.array(min_pt) - np.array(expand)
-      # vector_x = (max_pt[X] - min_pt[X] + (2 * expand[X]), 0, 0)
-      # vector_y = (0, 80, 0)
-      # vector_z = (0, 0, max_pt[Z] - min_pt[Z] + (2 * expand[Z]))
-      
-      orbit_ROI = mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
-      # Crop the filled mask and create a part
-      mask_smartfill = mimics.segment.crop_mask(mask_smartfill, orbit_ROI)
-      part_smartfill = utils.part_from_mask(mask_smartfill)
-      
-      # Here could use code to improve the bone surface, as at
-      # https://github.com/Pythonsegmenter/Orbital-floor-maxillar-sinus-reconstruction
-      # also at https://gist.github.com/Pythonsegmenter/bf9c0df43c9d6260e35ad4b786faf90c
-      
-      smartfill_wrap = mimics.tools.wrap(part_smartfill, 0.2, 10, False, True, True)
-      mask_wrapped = mimics.segment.calculate_mask_from_part(part_wrap, None)
+    orbit_vol = utils.masks_subtract(mask_wrapped, mask_smartfill)
+    orbit_vol = mimics.segment.morphology_operations(orbit_vol, 'Erode', 1, 8, None, None)
+    orbit_vol = mimics.segment.region_grow(orbit_vol, orbit_vol, globe.center, 'Axial', False, True, connectivity='6-connectivity') 
+    orbit_vol.name = side_label + "Orbital Volume"
 
-      orbit_vol = utils.masks_subtract(mask_wrapped, mask_smartfill)
-      orbit_vol = mimics.segment.morphology_operations(orbit_vol, 'Erode', 1, 8, None, None)
-      orbit_vol = mimics.segment.region_grow(orbit_vol, orbit_vol, globe.center, 'Axial', False, True, connectivity='6-connectivity') 
-      orbit_vol.name = side_label + "Orbital Volume"
+    # Make a mask from the globe
+    mask_globe = utils.sphere_to_mask(globe)
+    # Subtract the globe from the orbit mask
+    mask_intersect_vol = utils.masks_subtract(orbit_vol, mask_globe)
+    mask_intersect_vol.name = side_label + "Intersect Mask"
+    # and make into a Part
+    part_orbital_vol = utils.part_from_mask(mask_intersect_vol)
 
-      # Make a mask from the globe
-      mask_globe = utils.sphere_to_mask(globe)
-      # Subtract the globe from the orbit mask
-      mask_intersect_vol = utils.masks_subtract(orbit_vol, mask_globe)
-      mask_intersect_vol.name = side_label + "Intersect Mask"
-      # and make into a Part
-      part_orbital_vol = utils.part_from_mask(mask_intersect_vol)
+    # Create a list of masks and corresponding parts for each material 
+    # in the orbit_materials dict.
+    # Put the orbital volume first in the parts list
+    parts = {'orbital': part_orbital_vol}
+    masks = {'orbital': mask_intersect_vol}
+    for matl in orbit_materials:
+      masks[matl] = utils.mask_from_material(matl + ' mask', orbit_materials[matl])
+      masks[matl] = utils.masks_intersect(masks[matl], mask_intersect_vol)
+      if masks[matl].number_of_pixels > 0:
+        parts[matl] = utils.part_from_mask(side_label + matl, masks[matl])
 
-      # Create a list of masks and corresponding parts for each material 
-      # in the orbit_materials dict.
-      # Put the orbital volume first in the parts list
-      parts = {'orbital': part_orbital_vol}
-      masks = {'orbital': mask_intersect_vol}
-      for matl in orbit_materials:
-        masks[matl] = utils.mask_from_material(matl + ' mask', orbit_materials[matl])
-        masks[matl] = utils.masks_intersect(masks[matl], mask_intersect_vol)
-        if masks[matl].number_of_pixels > 0:
-          parts[matl] = utils.part_from_mask(side_label + matl, masks[matl])
+    
+    # # Delete all masks (except the Orbital Volume mask...)
+    # objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
+    # for m in mimics.data.objects:
+    #   if m.name in objects_to_keep:
+    #     print(f"Keeping {m.name} {m.type}")
+    #   else:
+    #     mimics.data.objects.delete(m)
 
-      
-      # # Delete all masks (except the Orbital Volume mask...)
-      # objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
-      # for m in mimics.data.objects:
-      #   if m.name in objects_to_keep:
-      #     print(f"Keeping {m.name} {m.type}")
-      #   else:
-      #     mimics.data.objects.delete(m)
-
-      # extract the results for this eye
-      volumes[side] = {side_label + name: part.volume for name, part in parts.items()}
+    # extract the results for this eye
+    volumes[side] = {side_label + name: part.volume for name, part in parts.items()}
 
   # Write the results from this project
   
   mimics.file.close_project # move to the next project
   
+# Finished
