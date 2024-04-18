@@ -16,7 +16,7 @@ elif sphere1.x > 0:
 else:
   side = 'ambiguous'
 
-
+import mimics # for sytax checker and dummy routines
 
 ###############################
 # Old test code to create dummy data
@@ -239,4 +239,27 @@ for i in range(len(v)):
     v[i] = v[i]+100
 mimics.segment.create_part(v,t)
 
+import numpy as np
+# Create a Scale matrix
+def scale_matrix(s):
+    return np.array([[s, 0, 0],[0, s, 0], [0, 0, s]])
+# Scale an object by s (in our case, r/10 for a 10 unit sphere)
+def scale_object(p, s):
+    tx = scale_matrix(s)
+    v,t = p.get_triangles()
+    v = np.array(v)
+    t = np.array(t) # Don't actually need this line 
+    vt = v.dot(tx.T)
+    return mimics.segment.create_part(vt,t)
 
+
+# Text crop box calculation
+# Make a tuple of spans (min_x, max_x)
+
+spans = ((10, 20), (-20, -10))
+for mn, mx in spans:
+  box_orig_pos = mn - 10
+  vector_x_pos = mx - mn + 20
+  box_orig_neg = mx + 10
+  vector_x_neg = mn - mx - 20
+  print(f"box ({mn}, {mx}) neg from {box_orig_neg} by {vector_x_neg} to {box_orig_neg + vector_x_neg}, pos from {box_orig_pos} by {vector_x_pos} to {box_orig_pos + vector_x_pos}")

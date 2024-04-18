@@ -1,5 +1,10 @@
 
 from const import * # CONSTANT definitions for this project (* is safe as only consts in file)
+import utils # Utility functions to simplify code
+import materials # Material definitions (used to make masks)
+
+import mimics # API to access mimics (not needed inside mimics)
+import mimics.analyze # API to access mimics (not needed inside mimics)
 
 # A dataclass is like a record or c struct, with named attributes
 from dataclasses import dataclass
@@ -13,7 +18,12 @@ class Eye_data:
 
 # Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points.
 def make_crop_box(pt_up, pt_down, spacing_z):
-  """Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points."""
+  """Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points.
+  Input:  two points for the posterior edge of the box and a thickness.
+          The posterior edge will be extended by MULT_XY in both directions and
+          the box will extend SIZE_Y anteriorly.
+  Output: A mimcs.BoundingBox3d to sue for cropping a mask."""
+
   # Align the crop box along the XY line between the two intesection points, 
   # expanded slightly to ensure it covers the whole orbit
   vector_x = [ MULT_XY * (pt_up.x - pt_down.x), MULT_XY * (pt_up.y - pt_down.y), 0]
@@ -23,15 +33,10 @@ def make_crop_box(pt_up, pt_down, spacing_z):
   origin = (pt_down.x, pt_down.y, pt_down.z + spacing_z / 2)
   return mimics.BoundingBox3d(origin, vector_x, vector_y, vector_z)
 
-import utils # Utility functions to simplify code
-
-def make_orbit_mask(eye):
+def make_orbit_mask(rim, globe):
   """Calculate Orbital contents volumes.
-  Input: an eye containing the rim, globe and apex point and the bone mask"""
-
-  rim = eye['rim']     # A mimics.Spline
-  globe = eye['globe'] # A mimics.Sphere
-  point = eye['point'] # A mimics.Point
+  Input:  a mimics.Spline delmiting the rim, and a mimics.Sphere for the globe.
+  Output: a Mask from the 'surface' of the rim, extending forward, for cropping."""
 
   # Decompose the spline into straight lines between each pair of points.
   # Use these to intersect with planes, as mimics doesn't have a spline intersect plane function.
@@ -52,7 +57,7 @@ def make_orbit_mask(eye):
  
   plane_origins = [(globe_x, globe_y, min_z + (z + 1) * spacing)
                     for z
-                    in range(const.NUM_PLANES - 1)]
+                    in range(NUM_PLANES - 1)]
 
   # Create planes using these origins paralle to the X,Y plane (normal is Z+)
   norm_z = [0, 0, 1]
@@ -62,7 +67,7 @@ def make_orbit_mask(eye):
   
   # For each plane, find intersections with the spline lines 
   # and create a bounding box based on the intersection points.
-  boxes = [] # Start with a blank list for the boxes
+  boxes = [] # Start with an empty list for the boxes
   for plane in z_planes:
     pt_up, pt_down = None, None
     for line in spline_lines:
@@ -71,11 +76,12 @@ def make_orbit_mask(eye):
       from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z]) # TODO: should this be >=
       from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z]) # TODO: should this be =<
       if (from_above):
-        pt_up = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
+        pt_up = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
       if (from_below):
-        pt_down = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
+        pt_down = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
     
-      # A line will only cross a single plane once. Stop when have found one in each direction.
+      # Each line will only cross any given plane once, so can stop
+      # when there is an intersection in each direction.
       if (pt_up is not None) and (pt_down is not None):
         boxes.extend(make_crop_box(pt_up, pt_down)) # add the current crop box to the list
         break # We have found that line for this plane   
@@ -85,21 +91,22 @@ def make_orbit_mask(eye):
 
   # Adjust the first and last bounding box to ensure full overlap.
   boxes[0].third_vector[2] = -MULT_Z * boxes[0].third_vector[2]  # first goes down
-  boxes[-1].third_vector[2] = MULT_Z * boxes[-1].third_vector[2] # last goes up
+  boxes[-1].third_vector[2] = MULT_Z * boxes[-1].third_vector[2] # and last goes up
 
   # Now use the bounding boxes to create a Region Of Interest
-  united_masks = mimics.segment.create_mask() # Empty mask to start with
+  mask_union = mimics.segment.create_mask() # Start with an empty mask
   # Loop through each box, create a mask, crop it with the box, and Union it together.
   for bbox in boxes:
-    # Create a mask, thresholding it to cover everything
-    m = mimics.segment.threshold(mimics.segment.create_mask(), const.MIN_GV, const.MAX_GV)
-    # Crop it with BoundingBox for this plane
-    mimics.segment.crop_mask(m, bbox)
+    # Create a temporary mask, thresholding it to cover everything and
+    # crop it with BoundingBox for this plane.
+    m = mimics.segment.threshold(mask = mimics.segment.create_mask(), 
+                                 threshold_min = materials.MIN_GV, 
+                                 threshold_max = materials.MAX_GV,
+                                 bounding_box = bbox)
     # Union with the existing mask
-    united_masks = masks_unite(united_masks, m)
-    # united_masks is now everything in front of the orbital rim
-    return(united_masks)
+    mask_union = utils.masks_unite(mask_union, m)
+    # then delete it
+    mimics.data.masks.delete(m)
 
-  # Unite it with the Bone and Air masks
-  united_masks = masks_unite(united_masks, mask_bone)
-  united_masks = masks_unite(united_masks, mask_air)
+  # The union of all the masks is now everything in front of the orbital rim
+  return(mask_union)

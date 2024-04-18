@@ -12,3 +12,6 @@ CLOSING_DIST = 7 # For smartfill
 # Axis names for points stored as [X, Y, Z]
 X, Y, Z = 0, 1, 2
 
+# Amount to expand the bounding box of the orbit to make sure everything is covered
+BOX_EXPAND = [10, 5, 15]
+

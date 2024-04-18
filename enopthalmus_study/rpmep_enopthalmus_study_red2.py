@@ -26,7 +26,7 @@ from utils import looped_pairwise
 
 import materials # Contains definitions of all materials
 # Define a Material data structure and some helper functions
-from utils import Material, material_mask, mask_to_part
+from utils import Material, material_mask, part_from_mask
 # Segment orbital contents into these Materials & measure volume
 materials = {
   'air'    : const.MATL_AIR, 
@@ -37,7 +37,7 @@ materials = {
 # If there is no "Bone Mask" mask the make a bone mask and part
 if mimics.data.objects.find("Bone Mask") is None:
   mask_bone = material_mask("Bone Mask", const.MATL_BONE)
-  part_bone = mask_to_part("Bone", mask_bone)
+  part_bone = part_from_mask("Bone", mask_bone)
 # else use the exisitng mask
 
 # TODO: What about creating the Air mask here as well?
@@ -246,7 +246,7 @@ for matl in materials.keys():
   masks[matl] = material_mask(matl + ' mask', materials[matl])
   masks[matl] = mimics.segment.boolean_operations(masks[matl], intersect_vol_mask, 'Intersect')
   if masks[matl].number_of_pixels > 0:
-    parts[matl] = mask_to_part(matl, masks[matl])
+    parts[matl] = part_from_mask(matl, masks[matl])
 
 # # Discrete object version
 # mask_air = mimics.segment.boolean_operations(material_mask("Air Mask", const.MATL_AIR), intersect_vol_mask, 'Intersect')
