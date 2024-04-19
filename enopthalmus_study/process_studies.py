@@ -123,7 +123,7 @@ for p in projects:
     orbit_vol = mimics.segment.morphology_operations(orbit_vol, 'Erode', 1, 8, None, None)
     orbit_vol = mimics.segment.region_grow(orbit_vol, orbit_vol, globe.center, 'Axial', False, True, connectivity='6-connectivity') 
     orbit_vol.name = side_label + "Orbital Volume"
-
+  
     # Make a mask from the globe
     mask_globe = utils.sphere_to_mask(globe)
     # Subtract the globe from the orbit mask
