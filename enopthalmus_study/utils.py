@@ -69,11 +69,19 @@ def masks_intersect(mask1, mask2):
   """Convenience function to do a boolean Intersect on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Intersect')
 
+def mask_dilate(mask, number_of_pixels = 2, connectivity = 8):
+  return mimics.segment.morphology_operations(mask, 
+                                              operation='Dilate', 
+                                              number_of_pixels=number_of_pixels, 
+                                              connectivity=connectivity, 
+                                              target_mask_name=None, 
+                                              limited_to_mask=None)
+
 # Geometry    
 from collections import namedtuple
 
 def spline_geometry(spline):
-  """Calculate the min, max, centroid and (otionally) span) of a given mimics.spline."""
+  """Calculate the min, max, centroid and (optionally) span) of a given mimics.spline."""
   Geometry = namedtuple("Desc", ["max", "min", "mean", "span"])
   max_point = [max(idx) for idx in list(zip(* spline.points))]
   min_point = [min(idx) for idx in list(zip(* spline.points))]

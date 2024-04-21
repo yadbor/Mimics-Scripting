@@ -107,10 +107,14 @@ def make_orbit_ROI(rim):
   min_pt = rim_geometry.min_point
   max_pt = rim_geometry.max_point
 
-  # Make a bounding box that extends beyond the rim by +/- 10 X and +/- 15 Z
-  # with Y extending -5 and out 80. Could go to max_pt[Y] + 80 ?
+  # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
+  #    X+ to the patient's Left
+  #    Y+ to the patient's Posterior
+  #    Z+ to the patient's Superior
 
-  expand = (10, 5, 15) # I think X should be more
+  # Make a bounding box that extends beyond the rim by +/- 10 X and +/- 15 Z
+  # with Y extending ant by -5 and posterior 80. Could go to max_pt[Y] + 80 ?
+  expand = (10, 5, 15) # I think Y could be more?
 
   box_orig = (min_pt[X] - expand[X], min_pt[Y] - expand[Y], min_pt[Z] - expand[Z])
   vector_x = (max_pt[X] - min_pt[X] + (2 * expand[X]), 0, 0)
