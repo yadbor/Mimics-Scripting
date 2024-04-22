@@ -97,15 +97,20 @@ for p in projects:
     point = mimics.data.points[eye]
     side_label = side + ' ' # add a trailing space to make nice labels
     
-    # Make an orbit mask, given the rim and globe
+    # Mask off everything anterior to the orbital rim, given the rim and globe
     mask_union = orbital_analysis.make_orbit_mask(rim, globe)
-
     # Make an ROI based on the rim, extending past that to cover the whole orbit
     orbit_ROI = orbital_analysis.make_orbit_ROI(rim)
 
+    # Crop the air and bone masks to this ROI and unite them to give a "not orbit contents" mask.
+    mask_bone_ROI = mimics.segment.crop_mask(mask_bone, orbit_ROI)
+    mask_air_ROI = mimics.segment.crop_mask(mask_air, orbit_ROI)
+    mask_not_orbit = utils.mask.unite(mask_bone_ROI, mask_air_ROI)
+    mimics.data.masks.delete(mask_bone_ROI) # Clean up the list of masks
+    mimics.data.masks.delete(mask_air_ROI) # Clean up the list of masks
+    
     # Union the orbit mask with Bone and Air masks
-    mask_union = utils.masks_unite(mask_union, mask_bone)
-    mask_union = utils.masks_unite(mask_union, mask_air)
+    mask_union = utils.masks_unite(mask_union, mask_not_orbit)
 
     # Repair Orbit Walls + Floor
     # Could use code to improve the bone surface, as at
@@ -115,6 +120,7 @@ for p in projects:
     # Fill the combined masks to give everything *except* the orbital contents
     mask_smartfill = mimics.segment.smart_fill_global(mask_union, 7)
     # Crop the filled mask with the orbit ROI and convert to a part
+    # Already cropped above, but redo after uniting the anterior mask
     mask_smartfill = mimics.segment.crop_mask(mask_smartfill, orbit_ROI)
     part_smartfill = utils.part_from_mask(mask_smartfill)
 
@@ -123,6 +129,15 @@ for p in projects:
     #  and convert back into a mask.
     mask_wrapped = mimics.segment.calculate_mask_from_part(part_wrapped, None)
     
+    # Now create a mask of everything in the ROI
+    # Make a mask for all thresholds, cropped to the bounding box
+    mask_temp_orbit = mimics.segment.threshold(
+                         mask = mimics.segment.create_mask(), 
+                         threshold_min = MIN_GV, 
+                         threshold_max = MAX_GV,
+                         bounding_box = orbit_ROI
+                         ) #change this to landmarks
+
     # The orbit is the wrapped mask of everything minus the filled version ???
     mask_orbit_vol = utils.masks_subtract(mask_wrapped, mask_smartfill)
     # Erode that to separate the orbit volume from the surroundings
@@ -161,7 +176,9 @@ for p in projects:
 
 ### From version 1 (which worked?)
 
-# Make air mask from thresholds with bounding box
+# Mask air once, then crop that to each eye
+
+# Make air mask from thresholds ** cropped to a bounding box **
 mask_temp_air = mimics.segment.threshold(
                        mask = mimics.segment.create_mask(), 
                        threshold_min = mimics.segment.HU2GV(-1024), 
@@ -172,10 +189,9 @@ mask_temp_air = mimics.segment.threshold(
 mimics.segment.keep_largest(mask_temp_air)
 # Make it 2 pixels bigger all around
 mask_temp_morph = utils.mask_dilate(mark_temp_air, number_of_pixels = 2, connectivity = 8)
-#mask_temp_morph = mimics.segment.morphology_operations(mask_temp_air, operation='Dilate', number_of_pixels=2, connectivity=8, target_mask_name=None, limited_to_mask=None)
 # Add to the bone mask
 mask_bone_boolean = utils.masks_unite(mask_temp_morph, mask_bone)
-#mask_bone_boolean = mimics.segment.boolean_operations(mask_temp_morph, mask_bone, 'Unite')
+# Smart fill the combined mask
 mask_bone_filled = mimics.segment.smart_fill_global(mask=mask_bone_boolean, hole_closing_distance=7)
 part_bone_repaired = mimics.segment.calculate_part(mask_bone_filled, quality='High')
 # Should be part_bone_filled, but really is part_not_orbit?
