@@ -2,6 +2,7 @@
 
 from const import * # Safe to use * as only CONSTANS variables
 import utils
+import materials
 
 
 # Get the rim extents 
@@ -48,8 +49,8 @@ mask_not_orbit = utils.masks_unite(mask_not_orbit, mask_anterior)
 # Make a mask of potential orbit contencts (all thresholds in the ROI)
 mask_orbit = mimics.segment.threshold(
                          mask = mimics.segment.create_mask(), 
-                         threshold_min = MIN_GV, 
-                         threshold_max = MAX_GV,
+                         threshold_min = materials.MIN_GV, 
+                         threshold_max = materials.MAX_GV,
                          bounding_box = bbox_orbit
                          )
 # Subtract the not_orbit 
@@ -88,7 +89,7 @@ def expand_bbox(bbox, expand):
     bbox.second_vector = [bbox.second_vector[X], 
                          bbox.second_vector[Y] + exp_max[Y],
                          bbox.second_vector[Z]]
-    bbox.first_vector = [bbox.third_vector[X], 
+    bbox.third_vector = [bbox.third_vector[X], 
                          bbox.third_vector[Y],
                          bbox.third_vector[Z] + exp_max[Z]]
     return bbox
