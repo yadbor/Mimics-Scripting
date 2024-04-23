@@ -118,7 +118,7 @@ def scale_object(p, s):
 
 # Definitions of the Unit Sphere file, created manually.
 UNIT_RADIUS = 1
-UNIT_SPHERE_FILE = "10_unit_sphere.stl"
+UNIT_SPHERE_FILE = 'unit_sphere.stl'
 
 def sphere_to_mask(s):
   # Load STL as a part
