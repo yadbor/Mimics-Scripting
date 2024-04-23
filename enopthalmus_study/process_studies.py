@@ -36,7 +36,7 @@ info_fields = dict(zip(('image', 'study'), [re.split(r',\s*', name) for name in 
 def extract_info(info, fields):
   return(dict([(att, getattr(info, att) ) for att in fields]))
 
-# Ge tthe names of all projects analyzed by Sam
+# Get the names of all projects analyzed by Sam
 root = r'D:\Projects & Research\Enophthalmos Study'
 projects = [f for f in os.scandir(root) if re.match(r'.*SS\s+\d+\.mcs', f.name)]
 
