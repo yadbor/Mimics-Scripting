@@ -1,6 +1,6 @@
 # New insights - version based on the rim bounding box
 
-from const import * # Safe to use * as only CONSTANS variables
+from const import * # Safe to use * as only CONSTANT variables
 import utils
 import materials
 
@@ -11,10 +11,11 @@ min_pt = rim_geometry.min
 max_pt = rim_geometry.max
 
 # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
-#    X+ to the patient's Left
+#    X+ to the patient's Left 
 #    Y+ to the patient's Posterior
 #    Z+ to the patient's Superior
-orbit_expansion = ((10,10), # X_left, X_right
+#  So subtract the min column (R,A,I) and add the max column (L,P,S)
+orbit_expansion = ((10,10), # X_right, X_left
                    (30,80), # Y_ant, Y_post
                    (15,15)  # Z_inf, Z_sup
                    )
