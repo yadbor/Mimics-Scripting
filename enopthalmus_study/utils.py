@@ -184,6 +184,21 @@ def bbox_center(bbox):
   mid_pt = tuple((p + s) for p, s in zip(bbox.origin, span))
   return mid_pt
 
+def antero_lateral(bbox, side):
+  # The antero-lateral point on left eye is away from origin, on the right it is the origin.
+  # This will be on the very edge of the bounding box, so move back toward the centre.
+  delta = 2 # Amount in mm to nudge to point into the ROI
+  pt = bbox.origin
+  if side == 'left':
+    pt  = (pt[X] + bbox.first_vector[X] - delta, pt[Y] + delta, pt[Z] + delta)
+  elif side == 'right':
+    pt  = (pt[X] + delta, pt[Y] + delta, pt[Z] + delta)
+  else:
+    print(f"Called with side == '{side}', but it must be 'left' or 'right'.")
+
+  
+  return pt
+
 def labelled_point(prefix = '', name = '', point=None):
    if name != '':
     name = name + '_'  # add a spacer if needed

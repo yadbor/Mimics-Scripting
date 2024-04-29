@@ -1,5 +1,7 @@
 #Script: Perform automated segmentation of the orbit and analysis for estimation of enophthalmos in orbital reconstructions - Study with Dieter 2022. 
 
+import mimics
+
 #Generate a bone object if it does not already exist
 if mimics.data.objects.find("Bone Mask", False) == None:
     mask_bone = mimics.segment.create_mask()
@@ -101,7 +103,7 @@ if mimics.data.objects.find("Orbital Volume", False) == None:
             boolean_masks = mimics.segment.boolean_operations(boolean_masks, crop_masks[n], 'Unite')
     
     
-    pause 
+    # pause 
             
     #boolean w air
     boolean_masks = mimics.segment.boolean_operations(boolean_masks, mask_bone, 'Unite')

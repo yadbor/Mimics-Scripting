@@ -1,5 +1,7 @@
 #Script: Perform automated segmentation of the orbit and analysis for estimation of enophthalmos in orbital reconstructions - Study with Dieter 2022. 
 
+import mimics # needed for systax checker
+
 #Generate a bone object
 mask_bone = mimics.segment.create_mask()
 mask_bone.name = "Bone Mask"
@@ -10,6 +12,8 @@ part_bone.name = "Bone"
 
 #user defined globe
 #sphere1 = mimics.analyze.indicate_sphere(message="Indicate the globe using 3pts on the axial view", show_message_box=True, confirm=True, title=None)
+sphere1 = mimics.data.spheres[0]
+
 imag = mimics.data.images.get_active()
 globe_gv = imag.get_grey_value(point_coordinates= sphere1.center)
 print(f"Hu Value at Sphere Center {sphere1.center} is: {mimics.segment.GV2HU(globe_gv)} Hu")
@@ -35,9 +39,12 @@ print()
 
 
 #Indicate Plane from Landmarks
-plane1 = mimics.analyze.indicate_plane_points(message="Indicate a plane in the orbit", show_message_box=True, confirm=True, title=None)
+#plane1 = mimics.analyze.indicate_plane_points(message="Indicate a plane in the orbit", show_message_box=True, confirm=True, title=None)
+spline1 = mimics.data.splines[0]
+plane1 = mimics.analyze.create_plane_fit_to_spline(spline=spline1)
 plane1.name = "Cut off Plane"
 #point1 = mimics.analyze.indicate_point(message='Please indicate point', show_message_box=True, confirm=True, title=None)
+point1 = mimics.data.points[0]
 line1 = mimics.analyze.create_line(plane1.origin, point1, name=None, color=None)
 
 #Crop Bone to Orbit Volume based on Plane and line distance
