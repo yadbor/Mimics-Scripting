@@ -231,6 +231,20 @@ else:
 # Part from triangles
 # in Mimics API help under mimcs.segment
 import numpy as np
+# Scale matrix for a 10 unit sphere
+def scale_matrix(s):
+    return np.array([[s, 0, 0],[0, s, 0], [0, 0, s]])
+
+def scale_object(p, r):
+    tx = scale_matrix(r/10)
+    v,t = p.get_triangles()
+    v = np.array(v)
+    t = np.array(t) # Don't actually need this line
+    vt = v.dot(tx.T)
+    return mimics.segment.create_part(vt,t)
+
+
+
 p = mimics.data.parts[0]
 v,t = p.get_triangles()
 v = np.array(v)
@@ -239,4 +253,46 @@ for i in range(len(v)):
     v[i] = v[i]+100
 mimics.segment.create_part(v,t)
 
+
+
+
+def spline_intercept_plane(spline_lines, plane):
+    for line in spline_lines:
+		from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z]) # TODO: should this be >=
+		from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z]) # TODO: should this be =<
+		if (from_above):
+		  pt_up = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
+		if (from_below):
+		  pt_down = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
+
+
+
+
+
+
+def bbox_from_intersections(pt_a, pt_b, mult = MULT_XY, thickness = spacing, depth = ANT_EXT):
+	k = (mult - 1)/2.0
+	delta = [(a-b) for a, b in zip(pt_a, pt_b)]
+	ofs = [ k * i for i in delta]
+
+	p1 = [a + o for a, o in zip(pt_a, ofs)]
+	p2 = [b - o for b, o in zip(pt_b, ofs)]
+
+	origin = p1[X], p1[Y], p1[Z] - (thickness/2)
+	first_vector=[p2[X]-p1[X], p2[Y]-p1[Y], 0]
+	second_vector = [0, -depth, 0]
+	third_vector = [0, 0, thickness]
+	bbox_ab = mimics.BoundingBox3d(origin, first_vector, second_vector, third_vector)
+	#mask_ab = mimics.segment.threshold(mask=mimics.segment.create_mask(select_new_mask=False), threshold_min=materials.MIN_GV, threshold_max=materials.MAX_GV, bounding_box=bbox_ab)
+	
+	return bbox_ab
+
+
+def bbox_thicken(bbox, extra):
+	if extra < 0:
+		bbox.origin = [bbox.origin[X], bbox.origin[Y], bbox.origin[Z] + extra]
+		bbox.third_vector = [bbox.third_vector[X], bbox.third_vector[Y], bbox.third_vector[Z] - extra]
+	else:
+		bbox.third_vector = [bbox.third_vector[X], bbox.third_vector[Y], bbox.third_vector[Z] + extra]
+	return bbox
 

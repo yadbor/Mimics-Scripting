@@ -20,7 +20,7 @@ def log_to_file(file_path, headers, results):
   if not file_path.exists():
       with open(file_path, 'w', newline='') as log_csv:
           # Start a new blank log with column headings in the first row
-          log_csv_write = csv.writer(log_csv)
+          log_csv_write = csv.writer(log_csv, dialect = 'excel')
           log_csv_write.writerow(headers)
   
   # Append the current results (with autocloses at exit)
