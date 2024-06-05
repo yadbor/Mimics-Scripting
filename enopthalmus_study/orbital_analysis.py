@@ -487,7 +487,7 @@ def segment_orbit(rim, globe, point, side):
     # Temporarily add in the globe, so that the globe centre point will alwaye be in the mask
     t3 = mimics.segment.boolean_operations(t2, m_globe, operation='Unite')
     # Region grow from the centre of the globe, then subtract the globe again
-    t4 = mimics.segment.region_grow(input_mask=t3, target_mask=None, point=p_globe.center, slice_type='Axial', keep_original_mask=True, multiple_layer=True, connectivity='6-connectivity')
+    t4 = mimics.segment.region_grow(input_mask=t3, target_mask=None, point=globe.center, slice_type='Axial', keep_original_mask=True, multiple_layer=True, connectivity='6-connectivity')
     t5 = mimics.segment.boolean_operations(t4, m_globe, operation='Minus')
     # The resulting mask may be a bit smaller than the bony orbit, so expand it a bit, then remove the filled bony orbit
     t6 = mimics.segment.morphology_operations(input_mask=t5, operation='Dilate', number_of_pixels=2, target_mask_name='t6', connectivity=8,limited_to_mask=None)
