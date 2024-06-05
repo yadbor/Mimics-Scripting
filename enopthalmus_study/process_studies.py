@@ -62,11 +62,6 @@ good = ('Evas', 'Dabbs', 'Hayes', 'Madden', 'Umbulgarri', 'Rogers')
 re_good = re.compile('('+'|'.join(good)+').*\\d{2}\\.mcs$', flags=re.IGNORECASE)
 projects = [f.path for f in os.scandir(root) if re.match(re_good, f.name)]
 
-# ## Test with one scan
-# projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
-
-#projects = projects[0] # just one file
-
 # Count the files we are processing
 num_projects = len(projects)
 
@@ -82,6 +77,12 @@ results_file = Path(os.path.join(os.path.dirname(projects[0]), 'results.csv'))
 logger = logging.getLogger(__name__)
 log_file = os.path.join(os.path.dirname(projects[0]), 'process_studies.log')
 logging.basicConfig(filename=log_file, level=logging.DEBUG)
+
+
+# ## Test with one scan ##
+# projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
+
+projects = projects[4] # just one file that has failed previously
 
 # Time events
 events = utils.Events() # Initialise an event timer. There is a seperate one in segment_orbit
@@ -156,41 +157,42 @@ for i, p in enumerate(projects):
             'left', 'right')
         # Note that some may not have an apex point
         eyes = {side[0]: {'globe': mimics.data.spheres[0],
-                          'rim': mimics.data.splines[0],
-                          'point': mimics.data.points[0] if len(mimics.data.points) > 0 else None
-                          },
+                            'rim': mimics.data.splines[0],
+                            'point': mimics.data.points[0] if len(mimics.data.points) > 0 else None
+                            },
                 # Empty entry to fill out results table
                 side[1]: {'globe': None, 'rim': None, 'point': None}
                 }
     else:
         # num_eyes must be 2 here.
-        # Need to find the side of each component indivudually, as could be entered in random order.
-        # Find wich index is left and which right for each component
+        # Need to find the side of each component indivdually, as could be entered in random order.
+        # Find which index is left and which right for each component
         # globes
-        (rg, lg) = (0, 1) if mimics.data.spheres[0].center[X] < mimics.data.spheres[0].center[X] else (1, 0)
+        (rg, lg) = (0, 1) if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X] else (1, 0)
         (rp, lp) = (0, 1) if mimics.data.points[0][X] < mimics.data.points[1][X] else (1, 0)
         (rr, lr) = (0, 1) if utils.spline_center(mimics.data.splines[0])[X] < utils.spline_center(mimics.data.splines[1])[X] else (1, 0)
 
         eyes = {'right': {'globe': mimics.data.spheres[rg],
-                          'rim': mimics.data.splines[rr],
-                          'point': mimics.data.points[rp] if len(mimics.data.points) > 0 else None
-                          },
+                            'rim': mimics.data.splines[rr],
+                            'point': mimics.data.points[rp] if len(mimics.data.points) > 0 else None
+                            },
                 'left': {'globe': mimics.data.spheres[lg],
-                         'rim': mimics.data.splines[lr],
-                         'point': mimics.data.points[lp] if len(mimics.data.points) > 0 else None
-                         }
+                            'rim': mimics.data.splines[lr],
+                            'point': mimics.data.points[lp] if len(mimics.data.points) > 0 else None
+                            }
                 }
 
-    # Name the inputs in mimics.data.{spheres|splines|points}, so could find them via name
+    # Name the inputs in mimics.data.{spheres|splines|points}, so can find them via name
     for side, d in eyes.items():
-      for part, obj in d.items():
-        obj.name = side + '_' + part
-        obj.visible = True
+        for part, obj in d.items():
+            obj.name = side + '_' + part
+            obj.visible = True
 
     volume_start = time.process_time()
-
-    volumes = {}  # Create a blank dict to hold measured volumes for each eye
-    # A blank dict to hold summary input information (spline bounds, globe & point location)
+    
+    # Create a blank dict to hold measured volumes for each eye
+    volumes = {}
+    # And a blank dict to hold summary input information (spline bounds, globe & point location)
     input_info = {}
     # Analyze each eye in the project
     for side, eye_parts in eyes.items():
