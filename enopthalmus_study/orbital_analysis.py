@@ -478,7 +478,7 @@ def segment_orbit(rim, globe, point, side):
     m_globe = utils.sphere_to_mask(globe)
     
     # Make a temporary 'all tissues' mask and subtract each boundary mask in turn
-    t1 = mimics.segment.threshold(mimics.segment.create_mask(), threshold_min=mimics.segment.HU2GV(-1024), threshold_max=mimics.segment.HU2GV(3071), bounding_box=mimics.measure.get_bounding_box((orbit_ROI)))
+    t1 = mimics.segment.threshold(mimics.segment.create_mask(), threshold_min=mimics.segment.HU2GV(-1024), threshold_max=mimics.segment.HU2GV(3071), bounding_box=orbit_ROI)
     t2 = mimics.segment.boolean_operations(t1, m_wrap_ba, operation='Minus')
     t2 = mimics.segment.boolean_operations(t2, m_fill_ba, operation='Minus')
     t2 = mimics.segment.boolean_operations(t2, m_air_external, operation='Minus')
