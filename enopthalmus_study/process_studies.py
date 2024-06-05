@@ -65,6 +65,8 @@ projects = [f.path for f in os.scandir(root) if re.match(re_good, f.name)]
 # ## Test with one scan
 # projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
 
+#projects = projects[0] # just one file
+
 # Count the files we are processing
 num_projects = len(projects)
 
