@@ -1,0 +1,980 @@
+[2024-04-17 18:29:17] Starting Materialise Mimics Medical 25.0.0.550 ...
+    Logging level: INFO
+PYTHON INTERACTIVE CONSOLE
+3.8.10 (tags/v3.8.10:3d8993a, May 3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)] [C:\Users\Health\AppData\Local\Programs\Python\Python38]
+[18:29:27] ››› import mimics
+[18:32:52] ››› help(mimics.tools.wrap)
+[18:32:52] Help on function wrap in module mimics.tools:
+[18:32:52] 
+[18:32:52] wrap(object_to_wrap: mimics.Part, smallest_detail: <class 'SupportsFloat'> = None, gap_closing_distance: <class 'SupportsFloat'> = None, dilate_result: bool = False, protect_thin_walls: bool = False, keep_originals: bool = True) -> mimics.Part
+[18:32:52]     Creates a wrapping surface of the selected object.
+[18:32:52] 
+[18:32:52]     This tool is particularly useful for medical parts, to filter small inclusions or close small holes. Furthermore, the function is a useful tool towards Finite Element Analysis, where an enveloping surface is needed.
+[18:32:52] 
+[18:32:52]     :param object_to_wrap: Part to be wrapped.
+[18:32:52]     :type object_to_wrap: mimics.Part
+[18:32:52]     :param smallest_detail: (optional) Corresponds to the size of the triangles of the new surface. Value range: [0.01, 10000]. If None, the default value is project's pixel size multiplied by 2.
+[18:32:52]     :type smallest_detail: typing.SupportsFloat
+[18:32:52]     :param gap_closing_distance: (optional) Determines the size of gaps that will be wrapped away via the operation. Value range: [0.01, 10000]. If None, the default value is project's pixel size.
+[18:32:52]     :type gap_closing_distance: typing.SupportsFloat
+[18:32:52]     :param dilate_result: (optional) If true, the result after wrapping will be dilated such that the pixels around the extremities of the mask are included.
+[18:32:52]     :type dilate_result: bool
+[18:32:52]     :param protect_thin_walls: (optional) Specifies the protection of the thin walls. If true, thin walls are preserved resulting to a slightly thicker model than the original one. If false, thin walls are not protected. Depending on the smallest detail it is possible that the walls with a thickness within the same range are collapsed.
+[18:32:52]     :type protect_thin_walls: bool
+[18:32:52]     :param keep_originals: (optional) Determines if the original objects are preserved. If true, the original objects are kept, otherwise they are deleted.
+[18:32:52]     :type keep_originals: bool
+[18:32:52] 
+[18:32:52]     :returns: A wrapped Part.
+[18:32:52]     :rtype: mimics.Part
+[18:32:52] 
+[18:32:52]     :exceptions: ValueError (reason(s): ['Cannot wrap empty STL', 'Smallest detail parameter should be in range from 0.01 to 10000', 'Gap closing distance parameter should be in range from 0.01 to 10000']), MemoryError (reason(s): ['Not enough memory to perform Wrap operation with defined parameters. Please adjust the parameters and try again.'])
+[18:32:52] 
+[18:32:52]     :example: 
+[18:32:52]     p = mimics.data.parts[0]
+[18:32:52]     sd = 0.6
+[18:32:52]     gcd = 0.6
+[18:32:52]     mimics.tools.wrap(object_to_wrap=p, smallest_detail=sd, gap_closing_distance=gcd)
+[18:32:52] 
+[18:33:59] Project edition information
+    Project created in: Materialise Mimics Medical 25.0
+    Project last modified in: Materialise Mimics Medical 25.0
+[18:34:01] Open project
+    file name: D:\Projects & Research\Enophthalmos Study\Acuna 2019.06.13 Bone SS 01.mcs
+[18:34:36] ››› ps = mimics.tools.wrap(mimics.data.spheres[0])
+[18:34:36] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: Parameter 'object_to_wrap' is not valid. mimics.analyze.Sphere cannot be converted to 'mimics.Part'
+[19:52:55] ››› import os
+[19:53:04] ››› os.getcwd()
+[19:53:04] C:\Program Files\Materialise\Mimics Medical 25.0
+[19:54:43] ››› from pathlib import Path
+[19:54:58] ››› Path().absolute()
+[19:54:58] C:\Program Files\Materialise\Mimics Medical 25.0
+[20:00:07] ››› file_path = r'D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\rpmep_enopthalmus_study_red.py'
+[20:00:10] ››› file_path
+[20:00:10] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\rpmep_enopthalmus_study_red.py
+[20:00:15] ››› os.path.dirname(file_path)
+[20:00:15] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study
+[20:07:50] ››› Path(file_path)
+[20:07:50] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\rpmep_enopthalmus_study_red.py
+[20:08:00] ››› Path(file_path).parent
+[20:08:00] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study
+[20:25:37] Export
+    object: unit_sphere
+    filename: unit_sphere_bin
+    output format: Binary STL Files (*.STL)
+    output directory: D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\
+[20:26:27] Export
+    object: unit_sphere
+    filename: unit_sphere_asc
+    output format: ASCII STL Files (*.STL)
+    output directory: D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\
+[20:33:46] Autosaving
+[20:33:46] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs
+[22:36:52] Calculate Mask from Object
+    object: Part-23
+    target mask: Yellow
+[22:37:16] Object deleted
+    name: Yellow
+[22:37:39] Calculate Mask from Object
+    object: Part-08
+    target mask: Yellow
+[22:37:50] Calculate Mask from Object
+    object: Part-09
+    target mask: Cyan
+[22:38:00] Create Part from mask
+    Quality: custom
+    Mask(s): Cyan
+    Shell reduction: OFF
+    Smooth: OFF
+    Reduce: OFF
+    Interpolation method: contour
+    Preference: continuity
+    First slice, mm: 66.2255
+    Last slice, mm: 241.2255
+    XY resolution: 1
+    Z resolution: 1
+    elapsed time: 00:00.109
+[22:38:29] ››› p = mimics.data.parts[-1]
+[22:38:47] ››› v,t = p.get_triangles()
+[22:39:06] ››› import numpy as np
+[22:41:47] ››› def scale_matrix(s): return np.array([[s, 0,0,0], [0,s,0,0], [0,0,s,0], [0,0,0,1]])
+[22:42:08] ››› tx = scale_matrix(2)
+[22:42:24] ››› v = np.array(v)
+[22:42:34] ››› vt = v.dot(tx.T)
+[22:42:34] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: shapes (11448,3) and (4,4) not aligned: 3 (dim 1) != 4 (dim 0)
+[22:43:05] ››› def scale_matrix(s): return np.array([[s,0,0], [0,s,0], [0,0,s]])
+[22:44:33] ››› tx = scale_matrix(2)
+[22:44:37] ››› vt = v.dot(tx.T)
+[22:45:16] ››› p = mimics.segment.create_part(vt, t)
+[22:45:31] ››› p.name
+[22:45:31] Part-25
+[22:46:53] Autosaving
+[22:46:53] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs
+[22:47:24] ››› min = (100, 200, 300)
+[22:47:37] ››› offset = (10, 5, 15)
+[22:47:51] ››› np.array(min) - np.array(offset)
+[22:47:51] [ 90 195 285]
+[22:48:22] ››› import utils
+[22:48:22] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'utils'
+[22:48:26] ››› import util
+[22:48:26] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'util'
+[22:48:30] ››› import utils
+[22:48:30] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'utils'
+[22:49:06] ››› os.path.dirname(file_path)
+[22:49:06] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study
+[22:53:21] ››› os.path.dirname(file_path)
+[22:53:21] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study
+[22:53:45] ››› sys.path.insert(1, file_path)
+[22:53:49] ››› import utils
+[22:53:49] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'utils'
+[22:53:56] ››› sys.path
+[22:53:56] ['', 'D:\\Projects & Research\\Enophthalmos Study\\Mimics-Scripting\\enopthalmus_study\\rpmep_enopthalmus_study_red.py', 'C:\\Program Files\\Materialise\\Mimics Medical 25.0', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\python38.zip', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\DLLs', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages\\win32', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages\\win32\\lib', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages\\Pythonwin']
+[22:54:22] ››› sys.path.insert(1, Path(file_path).parent)
+[22:54:26] ››› sys.path
+[22:54:26] ['', WindowsPath('D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study'), 'D:\\Projects & Research\\Enophthalmos Study\\Mimics-Scripting\\enopthalmus_study\\rpmep_enopthalmus_study_red.py', 'C:\\Program Files\\Materialise\\Mimics Medical 25.0', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\python38.zip', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\DLLs', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages\\win32', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages\\win32\\lib', 'C:\\Users\\Health\\AppData\\Local\\Programs\\Python\\Python38\\lib\\site-packages\\Pythonwin']
+[22:54:41] ››› sys.path[1]
+[22:54:41] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study
+[22:54:45] ››› sys.path[2]
+[22:54:46] D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\rpmep_enopthalmus_study_red.py
+[22:55:03] ››› import utils
+[22:55:03] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'utils'
+[22:57:50] ››› p.dimension_delta
+[22:57:50] (52.08220100402832, 53.04719543457031, 51.261199951171875)
+[23:00:53] Object hidden
+    name: Cyan
+[23:00:59] Object hidden
+    name: Green 1
+[23:01:04] Mask 3D Preview
+    State: ON
+The 3D preview can differ from the final 3D part/object.
+[23:01:20] Object shown
+    name: Cyan
+To be able to see the mask preview in 3D please turn Mask 3D Preview ON.
+[23:01:28] Object deleted
+    name: Cyan
+[23:01:28] Object deleted
+    name: Yellow
+[23:01:37] Object shown
+    name: Green 1
+[23:01:40] Mask 3D Preview
+    State: OFF
+[23:10:54] Autosaving
+[23:10:54] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs
+[10:03:41] Thresholding performed
+    Mask label: Bone Mask
+    Mask index: 1
+    Grey value min: 1250
+    Grey value max: 4095
+[10:03:43] Change Part Label: changed from Bone Mask 4 to Bone
+[10:03:43] Error: Traceback (most recent call last):
+  File "D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study/rpmep_enopthalmus_study_v2.py", line 21, in <module>
+NameError: name 'spline1' is not defined
+[10:04:25] ››› spline1 = mimics.data.splines[0]
+[10:04:47] ››› sphere1 = mimics.data.spheres[0]
+[10:04:51] 26
+[10:04:51] CAD object created
+    type: Line
+    name: Line 1
+    color: [255, 32, 32, 255]
+    point 1: [40.715218, -92.007423, 155.522141]
+    point 2: [44.438919, -90.708656, 153.754318]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 2
+    color: [255, 32, 32, 255]
+    point 1: [44.438919, -90.708656, 153.754318]
+    point 2: [47.927418, -89.190506, 151.646347]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 3
+    color: [255, 32, 32, 255]
+    point 1: [47.927418, -89.190506, 151.646347]
+    point 2: [50.786121, -86.776642, 149.071960]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 4
+    color: [255, 32, 32, 255]
+    point 1: [50.786121, -86.776642, 149.071960]
+    point 2: [53.091080, -84.083321, 146.113556]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 5
+    color: [255, 32, 32, 255]
+    point 1: [53.091080, -84.083321, 146.113556]
+    point 2: [53.045124, -82.518517, 142.552612]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 6
+    color: [255, 32, 32, 255]
+    point 1: [53.045124, -82.518517, 142.552612]
+    point 2: [53.701515, -82.468445, 138.010025]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 7
+    color: [255, 32, 32, 255]
+    point 1: [53.701515, -82.468445, 138.010025]
+    point 2: [53.744190, -83.399628, 132.327301]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 8
+    color: [255, 32, 32, 255]
+    point 1: [53.744190, -83.399628, 132.327301]
+    point 2: [52.659622, -85.681587, 128.199570]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 9
+    color: [255, 32, 32, 255]
+    point 1: [52.659622, -85.681587, 128.199570]
+    point 2: [50.712337, -88.426079, 125.375153]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 10
+    color: [255, 32, 32, 255]
+    point 1: [50.712337, -88.426079, 125.375153]
+    point 2: [46.129242, -91.576012, 122.759506]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 11
+    color: [255, 32, 32, 255]
+    point 1: [46.129242, -91.576012, 122.759506]
+    point 2: [41.691681, -93.590294, 122.192245]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 12
+    color: [255, 32, 32, 255]
+    point 1: [41.691681, -93.590294, 122.192245]
+    point 2: [36.636475, -94.319130, 122.780708]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 13
+    color: [255, 32, 32, 255]
+    point 1: [36.636475, -94.319130, 122.780708]
+    point 2: [32.436062, -94.342842, 124.034264]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 14
+    color: [255, 32, 32, 255]
+    point 1: [32.436062, -94.342842, 124.034264]
+    point 2: [26.545500, -95.162468, 125.888618]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 15
+    color: [255, 32, 32, 255]
+    point 1: [26.545500, -95.162468, 125.888618]
+    point 2: [22.678909, -96.493988, 128.647858]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 16
+    color: [255, 32, 32, 255]
+    point 1: [22.678909, -96.493988, 128.647858]
+    point 2: [19.795151, -97.654289, 130.663620]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 17
+    color: [255, 32, 32, 255]
+    point 1: [19.795151, -97.654289, 130.663620]
+    point 2: [17.288538, -98.215233, 133.313934]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 18
+    color: [255, 32, 32, 255]
+    point 1: [17.288538, -98.215233, 133.313934]
+    point 2: [15.340553, -97.286240, 137.033417]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 19
+    color: [255, 32, 32, 255]
+    point 1: [15.340553, -97.286240, 137.033417]
+    point 2: [14.850610, -95.625763, 141.592819]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 20
+    color: [255, 32, 32, 255]
+    point 1: [14.850610, -95.625763, 141.592819]
+    point 2: [17.265368, -94.024925, 146.188980]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 21
+    color: [255, 32, 32, 255]
+    point 1: [17.265368, -94.024925, 146.188980]
+    point 2: [19.734230, -94.571297, 150.694199]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 22
+    color: [255, 32, 32, 255]
+    point 1: [19.734230, -94.571297, 150.694199]
+    point 2: [21.812773, -94.624710, 153.339890]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 23
+    color: [255, 32, 32, 255]
+    point 1: [21.812773, -94.624710, 153.339890]
+    point 2: [24.675316, -94.295311, 156.459747]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 24
+    color: [255, 32, 32, 255]
+    point 1: [24.675316, -94.295311, 156.459747]
+    point 2: [28.360069, -93.797722, 158.004929]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 25
+    color: [255, 32, 32, 255]
+    point 1: [28.360069, -93.797722, 158.004929]
+    point 2: [34.797684, -94.006950, 156.639481]
+[10:04:51] CAD object created
+    type: Line
+    name: Line 26
+    color: [255, 32, 32, 255]
+    point 1: [34.797684, -94.006950, 156.639481]
+    point 2: [40.715218, -92.007423, 155.522141]
+[10:04:51] 158.0049285888672
+[10:04:51] 122.19224548339844
+[10:04:51] 36.0
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 1
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 125.7922]
+    point2: [35.6074, -87.7653, 125.7922]
+    point3: [35.9735, -86.3993, 125.7922]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 2
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 129.3923]
+    point2: [35.6074, -87.7653, 129.3923]
+    point3: [35.9735, -86.3993, 129.3923]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 3
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 132.9922]
+    point2: [35.6074, -87.7653, 132.9922]
+    point3: [35.9735, -86.3993, 132.9922]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 4
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 136.5922]
+    point2: [35.6074, -87.7653, 136.5922]
+    point3: [35.9735, -86.3993, 136.5922]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 5
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 140.1922]
+    point2: [35.6074, -87.7653, 140.1922]
+    point3: [35.9735, -86.3993, 140.1922]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 6
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 143.7923]
+    point2: [35.6074, -87.7653, 143.7923]
+    point3: [35.9735, -86.3993, 143.7923]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 7
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 147.3923]
+    point2: [35.6074, -87.7653, 147.3923]
+    point3: [35.9735, -86.3993, 147.3923]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 8
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 150.9922]
+    point2: [35.6074, -87.7653, 150.9922]
+    point3: [35.9735, -86.3993, 150.9922]
+[10:04:51] CAD object created
+    type: Plane
+    name: Plane 9
+    color: [196, 196, 196, 128]
+    point1: [36.9735, -87.3993, 154.5922]
+    point2: [35.6074, -87.7653, 154.5922]
+    point3: [35.9735, -86.3993, 154.5922]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 3
+    color: [255, 32, 32, 255]
+    coordinates: [50.999901, -88.020790, 125.792244]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 4
+    color: [255, 32, 32, 255]
+    coordinates: [26.851645, -95.119873, 125.792244]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 5
+    color: [255, 32, 32, 255]
+    coordinates: [52.973003, -85.022224, 129.392258]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 6
+    color: [255, 32, 32, 255]
+    coordinates: [21.613968, -96.922478, 129.392258]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 7
+    color: [255, 32, 32, 255]
+    coordinates: [53.739197, -83.290665, 132.992249]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 8
+    color: [255, 32, 32, 255]
+    coordinates: [17.592781, -98.147148, 132.992249]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 9
+    color: [255, 32, 32, 255]
+    coordinates: [53.712162, -82.700768, 136.592239]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 10
+    color: [255, 32, 32, 255]
+    coordinates: [15.571609, -97.396431, 136.592239]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 11
+    color: [255, 32, 32, 255]
+    coordinates: [53.386192, -82.492500, 140.192245]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 12
+    color: [255, 32, 32, 255]
+    coordinates: [15.001112, -96.135834, 140.192245]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 13
+    color: [255, 32, 32, 255]
+    coordinates: [53.061123, -83.063255, 143.792252]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 14
+    color: [255, 32, 32, 255]
+    coordinates: [16.006161, -94.859703, 143.792252]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 15
+    color: [255, 32, 32, 255]
+    coordinates: [52.094814, -85.247444, 147.392258]
+[10:04:51] CAD object created
+    type: Point
+    name: Point 16
+    color: [255, 32, 32, 255]
+    coordinates: [17.924765, -94.170853, 147.392258]
+[10:04:52] CAD object created
+    type: Point
+    name: Point 17
+    color: [255, 32, 32, 255]
+    coordinates: [48.653755, -88.577194, 150.992249]
+[10:04:52] CAD object created
+    type: Point
+    name: Point 18
+    color: [255, 32, 32, 255]
+    coordinates: [19.968388, -94.577316, 150.992249]
+[10:04:52] CAD object created
+    type: Point
+    name: Point 19
+    color: [255, 32, 32, 255]
+    coordinates: [42.673939, -91.324249, 154.592239]
+[10:04:52] CAD object created
+    type: Point
+    name: Point 20
+    color: [255, 32, 32, 255]
+    coordinates: [22.961834, -94.492485, 154.592239]
+[10:04:52] Thresholding performed
+    Mask label: Cyan
+    Mask index: 2
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:52] Thresholding performed
+    Mask label: Fuchsia
+    Mask index: 3
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:52] Thresholding performed
+    Mask label: Orange
+    Mask index: 4
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:53] Thresholding performed
+    Mask label: Red
+    Mask index: 5
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:53] Thresholding performed
+    Mask label: Blue
+    Mask index: 6
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:54] Thresholding performed
+    Mask label: Magenta
+    Mask index: 7
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:54] Thresholding performed
+    Mask label: GreenYellow
+    Mask index: 8
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:54] Thresholding performed
+    Mask label: Purple
+    Mask index: 9
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:55] Thresholding performed
+    Mask label: Violet
+    Mask index: 10
+    Grey value min: 0
+    Grey value max: 4095
+[10:04:55] Boolean operation
+    mask A: Pink
+    mask B: Cyan
+    operation: Mask union
+    result mask: Turquoise
+[10:04:55] Boolean operation
+    mask A: Turquoise
+    mask B: Fuchsia
+    operation: Mask union
+    result mask: Peach
+[10:04:55] Boolean operation
+    mask A: Peach
+    mask B: Orange
+    operation: Mask union
+    result mask: PaleGreen
+[10:04:55] Boolean operation
+    mask A: PaleGreen
+    mask B: Red
+    operation: Mask union
+    result mask: SkyBlue
+[10:04:55] Boolean operation
+    mask A: SkyBlue
+    mask B: Blue
+    operation: Mask union
+    result mask: Green2
+[10:04:55] Boolean operation
+    mask A: Green2
+    mask B: Magenta
+    operation: Mask union
+    result mask: Yellow2
+[10:04:55] Boolean operation
+    mask A: Yellow2
+    mask B: GreenYellow
+    operation: Mask union
+    result mask: Cyan2
+[10:04:55] Boolean operation
+    mask A: Cyan2
+    mask B: Purple
+    operation: Mask union
+    result mask: Fuchsia2
+[10:04:55] Boolean operation
+    mask A: Fuchsia2
+    mask B: Violet
+    operation: Mask union
+    result mask: Orange2
+[10:04:55] Boolean operation
+    mask A: Orange2
+    mask B: Bone Mask
+    operation: Mask union
+    result mask: Red2
+[10:04:55] Thresholding performed
+    Mask label: Blue2
+    Mask index: 22
+    Grey value min: 0
+    Grey value max: 824
+[10:04:55] Boolean operation
+    mask A: Red2
+    mask B: Blue2
+    operation: Mask union
+    result mask: Magenta2
+[10:05:48] Wrap
+    object: Wrapped_GreenYellow2 5
+    smallest detail (mm): 0.2000
+    gap closing distance (mm): 10.0000
+    dilate result: OFF
+    protect thin walls: ON
+    keep originals: ON
+[10:05:49] Calculate Mask from Object
+    object: Wrapped_GreenYellow2 5
+    target mask: Purple2
+[10:05:49] Boolean operation
+    mask A: Purple2
+    mask B: GreenYellow2
+    operation: Mask minus
+    result mask: Violet2
+[10:05:49] Morphology operation
+    source mask: Violet2
+    operation: Erode mask
+    target mask: Pink2
+    number of pixels: 1
+    connectivity: 8
+[10:05:49] Error: Traceback (most recent call last):
+  File "D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study/rpmep_enopthalmus_study_v2.py", line 134, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+ValueError: Point lies outside the source mask
+[10:06:05] Object hidden
+    name: Bone
+[10:06:07] Object hidden
+    name: Green 1
+[10:06:14] Object hidden
+    name: Part-25
+[10:06:14] Object hidden
+    name: Cyan 2
+[10:06:38] Group created
+    Name: Group 1
+    Objects: Plane 1, Plane 2, Plane 3, Plane 4, Plane 5, Plane 9, Plane 6, Plane 7, Plane 8
+[10:06:44] Group created
+    Name: Group 2
+    Objects: Point 5, Point 3, Point 6, Point 4, Point 7, Point 10, Point 9, Point 8, Point 11, Point 12, Point 13, Point 14, Point 15, Point 16, Point 17, Point 18, Point 19, Point 20
+[10:06:51] Group created
+    Name: Group 3
+    Objects: Line 1, Line 4, Line 8, Line 2, Line 3, Line 26, Line 5, Line 6, Line 7, Line 9, Line 10, Line 11, Line 12, Line 13, Line 14, Line 15, Line 16, Line 17, Line 18, Line 19, Line 20, Line 21, Line 22, Line 25, Line 23, Line 24
+[10:07:20] Group hidden
+    Name: Group 1 planes
+    Objects: Plane 1, Plane 2, Plane 3, Plane 4, Plane 5, Plane 6, Plane 7, Plane 8, Plane 9
+[10:07:22] Object hidden
+    name: Wrapped_GreenYellow2 5
+[10:07:23] Object hidden
+    name: GreenYellow2 5
+[10:07:30] Object hidden
+    name: Spline 1
+[10:07:32] Object hidden
+    name: Spline 2
+[10:07:34] Object hidden
+    name: Point 1
+[10:07:35] Object hidden
+    name: Point 2
+[10:07:36] Object hidden
+    name: Sphere 1
+[10:07:36] Object hidden
+    name: Sphere 2
+[10:07:42] Object hidden
+    name: unit_sphere
+[10:07:52] Group hidden
+    Name: Group 2 spline points
+    Objects: Point 10, Point 11, Point 12, Point 13, Point 14, Point 15, Point 16, Point 17, Point 18, Point 19, Point 20, Point 3, Point 4, Point 5, Point 6, Point 7, Point 8, Point 9
+[10:07:55] Group hidden
+    Name: Group 3 spline lines
+    Objects: Line 1, Line 10, Line 11, Line 12, Line 13, Line 14, Line 15, Line 16, Line 17, Line 18, Line 19, Line 2, Line 20, Line 21, Line 22, Line 23, Line 24, Line 25, Line 26, Line 3, Line 4, Line 5, Line 6, Line 7, Line 8, Line 9
+[10:07:58] Group shown
+    Name: Group 3 spline lines
+    Objects: Line 1, Line 10, Line 11, Line 12, Line 13, Line 14, Line 15, Line 16, Line 17, Line 18, Line 19, Line 2, Line 20, Line 21, Line 22, Line 23, Line 24, Line 25, Line 26, Line 3, Line 4, Line 5, Line 6, Line 7, Line 8, Line 9
+[10:08:01] Group hidden
+    Name: Group 3 spline lines
+    Objects: Line 1, Line 10, Line 11, Line 12, Line 13, Line 14, Line 15, Line 16, Line 17, Line 18, Line 19, Line 2, Line 20, Line 21, Line 22, Line 23, Line 24, Line 25, Line 26, Line 3, Line 4, Line 5, Line 6, Line 7, Line 8, Line 9
+[10:08:04] Group shown
+    Name: Group 2 spline points
+    Objects: Point 10, Point 11, Point 12, Point 13, Point 14, Point 15, Point 16, Point 17, Point 18, Point 19, Point 20, Point 3, Point 4, Point 5, Point 6, Point 7, Point 8, Point 9
+[10:08:06] Group shown
+    Name: Group 1 planes
+    Objects: Plane 1, Plane 2, Plane 3, Plane 4, Plane 5, Plane 6, Plane 7, Plane 8, Plane 9
+[10:08:22] Mask 3D Preview
+    State: ON
+The 3D preview can differ from the final 3D part/object.
+[10:08:33] Group hidden
+    Name: Group 1 planes
+    Objects: Plane 1, Plane 2, Plane 3, Plane 4, Plane 5, Plane 6, Plane 7, Plane 8, Plane 9
+[10:09:32] Object hidden
+    name: Green
+[10:09:32] Object hidden
+    name: Bone Mask
+[10:09:32] Object hidden
+    name: Cyan
+[10:09:32] Object hidden
+    name: Fuchsia
+[10:09:32] Object hidden
+    name: Orange
+[10:09:32] Object hidden
+    name: Red
+[10:09:32] Object hidden
+    name: Blue
+[10:09:32] Object hidden
+    name: Magenta
+[10:09:32] Object hidden
+    name: GreenYellow
+[10:09:32] Object hidden
+    name: Purple
+[10:09:32] Object hidden
+    name: Violet
+[10:09:32] Object hidden
+    name: Pink
+[10:09:32] Object hidden
+    name: Turquoise
+[10:09:32] Object hidden
+    name: Peach
+[10:09:32] Object hidden
+    name: PaleGreen
+[10:09:32] Object hidden
+    name: SkyBlue
+[10:09:32] Object hidden
+    name: Green2
+[10:09:32] Object hidden
+    name: Yellow2
+[10:09:32] Object hidden
+    name: Cyan2
+[10:09:32] Object hidden
+    name: Fuchsia2
+[10:09:32] Object hidden
+    name: Orange2
+[10:09:32] Object hidden
+    name: Red2
+[10:09:32] Object hidden
+    name: Blue2
+[10:09:32] Object hidden
+    name: Magenta2
+[10:09:32] Object hidden
+    name: GreenYellow2
+[10:09:32] Object hidden
+    name: Purple2
+[10:09:32] Object hidden
+    name: Violet2
+[10:09:32] Object hidden
+    name: Pink2
+[10:09:36] Object shown
+    name: Cyan
+[10:09:37] Object shown
+    name: Fuchsia
+[10:09:38] Object shown
+    name: Orange
+[10:09:40] Object shown
+    name: Red
+[10:09:41] Object shown
+    name: Blue
+[10:09:42] Object shown
+    name: Magenta
+[10:09:43] Object shown
+    name: GreenYellow
+[10:09:44] Object shown
+    name: Purple
+[10:09:45] Object shown
+    name: Violet
+[10:09:47] Object shown
+    name: Pink
+[10:09:58] Object shown
+    name: Turquoise
+[10:10:00] Object hidden
+    name: Turquoise
+[10:11:03] Object shown
+    name: Turquoise
+[10:11:05] Object shown
+    name: Peach
+[10:11:06] Object shown
+    name: PaleGreen
+[10:11:12] Object hidden
+    name: PaleGreen
+[10:11:12] Object hidden
+    name: Peach
+[10:11:12] Object hidden
+    name: Turquoise
+[10:11:17] Object shown
+    name: Peach
+[10:11:18] Object shown
+    name: Turquoise
+[10:11:19] Object shown
+    name: PaleGreen
+[10:11:27] Object shown
+    name: SkyBlue
+[10:11:27] Object shown
+    name: Green2
+[10:11:28] Object shown
+    name: Yellow2
+[10:11:29] Object shown
+    name: Cyan2
+[10:11:29] Object shown
+    name: Fuchsia2
+[10:11:35] Object shown
+    name: Orange2
+[10:11:37] Object shown
+    name: Red2
+[10:12:35] Object shown
+    name: Blue2
+[10:12:39] Object hidden
+    name: Blue2
+[10:12:42] Object shown
+    name: Magenta2
+[10:12:50] Object shown
+    name: Blue2
+[10:13:21] Autosaving
+[10:13:22] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs
+[10:14:38] Object shown
+    name: GreenYellow2
+[10:15:11] Object shown
+    name: Purple2
+[10:15:13] Object hidden
+    name: Magenta2
+[10:15:13] Object hidden
+    name: Blue2
+[10:15:14] Object hidden
+    name: Red2
+[10:15:15] Object hidden
+    name: Orange2
+[10:15:16] Object hidden
+    name: Fuchsia2
+[10:15:17] Object hidden
+    name: Cyan2
+[10:15:18] Object hidden
+    name: Yellow2
+[10:15:23] Object shown
+    name: Fuchsia2
+[10:17:33] Object shown
+    name: Violet2
+[10:17:34] Object hidden
+    name: Purple2
+[10:17:37] Object hidden
+    name: GreenYellow2
+[10:17:39] Object shown
+    name: GreenYellow2
+[10:17:40] Object hidden
+    name: GreenYellow2
+[10:17:45] Object shown
+    name: Pink2
+[10:17:50] Object shown
+    name: Purple2
+[10:18:17] Object shown
+    name: GreenYellow2 5
+[10:18:20] Object shown
+    name: Wrapped_GreenYellow2 5
+[10:18:22] Object hidden
+    name: Wrapped_GreenYellow2 5
+[10:18:23] Object shown
+    name: Wrapped_GreenYellow2 5
+[10:18:24] Object hidden
+    name: GreenYellow2 5
+[10:19:32] ››› part_orbital_vol = mimics.segment.calculate_part(mask=intersect_vol_mask, quality='High')
+[10:19:32] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'intersect_vol_mask' is not defined
+[10:20:28] ››› sphere1.center
+[10:20:29] (36.184783935546875, -87.18797302246094, 142.76214599609375)
+[10:21:45] ››› help(mimics.BoundingBox3d)
+[10:21:45] Help on class BoundingBox3d in module mimics:
+[10:21:45] 
+[10:21:45] class BoundingBox3d(Boost.Python.instance)
+[10:21:45]  | BoundingBox3d(origin: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0], first_vector: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0], second_vector: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0], third_vector: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0]) -> None
+[10:21:45]  | 
+[10:21:45]  | 3D bounding box, dedicated for the spatial coordinates.
+[10:21:45]  | 
+[10:21:45]  | Method resolution order:
+[10:21:45]  | BoundingBox3d
+[10:21:45]  | Boost.Python.instance
+[10:21:45]  | builtins.object
+[10:21:45]  | 
+[10:21:45]  | Methods defined here:
+[10:21:45]  | 
+[10:21:45]  | __init__(self: mimics.BoundingBox3d, origin: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0], first_vector: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0], second_vector: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0], third_vector: Union[Iterable[SupportsFloat, SupportsFloat, SupportsFloat], mimics.analyze.Point, mimics.analyze.Sphere] = [0, 0, 0]) -> None
+[10:21:45]  | :param origin: (optional) 
+[10:21:45]  | :type origin: typing.Tuple[typing.SupportsFloat, typing.SupportsFloat, typing.SupportsFloat]
+[10:21:45]  | :param first_vector: (optional) 
+[10:21:45]  | :type first_vector: typing.Tuple[typing.SupportsFloat, typing.SupportsFloat, typing.SupportsFloat]
+[10:21:45]  | :param second_vector: (optional) 
+[10:21:45]  | :type second_vector: typing.Tuple[typing.SupportsFloat, typing.SupportsFloat, typing.SupportsFloat]
+[10:21:45]  | :param third_vector: (optional) 
+[10:21:45]  | :type third_vector: typing.Tuple[typing.SupportsFloat, typing.SupportsFloat, typing.SupportsFloat]
+[10:21:45]  | 
+[10:21:45]  | __init_subclass__(...)
+[10:21:45]  | This method is called when a class is subclassed.
+[10:21:45]  | 
+[10:21:45]  | The default implementation does nothing. It may be
+[10:21:45]  | overridden to extend subclasses.
+[10:21:45]  | 
+[10:21:45]  | __reduce__ = <unnamed Boost.Python function>(...)
+[10:21:45]  | 
+[10:21:45]  | __repr__(self)
+[10:21:45]  | 
+[10:21:45]  | ----------------------------------------------------------------------
+[10:21:45]  | Data descriptors defined here:
+[10:21:45]  | 
+[10:21:45]  | first_vector
+[10:21:45]  | 
+[10:21:45]  | origin
+[10:21:45]  | 
+[10:21:45]  | second_vector
+[10:21:45]  | 
+[10:21:45]  | third_vector
+[10:21:45]  | 
+[10:21:45]  | ----------------------------------------------------------------------
+[10:21:45]  | Static methods inherited from Boost.Python.instance:
+[10:21:45]  | 
+[10:21:45]  | __new__(*args, **kwargs) from Boost.Python.class
+[10:21:45]  | Create and return a new object. See help(type) for accurate signature.
+[10:21:45]  | 
+[10:21:45]  | ----------------------------------------------------------------------
+[10:21:45]  | Data descriptors inherited from Boost.Python.instance:
+[10:21:45]  | 
+[10:21:45]  | __dict__
+[10:21:45]  | 
+[10:21:45]  | __weakref__
+[10:21:45] 
+[10:24:39] Autosaving
+[10:24:40] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs
+[10:27:14] ››› len(crop_masks)
+[10:27:14] 9
+[10:29:46] ››› m_new = mimics.segment.threshold(mask=crop_masks[9], threshold_min= mimics.segment.HU2GV(-1024), threshold_max= mimics.segment.HU2GV(3071), bounding_box=mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
+[10:29:46] Error: File "<stdin>", line 1
+    m_new = mimics.segment.threshold(mask=crop_masks[9], threshold_min= mimics.segment.HU2GV(-1024), threshold_max= mimics.segment.HU2GV(3071), bounding_box=mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z)
+                                                                                                                                                                                                                        ^
+SyntaxError: unexpected EOF while parsing
+[10:29:53] ››› m_new = mimics.segment.threshold(mask=crop_masks[9], threshold_min= mimics.segment.HU2GV(-1024), threshold_max= mimics.segment.HU2GV(3071), bounding_box=mimics.BoundingBox3d(box_orig, vector_x, vector_y, vector_z))
+[10:29:53] Thresholding performed
+    Mask label: Violet
+    Mask index: 10
+    Grey value min: 0
+    Grey value max: 4095
+[10:30:03] Object hidden
+    name: Pink2
+[10:30:05] Object shown
+    name: Pink2
+[10:31:08] ››› m_new.selected()
+[10:31:08] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'bool' object is not callable
+[10:31:10] ››› m_new.selected
+[10:31:10] False
+[10:32:55] ››› m_new
+[10:32:55] <mimics.segment.Mask(Violet)>
+[10:33:16] ››› mimics.data.masks[m_new]
+[10:33:16] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: Parameter 'key' is not valid. mimics.segment.Mask cannot be converted to 'int or str'
+[10:33:40] ››› mimics.data.masks[m_new.name]
+[10:33:40] <mimics.segment.Mask(Violet)>
+[10:34:22] ››› mimics.data.masks.delete[m_new.name]
+[10:34:22] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'method' object is not subscriptable
+[10:34:34] ››› mimics.data.masks.delete(m_new.name)
+[10:34:34] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: Parameter 'objects' is not valid. str cannot be converted to 'typing.Iterable[mimics.Object], mimics.Object or mimics.DataContainer'
+[10:34:42] ››› mimics.data.masks.delete(m_new)
+[10:34:42] Object deleted
+    name: Violet
+[10:39:55] Autosaving
+[10:39:56] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs
+[11:16:48] Autosaving
+[11:16:48] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_21556.mcs

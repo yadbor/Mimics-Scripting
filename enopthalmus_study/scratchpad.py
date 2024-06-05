@@ -296,3 +296,123 @@ def bbox_thicken(bbox, extra):
 		bbox.third_vector = [bbox.third_vector[X], bbox.third_vector[Y], bbox.third_vector[Z] + extra]
 	return bbox
 
+
+
+
+src_part = mimics.data.parts.find('m_smooth')
+for res in (0.2, 0.5): 
+  for dist in range(10, 12): 
+    name = f"wrap_{dist}x{res}"
+    p_new = mimics.tools.wrap(src_part, smallest_detail=res, gap_closing_distance=dist,
+                                dilate_result=False, protect_thin_walls=True, keep_originals=True)
+    mimics.data.parts[-1].name = name
+
+    print(name)
+
+
+
+#################### Test bone segmentation again 2025-06-03
+# Use the mimics Spongiosal Bone low threshold to cover all thin and cancellous bone parts.
+m_bone_narrow = mimics.segment.threshold(mimics.segment.create_mask(), threshold_min=mimics.segment.HU2GV(226), threshold_max=mimics.segment.HU2GV(3071), bounding_box=orbit_ROI)
+m_bone_narrow.name = 'm_bone_narrow'
+m_bone = mimics.segment.threshold(mimics.segment.create_mask(), threshold_min=mimics.segment.HU2GV(148), threshold_max=mimics.segment.HU2GV(3071), bounding_box=orbit_ROI)
+m_bone.name = 'm_bone'
+m_bone = mimics.segment.smooth_mask(m_bone)
+
+# Get air by thresholding, erode to seperate into internal and external regions
+m_air = mimics.segment.threshold(mimics.segment.create_mask(), mimics.segment.HU2GV(-1024), mimics.segment.HU2GV(-200), bounding_box=orbit_ROI)
+m_air.name = 'm_air'
+m_air_erode = mimics.segment.morphology_operations(m_air, operation='Erode', number_of_pixels=2, connectivity=26, target_mask_name='m_air_erode', limited_to_mask=None)
+
+# Get a point on the antero-lateral corner of the air mask to start region growing in the external part.
+m_air_external_1 = mimics.segment.region_grow(input_mask=m_air_erode, target_mask=None, point=lateral_pt,
+                                                slice_type='Axial', keep_original_mask=True, multiple_layer=True, connectivity='6-connectivity')
+
+# Dilate only the external part back to original size, then subtract that from the total to get the internal part
+m_air_external = mimics.segment.morphology_operations(m_air_external_1, operation='Dilate', number_of_pixels=10, connectivity=26, target_mask_name='m_air_external', limited_to_mask=m_air)
+# Subtract external from total air to get internal
+m_air_internal = mimics.segment.boolean_operations(m_air, m_air_external, 'Minus')
+m_air_internal.name = 'm_air_internal'
+
+# Open internal air to remove small regions caused by low density tissue overlapping with our definition of air.
+m_air_int_open = mimics.segment.morphology_operations(m_air_internal, operation='Open', number_of_pixels=2, connectivity=8, target_mask_name='m_air_int_open', limited_to_mask=None)
+# Dilate what remains to extend to cover thin bone regions, then unite with bone
+m_air_int_dilate = mimics.segment.morphology_operations(m_air_int_open, operation='Dilate', number_of_pixels=2, connectivity=8, target_mask_name='m_air_int_dilate', limited_to_mask=None)
+m_unite_bone_air = mimics.segment.boolean_operations(m_air_int_dilate, m_bone, 'Unite')
+m_unite_bone_air.name = 'm_bone+air'
+# Plan was to use local threshold to add more bone around the edges of the selected mask, but sadly, 
+# local_threshold doesn't seem to work when called from the API, although it does using the GUI.
+# Work around that by just using the lower threshold in the first place. This may get extra non-bone soft tissue, but that's hard to fix.
+
+# Fill holes in the bone mask, then smooth it. Use keep_largest as some scans have air pockets in front of globe that breaks wrap
+m_fill = mimics.segment.smart_fill_global(mask=m_bone, hole_closing_distance=3) # Is this distance too big?
+m_fill = mimics.segment.smooth_mask(m_fill)
+m_fill = mimics.segment.keep_largest(m_fill)
+m_fill.name = 'm_fill'
+# Fill holes in the bone+air mask, then smooth it. Use keep_largest as some scans have air pockets in front of globe that breaks wrap later.                                         
+m_fill_ba = mimics.segment.smart_fill_global(mask=m_unite_bone_air, hole_closing_distance=3) # Is this distance too big?
+m_fill_ba = mimics.segment.smooth_mask(m_fill_ba)
+m_fill_ba = mimics.segment.keep_largest(m_fill_ba)
+m_fill_ba.name = 'm_fill_ba'
+                                           
+# Next turn the mask into a part, smooth and wrap it to get a hopefully watertight orbital border all around.
+p_fill = mimics.segment.calculate_part(mask=m_fill, quality='High')
+p_fill.name = 'p_fill'
+# Note keep_originals=True for debugging - not used later so could be deleted here
+p_smooth = mimics.tools.smooth(p_fill, smooth_factor=0.5, iterations=5, compensate_shrinkage=False, keep_originals=True)
+p_smooth.name = 'p_smooth'
+p_wrap = mimics.tools.wrap(p_smooth, smallest_detail=0.2, gap_closing_distance=6, dilate_result=False, protect_thin_walls=True, keep_originals=True)
+p_wrap.name = 'p_wrap'
+
+p_fill_ba = mimics.segment.calculate_part(mask=m_fill_ba, quality='High')
+p_fill_ba.name = 'p_fill_ba'
+# Note keep_originals=True for debugging - not used later so could be deleted here
+p_smooth_ba = mimics.tools.smooth(p_fill_ba, smooth_factor=0.5, iterations=5, compensate_shrinkage=False, keep_originals=True)
+p_smooth_ba.name = 'p_smooth_ba'
+p_wrap_ba = mimics.tools.wrap(p_smooth_ba, smallest_detail=0.2, gap_closing_distance=6, dilate_result=False, protect_thin_walls=True, keep_originals=True)
+p_wrap_ba.name = 'p_wrap_ba'
+
+# Make the smoothed, wrapped part back into a mask. It should now define the orbit boundary
+m_wrap = mimics.segment.calculate_mask_from_part(part=p_wrap, target_mask=None)
+m_wrap.name = 'm_wrap'
+m_wrap_ba = mimics.segment.calculate_mask_from_part(part=p_wrap_ba, target_mask=None)
+m_wrap_ba.name = 'm_wrap_ba'
+
+# Create a block of everything (this is ALL values - should be soft tissue + air? or all less than bone?)
+m_all_tissue = mimics.segment.threshold(mimics.segment.create_mask(), mimics.segment.HU2GV(-1024), mimics.segment.HU2GV(3071), bounding_box=orbit_ROI)
+m_all_tissue.name = 'm_all_tissue'
+
+# Then subtract the boundary mask to separate the orbial contents from everything else.
+m_temp_orbit = mimics.segment.boolean_operations(m_all_tissue, m_boundary, 'Minus')
+m_temp_orbit_ba = mimics.segment.boolean_operations(m_all_tissue, m_boundary_ba, 'Minus')
+# Use region growing to (hopefully) select only the internal volume
+# This may fail, so erode first to try to seperate regions joined by thin necks or small holes
+# To make sure there is enough left in the orbit to pick a seed point first combine with the globe
+m_temp_orbit_1 = mimics.segment.boolean_operations(m_temp_orbit, m_globe, 'Minus')
+m_temp_eroded = mimics.segment.morphology_operations(m_temp_orbit_1, operation='Open', number_of_pixels=2, connectivity=8, target_mask_name='m_air_int_open', limited_to_mask=None)
+
+# Turn the wrapped part into a mask
+m_wrap_ba = mimics.segment.calculate_mask_from_part(part=p_wrap_ba, target_mask=None)
+m_wrap_ba.name = 'm_wrap_ba'
+
+# Get the volume contained within the bony orbit
+
+# Add the wrapped bone, original bone (to restore any corners), anterior block and external air
+b1 = mimics.segment.boolean_operations(m_wrap_ba, m_fill_ba, operation='Unite')
+b2 = mimics.segment.boolean_operations(m_ant_big, m_air_external, operation='Unite')
+b3 = mimics.segment.boolean_operations(b1, b2, operation='Unite')
+# Make a temporary 'all tissues' mask and subtract the combined boundary masks
+temp_tissue = mimics.segment.threshold(mimics.segment.create_mask(), threshold_min=mimics.segment.HU2GV(-1024), threshold_max=mimics.segment.HU2GV(3071), bounding_box=mimics.measure.get_bounding_box((b3)))
+t2 = mimics.segment.boolean_operations(temp_tissue, b3, operation='Minus')
+# Temporarily add in the globe, so that the globe centre point will alwaye be in the mask
+m_globe = mimics.data.masks.find('globe_mask') ## FIX THIS TO CORRECT OBJECT
+t3 = mimics.segment.boolean_operations(t2, m_globe, operation='Unite')
+p_globe = mimics.data.spheres[1]  ## FIX THIS TO CORRECT OBJECT
+# Region grow from the centre of the globe, then subtract the globe again
+t4 = mimics.segment.region_grow(input_mask=t3, target_mask=None, point=p_globe.center, slice_type='Axial', keep_original_mask=True, multiple_layer=True, connectivity='6-connectivity')
+t5 = mimics.segment.boolean_operations(t4, m_globe, operation='Minus')
+# The resulting mask may be a bit smaller than the bony orbit, so expand it a bit, then remove the filled bony orbit
+t6 = mimics.segment.morphology_operations(input_mask=t5, operation='Dilate', number_of_pixels=2, target_mask_name='t6', connectivity=8,limited_to_mask=None)
+t7 = mimics.segment.boolean_operations(t6, m_fill_ba, operation='Minus')
+# Finally subtract the globe, as the dilate will have expanded into that region as well
+t8 = mimics.segment.boolean_operations(t7, m_globe, operation='Minus')

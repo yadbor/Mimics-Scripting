@@ -1,7 +1,13 @@
 import mimics
-import orbital_analysis
 
-t = [time.perf_counter()]; t_label =['init']
+import os
+os.chdir(r'D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study')
+import time
+
+import utils, orbital_analysis
+from utils import Events
+
+t = Events()
 
 # Make the anterior blocking mask and the Orbital ROI
 with mimics.disabled_gui_update():
@@ -13,12 +19,12 @@ with mimics.disabled_gui_update():
 for p in mimics.data.planes:
     p.visible = False
 
-t.append(time.perf_counter()); t_label.append('make anterior mask')
+t.add('make anterior mask')
 
 orbit_ROI = orbital_analysis.make_orbit_ROI(rim, point)
 print(f'orbit ROI is {orbit_ROI}')
 
-t.append(time.perf_counter()); t_label.append('make orbit ROI')
+t.add('make orbit ROI')
 
 # Make the bone lower threshold split the difference between Bone (CT) [226 : 3071] and Spongial BOne (Adult CT) [148 : 661]
 m_bone = mimics.segment.threshold(mimics.segment.create_mask(), mimics.segment.HU2GV(187), mimics.segment.HU2GV(3071), bounding_box=orbit_ROI)
@@ -37,7 +43,7 @@ mimics.data.masks[-1].name = 'm_air_all'
 m_air_cropped = mimics.segment.crop_mask(mimics.data.masks.duplicate(m_air_all), orbit_ROI)
 mimics.data.masks[-1].name = 'm_air_cropped'
 
-t.append(time.perf_counter()); t_label.append('thresholding')
+t.add('thresholding')
 
 # Use erode to seperate the parts
 m_air_crop_erode = mimics.segment.morphology_operations(m_air_cropped, operation='Erode', number_of_pixels=2, connectivity=26, target_mask_name='m_air_crop_erode', limited_to_mask=None)
@@ -64,7 +70,7 @@ m_air_external = mimics.segment.boolean_operations(m_air_external, m_soft_tissue
 m_air_internal = mimics.segment.boolean_operations(m_air_cropped, m_air_external, 'Minus')
 mimics.data.masks[-1].name = 'm_air_internal'
 
-t.append(time.perf_counter()); t_label.append('split air mask')
+t.add('split air mask')
 
 # Open internal air to get rid of small regions (caused by low deisnity tissue overlapping with our definition of air)
 m_air_int_open = mimics.segment.morphology_operations(m_air_internal, operation='Open', number_of_pixels=2, connectivity=8, target_mask_name='m_air_int_open', limited_to_mask=None)
@@ -75,34 +81,34 @@ m_air_int_dilate = mimics.segment.morphology_operations(m_air_int_open, operatio
 m_unite_bone_air = mimics.segment.boolean_operations(m_air_int_dilate, m_bone, 'Unite')
 mimics.data.masks[-1].name = 'm_unite_bone_air'
 
-t.append(time.perf_counter()); t_label.append('dilate and unite')
+t.add('dilate and unite')
 
 m_fill = mimics.segment.smart_fill_global(mask=m_unite_bone_air, hole_closing_distance=7) # Is this distance too big?
 mimics.data.masks[-1].name = 'm_fill'
 
-t.append(time.perf_counter()); t_label.append('smart fill')
+t.add('smart fill')
 
 m_part = mimics.segment.calculate_part(mask=m_fill, quality='High')
 mimics.data.parts[-1].name = 'm_part'
 
-t.append(time.perf_counter()); t_label.append('calculate part')
+t.add('calculate part')
 
 m_smooth = mimics.tools.smooth(m_part, smooth_factor=0.5, iterations=5, compensate_shrinkage=False, keep_originals=True)
 mimics.data.parts[-1].name = 'm_smooth'
 
-t.append(time.perf_counter()); t_label.append('smooth')
+t.add('smooth')
 
 m_wrap = mimics.tools.wrap(m_smooth, smallest_detail=0.2, gap_closing_distance=10,
                               dilate_result=False, protect_thin_walls=True, keep_originals=True)
 mimics.data.parts[-1].name = 'm_wrap'
 
-t.append(time.perf_counter()); t_label.append('wrap')
+t.add('wrap')
 
 # Make the smoothed, wrapped part back into a mask. It should now define the orbit boundary
 m_subtract = mimics.segment.calculate_mask_from_part(part=m_wrap, target_mask=None)
 mimics.data.masks[-1].name = 'm_subtract'
 
-t.append(time.perf_counter()); t_label.append('mask from part')
+t.add('mask from part')
 
 # Add the anterior block to the subtract mask, to remove tissue in front of the eorbital rim
 m_subtract = mimics.segment.boolean_operations(m_subtract, m_anterior, 'Unite')
@@ -112,12 +118,12 @@ m_temp_orbit = mimics.segment.threshold(mimics.segment.create_mask(), mimics.seg
 mimics.segment.crop_mask(mimics.data.masks[-1], orbit_ROI)
 mimics.data.masks[-1].name = 'm_temp_orbit'
 
-t.append(time.perf_counter()); t_label.append('make temp orbit')
+t.add('make temp orbit')
 # Subtracat the orbital bounday from above
 m_intersect = mimics.segment.boolean_operations(mask_a=m_temp_orbit, mask_b=m_subtract, operation='Minus')
 mimics.data.masks[-1].name = 'm_intersect'
 
-t.append(time.perf_counter()); t_label.append('m_subtract minus temp_orbit')
+t.add('m_subtract minus temp_orbit')
 
 seed = (globe.center[0], globe.center[1] + globe.radius, globe.center[2])
 
@@ -126,10 +132,9 @@ m_orbit_vol = mimics.segment.region_grow(input_mask=m_intersect, target_mask=Non
                                             slice_type='Axial', keep_original_mask=True, multiple_layer=True, connectivity='6-connectivity')
 mimics.data.masks[-1].name = 'm_orbit_vol'
 
-t.append(time.perf_counter()); t_label.append('region grow')
-
-steps = dict(zip(t_label[1:], [b-a for a,b in utils.pairwise(t)]))
-print(steps)
+t.add('region grow')
+print(f'Total time taken {t.elapsed()} seconds')
+print(t.as_dict())
 
 # new_subtracted = mimics.segment.boolean_operations(m_subtract_kc, m_fill_kc, operation='Minus')
 # new_morph = mimics.segment.morphology_operations(new_subtracted,operation='Erode',number_of_pixels=3,connectivity=8)

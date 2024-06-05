@@ -83,6 +83,44 @@ def simple_sphere(radius = 1, centre = [0, 0, 0], depth = 0):
 
     return (T, X, Y, Z)
 
+def mimics_sphere(radius = 1, centre = [0, 0, 0], depth = 0):
+
+    method = subdivide_edge
+    # octahedron
+    p = 2**0.5 / 2
+    faces = [
+        # top half
+        Triangle(Point(0, 1, 0), Point(-p, 0, p), Point( p, 0, p)),
+        Triangle(Point(0, 1, 0), Point( p, 0, p), Point( p, 0,-p)),
+        Triangle(Point(0, 1, 0), Point( p, 0,-p), Point(-p, 0,-p)),
+        Triangle(Point(0, 1, 0), Point(-p, 0,-p), Point(-p, 0, p)),
+
+        # bottom half
+        Triangle(Point(0,-1, 0), Point( p, 0, p), Point(-p, 0, p)),
+        Triangle(Point(0,-1, 0), Point( p, 0,-p), Point( p, 0, p)),
+        Triangle(Point(0,-1, 0), Point(-p, 0,-p), Point( p, 0,-p)),
+        Triangle(Point(0,-1, 0), Point(-p, 0, p), Point(-p, 0,-p)),
+    ]
+
+    X = []
+    Y = []
+    Z = []
+    T = []
+
+    for i, tri in enumerate(subdivide(faces, depth, method)):
+        X.extend([p.x for p in tri])
+        Y.extend([p.y for p in tri])
+        Z.extend([p.z for p in tri])
+        T.append([3*i, 3*i+1, 3*i+2])
+
+    # Scale unit sphere by radis and translate to centre
+    X = np.array(X) * radius + centre[0]
+    Y = np.array(Y) * radius + centre[1]
+    Z = np.array(Z) * radius + centre[2]
+
+    V = [[x, y, z] for x, y, z in list(zip(X, Y, Z))]
+
+    return (np.asarray(T), np.column_stack((X, Y, Z)))
 
 if __name__ == '__main__':
 

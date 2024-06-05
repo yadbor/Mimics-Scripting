@@ -36,14 +36,14 @@ def batched(iterable, n):
 # Helper functions for Mimics objects
 import mimics # done automatically by Mimics scripting environment
 
-def mask_from_thesholds(name, thresh_lo, thresh_hi):
+def mask_from_thesholds(name, thresh_lo, thresh_hi, bounding_box=None):
   """Convenience function to create & name a mimics.segment mask with given thresholds."""
   mask = mimics.segment.create_mask()
   mask.name = name
-  mimics.segment.threshold(mask, thresh_lo, thresh_hi)
+  mimics.segment.threshold(mask, thresh_lo, thresh_hi, bounding_box=bounding_box)
   return mask
 
-def mask_from_material(name, material):
+def mask_from_material(name, material, bounding_box=None):
   """Convenience function to create & name a mimics.segment mask from a material definition."""
   if material.units == "HU":
     lo_gv = mimics.segment.HU2GV(material.lo)
@@ -51,7 +51,7 @@ def mask_from_material(name, material):
   else:
     lo_gv = material.lo
     hi_gv = material.hi  
-  return mask_from_thesholds(name, lo_gv, hi_gv)
+  return mask_from_thesholds(name, lo_gv, hi_gv, bounding_box)
 
 def part_from_mask(name, mask, quality = 'High'):
   """Convenience function to create & name a mimics.segment part from an existing mask."""
@@ -184,10 +184,10 @@ def bbox_center(bbox):
   mid_pt = tuple((p + s) for p, s in zip(bbox.origin, span))
   return mid_pt
 
-def antero_lateral(bbox, side):
+def antero_lateral(bbox, side, delta = 2):
   # The antero-lateral point on left eye is away from origin, on the right it is the origin.
   # This will be on the very edge of the bounding box, so move back toward the centre.
-  delta = 2 # Amount in mm to nudge to point into the ROI
+  # delta is the amount in mm to nudge to point into the ROI
   pt = bbox.origin
   if side == 'left':
     pt  = (pt[X] + bbox.first_vector[X] - delta, pt[Y] + delta, pt[Z] + delta)
@@ -201,9 +201,32 @@ def antero_lateral(bbox, side):
 
 def labelled_point(prefix = '', name = '', point=None):
    if name != '':
-    name = name + '_'  # add a spacer if needed
+    name = name + '.'  # add a spacer if needed
     
    if point is None:  # deal with an empty imput gracefully
     point = (None, None, None)
 
    return {prefix + name + axis: val for axis, val in list(zip(('X','Y','Z'), point))}
+
+import time
+
+class Events:
+  """A simple event logger"""
+  def __init__(self):
+    # init a pair of lists to store the event labels and times
+    self.labels = ['init']
+    self.times = [time.perf_counter()]
+  
+  def add(self, label = ''):
+    self.labels.append(label)
+    self.times.append(time.perf_counter())
+
+  def elapsed(self):
+    return self.times[-1] - self.times[0]
+
+  def as_lists(self):
+    return self.labels, self.times
+
+  def as_dict(self):
+    return dict(zip(self.labels, self.times))
+

@@ -1,0 +1,27 @@
+orbit_ROI = orbital_analysis.make_orbit_ROI(rim)
+# Crop the air and bone masks to this ROI and unite them to give a "not orbit contents" mask.
+mask_bone_ROI = mimics.segment.crop_mask(mimics.data.masks.duplicate(mask_bone), orbit_ROI)
+mask_air_ROI = mimics.segment.crop_mask(mimics.data.masks.duplicate(mask_air), orbit_ROI)
+
+
+# Repair Orbit Walls + Floor
+#mask_temp_air = mimics.segment.create_mask()
+#mimics.segment.threshold(mask_temp_air, mimics.segment.HU2GV(-1024), mimics.segment.HU2GV(-200))
+#mimics.segment.crop_mask(mask_temp_air, bounding_box= mimics.BoundingBox3d(corner, x_vector, y_vector, z_vector))
+#mimics.segment.keep_largest(mask_temp_air)
+# Take the largest connected Air component and expand it
+mask_temp_air = mimics.segment.keep_largest(mask_air_ROI)
+mask_temp_morph = mimics.segment.morphology_operations(mask_temp_air, operation='Dilate', number_of_pixels=2, connectivity=8)
+mask_temp_bone = mimics.data.masks.duplicate(mask_bone)
+mask_bone_boolean = mimics.segment.boolean_operations(mask_temp_morph, mask_temp_bone, 'Unite')
+mask_bone_filled = mimics.segment.smart_fill_global(mask=mask_bone_boolean, hole_closing_distance=7)
+part_bone_repaired = mimics.segment.calculate_part(mask_bone_filled, quality='High')
+mimics.data.objects.delete(mask_temp_air)
+mimics.data.objects.delete(mask_temp_morph)
+mimics.data.objects.delete(mask_bone_boolean)
+mimics.data.objects.delete(mask_bone_filled)
+part_bone_smoothed = mimics.tools.smooth(part_bone_repaired, 0.5, 5, False, False)
+part_bone_wrapped = mimics.tools.wrap(part_bone_smoothed, 0.2, 10, False, True, False)
+part_bone_wrapped.name = "Smoothed & Wrapped Orbit"
+subtraction_mask = mimics.segment.calculate_mask_from_part(part_bone_wrapped, None)
+subtraction_mask.name = "Subtraction Mask"

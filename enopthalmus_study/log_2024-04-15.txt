@@ -1,0 +1,704 @@
+[2024-04-15 16:26:08] Starting Materialise Mimics Medical 25.0.0.550 ...
+    Logging level: INFO
+PYTHON INTERACTIVE CONSOLE
+3.8.10 (tags/v3.8.10:3d8993a, May 3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)] [C:\Users\Health\AppData\Local\Programs\Python\Python38]
+[16:32:11] ››› import os # for scandir() etc
+[16:32:11]     import re # for regexp matching
+[16:32:11] 
+[16:32:11]     root = r'D:\Projects & Research\Enophthalmos Study'
+[16:32:11] 
+[16:32:11]     projects = [f for f in os.scandir(root) if re.match(r'.*SS\s+\d+\.mcs', f.name)]
+[16:32:17] ››› projects[0]
+[16:32:17] <DirEntry 'Acuna 2019.06.13 Bone SS 01.mcs'>
+[16:32:35] ››› p = projects[0]
+[16:32:43] ››› mimics.file.open_project(filename = p.path, read_only_mode=True)
+[16:32:43] The project is requested to be opened in READ-ONLY mode
+    project: D:\Projects & Research\Enophthalmos Study\Acuna 2019.06.13 Bone SS 01.mcs
+[16:32:43] Project edition information
+    Project created in: Materialise Mimics Medical 25.0
+    Project last modified in: Materialise Mimics Medical 25.0
+[16:32:45] Open project
+    file name: D:\Projects & Research\Enophthalmos Study\Acuna 2019.06.13 Bone SS 01.mcs
+[16:33:18] ››› info = mimics.file.get_project_information()
+[16:33:40] ››› image_fields = re.split(r',\s*', "height, width, slice_increment, slice_thickness, number_of_slices, obliqueness, orientation, algorithm, gantry_tilt, pixel_size, pixel_units")
+[16:33:40]     study_fields = re.split(r',\s*', "patient_id, patient_name, project_path, study_date")
+[16:33:52] ››› def extract_info(info, fields):
+[16:33:52]       return(dict([(att, getattr(info, att) ) for att in fields]))
+[16:34:04] ››› extract_info(info, image_fields)
+[16:34:04] {'height': 512, 'width': 512, 'slice_increment': '0.6250', 'slice_thickness': 0.625, 'number_of_slices': 281, 'obliqueness': False, 'orientation': 'RAB', 'algorithm': 'BONEPLUS', 'gantry_tilt': 0.0, 'pixel_size': 0.48242199420928955, 'pixel_units': 'HU'}
+[16:34:12] ››› extract_info(info, study_fields)
+[16:34:12] {'patient_id': 'A8775855', 'patient_name': 'TOALISA ACUNA ERNESTO ROSENDO', 'project_path': 'D:\\Projects & Research\\Enophthalmos Study\\Acuna 2019.06.13 Bone SS 01.mcs', 'study_date': '20190613'}
+[16:34:48] ››› [extract(info, f) for f in (image_fields, study_fields)]
+[16:34:48] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <listcomp>
+NameError: name 'extract' is not defined
+[16:34:59] ››› [extract_info(info, f) for f in (image_fields, study_fields)]
+[16:34:59] [{'height': 512, 'width': 512, 'slice_increment': '0.6250', 'slice_thickness': 0.625, 'number_of_slices': 281, 'obliqueness': False, 'orientation': 'RAB', 'algorithm': 'BONEPLUS', 'gantry_tilt': 0.0, 'pixel_size': 0.48242199420928955, 'pixel_units': 'HU'}, {'patient_id': 'A8775855', 'patient_name': 'TOALISA ACUNA ERNESTO ROSENDO', 'project_path': 'D:\\Projects & Research\\Enophthalmos Study\\Acuna 2019.06.13 Bone SS 01.mcs', 'study_date': '20190613'}]
+[16:36:57] ››› [key: extract_info(info, f) for key, f in zip(('image', 'study'), (image_fields, study_fields))]
+[16:36:57] Error: File "<stdin>", line 1
+    [key: extract_info(info, f) for key, f in zip(('image', 'study'), (image_fields, study_fields))]
+        ^
+SyntaxError: invalid syntax
+[16:37:36] ››› dict(c'image', 'study'), [extract_info(info, f) for f in (image_fields, study_fields)])
+[16:37:36] Error: File "<stdin>", line 1
+    dict(c'image', 'study'), [extract_info(info, f) for f in (image_fields, study_fields)])
+          ^
+SyntaxError: invalid syntax
+[16:37:49] ››› dict(('image', 'study'), [extract_info(info, f) for f in (image_fields, study_fields)])
+[16:37:49] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: dict expected at most 1 argument, got 2
+[16:38:50] ››› dict(zip(('image', 'study'), [extract_info(info, f) for f in (image_fields, study_fields)]))
+[16:38:50] {'image': {'height': 512, 'width': 512, 'slice_increment': '0.6250', 'slice_thickness': 0.625, 'number_of_slices': 281, 'obliqueness': False, 'orientation': 'RAB', 'algorithm': 'BONEPLUS', 'gantry_tilt': 0.0, 'pixel_size': 0.48242199420928955, 'pixel_units': 'HU'}, 'study': {'patient_id': 'A8775855', 'patient_name': 'TOALISA ACUNA ERNESTO ROSENDO', 'project_path': 'D:\\Projects & Research\\Enophthalmos Study\\Acuna 2019.06.13 Bone SS 01.mcs', 'study_date': '20190613'}}
+[16:39:46] ››› info_fields = dict(('image', 'study'), (image_fields, study_fields))
+[16:39:46] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: dict expected at most 1 argument, got 2
+[16:40:17] ››› info_fields = {'image': image_fields, 'study': study_fields}
+[16:41:28] ››› [extract_info(info, f) for f in values(info_fields)]
+[16:41:28] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'values' is not defined
+[16:41:33] ››› [extract_info(info, f) for f in value(info_fields)]
+[16:41:33] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'value' is not defined
+[16:41:53] ››› [extract_info(info, f) for key, f in info_fields]
+[16:41:53] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <listcomp>
+ValueError: too many values to unpack (expected 2)
+[16:42:07] ››› info_fields
+[16:42:07] {'image': ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], 'study': ['patient_id', 'patient_name', 'project_path', 'study_date']}
+[16:42:20] ››› info_fields.values
+[16:42:20] <built-in method values of dict object at 0x0000000010BCF9C0>
+[16:42:25] ››› info_fields.keys()
+[16:42:25] dict_keys(['image', 'study'])
+[16:42:30] ››› info_fields.values()
+[16:42:30] dict_values([['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], ['patient_id', 'patient_name', 'project_path', 'study_date']])
+[16:42:44] ››› [key for key, f in info_fields]
+[16:42:44] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <listcomp>
+ValueError: too many values to unpack (expected 2)
+[16:43:34] ››› dict(key, extract_info(f) for key, f in info_fields)
+[16:43:34] Error: File "<stdin>", line 1
+SyntaxError: Generator expression must be parenthesized
+[16:44:19] ››› info_fields = [('image', image_fields), ('study', study_fields)]
+[16:44:21] ››› dict(key, extract_info(f) for key, f in info_fields)
+[16:44:21] Error: File "<stdin>", line 1
+SyntaxError: Generator expression must be parenthesized
+[16:44:35] ››› dict((key, extract_info(f)) for key, f in info_fields)
+[16:44:35] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <genexpr>
+TypeError: extract_info() missing 1 required positional argument: 'fields'
+[16:44:49] ››› info_fields
+[16:44:49] [('image', ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units']), ('study', ['patient_id', 'patient_name', 'project_path', 'study_date'])]
+[16:45:25] ››› info_fields = {'image': image_fields, 'study': study_fields}
+[16:45:50] ››› [(k, v) for k, v in info_fields]
+[16:45:50] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <listcomp>
+ValueError: too many values to unpack (expected 2)
+[16:45:59] ››› [(k) for k in info_fields]
+[16:45:59] ['image', 'study']
+[16:46:13] ››› [(k, info_fields[k]) for k in info_fields]
+[16:46:13] [('image', ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units']), ('study', ['patient_id', 'patient_name', 'project_path', 'study_date'])]
+[16:47:32] ››› {(k, info_fields[k]) for k in info_fields}
+[16:47:32] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <setcomp>
+TypeError: unhashable type: 'list'
+[16:47:50] ››› {(k, v) for k,v in info_fields}
+[16:47:50] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <setcomp>
+ValueError: too many values to unpack (expected 2)
+[16:48:14] ››› info_fields
+[16:48:14] {'image': ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], 'study': ['patient_id', 'patient_name', 'project_path', 'study_date']}
+[16:48:38] ››› {k:v for k,v in info_fields}
+[16:48:38] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <dictcomp>
+ValueError: too many values to unpack (expected 2)
+[16:49:13] ››› info_fields.items
+[16:49:13] <built-in method items of dict object at 0x0000000009E26540>
+[16:49:55] ››› iter(info_fields)
+[16:49:55] <dict_keyiterator object at 0x0000000010B29590>
+[16:49:57] ››› iter(info_fields)
+[16:49:57] <dict_keyiterator object at 0x0000000010BD3630>
+[16:49:58] ››› iter(info_fields)
+[16:49:58] <dict_keyiterator object at 0x0000000010BD3630>
+[16:50:08] ››› zip(info_fields)
+[16:50:08] <zip object at 0x0000000010BD7040>
+[16:50:13] ››› list(zip(info_fields))
+[16:50:13] [('image',), ('study',)]
+[16:50:26] ››› [k for k,v in info_fields]
+[16:50:26] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <listcomp>
+ValueError: too many values to unpack (expected 2)
+[16:51:13] ››› mimics.data.masks
+[16:51:13] <DataContainer 'masks' [<mimics.segment.Mask(Green)>]>
+[16:51:17] ››› mimics.data.masks[0]
+[16:51:17] <mimics.segment.Mask(Green)>
+[16:51:19] ››› mimics.data.masks[1]
+[16:51:19] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+IndexError: 1 is out of range in container 'masks'
+[16:51:26] ››› len(mimics.data.masks)
+[16:51:26] 1
+[16:51:35] ››› mimics.data.masks[-1]
+[16:51:35] <mimics.segment.Mask(Green)>
+[16:52:08] ››› [k for k in info_fields]
+[16:52:08] ['image', 'study']
+[16:52:15] ››› [k for k in zip(info_fields)]
+[16:52:15] [('image',), ('study',)]
+[16:52:21] ››› [k for k,v in zip(info_fields)]
+[16:52:21] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <listcomp>
+ValueError: not enough values to unpack (expected 2, got 1)
+[16:52:46] ››› d = {k:v for k, v in iterable}
+[16:52:46] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'iterable' is not defined
+[16:52:52] ››› d = {k:v for k, v in info_fields}
+[16:52:52] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <dictcomp>
+ValueError: too many values to unpack (expected 2)
+[16:53:06] ››› info_fields.keys()
+[16:53:06] dict_keys(['image', 'study'])
+[16:53:11] ››› info_fields.values()
+[16:53:11] dict_values([['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], ['patient_id', 'patient_name', 'project_path', 'study_date']])
+[16:53:41] ››› {k:v for k, v in info_fields}
+[16:53:41] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <dictcomp>
+ValueError: too many values to unpack (expected 2)
+[16:53:48] ››› {k for k in info_fields}
+[16:53:48] {'image', 'study'}
+[16:53:54] ››› {k:v for k in info_fields}
+[16:53:54] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <dictcomp>
+NameError: name 'v' is not defined
+[16:54:41] ››› ts = [(1, 2), (3, 4), (5, 6)]
+[16:54:47] ››› dict(ts)
+[16:54:47] {1: 2, 3: 4, 5: 6}
+[16:56:10] ››› {k:v for k, v in zip(info_fields.keys(), info_fields.values())}
+[16:56:10] {'image': ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], 'study': ['patient_id', 'patient_name', 'project_path', 'study_date']}
+[16:56:37] ››› {k:extract_info(v) for k, v in zip(info_fields.keys(), info_fields.values())}
+[16:56:37] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <dictcomp>
+TypeError: extract_info() missing 1 required positional argument: 'fields'
+[16:56:52] ››› {k:extract_info(info, v) for k, v in zip(info_fields.keys(), info_fields.values())}
+[16:56:52] {'image': {'height': 512, 'width': 512, 'slice_increment': '0.6250', 'slice_thickness': 0.625, 'number_of_slices': 281, 'obliqueness': False, 'orientation': 'RAB', 'algorithm': 'BONEPLUS', 'gantry_tilt': 0.0, 'pixel_size': 0.48242199420928955, 'pixel_units': 'HU'}, 'study': {'patient_id': 'A8775855', 'patient_name': 'TOALISA ACUNA ERNESTO ROSENDO', 'project_path': 'D:\\Projects & Research\\Enophthalmos Study\\Acuna 2019.06.13 Bone SS 01.mcs', 'study_date': '20190613'}}
+[16:57:25] ››› zip(info_fields.keys(), info_fields.values())
+[16:57:25] <zip object at 0x0000000010BDDDC0>
+[16:57:29] ››› list(zip(info_fields.keys(), info_fields.values()))
+[16:57:29] [('image', ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units']), ('study', ['patient_id', 'patient_name', 'project_path', 'study_date'])]
+[16:57:41] ››› list(info_fields)
+[16:57:41] ['image', 'study']
+[16:57:47] ››› info_fields
+[16:57:47] {'image': ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], 'study': ['patient_id', 'patient_name', 'project_path', 'study_date']}
+[16:57:51] ››› zip(info_fields)
+[16:57:51] <zip object at 0x0000000010B11340>
+[16:57:55] ››› list(zip(info_fields))
+[16:57:55] [('image',), ('study',)]
+[17:00:33] ››› info_fields.iteritems()
+[17:00:33] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'iteritems'
+[17:00:35] ››› info_fields.iteritems()
+[17:00:35] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'iteritems'
+[17:00:39] ››› info_fields.iter()
+[17:00:39] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'iter'
+[17:00:42] ››› info_fields.iter
+[17:00:42] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'iter'
+[17:00:48] ››› dir(info_fields)
+[17:00:48] ['__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
+[17:01:07] ››› info_fields.items()
+[17:01:07] dict_items([('image', ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units']), ('study', ['patient_id', 'patient_name', 'project_path', 'study_date'])])
+[17:01:30] ››› {k:extract_info(info, v) for k, v in info_fields.items()}
+[17:01:30] {'image': {'height': 512, 'width': 512, 'slice_increment': '0.6250', 'slice_thickness': 0.625, 'number_of_slices': 281, 'obliqueness': False, 'orientation': 'RAB', 'algorithm': 'BONEPLUS', 'gantry_tilt': 0.0, 'pixel_size': 0.48242199420928955, 'pixel_units': 'HU'}, 'study': {'patient_id': 'A8775855', 'patient_name': 'TOALISA ACUNA ERNESTO ROSENDO', 'project_path': 'D:\\Projects & Research\\Enophthalmos Study\\Acuna 2019.06.13 Bone SS 01.mcs', 'study_date': '20190613'}}
+[17:07:13] Error: File "D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study/process_studies.py", line 9
+    info_fields = {'image: image_fields, 'study', study_fields}
+                                          ^
+SyntaxError: invalid syntax
+[17:07:13] Error: File "D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study/process_studies.py", line 9
+    info_fields = {'image: image_fields, 'study', study_fields}
+                                          ^
+SyntaxError: invalid syntax
+[17:07:14] Error: File "D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study/process_studies.py", line 9
+    info_fields = {'image: image_fields, 'study', study_fields}
+                                          ^
+SyntaxError: invalid syntax
+[17:07:14] Error: File "D:/Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study/process_studies.py", line 9
+    info_fields = {'image: image_fields, 'study', study_fields}
+                                          ^
+SyntaxError: invalid syntax
+[17:08:19] ››› {k:extract_info(info, v) for k, v in info_fields.items()}
+[17:08:19] {'image': {'height': 512, 'width': 512, 'slice_increment': '0.6250', 'slice_thickness': 0.625, 'number_of_slices': 281, 'obliqueness': False, 'orientation': 'RAB', 'algorithm': 'BONEPLUS', 'gantry_tilt': 0.0, 'pixel_size': 0.48242199420928955, 'pixel_units': 'HU'}, 'study': {'patient_id': 'A8775855', 'patient_name': 'TOALISA ACUNA ERNESTO ROSENDO', 'project_path': 'D:\\Projects & Research\\Enophthalmos Study\\Acuna 2019.06.13 Bone SS 01.mcs', 'study_date': '20190613'}}
+[17:08:21] ››› from dataclasses import dataclass
+[17:08:21] 
+[17:08:21]     # A dataclass to hold all of the geomtery for an eye
+[17:08:21]     @dataclass
+[17:08:21]     class Eye_data:
+[17:08:21]       rim: mimics.analyze.Spline = None
+[17:08:21]       globe: mimics.analyze.Sphere = None
+[17:08:21]       tip: mimics.analyze.Point = None
+[17:08:21]       side: str = None
+[17:08:21] 
+[17:08:21]     import const # CONSTANT definitions for this project
+[17:08:21] 
+[17:08:21]     # Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points.
+[17:08:21]     def make_crop_box(pt_up, pt_down, spacing_z):
+[17:08:21]       """Create a mimics.BoundingBox3D in the X,Y plane, given two plane intersection points."""
+[17:08:21]       # Align the crop box along the XY line between the two intesection points, 
+[17:08:21]       # expanded slightly to ensure it covers the whole orbit
+[17:08:21]       vector_x = [ MULT_XY * (pt_up.x - pt_down.x), MULT_XY * (pt_up.y - pt_down.y), 0]
+[17:08:21]       vector_y = [0, SIZE_Y, 0] # -Y is anterior, so point towards front of face
+[17:08:21]       vector_z = [0, 0, spacing_z] # thickness is distance bwtween planes
+[17:08:21]       # Put the origin above the down intesection point, midway between the z planes
+[17:08:21]       origin = (pt_down.x, pt_down.y, pt_down.z + spacing_z / 2)
+[17:08:21]       return mimics.BoundingBox3d(origin, vector_x, vector_y, vector_z)
+[17:08:50] ››› len(mimics.data.spheres)
+[17:08:50] 2
+[17:09:39] ››› mimics.data.spheres[0].center
+[17:09:39] (36.184783935546875, -87.18797302246094, 142.76214599609375)
+[17:09:45] ››› mimics.data.spheres[0].center[X]
+[17:09:45] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'X' is not defined
+[17:09:53] ››› import const
+[17:10:04] ››› const.X
+[17:10:04] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'const' has no attribute 'X'
+[17:11:13] ››› import const
+[17:11:15] ››› const.X
+[17:11:15] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'const' has no attribute 'X'
+[17:11:18] ››› X
+[17:11:18] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'X' is not defined
+[17:11:41] ››› import const
+[17:11:44] ››› dir(const)
+[17:11:44] ['MATL_AIR', 'MATL_BONE', 'MATL_FAT', 'MATL_MUSCLE', 'MAX_AIR_GV', 'MAX_AIR_HU', 'MAX_BONE_GV', 'MAX_BONE_HU', 'MAX_FAT_GV', 'MAX_FAT_HU', 'MAX_GV', 'MAX_HU', 'MAX_MUSCLE_GV', 'MAX_MUSCLE_HU', 'MIN_AIR_GV', 'MIN_AIR_HU', 'MIN_BONE_GV', 'MIN_BONE_HU', 'MIN_FAT_GV', 'MIN_FAT_HU', 'MIN_GV', 'MIN_HU', 'MIN_MUSCLE_GV', 'MIN_MUSCLE_HU', 'Material', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'mimics']
+[17:11:56] ››› reload const
+[17:11:56] Error: File "<stdin>", line 1
+    reload const
+           ^
+SyntaxError: invalid syntax
+[17:12:02] ››› reload(const)
+[17:12:02] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'reload' is not defined
+[17:12:57] ››› imp.reload(const)
+[17:12:57] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'imp' is not defined
+[17:13:35] ››› reload(const)
+[17:13:35] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'reload' is not defined
+[17:14:09] ››› from importlib import reload
+[17:14:14] ››› reload(const)
+[17:14:14] <module 'const' from 'D:\\Projects & Research/Enophthalmos Study/Mimics-Scripting/enopthalmus_study\\const.py'>
+[17:14:20] ››› dir(const)
+[17:14:21] ['CLOSING_DIST', 'MATL_AIR', 'MATL_BONE', 'MATL_FAT', 'MATL_MUSCLE', 'MAX_AIR_GV', 'MAX_AIR_HU', 'MAX_BONE_GV', 'MAX_BONE_HU', 'MAX_FAT_GV', 'MAX_FAT_HU', 'MAX_GV', 'MAX_HU', 'MAX_MUSCLE_GV', 'MAX_MUSCLE_HU', 'MIN_AIR_GV', 'MIN_AIR_HU', 'MIN_BONE_GV', 'MIN_BONE_HU', 'MIN_FAT_GV', 'MIN_FAT_HU', 'MIN_GV', 'MIN_HU', 'MIN_MUSCLE_GV', 'MIN_MUSCLE_HU', 'MULT_XY', 'MULT_Z', 'Material', 'NUM_PLANES', 'SIZE_Y', 'X', 'Y', 'Z', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'mimics']
+[17:14:27] ››› const.X
+[17:14:27] 0
+[17:14:28] ››› X
+[17:14:28] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'X' is not defined
+[17:14:45] ››› from const import *
+[17:14:46] ››› X
+[17:14:46] 0
+[17:14:53] ››› mimics.data.spheres[0].center[X]
+[17:14:53] 36.184783935546875
+[17:14:57] ››› mimics.data.spheres[1].center[X]
+[17:14:57] -27.435379028320312
+[17:16:47] ››› if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
+[17:16:47]         left = 0
+[17:16:47]     else:
+[17:16:47]         left = 1
+[17:16:49] ››› left
+[17:16:49] 1
+[17:26:28] ››› if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
+[17:26:28]         left = 0; right = 1
+[17:26:28]     else:
+[17:26:28]         left = 1; right = 0
+[17:26:30] ››› left
+[17:26:30] 1
+[17:26:33] ››› right
+[17:26:33] 0
+[17:27:08] ››› mimics.data.spheres[left].name
+[17:27:08] Sphere 2
+[17:27:33] ››› 'ab'+'def'
+[17:27:33] abdef
+[17:27:56] ››› mimics.data.spheres[left].name = 'left - ' + mimics.data.spheres[left].name
+[17:28:14] ››› mimics.data.spheres[right].name = 'left - ' + mimics.data.spheres[right].name
+[17:28:27] ››› mimics.data.points[right].name = 'left - ' + mimics.data.points[right].name
+[17:28:37] ››› mimics.data.points[right].name = 'right - ' + mimics.data.points[right].name
+[17:28:45] ››› mimics.data.spheres[right].name = 'right - ' + mimics.data.spheres[right].name
+[17:29:04] ››› mimics.data.points[left].name = 'left - ' + mimics.data.points[left].name
+[17:29:26] ››› prefix[left] = 'left'
+[17:29:26] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'prefix' is not defined
+[17:30:01] ››› left
+[17:30:01] 1
+[17:30:18] ››› prefix = ['right', 'left']
+[17:31:04] ››› prefix = ['right', 'left']
+[17:31:22] ››› mimics.data.find('left')
+[17:31:22] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'DataObject' object has no attribute 'find'
+[17:33:25] ››› mimics.data.spheres.find('left')
+[17:33:34] ››› mimics.data.spheres.find('left', regex=True)
+[17:33:34] <mimics.analyze.Sphere(right - left - Sphere 1)>
+[17:33:52] ››› mimics.data.spheres.find('^left', regex=True)
+[17:33:52] <mimics.analyze.Sphere(left - Sphere 2)>
+[17:34:27] Object duplicated
+    name: Green
+[17:34:41] Object hidden
+    name: Green
+Tip: Use Ctrl+Shift+C to enable or disable bounding box resizing in the 3D view
+[17:34:49] Thresholding
+    mask: Yellow
+    predefined set: Bone (CT)
+    range min: 226
+    range max: 3071
+    fill holes: ON
+    keep largest: ON
+    Bounding box corner 1: [-123.7412, 105.3598, 65.9130]
+    Bounding box corner 2: [123.2589, -141.6402, 241.5359]
+[17:34:49] Object shown
+    name: Green
+To be able to see the mask preview in 3D please turn Mask 3D Preview ON.
+[17:34:52] Object hidden
+    name: Green
+[17:34:56] Mask 3D Preview
+    State: ON
+The 3D preview can differ from the final 3D part/object.
+[17:35:02] Object hidden
+    name: Green 1
+[17:35:39] Object deleted
+    name: Yellow
+[17:35:54] ››› import util
+[17:35:54] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'util'
+[17:35:59] ››› import utils
+[17:36:06] ››› dir(utils)
+[17:36:06] ['Material', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'add_masks', 'batched', 'create_mask', 'dataclass', 'islice', 'looped_pairwise', 'mask_to_part', 'material_mask', 'mimics', 'pairwise', 'tee', 'zip_longest']
+[17:37:57] Autosaving
+[17:37:58] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_25100.mcs
+[17:42:25] ››› m = utils.material_mask(name = 'bone', MATL_BONE); m = mimics.segment.fill_holes(m); m = mimics.segment.fill_holes(m)
+[17:42:25] Error: File "<stdin>", line 1
+SyntaxError: positional argument follows keyword argument
+[17:42:45] ››› m = utils.material_mask('bone', MATL_BONE); m = mimics.segment.fill_holes(mask = m); m = mimics.segment.fill_holes(mask = m)
+[17:42:45] Thresholding performed
+    Mask label: bone
+    Mask index: 1
+    Grey value min: 1250
+    Grey value max: 4095
+[17:43:31] ››› mimics.segment.fill_holes(mask = m)
+[17:43:32] <mimics.segment.Mask(bone)>
+[17:43:40] ››› mimics.segment.keep_largest(mask = m)
+[17:43:41] <mimics.segment.Mask(bone)>
+[17:43:59] ››› m = utils.material_mask('bone', MATL_BONE); mimics.segment.fill_holes(mask = m); mimics.segment.fill_holes(mask = m)
+[17:44:00] Thresholding performed
+    Mask label: bone
+    Mask index: 2
+    Grey value min: 1250
+    Grey value max: 4095
+[17:44:11] ››› m = utils.material_mask('bone', MATL_BONE); mimics.segment.fill_holes(mask = m); mimics.segment.keep_largest(mask = m)
+[17:44:11] Thresholding performed
+    Mask label: bone
+    Mask index: 3
+    Grey value min: 1250
+    Grey value max: 4095
+[17:44:53] ››› mimics.segment.create_part(mask = m)
+[17:44:53] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: missing a required argument: 'vertices'
+[17:45:03] ››› mimics.segment.create_part_parameters(mask = m)
+[17:45:03] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'mimics.segment' has no attribute 'create_part_parameters'
+[17:49:01] ››› prefix[True]
+[17:49:01] left
+[17:49:06] ››› prefix[False]
+[17:49:06] right
+[17:52:48] Autosaving
+[17:52:48] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_25100.mcs
+[21:07:34] ››› mimics.data.parts[0]
+[21:07:34] <mimics.Part(Green 1)>
+[21:07:41] ››› p = mimics.data.parts[0]
+[21:35:06] ››› import numpy as np
+[21:35:06]     p = mimics.data.parts[0]
+[21:35:06]     v,t = p.get_triangles()
+[21:35:06]     v = np.array(v)
+[21:35:06]     t = np.array(t)
+[21:35:10] ››› v
+[21:35:10] [[-98.3808 -31.4068 66.2254]
+[21:35:10]  [-98.1412 -28.0298 66.2254]
+[21:35:10]  [-98.1363 -28.5123 66.2254]
+[21:35:10]  ...
+[21:35:10]  [102.8826 -42.0201 241.2255]
+[21:35:10]  [102.9264 -42.5025 241.2255]
+[21:35:10]  [102.941 -42.9849 241.2255]]
+[21:35:12] ››› t
+[21:35:12] [[ 2850 2849 2833]
+[21:35:12]  [ 2855 2849 2850]
+[21:35:12]  [ 2799 2798 2787]
+[21:35:12]  ...
+[21:35:12]  [2454672 2454832 2454833]
+[21:35:12]  [2454671 2454832 2454672]
+[21:35:12]  [2454832 2454986 2454833]]
+[21:36:15] Calculate Mask from Object
+    object: Part-08
+    target mask: Orange
+[21:36:41] Object deleted
+    name: Orange
+[21:37:03] CAD object created
+    type: Sphere
+    name: Sphere 3
+    color: [155, 155, 155, 128]
+    center: [126.215576, 47.026878, 142.005768]
+    radius: 6.0966
+[21:37:31] Point changed
+    Label: unit_sphere
+    Index: 0
+    Coordinates: [0.0000, 47.0269, 142.0058]
+[21:37:33] Point changed
+    Label: unit_sphere
+    Index: 0
+    Coordinates: [0.0000, 0.0000, 142.0058]
+[21:37:38] Point changed
+    Label: unit_sphere
+    Index: 0
+    Coordinates: [0.0000, 0.0000, 0.0000]
+[21:38:01] Calculate Mask from Object
+    object: Part-23
+    target mask: Orange
+[21:38:37] Object deleted
+    name: Orange
+[21:39:09] Calculate Mask from Object
+    object: Part-23
+    target mask: Orange
+[21:39:52] Export
+    object: unit_sphere
+    filename: 10_unit_sphere.stl
+    output format: Binary STL Files (*.STL)
+    output directory: D:\Projects & Research\Enophthalmos Study\
+[21:42:25] Calculate Mask from Object
+    object: 10_unit_sphere.stl
+    target mask: Red
+[21:43:41] ››› mimics.data.parts.move_objects
+[21:43:41] <bound method DataContainer.move_objects of <DataContainer 'parts' [<mimics.Part(Green 1)>, <mimics.Part(10_unit_sphere.stl)>]>>
+[21:45:55] Autosaving
+[21:45:55] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_25100.mcs
+[21:49:26] ››› mimics.data.transformations
+[21:49:26] <DataContainer 'transformations' []>
+[21:50:40] Point changed
+    Label: P01'
+    Index: 0
+    Coordinates: [-48.1289, 44.8700, 153.7255]
+[21:50:42] Object deleted
+    name: P01'
+[21:50:48] Point changed
+    Label: P01'
+    Index: 0
+    Coordinates: [51.4272, -48.3851, 153.7255]
+[21:50:52] Point changed
+    Label: P01
+    Index: 0
+    Coordinates: [-63.2514, -25.7014, 153.7255]
+[21:51:00] Object deleted
+    name: P01' -> P01
+[21:51:00] Object deleted
+    name: P01'
+[21:51:00] Object deleted
+    name: P01
+[21:51:00] Point Registration
+    fixed point: [-63.2514, -25.7014, 153.7255]
+    moving point: [51.4272, -48.3851, 153.7255]
+[21:51:33] Transformation created
+    name: Transformation 1
+    rotation: [0, 0, 0]
+    translation: [0, 0, 0]
+    matrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+[21:51:44] ››› mimics.data.transformations
+[21:51:44] <DataContainer 'transformations' [<mimics.Transformation('Transformation 1')>]>
+[21:51:52] ››› mimics.data.transformations[0]
+[21:51:52] <mimics.Transformation('Transformation 1')>
+[21:52:15] ››› dir(mimics.data.transformations[0])
+[21:52:15] ['__bool__', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'color', 'guid', 'image', 'invert', 'matrix', 'metadata', 'name', 'rotation', 'selected', 'translation', 'visible']
+[21:52:31] ››› mimics.data.transformations[0].matrix
+[21:52:31] [[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]]
+[21:54:09] ››› s= mimics.data.spheres[1]
+[21:54:25] ››› mimics.segment.calculate_mask_from_part(part = s)
+[21:54:25] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: Parameter 'part' is not valid. mimics.analyze.Sphere cannot be converted to 'mimics.Part'
+[21:55:16] ››› mimics.data.parts
+[21:55:16] <DataContainer 'parts' [<mimics.Part(Green 1)>, <mimics.Part(10_unit_sphere.stl)>]>
+[21:55:21] ››› mimics.data.parts[1]
+[21:55:21] <mimics.Part(10_unit_sphere.stl)>
+[21:55:41] ››› mimics.segment.calculate_mask_from_part(part = mimics.data.parts[1])
+[21:55:41] Calculate Mask from Object
+    object: 10_unit_sphere.stl
+    target mask: Blue
+[21:55:41] <mimics.segment.Mask(Blue)>
+[21:56:06] ››› dir(mimics.data.parts[1])
+[21:56:06] ['__bool__', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'color', 'color_scheme', 'contours_visible', 'dimension_delta', 'dimension_max', 'dimension_min', 'get_active_color_mask', 'get_triangles', 'get_vertices', 'guid', 'image', 'metadata', 'name', 'number_of_points', 'number_of_triangles', 'quality', 'selected', 'surface_area', 'transparency', 'triangles_visible', 'type', 'visible', 'visualization', 'volume']
+[22:00:41] Autosaving
+[22:00:41] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_25100.mcs
+[22:03:01] ››› def uniform_scale(s):
+[22:03:01]         return([[s, 0,0,0], [0,s,0,0], [0,0,s,0], [0,0,0,1]])
+[22:03:14] ››› uniform_scale(3)
+[22:03:14] [[3, 0, 0, 0], [0, 3, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]
+[22:03:34] ››› mimics.data.spheres[1].radius
+[22:03:34] 12.924175262451172
+[22:03:42] ››› r = mimics.data.spheres[1].radius
+[22:03:58] ››› t = uniform_scale(r/10)
+[22:04:17] ››› u_s = mimics.data.parts[1]
+[22:06:06] ››› mimics.transform_objects(objects = u_s, transformation=t)
+[22:06:06] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: Parameter 'transformation' is not valid. list cannot be converted to 'mimics.Transformation'
+[22:06:33] ››› tx = mimics.Transformation
+[22:06:43] ››› tx.matrix = t
+[22:06:49] ››› mimics.transform_objects(objects = u_s, transformation=tx)
+[22:06:49] Error: An exception has been caught in subclassing: child class "<class 'Boost.Python.class'>", parent class "<class 'mimics.Transformation'>"
+[22:06:49] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: descriptor 'mro' of 'type' object needs an argument
+[22:07:03] ››› tx
+[22:07:03] <class 'mimics.Transformation'>
+[22:07:13] ››› tx.mro
+[22:07:13] <built-in method mro of Boost.Python.class object at 0x000000000F7F27A0>
+[22:07:47] ››› mimics.data.transformations[0]
+[22:07:47] <mimics.Transformation('Transformation 1')>
+[22:07:51] ››› mimics.data.transformations[0].matrix
+[22:07:51] [[1.2924175262451172, 0, 0, 0], [0, 1.2924175262451172, 0, 0], [0, 0, 1.2924175262451172, 0], [0, 0, 0, 1]]
+[22:07:55] ››› mimics.data.transformations[0].mro
+[22:07:55] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Transformation' object has no attribute 'mro'
+[22:08:11] ››› t0 = mimics.data.transformations[0]
+[22:08:19] ››› mimics.transform_objects(objects = u_s, transformation=t0)
+[22:08:40] ››› tx
+[22:08:40] <class 'mimics.Transformation'>
+[22:08:43] ››› t0
+[22:08:43] <mimics.Transformation('Transformation 1')>
+[22:08:49] ››› dir(tx)
+[22:08:49] ['__bool__', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'color', 'guid', 'image', 'invert', 'matrix', 'metadata', 'name', 'rotation', 'selected', 'translation', 'visible']
+[22:08:53] ››› dir(t0)
+[22:08:53] ['__bool__', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'color', 'guid', 'image', 'invert', 'matrix', 'metadata', 'name', 'rotation', 'selected', 'translation', 'visible']
+[22:09:18] ››› tx.matrix
+[22:09:18] [[1.2924175262451172, 0, 0, 0], [0, 1.2924175262451172, 0, 0], [0, 0, 1.2924175262451172, 0], [0, 0, 0, 1]]
+[22:09:22] ››› t0.matrix
+[22:09:22] [[1.2924175262451172, 0, 0, 0], [0, 1.2924175262451172, 0, 0], [0, 0, 1.2924175262451172, 0], [0, 0, 0, 1]]
+[22:09:51] ››› tx = mimics.Transformation
+[22:09:56] ››› tx.matrix
+[22:09:56] [[1.2924175262451172, 0, 0, 0], [0, 1.2924175262451172, 0, 0], [0, 0, 1.2924175262451172, 0], [0, 0, 0, 1]]
+[22:10:04] ››› tx = mimics.Transformation()
+[22:10:04] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object is not callable
+[22:10:14] ››› mimics.Transformation
+[22:10:14] <class 'mimics.Transformation'>
+[22:10:36] ››› mimics.create_transformation(matrix = t)
+[22:10:36] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+ValueError: The transformation cannot be created. Only rigid transformations can be created.
+[22:27:06] ››› tx
+[22:27:06] <class 'mimics.Transformation'>
+[22:27:27] ››› uniform_scale(r/10)
+[22:27:27] [[1.2924175262451172, 0, 0, 0], [0, 1.2924175262451172, 0, 0], [0, 0, 1.2924175262451172, 0], [0, 0, 0, 1]]
+[22:27:56] ››› np.array(uniform_scale(r/10))
+[22:27:56] [[1.29241753 0. 0. 0. ]
+[22:27:56]  [0. 1.29241753 0. 0. ]
+[22:27:56]  [0. 0. 1.29241753 0. ]
+[22:27:56]  [0. 0. 0. 1. ]]
+[22:28:05] ››› sx = np.array(uniform_scale(r/10))
+
+[23:03:05] ››› for p in mimics.data.spheres:mimics.file.export_part(mimics.t, file_name, output_format='STL', scale_factor=1)
+[23:03:05] Error: Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'mimics' has no attribute 't'
+[23:03:40] ››› for p in mimics.data.spheres:
+[23:03:40]         mimics.file.export_part(p, p.name, output_format='STL', scale_factor=1)
+[23:03:40] Error: Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "<mimics:_matutils.wrapping>", line 220, in wrapper
+TypeError: Parameter 'object_to_convert' is not valid. mimics.analyze.Sphere cannot be converted to 'mimics.Part'
+[23:31:01] <mimics.analyze.Sphere(unit_sphere)>
+[23:31:10] ››› mimics.data.spheres[-1].radius
+[23:31:10] 10.0
+[23:31:17] ››› mimics.data.spheres[-1].center
+[23:31:17] (0.0, 0.0, 0.0)
+## THIS BIT DONE MANUALLY TO EXPORT AN STL OF A 10 UNIT SPHERE AT [0,0,0]
+[23:32:20] Export
+    object: unit_sphere
+    filename: 10_unit_sphere
+    output format: Binary STL Files (*.STL)
+    output directory: D:\Projects & Research\Enophthalmos Study\
+[23:37:25] ››› info
+[23:37:25] <mimics.ImageInformation object at 0x00000000108EE040>
+[23:37:36] ››› info_fields
+[23:37:36] {'image': ['height', 'width', 'slice_increment', 'slice_thickness', 'number_of_slices', 'obliqueness', 'orientation', 'algorithm', 'gantry_tilt', 'pixel_size', 'pixel_units'], 'study': ['patient_id', 'patient_name', 'project_path', 'study_date']}
+[23:37:51] ››› info.project_path
+[23:37:51] D:\Projects & Research\Enophthalmos Study\Acuna 2019.06.13 Bone SS 01.mcs
+[23:38:14] ››› mimics.file.import_stl(filename=r"D:\Projects & Research\Enophthalmos Study\10_unit_sphere.stl")
+[23:38:14] <mimics.Part(10_unit_sphere)>
+[23:38:36] ››› u_10 = mimics.data.objects.find("10", regex=True)
+[23:38:49] ››› u_10.dimension_min
+[23:38:49] (-9.989899635314941, -9.9798002243042, -10.0)
+[23:38:55] ››› u_10.dimension_max
+[23:38:55] (9.989899635314941, 9.9798002243042, 10.0)
+[23:40:12] ››› mimics.data.parts[-1]
+[23:40:12] <mimics.Part(10_unit_sphere)>
+[23:40:18] ››› p = mimics.data.parts[-1]
+[23:40:31] ››› v,t = p.get_triangles()
+[23:40:47] ››› v = np.array(v)
+[23:40:55] ››› t = np.array(t)
+[23:44:22] ››› vt = v.dot(ts.T)
+[23:45:14] ››› new_part = mimics.segment.create_part(vt,t)
+[23:45:27] ››› dup_part = mimics.segment.create_part(v,t)
+
+[23:46:55] ››› offset= mimics.data.spheres[1].center
+[23:46:59] ››› offset
+[23:46:59] (-27.435379028320312, -92.98704528808594, 135.38540649414062)
+[23:47:47] ››› mimics.move_object(new_part, offset)
+[23:48:15] Autosaving
+[23:48:15] Save project
+    file name: C:\Users\Health\AppData\Local\Materialise\Materialise Mimics Medical\25.0\Autosave\Acuna 2019.06.13 Bone SS 01_autosave_25100.mcs
