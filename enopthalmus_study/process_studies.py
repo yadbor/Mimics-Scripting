@@ -81,8 +81,7 @@ logging.basicConfig(filename=log_file, level=logging.DEBUG)
 
 # ## Test with one scan ##
 # projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
-
-projects = projects[4] # just one file that has failed previously
+#projects = projects[4] # just one file that has failed previously
 
 # Time events
 events = utils.Events() # Initialise an event timer. There is a seperate one in segment_orbit
@@ -189,7 +188,7 @@ for i, p in enumerate(projects):
             obj.visible = True
 
     volume_start = time.process_time()
-    
+
     # Create a blank dict to hold measured volumes for each eye
     volumes = {}
     # And a blank dict to hold summary input information (spline bounds, globe & point location)
