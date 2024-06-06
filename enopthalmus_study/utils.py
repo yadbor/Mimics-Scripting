@@ -6,6 +6,8 @@ from const import * # CONSTANT definitions (* is safe as only consts)
 # Specialised iterators. Most are in recent version of itertools
 from itertools import tee, zip_longest, islice
 
+import sys # for system functions
+
 # Need to define pairwise() as itertools for python 3.7 doesn't have it.
 # Slight variation to return a list() and not a zip object.
 def pairwise(iterable):
@@ -220,7 +222,8 @@ def mimics_image_vectors():
   else:
     basis = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
     (i, j, k) = [v_hat(v) for v in basis]
-  return(i,j,k)
+
+  return (i,j,k)
 
 
 # R equivalent functions for lists
