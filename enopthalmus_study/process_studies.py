@@ -6,7 +6,7 @@ import os  # for scandir() etc
 import re  # for regexp matching
 import time  # for timeing processes
 
-import numpy as np  # Only used for np.array() in bounding box construction
+import numpy as np  # Was only used for np.array() in bounding box construction; now for several more
 
 # CONSTANT definitions for this project (* is safe as only consts)
 from const import *
@@ -122,13 +122,16 @@ for i, p in enumerate(projects):
     # mask_air = utils.mask_from_material('Air Mask', materials.MATL_AIR)
     # print(mask_info(mask_air))
 
-    if project_info.orientation != 'RAB':
-        logger.exception(f"Can't handle image orientation {project_info.orientation}. Abort this project.")
-        events.add('skip project - wrong orientation')
-        continue # Go to next project
+    # Need to check why I added this. Looks like they _should_ work.
+    # if project_info.orientation != 'RAB':
+    #     logger.exception(f"Can't handle image orientation {project_info.orientation}. Abort this project.")
+    #     events.add('skip project - wrong orientation')
+    #     continue # Go to next project
 
     num_eyes = len(mimics.data.spheres)
     num_rims = len(mimics.data.splines)
+    num_pts = len(mimics.data.points)
+
     if num_eyes != num_rims:
         print(
             f'Number of globes {num_eyes} does not match number of rims {num_rims}.')
@@ -152,12 +155,14 @@ for i, p in enumerate(projects):
     # If there are two of a given component, compare them; otherwise compare to 0
     if num_eyes == 1:
         # Just need to determine the side once, and can use the globe for that
-        side = ('right', 'left') if mimics.data.spheres[0].center[X] < 0 else (
-            'left', 'right')
+        if mimics.data.spheres[0].center[X] < 0:
+            side = ('right', 'left')
+        else:
+            side = ('left', 'right')
         # Note that some may not have an apex point
         eyes = {side[0]: {'globe': mimics.data.spheres[0],
-                            'rim': mimics.data.splines[0],
-                            'point': mimics.data.points[0] if len(mimics.data.points) > 0 else None
+                          'rim':   mimics.data.splines[0],
+                          'point': mimics.data.points[0] if len(mimics.data.points) > 0 else None
                             },
                 # Empty entry to fill out results table
                 side[1]: {'globe': None, 'rim': None, 'point': None}
@@ -165,21 +170,36 @@ for i, p in enumerate(projects):
     else:
         # num_eyes must be 2 here.
         # Need to find the side of each component indivdually, as could be entered in random order.
-        # Find which index is left and which right for each component
-        # globes
-        (rg, lg) = (0, 1) if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X] else (1, 0)
-        (rp, lp) = (0, 1) if mimics.data.points[0][X] < mimics.data.points[1][X] else (1, 0)
-        (rr, lr) = (0, 1) if utils.spline_center(mimics.data.splines[0])[X] < utils.spline_center(mimics.data.splines[1])[X] else (1, 0)
+        # Find which index is left and which is right for each component by checking the X coordinate.
 
-        eyes = {'right': {'globe': mimics.data.spheres[rg],
-                            'rim': mimics.data.splines[rr],
-                            'point': mimics.data.points[rp] if len(mimics.data.points) > 0 else None
-                            },
-                'left': {'globe': mimics.data.spheres[lg],
-                            'rim': mimics.data.splines[lr],
-                            'point': mimics.data.points[lp] if len(mimics.data.points) > 0 else None
-                            }
-                }
+        # Set up a blank dict
+        eyes = {
+            'right': {'globe': None, 'rim': None, 'point': None},
+            'left':  {'globe': None, 'rim': None, 'point': None}
+            }
+
+        # globes - centers of the first two spheres
+        temp = [o.center[X] for o in [mimics.data.spheres[i] for i in (0,1)]]
+        idx = 0 if temp[0] < temp[1] else 1
+        eyes['right']['globe'] = mimics.data.spheres[idx] # idx is either 0 or 1
+        eyes['left']['globe']  = mimics.data.spheres[1 - idx] # Opposite of idx 
+       
+        # rims - centroids of the first two splines
+        temp = [utils.spline_center(o)[X] for o in [mimics.data.splines[i] for i in (0,1)]]
+        idx = 0 if temp[0] < temp[1] else 1
+        eyes['right']['rim'] = mimics.data.splines[idx] # idx is either 0 or 1
+        eyes['left']['rim']  = mimics.data.splines[1 - idx] # Opposite of idx 
+
+        # points - more complicated as may be missing one or both
+        # Have set up the dict with with both missing, so just add any that are found
+        if num_pts == 1:
+            side = 'right' if mimics.data.points[0][X] < 0 else 'left'
+            eyes[side]['point'] = mimics.data.spheres[0]
+        elif num_pts >= 2:
+            temp = [o[X] for o in [mimics.data.points[i] for i in (0,1)]]
+            idx = 0 if temp[0] < temp[1] else 1
+            eyes['right']['point'] = mimics.data.splines[idx] # idx is either 0 or 1
+            eyes['left']['point']  = mimics.data.splines[1 - idx] # Opposite of idx 
 
     # Name the inputs in mimics.data.{spheres|splines|points}, so can find them via name
     for side, d in eyes.items():

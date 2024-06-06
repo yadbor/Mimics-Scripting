@@ -196,8 +196,41 @@ def antero_lateral(bbox, side, delta = 2):
   else:
     print(f"Called with side == '{side}', but it must be 'left' or 'right'.")
 
-  
   return pt
+
+# Find the unit basis vectors for the project.
+# These may not be (1,0,0), (0,1,0), (0,0,1) if the project is tilted
+def v_hat(v):
+  '''Return a normalised unit vector.''' 
+  mag = sum([i**2 for i in v])**0.5
+  return([i/mag for i in v])
+
+def mimics_image_vectors():
+  '''return the three unit vectors that descrivbe this image volume.'''
+  active_img = [i for i in mimics.data.images if i.active][0]
+  p0 = active_img.get_voxel_center([0, 0, 0])
+  d = active_img.get_voxel_buffer().shape
+  x = active_img.get_voxel_center([d[0]-1, 0, 0])
+  y = active_img.get_voxel_center([0, d[1]-1, 0])
+  z = active_img.get_voxel_center([0, 0, d[2]-1])
+  if 'numpy' in sys.modules:
+    # use the faster neater version
+    basis = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+    (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in basis]
+  else:
+    basis = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
+    (i, j, k) = [v_hat(v) for v in basis]
+  return(i,j,k)
+
+
+# R equivalent functions for lists
+# if use numpy use argmin(vals) and argmax(vals)
+def which_max(vals):
+    return(vals.index(max(vals)))
+
+def which_min(vals):
+    return(vals.index(min(vals)))
+
 
 def labelled_point(prefix = '', name = '', point=None):
    if name != '':

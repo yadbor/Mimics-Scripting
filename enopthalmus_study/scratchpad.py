@@ -416,3 +416,91 @@ t6 = mimics.segment.morphology_operations(input_mask=t5, operation='Dilate', num
 t7 = mimics.segment.boolean_operations(t6, m_fill_ba, operation='Minus')
 # Finally subtract the globe, as the dilate will have expanded into that region as well
 t8 = mimics.segment.boolean_operations(t7, m_globe, operation='Minus')
+
+
+# Failures 2024-06-05
+failures = ((11, 424),
+            (12, 424),
+            (17, 499),
+)
+
+
+def mimics_image_orientation():
+  active_img = [i for i in mimics.data.images if i.active][0]
+  p0 = active_img.get_voxel_center([0, 0, 0])
+  d = active_img.get_voxel_buffer().shape
+  x = active_img.get_voxel_center([d[0]-1, 0, 0])
+  y = active_img.get_voxel_center([0, d[1]-1, 0])
+  z = active_img.get_voxel_center([0, 0, d[2]-1])
+  return((p0, (x, y, z)))
+
+# Usage:
+p0, (x,y,z) = mimics_image_orientation()
+# Calc spans for each axis
+[tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
+
+# Calc unit vectors for each axis
+import numpy as np
+basis = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+n_basis = basis / np.linalg.norm(basis, ord=1)
+
+# Create a hoizontal plane in an oblique scan
+# [00:38:58] ››› n_basis = basis / np.linalg.norm(basis, ord=1)
+# [00:39:05] ››› n_basis[2]
+# [00:39:05] [ 0.0365846 -0.27650366 0.69707959]
+# [00:39:55] ››› new_p = mimics.analyze.create_plane_origin_and_normal(globe.center, n_basis[2])
+# [00:39:55] CAD object created
+#     type: Plane
+#     name: Plane 25
+#     color: [196, 196, 196, 128]
+#     point1: [-38.6146, -356.1226, 687.8764]
+#     point2: [-40.0221, -356.2587, 687.8963]
+#     point3: [-39.4214, -355.0581, 688.3410]
+def v_hat(v):
+  mag = sum([i**2 for i in v])**0.5
+  return([i/mag for i in v])
+
+def mimics_image_vectors():
+  active_img = [i for i in mimics.data.images if i.active][0]
+  p0 = active_img.get_voxel_center([0, 0, 0])
+  d = active_img.get_voxel_buffer().shape
+  x = active_img.get_voxel_center([d[0]-1, 0, 0])
+  y = active_img.get_voxel_center([0, d[1]-1, 0])
+  z = active_img.get_voxel_center([0, 0, d[2]-1])
+  if 'numpy' in sys.modules:
+    # use the faster neater version
+    basis = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+    (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in basis]
+  else:
+    basis = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
+    (i, j, k) = [v_hat(v) for v in basis]
+  return(i,j,k)
+
+def mimics_z():
+  active_img = [i for i in mimics.data.images if i.active][0]
+  p0 = active_img.get_voxel_center([0, 0, 0])
+  d = active_img.get_voxel_buffer().shape
+  z = active_img.get_voxel_center([0, 0, d[2]-1])
+   
+
+
+# itertools versions of finding which side each component is on
+import itertools
+
+# globes
+
+temp = [c.center[X] for c in itertools.islice(mimics.data.spheres, 2)]
+if len(temp) > 0: 
+    rg = which_min(temp)
+    lg = 1 - rg
+temp = [utils.spline_center(c)[X] for c in itertools.islice(mimics.data.spheres, 2)]
+if len(temp) > 0: 
+    rr = which_min(temp)
+    lr = 1 - rr
+
+# Consise & clever versions - maybe don't do this...
+        # rg = which_min([s.center[X] for s in [mimics.data.spheres[i] for i in (0,1)]]); lg = 1 - rg
+        # rr = which_min([utils.spline_center(s)[X] for s in [mimics.data.splines[i] for i in (0,1)]]); lr = 1 - rr
+
+       
+

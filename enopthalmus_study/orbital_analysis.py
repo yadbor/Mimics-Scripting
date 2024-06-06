@@ -419,7 +419,7 @@ def segment_orbit(rim, globe, point, side):
     # The most antero-lateral point on left eye is away from origin, on the right it is towards the origin. 
     # The point is offset a small amount (defaults delta = 2 mm) into the box to make sure it is inside the mask.
     lateral_pt = utils.antero_lateral(mimics.measure.get_bounding_box(m_air_erode), side)
-
+    # Files 11 & 12 failed at line 424
     # Get a point on the antero-lateral corner of the air mask to start region growing in the external part.
     m_air_ext_1 = mimics.segment.region_grow(input_mask=m_air_erode, target_mask=None, point=lateral_pt,
                                                     slice_type='Axial', keep_original_mask=True, multiple_layer=True, connectivity='6-connectivity')
@@ -496,7 +496,7 @@ def segment_orbit(rim, globe, point, side):
     # Finally subtract the globe, as the dilate will have expanded into that region as well
     m_orbit = mimics.segment.boolean_operations(t7, m_globe, operation='Minus')
     # And smooth it for good measure
-    m_orbit = mimics.segment.smooth_mask(m_orbit)
+    m_orbit = mimics.segment.smooth_mask(m_orbit) # file 17 failed here
     m_orbit.name = f'{s_id}_m_orbit'
 
     # Clean up temporary masks.
