@@ -194,12 +194,12 @@ for i, p in enumerate(projects):
         # Have set up the dict with with both missing, so just add any that are found
         if num_pts == 1:
             side = 'right' if mimics.data.points[0][X] < 0 else 'left'
-            eyes[side]['point'] = mimics.data.spheres[0]
+            eyes[side]['point'] = mimics.data.points[0]
         elif num_pts >= 2:
             temp = [o[X] for o in [mimics.data.points[i] for i in (0,1)]]
             idx = 0 if temp[0] < temp[1] else 1
-            eyes['right']['point'] = mimics.data.splines[idx] # idx is either 0 or 1
-            eyes['left']['point']  = mimics.data.splines[1 - idx] # Opposite of idx 
+            eyes['right']['point'] = mimics.data.points[idx] # idx is either 0 or 1
+            eyes['left']['point']  = mimics.data.points[1 - idx] # Opposite of idx 
 
     # Name the inputs in mimics.data.{spheres|splines|points}, so can find them via name
     for side, d in eyes.items():
