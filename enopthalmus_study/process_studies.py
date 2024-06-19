@@ -60,9 +60,7 @@ re_good = re.compile('('+'|'.join(good)+').*\\d{2}\\.mcs$', flags=re.IGNORECASE)
 projects = [f.path for f in os.scandir(root) if re.match(re_good, f.name)]
 
 ## Just do the extra scan Sam digitised 2024-05-14
-projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
-
-
+#projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
 
 # Count the files we are processing
 num_projects = len(projects)
