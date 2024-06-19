@@ -14,7 +14,7 @@ SIZE_Y = -20    # Y extent of crop boxes. Negative is Anterior
 CLOSING_DIST = 7 # For smartfill 
 
 # Amount to expand the bounding box of the orbit to make sure everything is covered
-BOX_EXPAND = [10, 30, 10]
+BOX_EXPAND = [10, 50, 10]
 # If there is no orbit apex point make the box arbitrarily deeper posteriorly
 POST_EXPAND = 80
 

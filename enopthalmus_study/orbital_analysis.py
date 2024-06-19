@@ -10,6 +10,82 @@ import mimics # Mimics API
 
 DEBUG = False
 
+def detect_eyes():
+    '''Find the sphere, spline and point objects for each eye in the project'''
+    num_eyes = len(mimics.data.spheres)
+    num_rims = len(mimics.data.splines)
+    num_pts  = len(mimics.data.points)
+
+    if num_eyes != num_rims:
+        raise ValueError(f'Aborting project - number of globes {num_eyes} does not match number of rims {num_rims}.')
+        return   # ERROR - number of eye parts doesn't match
+
+    if num_eyes > 2 or num_eyes < 1:
+        raise ValueError(f'Wrong number of eyes! Expected one or two, found {num_eyes}')
+        return  # ERROR - too many eyes or too few eyes, so move to next project
+
+    # Set up a blank dict to hold the eye components
+    eyes = {
+        'right': {'globe': None, 'rim': None, 'point': None},
+        'left':  {'globe': None, 'rim': None, 'point': None}
+        } 
+        
+    # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
+    #    X+ to the patient's Left, so -ve to the Right
+    #    Y+ to the patient's Posterior, so -ve Anterior
+    #    Z+ to the patient's Superior, so -ve Inferior
+    # For each eye component, determine which geometry is on which side, based on the location
+    # If there are two of a given component, compare them; otherwise compare to 0
+    if num_eyes == 1:
+        # Just need to determine the side once, and can use the globe for that
+        if mimics.data.spheres[0].center[X] < 0:
+            side = 'right'
+        else:
+            side = 'left'
+        # Note that some may not have an apex point
+        try:
+            eyes[side]['globe'] = mimics.data.spheres[0]
+            eyes[side]['rim']   = mimics.data.splines[0]
+            eyes[side]['point'] = mimics.data.points[0] if len(mimics.data.points) > 0 else None
+        except Exception as e:
+             raise
+    else:
+        # num_eyes must be 2 here.
+        # Need to find the side of each component indivdually, as could be entered in random order.
+        # Find which index is left and which is right for each component by checking the X coordinate.
+
+        # globes - centers of the first two spheres
+        temp = [o.center[X] for o in [mimics.data.spheres[i] for i in (0,1)]]
+        idx = 0 if temp[0] < temp[1] else 1
+        eyes['right']['globe'] = mimics.data.spheres[idx] # idx is either 0 or 1
+        eyes['left']['globe']  = mimics.data.spheres[1 - idx] # Opposite of idx 
+       
+        # rims - centroids of the first two splines
+        temp = [utils.spline_center(o)[X] for o in [mimics.data.splines[i] for i in (0,1)]]
+        idx = 0 if temp[0] < temp[1] else 1
+        eyes['right']['rim'] = mimics.data.splines[idx] # idx is either 0 or 1
+        eyes['left']['rim']  = mimics.data.splines[1 - idx] # Opposite of idx 
+
+        # points - more complicated as may be missing one or both
+        # Have set up the dict with with both missing, so just add any that are found
+        if num_pts == 1:
+            side = 'right' if mimics.data.points[0][X] < 0 else 'left'
+            eyes[side]['point'] = mimics.data.points[0]
+        elif num_pts >= 2:
+            temp = [o[X] for o in [mimics.data.points[i] for i in (0,1)]]
+            idx = 0 if temp[0] < temp[1] else 1
+            eyes['right']['point'] = mimics.data.points[idx] # idx is either 0 or 1
+            eyes['left']['point']  = mimics.data.points[1 - idx] # Opposite of idx 
+
+    # Name the inputs in mimics.data.{spheres|splines|points}, so can find them via name
+    for side, d in eyes.items():
+        for part, obj in d.items():
+            obj.name = side + '_' + part
+            obj.visible = True
+
+    return eyes
+
+
 def make_anterior_mask(rim, globe):
   # This function is slow, as it creates a lot of geometry. 
   # Consider usinge with mimics.disabled_gui(): to turn the GUI off and speed things up.
