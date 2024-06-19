@@ -54,13 +54,15 @@ if TESTING == True:
     projects = [f.path for f in os.scandir(r'D:\Projects & Research\Enophthalmos Study\test data')
                 if re.match(r'.*for_test.mcs', f.name)]
 
-## Just do the extra scan Sam digitised 2024-05-14
-projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
-
 # Just the chosen good patients
 good = ('Evas', 'Dabbs', 'Hayes', 'Madden', 'Umbulgarri', 'Rogers')
 re_good = re.compile('('+'|'.join(good)+').*\\d{2}\\.mcs$', flags=re.IGNORECASE)
 projects = [f.path for f in os.scandir(root) if re.match(re_good, f.name)]
+
+## Just do the extra scan Sam digitised 2024-05-14
+projects = [r'D:/Projects & Research/Enophthalmos Study/Umbulgarri 2023.12.24 Merged SS 01.mcs']
+
+
 
 # Count the files we are processing
 num_projects = len(projects)
@@ -235,7 +237,7 @@ for i, p in enumerate(projects):
         try:
             with mimics.disabled_gui_update():
                 orbit_vol, orbit_ROI = orbital_analysis.segment_orbit(rim, globe, point, side)
-            orbit_vol.name = 'Orbital Volume'
+            orbit_vol.name = f'{side}_Orbital Volume'
             print(mask_info(orbit_vol))
         except Exception as e:
            print("Failed to segment the orbit, with error: ", e)
