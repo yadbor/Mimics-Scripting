@@ -89,12 +89,12 @@ def snapshot_3D(objects, file_name):
   for v in mimics.data.views: 
       view_cam = mimics.view.get_camera(v)
       view_settings = view_cam.get_settings()
-      view_settings.zoom_to_bounding_box(orbital_bb, zoom_factor=0.8)
+      view_settings.zoom_to_bounding_box(picture_bb, zoom_factor=0.8)
       view_cam.set_settings(view_settings)
     
   # Use the 3D view
   settings = mimics.view.get_camera(view = mimics.data.views['3D']).get_settings()
-  settings.zoom_to_bounding_box(orbital_bb, zoom_factor=1)
+  settings.zoom_to_bounding_box(picture_bb, zoom_factor=1)
   mimics.file.export_view_by_type(filename=file_name, view='3D', image_type = 'jpg', camera_settings=settings)
 
 def find_eyes():
