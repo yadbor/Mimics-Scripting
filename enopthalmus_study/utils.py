@@ -1,13 +1,19 @@
 # Utilities to help scripting Mimics from python
 # 2.0  Rob Day  2024-04-15
+<<<<<<< HEAD
 
 from const import * # CONSTANT definitions (* is safe as only consts)
+=======
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 
 # Specialised iterators. Most are in recent version of itertools
 from itertools import tee, zip_longest, islice
 
+<<<<<<< HEAD
 import sys # for system functions
 
+=======
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 # Need to define pairwise() as itertools for python 3.7 doesn't have it.
 # Slight variation to return a list() and not a zip object.
 def pairwise(iterable):
@@ -38,14 +44,22 @@ def batched(iterable, n):
 # Helper functions for Mimics objects
 import mimics # done automatically by Mimics scripting environment
 
+<<<<<<< HEAD
 def mask_from_thesholds(name, thresh_lo, thresh_hi, bounding_box=None):
+=======
+def mask_from_thesholds(name, thresh_lo, thresh_hi):
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
   """Convenience function to create & name a mimics.segment mask with given thresholds."""
   mask = mimics.segment.create_mask()
   mask.name = name
   mimics.segment.threshold(mask, thresh_lo, thresh_hi, bounding_box=bounding_box)
   return mask
 
+<<<<<<< HEAD
 def mask_from_material(name, material, bounding_box=None):
+=======
+def mask_from_material(name, material):
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
   """Convenience function to create & name a mimics.segment mask from a material definition."""
   if material.units == "HU":
     lo_gv = mimics.segment.HU2GV(material.lo)
@@ -53,7 +67,11 @@ def mask_from_material(name, material, bounding_box=None):
   else:
     lo_gv = material.lo
     hi_gv = material.hi  
+<<<<<<< HEAD
   return mask_from_thesholds(name, lo_gv, hi_gv, bounding_box)
+=======
+  return mask_from_thesholds(name, lo_gv, hi_gv)
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 
 def part_from_mask(name, mask, quality = 'High'):
   """Convenience function to create & name a mimics.segment part from an existing mask."""
@@ -67,7 +85,11 @@ def masks_unite(mask1, mask2):
 
 def masks_subtract(mask1, mask2):
   """Convenience function to do a boolean Difference on two masks."""
+<<<<<<< HEAD
   return mimics.segment.boolean_operations(mask1, mask2, 'Minus')
+=======
+  return mimics.segment.boolean_operations(mask1, mask2, 'Difference')
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 
 def masks_intersect(mask1, mask2):
   """Convenience function to do a boolean Intersect on two masks."""
@@ -94,12 +116,15 @@ def spline_geometry(spline):
 
   return Geometry(max_point, min_point, mean, delta)
 
+<<<<<<< HEAD
 def spline_center(spline):
   # Use the hack that measure.get_bounding_box works for a list of analytical objects, even a list of one.
   bbox = mimics.measure.get_bounding_box([spline])
   mid_pt = bbox_center(bbox)
   return mid_pt
 
+=======
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 # There is no API to make a mask from the globe Spheres, so need a workaround
 # Before starting the study:
 # 1. Create a unit sphere at the origin
@@ -128,6 +153,7 @@ def scale_object(p, s):
 
 # Definitions of the Unit Sphere file, created manually.
 UNIT_RADIUS = 1
+<<<<<<< HEAD
 UNIT_SPHERE_FILE = r'D:\Projects & Research\Enophthalmos Study\Mimics-Scripting\enopthalmus_study\unit_sphere.stl'
 
 def sphere_to_mask(s):
@@ -266,3 +292,15 @@ class Events:
   def as_dict(self):
     return dict(zip(self.labels, self.times))
 
+=======
+UNIT_SPHERE_FILE = 'unit_sphere.stl'
+
+def sphere_to_mask(s):
+  # Load STL as a part
+  p = mimics.file.import_stl(filename = UNIT_SPHERE_FILE)
+  ps = scale_object(p, s.radius / UNIT_RADIUS)
+  mimics.move_object(ps, s.center) # start from (0,0,0) so offset is just the target point
+  m = mimics.segment.mask_from_part(p)
+  m.name = "globe_mask"
+  return(m)
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734

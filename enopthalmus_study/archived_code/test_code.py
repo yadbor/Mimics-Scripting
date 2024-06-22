@@ -69,7 +69,7 @@ if __name__ == '__main__':
   # If there is no mask called "Bone Mask" then make one & a corrresponding part.
   if mimics.data.objects.find("Bone Mask") is None:
   	mask_bone = material_mask("Bone Mask", const.MATL_BONE)
-  	part_bone = mask_to_part("Bone", mask_bone)
+  	part_bone = part_from_mask("Bone", mask_bone)
   
   #User Inputs
   if mimics.data.objects.find("Spline 1", False) == None:

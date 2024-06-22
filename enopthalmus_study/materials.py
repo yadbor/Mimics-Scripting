@@ -12,10 +12,17 @@
 import mimics.segment # For Dummy HU to GV converion routine.
 
 MIN_HU = -1024 # The minimum possible HU
+<<<<<<< HEAD
 MAX_HU =  3071 # The maximum possible HU
 
 MIN_BONE_HU = 148 # Changed from 226 to match Mimics range for 'Spongial Bone' + 'Cortical Bone'
 MAX_BONE_HU = MAX_HU
+=======
+MAX_HU =  3072 # The maximum possible HU
+
+MIN_BONE_HU = 226
+MAX_BONE_HU = MAX_HU - 1
+>>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 
 MIN_AIR_HU = MIN_HU
 MAX_AIR_HU = -200

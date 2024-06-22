@@ -6,10 +6,10 @@
 from result_logger import Path, log_to_file
 
 ## Only needed for dummy routines
-import mimics # need this for RPyC to work?
-#from mimics import segment
-#from mimics import analyze
-#from mimics import data
+import mimics
+from mimics import segment
+from mimics import analyze
+from mimics import data
 
 # Define parameters for planes and crop boxes to trim front of orbit
 NUM_PLANES = 10	# Number of planes to divide up orbit
@@ -24,8 +24,7 @@ X, Y, Z = 0, 1, 2
 
 from utils import looped_pairwise
 
-import const # Contains definitions of all materials
-
+import materials # Contains definitions of all materials
 # Define a Material data structure and some helper functions
 from utils import Material, material_mask, part_from_mask
 # Segment orbital contents into these Materials & measure volume
@@ -43,19 +42,25 @@ if mimics.data.objects.find("Bone Mask") is None:
 
 # TODO: What about creating the Air mask here as well?
 
+## This version assumes that the mimcs project has already had the 
+## bone mask and at least one eye defined.
+## Each eye consists of a spline for the orbital border, a sphere for the globe and
+## optionally a point marking the apex of the orbit.
+
+## THe bone mask will be the last mask defined in the project.
+## This allows for the basic thresholded bone mask to be refined by, for example, extractng a connected region.
+  
+## The spline, sphere and point for each eye are identified, based on their X coordinat.
+## CT data go from -ve X on the Right to +ve X on the Left, but because the patient might be scanned 
+
 #User Inputs
 if mimics.data.objects.find("Spline 1", False) == None:
     orbital_rim = mimics.analyze.indicate_spline(
       message='Mark a spline on the orbital rim, passing through landmarks', 
       show_message_box=True, confirm=False, title=None
     )
-   # orbit.name= "orbit"
 if mimics.data.objects.find("Sphere 1", False) == None:
-<<<<<<< HEAD
-    globe = mimics.analyze.indicate_sphere(
-=======
     globe_sphere = mimics.analyze.indicate_sphere(
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
       message="Indicate the globe using 3pts on the axial view", 
       show_message_box=True, confirm=True, title=None
     )
@@ -86,15 +91,15 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
 
   delta_z = max_z - min_z
   approx_delta_z = round(delta_z, 0)
-  spacing_z = approx_delta_z/NUM_PLANES
+  spacing_z = approx_delta_z/const.NUM_PLANES
   
-  print(f"Make {NUM_PLANES} planes {spacing_z} apart to span {approx_delta_z}")
+  print(f"Make {const.NUM_PLANES} planes {spacing_z} apart to span {approx_delta_z}")
     
-  # Create a list of plane origin points, matching the globe in the X,Y plane 
+  # Create a list of plane origin points, matching the orbit in the X,Y plane 
   # and spaced in Z from min_z to min_z + approx_delta_z (approximately max_z)
-  orig_x =  globe.center[X]
-  orig_y =  globe.center[Y]
-  plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] for z in range(NUM_PLANES - 1)]
+  orig_x =  orbit.center[X]
+  orig_y =  orbit.center[Y]
+  plane_origins = [[orig_x, orig_y, min_z + (z + 1) * spacing_z] for z in range(const.NUM_PLANES - 1)]
   # Create planes using these origins paralle to the X,Y plane (normal is Z+)
   norm_z = [0, 0, 1]
   z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) for orig in plane_origins]
@@ -120,20 +125,18 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
       from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z]) # TODO: should this be >=
       from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z]) # TODO: should this be =<
       if (from_above):
-        pt_up = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
+        pt_up = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
       if (from_below):
-        pt_down = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
+        pt_down = mimics_analyze_create_point_as_line_and_plane_intersection(line, plane)
 
     if pt_up is not None and pt_down is not None:
-      boxes.append(make_crop_box(pt_up, pt_down))
+      boxes.extend(make_crop_box(pt_up, pt_down))
     else:
       print(f"did not find intersection for plane {plane}")
 
   # Adjust the first and last bounding box to ensure full overlap.
-  new_z = -MULT_Z * boxes[0].third_vector[2]   # first goes down
-  boxes[0].third_vector = [boxes[0].third_vector[0], boxes[0].third_vector[1], new_z]
-  new_z = MULT_Z * boxes[-1].third_vector[2]   # last goes up
-  boxes[-1].third_vector = [boxes[-1].third_vector[0], boxes[-1].third_vector[1], new_z]
+  boxes[0].third_vector[2] = -MULT_Z * boxes[0].third_vector[2]  # first goes down
+  boxes[-1].third_vector[2] = MULT_Z * boxes[-1].third_vector[2] # last goes up
    
   # Create an empty combined mask to start
   united_masks = mimics.segment.create_mask()
@@ -166,9 +169,9 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
   # The head is usually scanned in the centre of the CT co-ordinate system, 
   # so X == 0 is roughly the midline, Right eye is X < 0 and Left eye is X > 0
   # TODO - a possibly more robust midline is the mean image X co-ordinate
-  if globe.center[X] < 0:
+  if orbit.center[X] < 0:
     side = 'right'
-  elif globe.center[X] > 0:
+  elif orbit.center[X] > 0:
     side = 'left'
   else:
     side = 'ambiguous'
@@ -197,21 +200,14 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
   # also at https://gist.github.com/Pythonsegmenter/bf9c0df43c9d6260e35ad4b786faf90c
   
   smartfill_wrap = mimics.tools.wrap(smartfill_part, 0.2, 10, False, True, True)
-  wrapped_mask = mimics.segment.calculate_mask_from_part(smartfill_wrap, None)
+  wrapped_mask = mimics.segment.calculate_mask_from_part(part_wrap, None)
   
   orbit_vol = mimics.segment.boolean_operations(wrapped_mask, smartfill_mask, 'Minus')
   orbit_vol = mimics.segment.morphology_operations(orbit_vol, 'Erode', 1, 8, None, None)
-<<<<<<< HEAD
-  orbit_vol = mimics.segment.region_grow(orbit_vol, orbit_vol, globe.center, 'Axial', False, True, connectivity='6-connectivity') 
-  orbit_vol.name = "Orbital Volume"
-  
-  # Delete all masks (except the Orbital Volume mask...)
-=======
   orbit_vol = mimics.segment.region_grow(orbit_vol, orbit_vol, globe_sphere.center, 'Axial', False, True, connectivity='6-connectivity') 
   orbit_vol.name = "Orbital Volume"
   
     # Delete all masks (except the Orbital Volume mask...)
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
   objects_to_keep = ("Bone", "Spline 1", "Sphere 1", "Orbital Volume")
   for m in mimics.data.objects:
     if m.name in objects_to_keep:
@@ -277,7 +273,7 @@ for matl in materials.keys():
 # CSV logging below
 result_log = Path('name_of_project_log.csv') # TODO: set this at top of program, or make it a configurable CONST
 
-study_name = mimics.file.get_project_information().project_path # TODO: trim the path
+study_name = 'find the name of the project?' # TODO: get from the project name somehow
 user = 'me' # TODO: pick from a list
 
 from datetime import date # to get the current date
@@ -285,24 +281,8 @@ today = date.today().isoformat()
 
 #results = [user, today, part_orbital_vol.volume, part_air.volume, part_fat.volume, part_muscle.volume]
 # This method will automatically cope with changes to the measured volumes
-<<<<<<< HEAD
-
-USER_HDR = ["user", "date", "study"]
-VOLUME_HDR = [n + '_volume' for n in parts.keys()]
-LOGGING_HDR = [] # spline BBOX, npts, globe BBOX, npts, Bone BBOX
-headers = USER_HDR + VOLUME_HDR + LOGGING_HDR
-
-USER_DATA = [user,   today,  study_name]
-VOLUME_DATA = [p.volume for p in parts.values()]
-LOGGING_DATA = []
-results = USER_DATA + VOLUME_DATA + LOGGING_DATA
-
-#headers = ["user", "date", "study"] + [n + '_volume' for n in parts.keys()]
-#results = [user,   today,  study_name] + [p.volume for p in parts.values()]
-=======
 headers = ["user", "date", "study"] + [n + '_volume' for n in parts.keys()] + ["rim_x_min"]
 results = [user,    today, study_name] + [p.volume for p in parts.values()]
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 
 log_to_file(result_log, headers, results)
 

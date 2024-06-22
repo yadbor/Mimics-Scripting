@@ -851,6 +851,20 @@ def measure_project():
     # Huston, we have a problem. Bail without returning results
     return
 
-def next_one():
-  # this is fine
+def snapshot_3D(objects, file_name):
+  '''Create a snapshot to the 3D window showing objects listed and write to file_name.'''
+  for o in objects: o.Visible = True # Make usre they are shown
+  picture_bb = mimics.measure.get_bounding_box(objects=objects)
+  # Zoom each view to cover all the given objects
+  for v in mimics.data.views: 
+      view_cam = mimics.view.get_camera(v)
+      view_settings = view_cam.get_settings()
+      view_settings.zoom_to_bounding_box(orbital_bb, zoom_factor=0.8)
+      view_cam.set_settings(view_settings)
+    
+  # Use the 3D view
+  settings = mimics.view.get_camera(view = mimics.data.views['3D']).get_settings()
+  settings.zoom_to_bounding_box(orbital_bb, zoom_factor=1)
+  mimics.file.export_view_by_type(filename=file_name, view='3D', image_type = 'jpg', camera_settings=settings)
+
 
