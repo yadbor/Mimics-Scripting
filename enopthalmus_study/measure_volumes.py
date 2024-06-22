@@ -76,6 +76,22 @@ def write_results(study_info, input_info, volumes, results_file):
   # Subsequent calls wil only write the results.
   log_to_file(results_file, headers, results)
 
+def snapshot_3D(objects, file_name):
+  '''Create a snapshot to the 3D window showing objects listed and write to file_name.'''
+  for o in objects: o.Visible = True # Make usre they are shown
+  picture_bb = mimics.measure.get_bounding_box(objects=objects)
+  # Zoom each view to cover all the given objects
+  for v in mimics.data.views: 
+      view_cam = mimics.view.get_camera(v)
+      view_settings = view_cam.get_settings()
+      view_settings.zoom_to_bounding_box(orbital_bb, zoom_factor=0.8)
+      view_cam.set_settings(view_settings)
+    
+  # Use the 3D view
+  settings = mimics.view.get_camera(view = mimics.data.views['3D']).get_settings()
+  settings.zoom_to_bounding_box(orbital_bb, zoom_factor=1)
+  mimics.file.export_view_by_type(filename=file_name, view='3D', image_type = 'jpg', camera_settings=settings)
+
 def find_eyes():
   '''Return a dict with the gloe, rim and (optional) point for each eye, labelled by side.'''
   num_eyes = len(mimics.data.spheres)
@@ -276,6 +292,11 @@ for user, entry in p_list.items():
       # Process the current project file and return the results for any eyes it contains.
       # This resupposes that a f'{side}_Orbital Volume' mask exists for each eye to be measured.
       study_info, input_info, volumes = measure_project() 
+
+      # Save a snapshot
+      things_to_see = mimics.data.masks.find(f'Orbital Volume$', regex=True)
+      snapshot_3D(things_to_see, p.replace('.mcs', '.snapshot.jpg'))
+
       mimics.file.close_project()
 
       # Add the user name to the study_info. Needs to be a dict to match rest of study_info structure.
