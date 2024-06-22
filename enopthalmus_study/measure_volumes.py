@@ -77,12 +77,20 @@ def write_results(study_info, input_info, volumes, results_file):
   log_to_file(results_file, headers, results)
 
 def snapshot_3D(objects, file_name):
-  '''Create a snapshot to the 3D window showing objects listed and write to file_name.'''
+  '''Create a snapshot to the 3D window showing only the objects listed and write to file_name.'''
+  # Show only what was requested
+  # Collect the current visibility of everything
+  state = [o.visible for o in mimics.data.objects]
+  # Then hide them all
+  for o in mimics.data.objects: o.visible = False
+  # Show the requested objects
   try:
     for o in objects: 
-        o.Visible = True # Make sure all the objects are shown
+        o.visible = True # Make sure all the objects are shown
+        o.selected = True # Need to select masks for them to show up in the 3D view
   except TypeError:
-        object.Visible = True # if we only have one object then it's not iterable
+        objects.visible = True # if we only have one object then it's not iterable
+        objects.selected = True
         
   picture_bb = mimics.measure.get_bounding_box(objects=objects)
   # Zoom each view to cover all the given objects
@@ -91,11 +99,24 @@ def snapshot_3D(objects, file_name):
       view_settings = view_cam.get_settings()
       view_settings.zoom_to_bounding_box(picture_bb, zoom_factor=0.8)
       view_cam.set_settings(view_settings)
-    
+  
   # Use the 3D view
+  mimics.view.enable_mask_3d_preview() # MAke sure preview is on so can see the masks
   settings = mimics.view.get_camera(view = mimics.data.views['3D']).get_settings()
   settings.zoom_to_bounding_box(picture_bb, zoom_factor=1)
   mimics.file.export_view_by_type(filename=file_name, view='3D', image_type = 'jpg', camera_settings=settings)
+
+  # restore the saved visiblity
+  for i, v in enumerate(state): mimics.data.objects[i].visible = v
+
+def things_to_see():
+  '''Create a list of objects we want to show in the snapshot'''
+  things  = mimics.data.masks.filter('Orbital Volume$', regex=True)
+  things += mimics.data.splines.filter("rim$", regex=True)
+  things += mimics.data.spheres.filter("globe$", regex=True)
+  things += mimics.data.points.filter("left|right", regex=True)
+  return things
+
 
 def find_eyes():
   '''Return a dict with the gloe, rim and (optional) point for each eye, labelled by side.'''
@@ -264,52 +285,56 @@ def measure_project():
     return
 
 ##############################################################################
+if __name__ == '__main__':
+  # Execute when the module is not initialized from an import statement.
+ 
+  # This version has sub-folders segmented by different people.
+  # Still need to get the file names, which are all under the study root.
+  root = r'D:\Projects & Research\Enophthalmos Study'
+  # Put the combined results in the root, rather than one file per user
+  results_file = Path(os.path.join(root, 'results.csv'))
 
-# Create a results file in the same folder as the project files
-# Get the names of all projects analyzed by Sam
-root = r'D:\Projects & Research\Enophthalmos Study'
+  # Each user analysed a seperate folder, listed here
+  p_list = {
+    'ryan': {'base': 'Ryan Processing'}, 
+    'rob':  {'base': 'Rob Processing'}
+  }
+  # Gather the file names for each user
+  for u in p_list.keys():
+    entry = p_list[u]
+    base = os.path.join(root, entry['base'])
+    entry['projects'] = [f.path for f in os.scandir(base) if re.match(r'.*.mcs', f.name)]
 
-# This version has sub-folders segmented by different people.
-# Still need to get the file names, which are all under root.
-root = r'D:\Projects & Research\Enophthalmos Study'
-# Put the combined results in the root, rather than one file per user
-results_file = Path(os.path.join(root, 'results.csv'))
+  # p_list is now {user: {base = 'name of folder', projects= [list of file names]}}
 
-# Each user analysed a seperate folder, listed here
-p_list = {
-  'ryan': {'base': 'Ryan Processing'}, 
-  'rob':  {'base': 'Rob Processing'}
-}
-# Gather the file names for each user
-for u in p_list.keys():
-  entry = p_list[u]
-  base = os.path.join(root, entry['base'])
-  entry['projects'] = [f.path for f in os.scandir(base) if re.match(r'.*.mcs', f.name)]
+  for user, entry in p_list.items(): 
+    projects = entry['projects'] # all the files for this user
+    for i, p in enumerate(projects): 
+      try:
+        print(f'********** user {user} project {i} filename {p}')
+        mimics.file.open_project(filename=p, read_only_mode=True)
+        # Process the current project file and return the results for any eyes it contains.
+        # This resupposes that a f'{side}_Orbital Volume' mask exists for each eye to be measured.
+        study_info, input_info, volumes = measure_project() 
 
-# p_list is now {user: {base = 'name of folder', projects= [list of file names]}}
+        # Save a snapshot
+        things_to_see = mimics.data.masks.filter('Orbital Volume$', regex=True)
+        things_to_see = things_to_see + mimics.data.splines.filter('rim$', regex=True)
 
-for user, entry in p_list.items(): 
-  projects = entry['projects'] # all the files for this user
-  for i, p in enumerate(projects):
-    try:
-      print(f'********** user {user} project {i} filename {p}')
-      mimics.file.open_project(filename=p, read_only_mode=True)
-      # Process the current project file and return the results for any eyes it contains.
-      # This resupposes that a f'{side}_Orbital Volume' mask exists for each eye to be measured.
-      study_info, input_info, volumes = measure_project() 
+        snapshot_3D(things_to_see, p.replace('.mcs', '.snapshot.jpg'))
 
-      # Save a snapshot
-      things_to_see = mimics.data.masks.filter(f'Orbital Volume$', regex=True)
-      snapshot_3D(things_to_see, p.replace('.mcs', '.snapshot.jpg'))
+        mimics.file.close_project()
 
-      mimics.file.close_project()
+        # Add the user name to the study_info. Needs to be a dict to match rest of study_info structure.
+        study_info['analysis'] = {'user ': user}
+        # Having processed as many eyes as exist, write the results
+        write_results(study_info, input_info, volumes, results_file)
+      
+      except (IndexError, ValueError):
+        mimics.file.close_project()  # close the currently open project
+        # Move to the next project
+        continue
 
-      # Add the user name to the study_info. Needs to be a dict to match rest of study_info structure.
-      study_info['analysis'] = {'user ': user}
-      # Having processed as many eyes as exist, write the results
-      write_results(study_info, input_info, volumes, results_file)
-    
-    except (IndexError, ValueError):
-      mimics.file.close_project()  # close the currently open project
-      # Move to the next project
-      continue
+    print(f'********** Finished all files for {user}')
+  
+  print('********** Finished all files **********')
