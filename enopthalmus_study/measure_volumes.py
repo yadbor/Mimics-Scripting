@@ -78,7 +78,12 @@ def write_results(study_info, input_info, volumes, results_file):
 
 def snapshot_3D(objects, file_name):
   '''Create a snapshot to the 3D window showing objects listed and write to file_name.'''
-  for o in objects: o.Visible = True # Make usre they are shown
+  try:
+    for o in objects: 
+        o.Visible = True # Make sure all the objects are shown
+  except TypeError:
+        object.Visible = True # if we only have one object then it's not iterable
+        
   picture_bb = mimics.measure.get_bounding_box(objects=objects)
   # Zoom each view to cover all the given objects
   for v in mimics.data.views: 
