@@ -111,7 +111,7 @@ def snapshot_3D(objects, file_name):
 
 def things_to_see():
   '''Create a list of objects we want to show in the snapshot'''
-  things  = mimics.data.masks.filter('Orbital Volume$', regex=True)
+  things  = mimics.data.masks.filter('(?i)(left|right)_Orbital Volume$', regex=True)
   things += mimics.data.splines.filter("rim$", regex=True)
   things += mimics.data.spheres.filter("globe$", regex=True)
   things += mimics.data.points.filter("left|right", regex=True)
@@ -195,7 +195,7 @@ def find_eyes():
   return eyes
 
 def measure_project():
-  '''Process a open mimics project, analysing as many eyes as exits within it.'''
+  '''Process a open mimics project, analysing as many eyes as exist within it.'''
 
   study_info, dicom_tags = gather_project_info()
  
@@ -219,7 +219,7 @@ def measure_project():
 
         # Find the Orbital Volume mask for this side. 
         # End the regex with '$' to skip any experimental or trial masks (e.g. with/without sinus)
-        orbit_vol = mimics.data.masks.find(f'{side}_Orbital Volume$', regex=True)
+        orbit_vol = mimics.data.masks.find(f'(?i){side}_Orbital Volume$', regex=True) # Use perl style ignore case flag
 
         # Convert globe (which is a Sphere) to a mask
         m_globe = utils.sphere_to_mask(globe)
@@ -318,10 +318,7 @@ if __name__ == '__main__':
         study_info, input_info, volumes = measure_project() 
 
         # Save a snapshot
-        things_to_see = mimics.data.masks.filter('Orbital Volume$', regex=True)
-        things_to_see = things_to_see + mimics.data.splines.filter('rim$', regex=True)
-
-        snapshot_3D(things_to_see, p.replace('.mcs', '.snapshot.jpg'))
+        snapshot_3D(things_to_see(), p.replace('.mcs', '.snapshot.jpg'))
 
         mimics.file.close_project()
 
