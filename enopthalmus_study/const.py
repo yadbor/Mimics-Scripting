@@ -17,7 +17,7 @@ CLOSING_DIST = 7 # For smartfill
 BOX_EXPAND = [10, 50, 10]
 # If there is no orbit apex point make the box arbitrarily deeper posteriorly
 POST_EXPAND = 80
-=======
+
 # Define parameters for planes and crop boxes to trim front of orbit
 NUM_PLANES = 10	# Number of planes to divide up orbit
 MULT_XY = 1.2   # Factor to expand the XY extents of the crop box

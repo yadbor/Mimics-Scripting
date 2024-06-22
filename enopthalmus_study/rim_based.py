@@ -4,10 +4,7 @@ from const import * # Safe to use * as only CONSTANT variables
 import utils
 import materials
 
-<<<<<<< HEAD
 import mimics
-=======
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 
 # Get the rim extents 
 rim_geometry = utils.spline_geometry(rim)
@@ -15,28 +12,16 @@ min_pt = rim_geometry.min
 max_pt = rim_geometry.max
 
 # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
-<<<<<<< HEAD
 #    X+ to the patient's Left
 #    Y+ to the patient's Posterior
 #    Z+ to the patient's Superior
 orbit_expansion = ((10,10), # X_left, X_right
-=======
-#    X+ to the patient's Left 
-#    Y+ to the patient's Posterior
-#    Z+ to the patient's Superior
-#  So subtract the min column (R,A,I) and add the max column (L,P,S)
-orbit_expansion = ((10,10), # X_right, X_left
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
                    (30,80), # Y_ant, Y_post
                    (15,15)  # Z_inf, Z_sup
                    )
 
 # This doesn't work on a Spline, but does on [Spline]
-<<<<<<< HEAD
 bbox_rim =  mimics.measure.get_bounding_box([rim, point])
-=======
-bbox_rim =  mimics.measure.get_bounding_box([rim])
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
 # expand the bbox
 bbox_orbit = expand_bbox(bbox_rim, orbit_expansion)
 # Make & unite cropped masks for bone and air
@@ -126,12 +111,8 @@ def points_to_bounding_box(p1, p2):
 
     return bbox
 
-<<<<<<< HEAD
-
 def move_seed_point(sphere):
     p1 = mimics.analyze.create_point(point = sphere.center)
     p1.y = p1.y + sphere.radius
     return p1
     
-=======
->>>>>>> 94527e54fc0373010a82208260b31cf0f3ac4734
