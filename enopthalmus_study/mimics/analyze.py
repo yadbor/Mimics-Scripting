@@ -72,7 +72,9 @@ def create_point_as_line_and_plane_intersection(line, plane):
 
 # Dummy data return functions
 import dummy_data 
-dummy = dummy_data.tosalia # Can choose different data sets from dummy_data.py
+dummy = dummy_data.left_eye  # Can choose different data sets from dummy_data.py
+#dummy = dummy_data.right_eye # Can choose different data sets from dummy_data.py
+
 
 def indicate_spline(message, show_message_box=True, confirm=False, title=None):
   return Spline(points = dummy.spline_points)
