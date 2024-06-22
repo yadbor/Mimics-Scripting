@@ -294,7 +294,7 @@ for user, entry in p_list.items():
       study_info, input_info, volumes = measure_project() 
 
       # Save a snapshot
-      things_to_see = mimics.data.masks.find(f'Orbital Volume$', regex=True)
+      things_to_see = mimics.data.masks.filter(f'Orbital Volume$', regex=True)
       snapshot_3D(things_to_see, p.replace('.mcs', '.snapshot.jpg'))
 
       mimics.file.close_project()
