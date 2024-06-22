@@ -630,7 +630,6 @@ def find_eyes():
   
   return eyes
 
-
 def extract_info():
   # Extract project information
   project_info = mimics.file.get_project_information()
@@ -664,7 +663,6 @@ def write_results(study_info, input_info, volumes, results_file):
   # On first call this will create the file and write the headers, then the results.
   # Subsequent calls wil only write the results.
   log_to_file(results_file, headers, results)
-
 
 def process_project():
   '''Process a open mimics project, analysing as many eyes as exits within it.'''
@@ -763,38 +761,96 @@ def process_project():
 root = r'D:\Projects & Research\Enophthalmos Study'
 
 
-results_file = Path(os.path.join(root, 'results.csv'))
-
-# Each user analysed a seperate folder
-p_list = {
-  'ryan': {'base': 'Ryan Processing'}, 
-  'rob':  {'base': 'Rob Processing'}
-}
-# Gather the file name for each user
-for u in p_list.keys():
-  entry = p_list[u]
-  base = os.path.join(root, entry['base'])
-  entry['projects'] = [f.path for f in os.scandir(base) if re.match(r'.*.mcs', f.name)]
 
 
-for user, entry in p_list.items(): 
-  projects = entry['projects']
-  for i, p in enumerate(projects):
-    try:
-      mimics.file.open_project(filename=p, read_only_mode=True)
-      # Process the current project file and return the results for any eyes it contains.
-      # This resupposes that a f'{side}_Orbital Volume' mask exists for each eye to be measured.
-      study_info, input_info, volumes = process_project() 
-      mimics.file.close_project()
+def measure_project():
+  '''Process a open mimics project, analysing as many eyes as exits within it.'''
 
-      # Add the user to the input_info
-      input_info['user'] = user
-      # Having processed as many eyes as exist, write the results
-      write_results(study_info, input_info, volumes, results_file)
+  study_info, dicom_tags = gather_project_info()
+ 
+  try:
+    eyes = find_eyes()
+            
+    # Create blank dicts to hold measured volumes for each eye
+    volumes = {}
+    # And summary input information (spline bounds, globe & point location)
+    # Start it with the user
+    input_info = {}
     
-    except (IndexError, ValueError):
-      mimics.file.close_project()  # close the currently open project
-      # Move to the next project
-      continue
+    # Analyze each eye in the project
+    for side, eye_parts in eyes.items():
+        rim = eye_parts['rim']
+        globe = eye_parts['globe']
+        point = eye_parts['point']
+        side_label = side + '|'  # add a seperator to enable splitting out the side later
 
+        # Find the Orbital Volume mask for this side. 
+        # End the regex with '$' to skip any experimental or trial masks (e.g. with/without sinus)
+        orbit_vol = mimics.data.masks.filter(f'{side}_Orbital Volume$', regex=True)
+
+        # Convert globe (which is a Sphere) to a mask
+        m_globe = utils.sphere_to_mask(globe)
+        m_globe.name = f'{side}_m_globe'
+        # and subtract it from the orbital volume (already done for many).
+        m_intersect_vol = mimics.segment.boolean_operations(orbit_vol, m_globe, 'Minus')
+        m_intersect_vol.name = f'{side}_m_intersect_vol'
+        check_volume = m_intersect_vol.volume
+
+        # and make into a Part
+        p_orbital_vol = mimics.segment.calculate_part(m_intersect_vol, quality='High')
+        p_orbital_vol.name = f'{side}_p_orbital_vol'
+
+        orbit_vol_ROI = mimics.measure.get_bounding_box(m_intersect_vol)  # Material masks to insersect only need to be this bigs
+
+        # Create a list of masks and corresponding parts for each material
+        # in the orbit_materials dict. Put the orbital volume first as it should always exist.
+        masks = {'orbital': m_intersect_vol}
+        parts = {'orbital': p_orbital_vol}
+        for matl in orbit_materials:
+            # Mask of where this material overlaps with intersect_vol_mask
+            masks[matl] = utils.mask_from_material('m_' + side + '_' + matl, orbit_materials[matl], bounding_box=orbit_vol_ROI)
+            masks[matl] = utils.masks_intersect(masks[matl], m_intersect_vol)
+            masks[matl].name = f'{side}_m_{matl}'
+
+        # Can get volume directly from mask, different to parts, so use both methods to compare.
+        # Initialise the vols dict using the mask & part that should always have a volume.
+        # This dict has two items: a dict of volumes from the masks and one from the parts (where they exist)
+        vols = {'mask': {'orbital': m_intersect_vol.volume},
+                'part': {'orbital': p_orbital_vol.volume}}
+        # Can't just make everything a part as some masks may be empty, so catch that.
+        for name, mask in masks.items():
+            vols['mask'][name] = mask.volume
+            if mask.number_of_pixels == 0:
+                parts[name] = None
+                vols['part'][name] = 0
+            else:
+                parts[name] = utils.part_from_mask(side_label + name, mask)
+                vols['part'][name] = parts[name].volume
+
+        # Record the results for this eye, adding the source (mask or part) to each material label
+        volumes[side] = {source + '_' + k: v for source,
+                         d in vols.items() for k, v in d.items()}
+
+        # Record the input info for this eye
+        bbox_rim = mimics.measure.get_bounding_box([rim])
+        p1, p2 = utils.bbox_to_points(bbox_rim)
+        input_info[side] = {
+            **utils.labelled_point(prefix=side_label, name='geom_rim1', point=p1),
+            **utils.labelled_point(prefix=side_label, name='geom_rim2', point=p2),
+            **utils.labelled_point(prefix=side_label, name='geom_globe', point=globe.center),
+            side_label + 'geom_radius': globe.radius,
+            **utils.labelled_point(prefix=side_label, name='geom_apex', point=point),
+            side_label + 'geom_rim.w': p2[X] - p1[X],
+            side_label + 'geom_rim.d': p2[Y] - p1[Y],
+            side_label + 'geom_rim.h': p2[Z] - p1[Z]
+        }
+    # Having processed as many eyes as exist, return the results for logging
+    return study_info, input_info, volumes
+
+  except (IndexError, ValueError):
+    # Huston, we have a problem. Bail without returning results
+    return
+
+def next_one():
+  # this is fine
 
