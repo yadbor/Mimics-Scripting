@@ -221,7 +221,13 @@ def measure_project():
         # End the regex with '$' to skip any experimental or trial masks (e.g. with/without sinus)
         orbit_vol = mimics.data.masks.find(f'(?i){side}_Orbital Volume$', regex=True) # Use perl style ignore case flag
 
-        # NEW - as we have changed the image set for the volume masks need to make sure that the image set they are linked to is active
+        if orbit_vol is None:
+            # couldn't find the mask, so raise an insex error & bail
+            raise (IndexError, ValueError)
+            # Huston, we have a problem. Bail without returning results
+            return
+
+        # NEW - as we have changed the image set for the volume masks need to make sure that the image set they are linked to is active 
         mimics.data.images.set_active(orbit_vol.image)
 
         # Convert globe (which is a Sphere) to a mask
@@ -299,11 +305,13 @@ if __name__ == '__main__':
 
   projects = [f.path for f in os.scandir(root) if re.match(r'.*.mcs', f.name)]
 
+  num_projects = len(projects)
+
   for i, p in enumerate(projects): 
     try:
         user = re.match(pattern=r'.*\.(\w+)\.mcs$', string=p)[1]
 
-        print(f'********** user {user} project {i} filename {p}')
+        print(f'********** user {user} filename {p} ********** project {i} of {num_projects} ')
         mimics.file.open_project(filename=p, read_only_mode=True)
         # Process the current project file and return the results for any eyes it contains.
         # This resupposes that a f'{side}_Orbital Volume' mask exists for each eye to be measured.
