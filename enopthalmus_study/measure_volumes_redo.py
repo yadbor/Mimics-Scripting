@@ -117,9 +117,19 @@ def things_to_see():
   things += mimics.data.points.filter("left|right", regex=True)
   return things
 
-
+def make_project_neat():
+    '''Hide all but relevant objects'''
+    # First hide everything
+    for o in mimics.data.objects: o.visible = False
+    # Now show the thing we want
+    for o in things_to_see():
+        o.visible = True
+    # Add some others
+    for o in mimics.data.masks.filter('(?i)(left|right)_(muscle|fat|air)$', regex=True):
+        o.visible = True
+    
 def find_eyes():
-  '''Return a dict with the gloe, rim and (optional) point for each eye, labelled by side.'''
+  '''Return a dict with the globe, rim and (optional) point for each eye, labelled by side.'''
   num_eyes = len(mimics.data.spheres)
   num_rims = len(mimics.data.splines)
   num_pts  = len(mimics.data.points)
@@ -219,46 +229,53 @@ def measure_project():
 
         # Find the Orbital Volume mask for this side. 
         # End the regex with '$' to skip any experimental or trial masks (e.g. with/without sinus)
-        orbit_vol = mimics.data.masks.find(f'(?i){side}_Orbital Volume$', regex=True) # Use perl style ignore case flag
+        m_orbit_vol = mimics.data.masks.find(f'(?i){side}_Orbital Volume$', regex=True) # Use perl style ignore case flag
 
-        if orbit_vol is None:
+        if m_orbit_vol is None:
             # couldn't find the mask, so raise an insex error & bail
             raise (IndexError, ValueError)
             # Huston, we have a problem. Bail without returning results
             return
 
         # NEW - as we have changed the image set for the volume masks need to make sure that the image set they are linked to is active 
-        mimics.data.images.set_active(orbit_vol.image)
+        mimics.data.images.set_active(m_orbit_vol.image)
 
         # Convert globe (which is a Sphere) to a mask
         m_globe = utils.sphere_to_mask(globe)
         m_globe.name = f'{side}_m_globe'
+
+        # NEW - write the subtracted masks back to the project so that everything is in the same state
         # and subtract it from the orbital volume (already done for many).
-        m_intersect_vol = mimics.segment.boolean_operations(orbit_vol, m_globe, 'Minus')
-        m_intersect_vol.name = f'{side}_m_intersect_vol'
-        check_volume = m_intersect_vol.volume
+        m_intersect_vol = mimics.segment.boolean_operations(m_orbit_vol, m_globe, 'Minus')
+        # Put the new subtracted mask in place of the existing orbit mask
+        m_intersect_vol.name = m_orbit_vol.name
+        m_orbit_vol.name = f'{m_orbit_vol.name}_orig'
+        m_orbit_vol = m_intersect_vol
+
+        m_orbit_vol.name = f'{side}_m_intersect_vol'
+        check_volume = m_orbit_vol.volume
 
         # and make into a Part
-        p_intersect_vol = mimics.segment.calculate_part(m_intersect_vol, quality='High')
-        p_intersect_vol.name = f'{side}_p_intersect_vol'
+        p_orbit_vol = mimics.segment.calculate_part(m_orbit_vol, quality='High')
+        p_orbit_vol.name = f'{side}_p_intersect_vol'
 
-        orbit_vol_ROI = mimics.measure.get_bounding_box(m_intersect_vol)  # Material masks to insersect only need to be this bigs
+        orbit_vol_ROI = mimics.measure.get_bounding_box(m_orbit_vol)  # Material masks to insersect only need to be this bigs
 
         # Create a list of masks and corresponding parts for each material
         # in the orbit_materials dict. Put the orbital volume first as it should always exist.
-        masks = {'orbital': m_intersect_vol}
-        parts = {'orbital': p_intersect_vol}
+        masks = {'orbital': m_orbit_vol}
+        parts = {'orbital': p_orbit_vol}
         for matl in orbit_materials:
             # Mask of where this material overlaps with intersect_vol_mask
             masks[matl] = utils.mask_from_material('m_' + side + '_' + matl, orbit_materials[matl], bounding_box=orbit_vol_ROI)
-            masks[matl] = utils.masks_intersect(masks[matl], m_intersect_vol)
+            masks[matl] = utils.masks_intersect(masks[matl], m_orbit_vol)
             masks[matl].name = f'{side}_m_{matl}'
 
         # Can get volume directly from mask, different to parts, so use both methods to compare.
         # Initialise the vols dict using the mask & part that should always have a volume.
         # This dict has two items: a dict of volumes from the masks and one from the parts (where they exist)
-        vols = {'mask': {'orbital': m_intersect_vol.volume},
-                'part': {'orbital': p_intersect_vol.volume}}
+        vols = {'mask': {'orbital': m_orbit_vol.volume},
+                'part': {'orbital': p_orbit_vol.volume}}
         # Can't just make everything a part as some masks may be empty, so catch that.
         for name, mask in masks.items():
             vols['mask'][name] = mask.volume
@@ -311,7 +328,7 @@ if __name__ == '__main__':
     try:
         user = re.match(pattern=r'.*\.(\w+)\.mcs$', string=p)[1]
 
-        print(f'********** user {user} filename {p} ********** project {i} of {num_projects} ')
+        print(f'********** project {i+1} of {num_projects} \t user {user} filename {p}')
         mimics.file.open_project(filename=p, read_only_mode=True)
         # Process the current project file and return the results for any eyes it contains.
         # This resupposes that a f'{side}_Orbital Volume' mask exists for each eye to be measured.
@@ -320,6 +337,10 @@ if __name__ == '__main__':
         # Save a snapshot
         snapshot_3D(things_to_see(), p.replace('.mcs', '.snapshot.jpg'))
 
+        make_project_neat() # Show only relevant objects
+
+        # This version saves changes. Some projects already have the globes subtracted, but
+        # want them all top be the same for easier comparison, so save the final version.
         mimics.file.close_project()
 
         # Add the user name to the study_info. Needs to be a dict to match rest of study_info structure.
