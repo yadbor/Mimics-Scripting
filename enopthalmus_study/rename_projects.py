@@ -55,4 +55,3 @@ def ren():
             m.name = m.name + '_old'
             mimics.segment.calculate_part(mask=m, quality='High')
 
-    

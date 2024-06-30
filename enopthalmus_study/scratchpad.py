@@ -851,6 +851,22 @@ def measure_project():
     # Huston, we have a problem. Bail without returning results
     return
 
-def next_one():
-  # this is fine
+def bbox_to_points(bbox):
+  p1 = bbox.origin
+  # Add the three vectors
+  span = [(a + b + c) 
+          for a, b, c 
+          in zip(bbox.first_vector, bbox.second_vector, bbox.third_vector)]
+  p2 = tuple((p + s) for p, s in zip(p1, span)) # Return a tuple so both points the same
+  return (p1, p2)
 
+delta = [b - a for a, b in list(zip(p1, p2))]
+## or delta = np.array(p2) - np.array(p1)
+m_cropped = mimics.segment.crop_mask(mask=m_thresh, bounding_box=bb)
+vectors = [m * np.array(v) for m, v in zip(delta, [i, j, k])]
+bb_align = mimics.BoundingBox3d(origin=p1, first_vector=vectors[0], second_vector=vectors[1], third_vector=vectors[2])
+m_bb = mimics.segment.threshold(mask=mimics.segment.create_mask(), threchold_min=0, threshold_max=4095, bounding_box=bb_align)
+bb = mimics.BoundingBox3d(origin=p1, first_vector=[delta[0], 0, 0], second_vector=[0, delta[1], 0], third_vector=[0, 0, delta[2]])
+
+pa = (-46.3041, -359.4182, -295.1016)
+pb = (-7.6911, -370.3003, -295.1350)
