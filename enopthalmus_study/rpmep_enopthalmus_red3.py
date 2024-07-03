@@ -16,7 +16,7 @@ import const # Constant definitions
 
 # Helper functions to clean up mainline code (just call mimics functions)
 from utils import mask_from_material, part_from_mask, mask_from_thesholds
-from utils import masks_unite, masks_subtract, masks_intersect
+from utils import unite, minus, intersect
 from utils import spline_geometry
 
 import orbital_analysis
@@ -82,8 +82,8 @@ for i, side in enumerate(sides):
   mask_anterior_crop = orbital_analysis.make_orbit_mask(rim, globe)
 
   # Unite with Bone and Air masks
-  mask_united = masks_unite(mask_anterior_crop, mask_bone)
-  mask_united = masks_unite(mask_united, mask_air)
+  mask_united = unite(mask_anterior_crop, mask_bone)
+  mask_united = unite(mask_united, mask_air)
   # Fill the combined masks
   smartfill_mask = mimics.segment.smart_fill_global(mask_united, 7)
   
@@ -223,13 +223,13 @@ if mimics.data.objects.find("Orbital Volume", False) is None:
     # Crop it with BoundingBox for this plane
     mimics.segment.crop_mask(m, bbox)
     # Union with the existing mask
-    united_masks = masks_unite(united_masks, m)
+    united_masks = unite(united_masks, m)
     
   # united_masks is now everything in front of the orbit rim defined by orbital_rim
   # out to 
 
   # Unite with Bone and Air masks
-  united_masks = masks_unite(united_masks, mask_bone)
+  united_masks = unite(united_masks, mask_bone)
   
   mask_air = mask_from_material("Air Mask", materials.MATL_AIR)
   united_masks = mimics.segment.boolean_operations(united_masks, mask_air, 'Unite')

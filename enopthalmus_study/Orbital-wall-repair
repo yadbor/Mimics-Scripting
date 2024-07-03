@@ -1,4 +1,5 @@
 import mimics
+import numpy as np
 
 #Initial warning
 warningMessage = 'This algorithm should only be used for models that are not used for surgery \n ' \
@@ -15,6 +16,31 @@ def make_bbox(origin, extents):
                                second_vector=[0, extents[1], 0], 
                                third_vector=[0, 0, extents[2]])
     return bbox
+
+def get_basis_vector(img, origin = False):
+  origin = img.get_voxel_center([0, 0, 0])
+  dims = img.get_voxel_buffer().shape
+  i = img.get_voxel_center([dims[0]-1, 0, 0])
+  j = img.get_voxel_center([0, dims[1]-1, 0])
+  k = img.get_voxel_center([0, 0, dims[2]-1])
+  basis = (i, j, k)
+  if origin:
+    return basis, origin
+  else:
+    return basis
+
+current_images = mimics.data.images[-1]  # THis is th elast image added
+basis = get_basis_vector(current_images) # Don't need origin
+i, j, k = basis
+
+def make_bbox_offset_extents(base_point, offset, extents, basis=(i, j, k)):
+  vectors = (np.array(extents) * np.array(basis))
+  bbox = mimics.BoundingBox3d(origin=base_point - np.array(offset),
+                              first_vector=vectors[0],
+                              second_vector=vectors[1],
+                              third_vector=vectors[2]
+                              )
+  return bbox
 
 # Create basic skull using the standard threshold to select boundarypoint
 print('Creating basic skull to select boundarypoint, please go grab a coffee')
@@ -41,11 +67,12 @@ else:
 
 if whatAns == 'orbital floor':
  
-    bbox_offset = [-200, -12, -5]
+    bbox_offset = [200, 12, 5]
     bbox_extents = [500, 72, 65]
+    bboxBig = make_bbox_offset_extents(boundaryPoint, bbox_offset, bbox_extents)
 
-    bboxBig = make_bbox(boundaryPoint + bbox_offset, bbox_extents)
- 
+    ##bboxBig = make_bbox(boundaryPoint - np.array(bbox_offset), bbox_extents)
+
     print('Creating bone shells around air spaces')
     air = mimics.segment.create_mask()
     air.name = 'Air'
@@ -99,7 +126,7 @@ if whatAns == 'orbital floor':
         bbox_offset = [-25, -10, -5]
         bbox_extents = [120, 75, 65]
         
-    bboxSmall = make_bbox(boundaryPoint + bbox_offset, bbox_extents)
+    bboxSmall = make_bbox_offset_extents(boundaryPoint, bbox_offset, bbox_extents)
 
     boneAndShellCropped = mimics.segment.crop_mask(boneAndShell, bboxSmall)
     boneAndShellCropped.name = 'Bone and shell cropped'

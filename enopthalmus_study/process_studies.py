@@ -36,6 +36,30 @@ info_fields = dict(zip(('image', 'study'), [re.split(r',\s*', name) for name in 
 def extract_info(info, fields):
   return(dict([(att, getattr(info, att) ) for att in fields]))
 
+def find_eyes():
+  # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
+  #    X+ to the patient's Left
+  #    Y+ to the patient's Posterior
+  #    Z+ to the patient's Superior
+  # Determine which geometry is on which side, based JUST on the location of the eyeballs
+  num_eyes = len(mimics.data.spheres)
+  if num_eyes == 2:
+    # Look for eye on right hand side of the scan. If not it must be on the left.
+    if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
+      eyes = 'right', 'left'
+    else:
+      eyes = 'left', 'right'
+  elif num_eyes == 1:
+    # No eye to compare with, so compare against approximate centreline
+    if mimics.data.spheres[0].center[X] < 0:
+      eyes = 'right',  # note the trailing comma to make this a singleton tuple
+    else:
+      eyes = 'left', 
+  else:
+    print(f'Wrong number of eyes! Expects one ot two, have {num_eyes}')
+    break # ERROR - too many or too few eyes, so move to next project
+
+
 # Get the names of all projects analyzed by Sam
 root = r'D:\Projects & Research\Enophthalmos Study'
 projects = [f for f in os.scandir(root) if re.match(r'.*SS\s+\d+\.mcs', f.name)]
@@ -110,7 +134,7 @@ for p in projects:
     mimics.data.masks.delete(mask_air_ROI) # Clean up the list of masks
     
     # Union the orbit mask with Bone and Air masks
-    mask_union = utils.masks_unite(mask_union, mask_not_orbit)
+    mask_union = utils.unite(mask_union, mask_not_orbit)
 
     # Repair Orbit Walls + Floor
     # Could use code to improve the bone surface, as at
@@ -139,7 +163,7 @@ for p in projects:
                          ) #change this to landmarks
 
     # The orbit is the wrapped mask of everything minus the filled version ???
-    mask_orbit_vol = utils.masks_subtract(mask_wrapped, mask_smartfill)
+    mask_orbit_vol = utils.minus(mask_wrapped, mask_smartfill)
     # Erode that to separate the orbit volume from the surroundings
     mask_orbit_vol = mimics.segment.morphology_operations(mask_orbit_vol, 'Erode', 1, 8, None, None)
     # Grow the separated region to get a mask of only the orbital contents, starting from the centre of the globe
@@ -149,7 +173,7 @@ for p in projects:
     # Make a mask from the globe
     mask_globe = utils.sphere_to_mask(globe)
     # Subtract the globe from the orbit mask
-    mask_intersect_vol = utils.masks_subtract(mask_orbit_vol, mask_globe)
+    mask_intersect_vol = utils.minus(mask_orbit_vol, mask_globe)
     mask_intersect_vol.name = side_label + "Intersect Mask"
     # and make into a Part
     part_orbital_vol = utils.part_from_mask(mask_intersect_vol)
@@ -161,7 +185,7 @@ for p in projects:
     masks = {'orbital': mask_intersect_vol}
     for matl in orbit_materials:
       masks[matl] = utils.mask_from_material(matl + ' mask', orbit_materials[matl])
-      masks[matl] = utils.masks_intersect(masks[matl], mask_intersect_vol)
+      masks[matl] = utils.intersect(masks[matl], mask_intersect_vol)
       if masks[matl].number_of_pixels > 0:
         parts[matl] = utils.part_from_mask(side_label + matl, masks[matl])
  
@@ -190,7 +214,7 @@ mimics.segment.keep_largest(mask_temp_air)
 # Make it 2 pixels bigger all around
 mask_temp_morph = utils.mask_dilate(mark_temp_air, number_of_pixels = 2, connectivity = 8)
 # Add to the bone mask
-mask_bone_boolean = utils.masks_unite(mask_temp_morph, mask_bone)
+mask_bone_boolean = utils.unite(mask_temp_morph, mask_bone)
 # Smart fill the combined mask
 mask_bone_filled = mimics.segment.smart_fill_global(mask=mask_bone_boolean, hole_closing_distance=7)
 part_bone_repaired = mimics.segment.calculate_part(mask_bone_filled, quality='High')
@@ -211,7 +235,7 @@ mask_temp_orbit = mimics.segment.threshold(
                          bounding_box = mimics.BoundingBox3d(corner, x_vector, y_vector, z_vector)
                          ) #change this to landmarks
 #mask_intersect = mimics.segment.boolean_operations(mask_a= mask_temp_orbit, mask_b= subtraction_mask, operation='Minus')
-mask_intersect = utils.masks_intersect(mask_temp_orbit, subtraction_mask)
+mask_intersect = utils.intersect(mask_temp_orbit, subtraction_mask)
 #
 mask_orbit_volume = mimics.segment.region_grow(mask_intersect, None, sphere1.center, "Axial", keep_original_mask=False, multiple_layer=True, connectivity='6-connectivity')
 mask_orbit_volume.name = "Orbit Volume"

@@ -1,3 +1,5 @@
+X, Y, Z = 0, 1, 2
+
 # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS. That is:
 #    X+ to the Left hand side of the patient
 #    Y+ to the Posterior (towards the back)
@@ -22,37 +24,37 @@ import mimics # for sytax checker and dummy routines
 # Old test code to create dummy data
 # Supesceded by creating dummy mimics.analyze.indicate_{spline|sphere} code
 
-  if TESTING: ##########################################################
-    # Fake mimics geometry objects
-    class Sphere:
-      def __init__(self, x, y, z, radius):
-        self.radius = radius
-        self.center = [x, y, z]
-    
-    class Spline:
-      def __init__(self, points):
-        self.points = points
+if TESTING: ##########################################################
+  # Fake mimics geometry objects
+  class Sphere:
+    def __init__(self, x, y, z, radius):
+      self.radius = radius
+      self.center = [x, y, z]
+  
+  class Spline:
+    def __init__(self, points):
+      self.points = points
 
-    # Define the geometry that the user would normally enter
-    orbit = Sphere(11.776, -29.9621, -36.1569, 76.0900)
-    spline_pts = [[-22.31, -46.94, 94.00],
-                  [-32.22, -46.54, 92.10],
-                  [-41.65, -42.97, 87.38],
-                  [-46.08, -38.57, 83.18],
-                  [-45.93, -35.38, 75.76],
-                  [-46.55, -35.92, 68.80],
-                  [-44.12, -40.42, 61.95],
-                  [-36.31, -44.23, 58.72],
-                  [-26.31, -44.84, 60.14],
-                  [-16.61, -46.71, 64.92],
-                  [-11.09, -48.23, 70.07],
-                  [-8.86, -46.85, 76.10],
-                  [-10.93, -44.75, 82.40],
-                  [-13.85, -45.99, 88.07],
-                  [-17.94, -46.54, 92.42,]
-                 ]
-    spline1 = Spline(points = spline_pts)
-  else: ################################################################
+  # Define the geometry that the user would normally enter
+  orbit = Sphere(11.776, -29.9621, -36.1569, 76.0900)
+  spline_pts = [[-22.31, -46.94, 94.00],
+                [-32.22, -46.54, 92.10],
+                [-41.65, -42.97, 87.38],
+                [-46.08, -38.57, 83.18],
+                [-45.93, -35.38, 75.76],
+                [-46.55, -35.92, 68.80],
+                [-44.12, -40.42, 61.95],
+                [-36.31, -44.23, 58.72],
+                [-26.31, -44.84, 60.14],
+                [-16.61, -46.71, 64.92],
+                [-11.09, -48.23, 70.07],
+                [-8.86, -46.85, 76.10],
+                [-10.93, -44.75, 82.40],
+                [-13.85, -45.99, 88.07],
+                [-17.94, -46.54, 92.42,]
+                ]
+  spline1 = Spline(points = spline_pts)
+else: ################################################################
 
 
 
@@ -263,3 +265,207 @@ for mn, mx in spans:
   box_orig_neg = mx + 10
   vector_x_neg = mn - mx - 20
   print(f"box ({mn}, {mx}) neg from {box_orig_neg} by {vector_x_neg} to {box_orig_neg + vector_x_neg}, pos from {box_orig_pos} by {vector_x_pos} to {box_orig_pos + vector_x_pos}")
+
+
+
+def find_eyes():
+  '''Find the correct side for each eye digitised component (globe, rim & apex point).'''
+  # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
+  #    X+ to the patient's Left
+  #    Y+ to the patient's Posterior
+  #    Z+ to the patient's Superior
+  # Determine which geometry is on which side, based JUST on the location of the eyeballs
+  num_eyes = len(mimics.data.spheres)
+  if num_eyes == 2:
+    # Look for eye on right hand side of the scan. If not it must be on the left.
+    if mimics.data.spheres[0].center[X] < mimics.data.spheres[1].center[X]:
+      eyes = 'right', 'left'
+    else:
+      eyes = 'left', 'right'
+  elif num_eyes == 1:
+    # No eye to compare with, so compare against approximate centreline
+    if mimics.data.spheres[0].center[X] < 0:
+      eyes = 'right',  # note the trailing comma to make this a singleton tuple
+    else:
+      eyes = 'left', 
+  else:
+    print(f'Wrong number of eyes! Expects one ot two, have {num_eyes}')
+    break # ERROR - too many or too few eyes, so move to next project
+
+
+
+import numpy as np
+
+def value_safe(v, default = 0):
+  if v:
+    return v
+  else:
+    return 0
+
+def expand_bbox(bbox, X_exp=None, Y_exp=None, Z_exp=None):
+  '''Given a mimics.BoungingBox, expand it by the given amounts (lo, hi) in each direction.'''
+  lo = [0,0,0]
+  if X_exp[0]:
+    lo[0] = X_exp[0]
+  if Y_exp[0]:
+    lo[0] = Y_exp[0]
+  if Z_exp[0]:
+    lo[0] = Z_exp[0]
+
+  return bbox
+
+DEFAULT_BASIS= ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+
+i = [1, 0, 0]; j = [0, 1, 0]; k = [0, 0, 1]
+basis = (i, j, k)
+
+def make_bbox(base_point, offset, extents, basis=DEFAULT_BASIS):
+  vectors = (np.array(extents) * np.array(basis))
+  bbox = mimics.BoundingBox3d(origin = base_point - np.array(offset),
+                              first_vector = vectors[0],
+                              second_vector = vectors[1],
+                              third_vector = vectors[2]
+                              )
+  return bbox
+
+img = mimics.data.images[-1]
+
+def get_basis_vector(img, origin = False):
+  origin = img.get_voxel_center([0, 0, 0])
+  dims = img.get_voxel_buffer().shape
+  i = img.get_voxel_center([dims[0]-1, 0, 0])
+  j = img.get_voxel_center([0, dims[1]-1, 0])
+  k = img.get_voxel_center([0, 0, dims[2]-1])
+  basis = (i, j, k)
+  if origin:
+    return basis, origin
+  else:
+    return basis
+
+p0 = img.get_voxel_center([0, 0, 0])
+
+b = img.get_voxel_buffer()
+d = b.shape
+i = img.get_voxel_center([d[0]-1, 0, 0])
+j = img.get_voxel_center([0, d[1]-1, 0])
+k = img.get_voxel_center([0, 0, d[2]-1])
+basis = (i, j, k)
+
+
+
+def get_centre(part):
+  '''Get the geometric centre of a mimics sphere, point or spline.'''
+  try: # See it if has a center already
+    return part.center
+  except AttributeError:
+    # It didn't have a .center attribute, so not a sphere
+    pass
+  try: # Maybe it's a point?
+    return (part.X, part.Y, part.Z)
+  except AttributeError:
+    # No X,Y,Z so it's not a point
+    pass
+  # Fall back on using the bounding box. This *should* work on anything.
+  bbox = mimics.measure.get_bounding_box([part])
+  p1 = np.array(bbox.origin)
+  span = np.array(bbox.first_vector) + np.array(second_vector) + np.array(third_vector)
+  return p1 + (span / 2)
+
+def get_sides(parts):
+  '''Given a list of 0 to 2 mimics objects return them allocated to side of the head.'''
+  sides = {'left': None, 'right': None}
+  try:
+    p0 = get_centre(parts[0])[0]
+  except IndexError:
+    # there are none of this part, so return both sides as None
+    return sides
+  
+  try:
+    p1 = get_centre(parts[1])[0]
+  except IndexError:
+    # There was one of this part, so compare centre.X to 0
+    if p0 < 0:
+      sides['right'] = parts[0]
+    else:
+      sides['left'] = parts[0]
+  else:
+    # Managed to retrieve both centres, so compare them to work out sides
+    left_idx = int(p0 < p1)
+    right_idx = 1 - left_idx
+    sides['left'] = parts[left_idx]
+    sides['right'] = parts[right_idx]
+    
+  return sides
+
+def find_eyes(spheres, splines, points):
+  '''Given some spheres (globes), splines (rims) and points (apical points) find all eyes'''
+
+  # make an empty dict of eye components
+  eyes = {'num_eyes': 0,
+          'left': {'globe': None, 'rim': None, 'apex': None},
+          'right':{'globe': None, 'rim': None, 'apex': None}}
+  
+  n_eyes = len(spheres)
+  if n_eyes != len(splines):
+    # mis-match, so exit with an error
+    raise ValueError(f'Number of globes {n_eyes} and rims {len(splines)} do not match.')
+    return Nine
+
+  if n_eyes < 1 or n_eyes > 2:
+    # wrong number of eyes, so exit with an error
+    raise ValueError(f'{n_eyes} is not 1 or 2.')
+    return None
+
+  sides = get_sides(spheres)
+  eyes['left']['globe'] = sides['left']
+  eyes['right']['globe'] = sides['right']
+
+  sides = get_sides(splines)
+  eyes['left']['rim'] = sides['left']
+  eyes['right']['rim'] = sides['right']
+
+  sides = get_sides(points)
+  eyes['left']['apex'] = sides['left']
+  eyes['right']['apex'] = sides['right']
+
+  eyes['num_eyes'] = n_eyes
+
+  return eyes
+
+# loop version that may be better, but maybe less obvious?
+def find_eyes_loop(spheres, splines, points):
+  '''Given a list of spheres (globes), splines (rims) and points (apical points) find all eyes'''
+
+  # make an empty dict to hold the eye components
+  eyes = {'num_eyes': 0,
+          'left': {'globe': None, 'rim': None, 'apex': None},
+          'right':{'globe': None, 'rim': None, 'apex': None}}  
+  
+  n_eyes = len(spheres)
+
+  if n_eyes != len(splines):
+    # mis-match, so exit with an error
+    raise ValueError(f'Number of globes {n_eyes} and rims {len(splines)} do not match.')
+    return Nine
+
+  if n_eyes < 1 or n_eyes > 2:
+    # wrong number of eyes, so exit with an error
+    raise ValueError(f'{n_eyes} is not 1 or 2.')
+    return None
+  # Gather the parts to check into a dict
+  parts = {'globe': spheres, 
+           'rim': splines,
+           'apex': points}
+  
+  for part_name, part in parts.items():
+    sides = get_sides(part) # Return the correct part or None for each side
+    for side in ('left', 'right'):
+      eyes[side][part_name] = sides[side]
+      
+  eyes['num_eyes'] = n_eyes
+
+  return eyes
+
+def flatten_eyes(eyes):
+  '''turn the eyes dict into a simple list of mimics objects to use with get_bounding_box().'''
+  return [v for k, d in eyes.items() if k != 'num_eyes' for v in d.values()]

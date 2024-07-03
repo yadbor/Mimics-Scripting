@@ -94,7 +94,7 @@ def make_orbit_mask(rim, globe):
                                  threshold_max = materials.MAX_GV,
                                  bounding_box = bbox)
     # Union with the existing mask
-    mask_union = utils.masks_unite(mask_union, m)
+    mask_union = utils.unite(mask_union, m)
     # then delete it
     mimics.data.masks.delete(m)
 

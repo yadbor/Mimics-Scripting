@@ -57,15 +57,15 @@ def part_from_mask(name, mask, quality = 'High'):
   part.name = name
   return part
   
-def masks_unite(mask1, mask2):
+def unite(mask1, mask2):
   """Convenience function to do a boolean Unite on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Unite')
 
-def masks_subtract(mask1, mask2):
+def minus(mask1, mask2):
   """Convenience function to do a boolean Difference on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Difference')
 
-def masks_intersect(mask1, mask2):
+def intersect(mask1, mask2):
   """Convenience function to do a boolean Intersect on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Intersect')
 
@@ -85,8 +85,8 @@ def spline_geometry(spline):
   Geometry = namedtuple("Desc", ["max", "min", "mean", "span"])
   max_point = [max(idx) for idx in list(zip(* spline.points))]
   min_point = [min(idx) for idx in list(zip(* spline.points))]
-  delta = [(a - b) for a, b in zip(max_point, min_point)]
-  mean = [(a + b) / 2.0 for a, b in zip(max_point, min_point)]
+  delta = [(a - b)       for a, b in zip(max_point, min_point)]
+  mean  = [(a + b) / 2.0 for a, b in zip(max_point, min_point)]
 
   return Geometry(max_point, min_point, mean, delta)
 
