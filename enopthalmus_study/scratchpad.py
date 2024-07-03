@@ -330,14 +330,15 @@ def make_bbox(base_point, offset, extents, basis=DEFAULT_BASIS):
 
 img = mimics.data.images[-1]
 
-def get_basis_vector(img, origin = False):
+def get_basis_vector(img, get_origin = False):
   origin = img.get_voxel_center([0, 0, 0])
   dims = img.get_voxel_buffer().shape
   i = img.get_voxel_center([dims[0]-1, 0, 0])
   j = img.get_voxel_center([0, dims[1]-1, 0])
   k = img.get_voxel_center([0, 0, dims[2]-1])
-  basis = (i, j, k)
-  if origin:
+  span = [np.asarray(v) - np.asarray(origin) for v in (i, j, k)]
+  basis = [component / np.linalg.norm(component, ord=1) for component in span]
+  if get_origin:
     return basis, origin
   else:
     return basis
