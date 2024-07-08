@@ -4,12 +4,6 @@ from const import * # Safe to use * as only CONSTANT variables
 import utils
 import materials
 
-
-# Get the rim extents 
-rim_geometry = utils.spline_geometry(rim)
-min_pt = rim_geometry.min
-max_pt = rim_geometry.max
-
 # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
 #    X+ to the patient's Left 
 #    Y+ to the patient's Posterior
@@ -20,6 +14,7 @@ orbit_expansion = ((10,10), # X_right, X_left
                    (15,15)  # Z_inf, Z_sup
                    )
 
+# Get the rim extents 
 # This doesn't work on a Spline, but does on [Spline]
 bbox_rim =  mimics.measure.get_bounding_box([rim])
 # expand the bbox
@@ -68,7 +63,7 @@ mask_orbit_volume = mimics.segment.region_grow(mask_orbit,
                                                connectivity = '6-connectivity')
 
 def expand_pts(min_pt, max_pt, expand):
-    '''Move two points further apart by expand = ((x_lo, x_hi), (y_lo), y_hi), (z_lo, z_hi)).'''
+    """Move two points further apart by expand = ((x_lo, x_hi), (y_lo), y_hi), (z_lo, z_hi))."""
     # reorder the expansion box for easier calculation
     # so they are ordered (min(X, Y, X), max(X, Y, Z))
     exp_min, exp_max = [idx for idx in list(zip(* expand))]

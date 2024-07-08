@@ -269,7 +269,7 @@ for mn, mx in spans:
 
 
 def find_eyes():
-  '''Find the correct side for each eye digitised component (globe, rim & apex point).'''
+  """Find the correct side for each eye digitised component (globe, rim & apex point)."""
   # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
   #    X+ to the patient's Left
   #    Y+ to the patient's Posterior
@@ -303,7 +303,7 @@ def value_safe(v, default = 0):
     return 0
 
 def expand_bbox(bbox, X_exp=None, Y_exp=None, Z_exp=None):
-  '''Given a mimics.BoungingBox, expand it by the given amounts (lo, hi) in each direction.'''
+  """Given a mimics.BoungingBox, expand it by the given amounts (lo, hi) in each direction."""
   lo = [0,0,0]
   if X_exp[0]:
     lo[0] = X_exp[0]
@@ -327,6 +327,50 @@ def make_bbox(base_point, offset, extents, basis=DEFAULT_BASIS):
                               third_vector = vectors[2]
                               )
   return bbox
+
+def bbox_to_points_old(bbox):
+    """Find the extreme points p1 and p2 of a mimics.BoundingBox3D, with p1 at the origin."""
+    p1 = bbox.origin
+    # Add each vector to the origin in turn to get from P1 to P2
+    p2 = [(a + b) for a, b in zip(bbox.origin, bbox.first_vector)]
+    p2 = [(a + b) for a, b in zip(p2, bbox.second_vector)]
+    p2 = [(a + b) for a, b in zip(p2, bbox.third_vector)]
+    return p1, p2
+
+def bbox_to_points(bbox):
+    """Find the extreme points p1 and p2 of a mimics.BoundingBox3D, with p1 at the origin."""
+    p1 = bbox.origin
+    span = np.array(bbox.first_vector) + np.array(bbox.second_vector) + np.array(bbox.third_vector)
+    p2 = np.array(p1) + span
+    return p1, p2
+
+def bbox_from_points(p1, p2):
+    """Given two points p1 and p2 crerate a mimics.BoundingBox3D between them."""
+    span = np.array(p1) - np.array(p1)
+    bbox = mimics.BoundingBox3d(p1, span[0]], span[1], span[2])
+    return bbox
+
+def expand_points(p1, p2, expand, basis=DEFAULT_BASIS):
+  return None
+
+
+
+def expand_bbox(bbox, expand, basis=DEFAULT_BASIS):
+  """Expand a mimics.BoundingBox3D by adding a vector = (X_left, X_right), (Y_ant, Y_post), (Z_inf, Z_sup)."""
+  # Rearrange the expansion values for easier calculation
+  # so that they are ordered (min(X, Y, X), max(X, Y, Z))
+  exp_min, exp_max = [idx for idx in zip(* expand)]
+  
+  p1, p2 = bbox_to_points(bbox)
+
+  # Subtract min(expand) from the origin, by X,Y,Z component
+  # Multiply the expansion vector by the basis to allow for skew scans
+  new_p1 = np.array(p1) - (np.array(exp_min) * np.array(basis))
+  new_p2 = np.array(p2) + (np.array(exp_max) * np.array(basis))
+
+  return bbox_from_points(new_p1, new_p2)
+
+############################################
 
 img = mimics.data.images[-1]
 
@@ -355,7 +399,7 @@ basis = (i, j, k)
 
 
 def get_centre(part):
-  '''Get the geometric centre of a mimics sphere, point or spline.'''
+  """Get the geometric centre of a mimics sphere, point or spline."""
   try: # See it if has a center already
     return part.center
   except AttributeError:
@@ -373,7 +417,7 @@ def get_centre(part):
   return p1 + (span / 2)
 
 def get_sides(parts):
-  '''Given a list of 0 to 2 mimics objects return them allocated to side of the head.'''
+  """Given a list of 0 to 2 mimics objects return them allocated to side of the head."""
   sides = {'left': None, 'right': None}
   try:
     p0 = get_centre(parts[0])[0]
@@ -399,7 +443,7 @@ def get_sides(parts):
   return sides
 
 def find_eyes(spheres, splines, points):
-  '''Given some spheres (globes), splines (rims) and points (apical points) find all eyes'''
+  """Given some spheres (globes), splines (rims) and points (apical points) find all eyes"""
 
   # make an empty dict of eye components
   eyes = {'num_eyes': 0,
@@ -435,7 +479,7 @@ def find_eyes(spheres, splines, points):
 
 # loop version that may be better, but maybe less obvious?
 def find_eyes_loop(spheres, splines, points):
-  '''Given a list of spheres (globes), splines (rims) and points (apical points) find all eyes'''
+  """Given a list of spheres (globes), splines (rims) and points (apical points) find all eyes"""
 
   # make an empty dict to hold the eye components
   eyes = {'num_eyes': 0,
@@ -468,5 +512,5 @@ def find_eyes_loop(spheres, splines, points):
   return eyes
 
 def flatten_eyes(eyes):
-  '''turn the eyes dict into a simple list of mimics objects to use with get_bounding_box().'''
+  """turn the eyes dict into a simple list of mimics objects to use with get_bounding_box()."""
   return [v for k, d in eyes.items() if k != 'num_eyes' for v in d.values()]
