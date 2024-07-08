@@ -65,7 +65,7 @@ def masks_unite(mask1, mask2):
   """Convenience function to do a boolean Unite on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Unite')
 
-def masks_subtract(mask1, mask2):
+def masks_minus(mask1, mask2):
   """Convenience function to do a boolean Difference on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Minus')
 
