@@ -10,7 +10,7 @@ import csv
 from pathlib import Path # to use in main program as file_path = Path('name.csv')
 
 def log_to_file(file_path, headers, results):
-  # Write current results to the log file in FILE_PATH
+  "Write a list of 'results' to the log file in file_path, using 'headers' for the column names."""
   # Check if the same number of columns in headers and results
   if len(results) != len(headers):
     print(f"ERROR: there are {len(headers)} headers and {len(results)} results")
@@ -28,5 +28,21 @@ def log_to_file(file_path, headers, results):
       log_csv_append = csv.writer(log_csv, dialect = 'excel')
       log_csv_append.writerow(results)
 
+def log_dict_to_file(file_path, dict):
+  """Write the contents of a dict to a csv file, using the keys as headers."""
+  # If the log file does not exist create it with a header row
+  headers = dict.keys()
+  results = dict.values()
+
+  if not file_path.exists():
+      with open(file_path, 'w', newline='') as log_csv:
+          # Start a new blank log with column headings in the first row
+          log_csv_write = csv.writer(log_csv, dialect = 'excel')
+          log_csv_write.writerow(headers)
+  
+  # Append the current results (with autocloses at exit)
+  with open(file_path, 'a', newline='') as log_csv:
+      log_csv_append = csv.writer(log_csv, dialect = 'excel')
+      log_csv_append.writerow(results)
 
 
