@@ -3,10 +3,13 @@
 
 from const import * # CONSTANT definitions (* is safe as only consts)
 
-# Specialised iterators. Most are in recent version of itertools
-from itertools import tee, zip_longest, islice
-
+import numpy as np # array functions and vector maths
 import sys # for system functions
+import mimics # API access - done automatically by Mimics scripting environment
+
+## Specialised iterators. Most are in recent version of itertools
+
+from itertools import tee, zip_longest, islice
 
 # Need to define pairwise() as itertools for python 3.7 doesn't have it.
 # Slight variation to return a list() and not a zip object.
@@ -35,8 +38,7 @@ def batched(iterable, n):
       return
     yield batch
   
-# Helper functions for Mimics objects
-import mimics # done automatically by Mimics scripting environment
+## Helper functions for Mimics masks and parts.
 
 def mask_from_thesholds(name, thresh_lo, thresh_hi, bounding_box=None):
   """Convenience function to create & name a mimics.segment mask with given thresholds."""
@@ -81,7 +83,8 @@ def mask_dilate(mask, number_of_pixels = 2, connectivity = 8):
                                               target_mask_name=None, 
                                               limited_to_mask=None)
 
-# Geometry    
+## Geometry functions
+   
 from collections import namedtuple
 
 def spline_geometry(spline):
@@ -112,8 +115,8 @@ def spline_center(spline):
 # 6. Move it to the center of the globe 
 # 
 # Could scale and translate in one transform, but this is cleaner
+
 # There is no API call to scale an object, so roll our own from scratch
-import numpy as np
 # Create a Scale matrix
 def scale_matrix(s):
     return np.array([[s, 0, 0],[0, s, 0], [0, 0, s]])
@@ -139,7 +142,8 @@ def sphere_to_mask(s):
   m.name = "globe_mask"
   return(m)
 
-  
+## Functions to manipulate Bounding boxes
+
 def bbox_from_intersections(pt_a, pt_b, mult, thickness, depth):
   """Make a bounding box from two points in the XY plane.
   The baseline is mult times wider, and the box has specified thickness (Z) and depth (Y).""" 
@@ -200,31 +204,46 @@ def antero_lateral(bbox, side, delta = 2):
 
   return pt
 
+## Project and image utility functions
+
+def mimics_info_as_dict(info):
+    """Return all informative fields in a mimics.ImageInformation object."""
+    return dict([(a, getattr(info, a)) for a in dir(info) if a[:2] != "__"])
+
+def image_get_info(img):
+    info = img.get_image_information()
+    info_dict = {
+        "algorithm":   info.algorithm,
+        "obliqueness":  info.obliqueness,
+        "orientation":  info.orientation,
+        "gantry_tilt":  info.gantry_tilt,
+        "slice_thickness":  info.slice_thickness,
+        "slice_increment":  info.slice_increment,
+        "pixel_size": info.pixel_size
+        }
+    return info_dict
+
 # Find the unit basis vectors for the project.
 # These may not be (1,0,0), (0,1,0), (0,0,1) if the project is tilted
 def v_hat(v):
   '''Return a normalised unit vector.''' 
-  mag = sum([i**2 for i in v])**0.5
+  mag = np.linalg.norm(v)
   return([i/mag for i in v])
 
-def mimics_image_vectors():
+def mimics_basis_vectors(img):
   '''return the three unit vectors that descrivbe this image volume.'''
-  active_img = [i for i in mimics.data.images if i.active][0]
-  p0 = active_img.get_voxel_center([0, 0, 0])
-  d = active_img.get_voxel_buffer().shape
-  x = active_img.get_voxel_center([d[0]-1, 0, 0])
-  y = active_img.get_voxel_center([0, d[1]-1, 0])
-  z = active_img.get_voxel_center([0, 0, d[2]-1])
-  if 'numpy' in sys.modules:
-    # use the faster neater version
-    span = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
-    (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in span]
-  else:
-    span = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
-    (i, j, k) = [v_hat(v) for v in span]
-
+  #active_img = [i for i in mimics.data.images if i.active][0]
+  p0 = img.get_voxel_center([0, 0, 0])
+  d = img.get_voxel_buffer().shape
+  x = img.get_voxel_center([d[0]-1, 0, 0])
+  y = img.get_voxel_center([0, d[1]-1, 0])
+  z = img.get_voxel_center([0, 0, d[2]-1])
+  span = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+  (i, j, k) = [v_hat(v) for v in span]
+  
   return (i,j,k)
 
+## Miscellaneous functions.
 
 # R equivalent functions for lists
 # if use numpy use argmin(vals) and argmax(vals)
@@ -245,6 +264,8 @@ def labelled_point(prefix = '', name = '', point=None):
    return {prefix + name + axis: val for axis, val in list(zip(('X','Y','Z'), point))}
 
 import time
+
+## Define a simple event logging class
 
 class Events:
   """A simple event logger"""

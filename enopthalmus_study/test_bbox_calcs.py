@@ -15,7 +15,7 @@ def v_hat(v):
     mag = sum([i**2 for i in v])**0.5
     return([i/mag for i in v])
 
-def mimics_image_vectors():
+def mimics_basis_vectors():
     '''return the three unit vectors that descrivbe this image volume.'''
     active_img = [i for i in mimics.data.images if i.active]#
     p0 = active_img.get_voxel_center([0, 0, 0])
@@ -71,7 +71,7 @@ m_air_bb.origin
 #(-17.78324137441814, -415.53645670134574, -331.625)
 #Crop Mask dialog is closed
 # But crop mask was the whole volume...
-i, j, k = mimics_image_vectors()
+i, j, k = mimics_basis_vectors()
 i,j,k
 #(array([ 0.87810006, -0.12189994, 0. ]), array([0.12189993, 0.87810007, 0. ]), array([0., 0., 1.]))
 delta = np.array(v1) + np.array(v2) + np.array(v3)

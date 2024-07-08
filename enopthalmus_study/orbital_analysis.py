@@ -105,7 +105,7 @@ def make_anterior_mask(rim, globe):
 
   # Create planes using these origins, parallel to the X,Y plane (normal is Z+)
   #norm_z = [0, 0, 1] # This is not always true, so find the correct normal from the data
-  (u, v, w) = utils.mimics_image_vectors()
+  (u, v, w) = utils.mimics_basis_vectors()
   norm_z = w
   z_planes = [mimics.analyze.create_plane_origin_and_normal(orig, norm_z) 
               for orig in plane_origins]
