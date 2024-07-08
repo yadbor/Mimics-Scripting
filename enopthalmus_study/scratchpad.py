@@ -870,3 +870,129 @@ bb = mimics.BoundingBox3d(origin=p1, first_vector=[delta[0], 0, 0], second_vecto
 
 pa = (-46.3041, -359.4182, -295.1016)
 pb = (-7.6911, -370.3003, -295.1350)
+
+## Added from branch 'fiddling_on_laptop'
+
+import numpy as np
+
+
+def get_centre(part):
+  '''Get the geometric centre of a mimics sphere, point or spline.'''
+  try: # See it if has a center already
+    return part.center
+  except AttributeError:
+    # It didn't have a .center attribute, so not a sphere
+    pass
+  try: # Maybe it's a point?
+    return (part.X, part.Y, part.Z)
+  except AttributeError:
+    # No X,Y,Z so it's not a point
+    pass
+  # Fall back on using the bounding box. This *should* work on anything.
+  try:
+    bbox = mimics.measure.get_bounding_box(part)
+  except TypeError: 
+    bbox = mimics.measure.get_bounding_box([part]) # Wrap a single object in a list to work on CAD objects
+    
+  p1 = np.array(bbox.origin)
+  span = np.array(bbox.first_vector) + np.array(bbox.second_vector) + np.array(bbox.third_vector)
+  return p1 + (span / 2)
+
+def get_sides(parts):
+  '''Given a list of 0 to 2 mimics objects return them allocated to side of the head.'''
+  sides = {'left': None, 'right': None}
+  try:
+    p0 = get_centre(parts[0])[0]
+  except IndexError:
+    # there are none of this part, so return both sides as None
+    return sides
+  
+  try:
+    p1 = get_centre(parts[1])[0]
+  except IndexError:
+    # There was one of this part, so compare centre.X to 0
+    if p0 < 0:
+      sides['right'] = parts[0]
+    else:
+      sides['left'] = parts[0]
+  else:
+    # Managed to retrieve both centres, so compare them to work out sides (0 = False, 1 = True)
+    left_idx = int(p0 < p1) # If p0 < p1 then p0 is right and p1 is left, so return 1, and vice-versa.
+    right_idx = 1 - left_idx
+    sides['left'] = parts[left_idx]
+    sides['right'] = parts[right_idx]
+    
+  return sides
+
+def find_eyes(spheres, splines, points):
+  '''Given some spheres (globes), splines (rims) and points (apical points) find all eyes'''
+
+  # make an empty dict of eye components
+  eyes = {'num_eyes': 0,
+          'left': {'globe': None, 'rim': None, 'apex': None},
+          'right':{'globe': None, 'rim': None, 'apex': None}}
+  
+  n_eyes = len(spheres)
+  if n_eyes != len(splines):
+    # mis-match, so exit with an error
+    raise ValueError(f'Number of globes {n_eyes} and rims {len(splines)} do not match.')
+    return Nine
+
+  if n_eyes < 1 or n_eyes > 2:
+    # wrong number of eyes, so exit with an error
+    raise ValueError(f'{n_eyes} is not 1 or 2.')
+    return None
+
+  sides = get_sides(spheres)
+  eyes['left']['globe'] = sides['left']
+  eyes['right']['globe'] = sides['right']
+
+  sides = get_sides(splines)
+  eyes['left']['rim'] = sides['left']
+  eyes['right']['rim'] = sides['right']
+
+  sides = get_sides(points)
+  eyes['left']['apex'] = sides['left']
+  eyes['right']['apex'] = sides['right']
+
+  eyes['num_eyes'] = n_eyes
+
+  return eyes
+
+# loop version that may be better, but maybe less obvious?
+def find_eyes_loop(spheres, splines, points):
+  '''Given a list of spheres (globes), splines (rims) and points (apical points) find all eyes'''
+
+  # make an empty dict to hold the eye components
+  eyes = {'num_eyes': 0,
+          'left': {'globe': None, 'rim': None, 'apex': None},
+          'right':{'globe': None, 'rim': None, 'apex': None}}  
+  
+  n_eyes = len(spheres)
+
+  if n_eyes != len(splines):
+    # mis-match, so exit with an error
+    raise ValueError(f'Number of globes {n_eyes} and rims {len(splines)} do not match.')
+    return Nine
+
+  if n_eyes < 1 or n_eyes > 2:
+    # wrong number of eyes, so exit with an error
+    raise ValueError(f'{n_eyes} is not 1 or 2.')
+    return None
+  # Gather the parts to check into a dict
+  parts = {'globe': spheres, 
+           'rim': splines,
+           'apex': points}
+  
+  for part_name, part in parts.items():
+    sides = get_sides(part) # Return the correct part or None for each side
+    for side in ('left', 'right'):
+      eyes[side][part_name] = sides[side]
+      
+  eyes['num_eyes'] = n_eyes
+
+  return eyes
+
+def flatten_eyes(eyes):
+  '''turn the eyes dict into a simple list of mimics objects to use with get_bounding_box().'''
+  return [v for k, d in eyes.items() if k != 'num_eyes' for v in d.values()]

@@ -217,11 +217,11 @@ def mimics_image_vectors():
   z = active_img.get_voxel_center([0, 0, d[2]-1])
   if 'numpy' in sys.modules:
     # use the faster neater version
-    basis = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
-    (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in basis]
+    span = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+    (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in span]
   else:
-    basis = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
-    (i, j, k) = [v_hat(v) for v in basis]
+    span = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
+    (i, j, k) = [v_hat(v) for v in span]
 
   return (i,j,k)
 
