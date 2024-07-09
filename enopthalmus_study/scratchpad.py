@@ -353,8 +353,6 @@ def bbox_from_points(p1, p2):
 def expand_points(p1, p2, expand, basis=DEFAULT_BASIS):
   return None
 
-
-
 def expand_bbox(bbox, expand, basis=DEFAULT_BASIS):
   """Expand a mimics.BoundingBox3D by adding a vector = (X_left, X_right), (Y_ant, Y_post), (Z_inf, Z_sup)."""
   # Rearrange the expansion values for easier calculation
@@ -374,7 +372,7 @@ def expand_bbox(bbox, expand, basis=DEFAULT_BASIS):
 
 img = mimics.data.images[-1]
 
-def get_basis_vector(img, get_origin = False):
+def get_basis_vectors(img, get_origin = False):
   origin = img.get_voxel_center([0, 0, 0])
   dims = img.get_voxel_buffer().shape
   i = img.get_voxel_center([dims[0]-1, 0, 0])
@@ -386,16 +384,6 @@ def get_basis_vector(img, get_origin = False):
     return basis, origin
   else:
     return basis
-
-p0 = img.get_voxel_center([0, 0, 0])
-
-b = img.get_voxel_buffer()
-d = b.shape
-i = img.get_voxel_center([d[0]-1, 0, 0])
-j = img.get_voxel_center([0, d[1]-1, 0])
-k = img.get_voxel_center([0, 0, d[2]-1])
-basis = (i, j, k)
-
 
 
 def get_centre(part):
@@ -413,7 +401,7 @@ def get_centre(part):
   # Fall back on using the bounding box. This *should* work on anything.
   bbox = mimics.measure.get_bounding_box([part])
   p1 = np.array(bbox.origin)
-  span = np.array(bbox.first_vector) + np.array(second_vector) + np.array(third_vector)
+  span = np.array(bbox.first_vector) + np.array(bbox.second_vector) + np.array(bbox.third_vector)
   return p1 + (span / 2)
 
 def get_sides(parts):
