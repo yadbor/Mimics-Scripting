@@ -3,6 +3,7 @@
 from const import * # Safe to use * as only CONSTANT variables
 import utils
 import materials
+import mimics # for API access - imported automatically inside mimics
 
 # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS:
 #    X+ to the patient's Left 
