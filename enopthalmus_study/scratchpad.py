@@ -300,7 +300,7 @@ def value_safe(v, default = 0):
   if v:
     return v
   else:
-    return 0
+    return default
 
 def expand_bbox(bbox, X_exp=None, Y_exp=None, Z_exp=None):
   """Given a mimics.BoungingBox, expand it by the given amounts (lo, hi) in each direction."""
