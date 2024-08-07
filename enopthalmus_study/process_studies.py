@@ -163,7 +163,7 @@ for p in projects:
                          ) #change this to landmarks
 
     # The orbit is the wrapped mask of everything minus the filled version ???
-    mask_orbit_vol = utils.minus(mask_wrapped, mask_smartfill)
+    mask_orbit_vol = utils.difference(mask_wrapped, mask_smartfill)
     # Erode that to separate the orbit volume from the surroundings
     mask_orbit_vol = mimics.segment.morphology_operations(mask_orbit_vol, 'Erode', 1, 8, None, None)
     # Grow the separated region to get a mask of only the orbital contents, starting from the centre of the globe
@@ -173,7 +173,7 @@ for p in projects:
     # Make a mask from the globe
     mask_globe = utils.sphere_to_mask(globe)
     # Subtract the globe from the orbit mask
-    mask_intersect_vol = utils.minus(mask_orbit_vol, mask_globe)
+    mask_intersect_vol = utils.difference(mask_orbit_vol, mask_globe)
     mask_intersect_vol.name = side_label + "Intersect Mask"
     # and make into a Part
     part_orbital_vol = utils.part_from_mask(mask_intersect_vol)

@@ -51,7 +51,7 @@ mask_orbit = mimics.segment.threshold(
                          bounding_box = bbox_orbit
                          )
 # Subtract the not_orbit 
-mask_orbit = utils.minus(mask_orbit, mask_not_orbit)
+mask_orbit = utils.difference(mask_orbit, mask_not_orbit)
 # And select only tht part adjacent to the globe
 back_of_globe = globe.center
 back_of_globe[Y] = back_of_globe[Y] + globe.radius

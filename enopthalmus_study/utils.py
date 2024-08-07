@@ -3,6 +3,7 @@
 
 # Specialised iterators. Most are in recent version of itertools
 from itertools import tee, zip_longest, islice
+import copy # to use copy.deepcopy()
 import numpy as np 
 
 # Need to define pairwise() as itertools for python 3.7 doesn't have it.
@@ -62,13 +63,28 @@ def unite(mask1, mask2):
   """Convenience function to do a boolean Unite on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Unite')
 
-def minus(mask1, mask2):
+def difference(mask1, mask2):
   """Convenience function to do a boolean Difference on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Difference')
 
 def intersect(mask1, mask2):
   """Convenience function to do a boolean Intersect on two masks."""
   return mimics.segment.boolean_operations(mask1, mask2, 'Intersect')
+
+def unite_mask_list(mask_list):
+  '''Unite a list of masks, deleting any intermerdiate temporary masks that are created'''
+  local_list = copy.deepcopy(mask_list) # Copy locally to avoid changing the original list
+  temp_list = []
+  mask_a = local_list.pop(0)
+  while local_list:
+    mask_b = local_list.pop(0)
+    temp_list.append(mask_a)
+    mask_a = mimics.segment.boolean_operations(mask_a, mask_b, 'Unite')
+    
+  for m in temp_list[1:]: # don't delete the original mask_a (temp_list[0])
+    mimics.data.masks.delete(m) 
+
+  return mask_a
 
 def mask_dilate(mask, number_of_pixels = 2, connectivity = 8):
   return mimics.segment.morphology_operations(mask, 
@@ -77,6 +93,8 @@ def mask_dilate(mask, number_of_pixels = 2, connectivity = 8):
                                               connectivity=connectivity, 
                                               target_mask_name=None, 
                                               limited_to_mask=None)
+
+
 
 # Functions for assiging geometry (sphere, spline & point) to the L or R eye
 

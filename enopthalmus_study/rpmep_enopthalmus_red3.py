@@ -16,7 +16,7 @@ import const # Constant definitions
 
 # Helper functions to clean up mainline code (just call mimics functions)
 from utils import mask_from_material, part_from_mask, mask_from_thesholds
-from utils import unite, minus, intersect
+from utils import unite, difference, intersect
 from utils import spline_geometry
 
 import orbital_analysis

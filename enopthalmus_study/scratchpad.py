@@ -351,7 +351,16 @@ def bbox_from_points(p1, p2):
     return bbox
 
 def expand_points(p1, p2, expand, basis=DEFAULT_BASIS):
-  return None
+  # Rearrange the expansion values for easier calculation
+  # so that they are ordered (min(X, Y, X), max(X, Y, Z))
+  exp_min, exp_max = [idx for idx in zip(* expand)]
+  # Subtract exp_min from p1 and add exp_max to p2, by X,Y,Z component
+  # Multiply the expansion vector by the basis to allow for skew scans
+  new_p1 = np.array(p1) - (np.array(exp_min) * np.array(basis))
+  new_p2 = np.array(p2) + (np.array(exp_max) * np.array(basis))
+
+  return (new_p1, new_p2)
+
 
 def expand_bbox(bbox, expand, basis=DEFAULT_BASIS):
   """Expand a mimics.BoundingBox3D by adding a vector = (X_left, X_right), (Y_ant, Y_post), (Z_inf, Z_sup)."""
@@ -502,3 +511,45 @@ def find_eyes_loop(spheres, splines, points):
 def flatten_eyes(eyes):
   """turn the eyes dict into a simple list of mimics objects to use with get_bounding_box()."""
   return [v for k, d in eyes.items() if k != 'num_eyes' for v in d.values()]
+
+import utils
+import copy
+
+def unite_list_pop(mask_list):
+  local_list = copy.deepcopy(mask_list)
+  temp_list = []
+  mask_a = local_list.pop(0)
+  while local_list:
+    temp_list.append(mask_a)
+    mask_b = local_list.pop(0)
+    mask_a = utils.unite(mask_a, mask_b)
+  for m in temp_list[1:]: # don't delete the original mask_a
+    mimics.data.masks.delete(m) 
+
+  return mask_a
+
+def unite_list_while(mask_list):
+  temp_list = []
+  i = 0
+  mask_a = mask_list[i]
+  while i < len(mask_list):
+    temp_list.append(mask_a)
+    i += 1
+    mask_b = mask_list[i]
+    mask_a = utils.unite(mask_a, mask_b)
+  for m in temp_list[1:]: # don't delete the original mask_a
+    mimics.data.masks.delete(m) 
+
+  return mask_a
+
+def unite_list(mask_list):
+  temp_list = []
+  mask_a = mask_list[0]
+  for mask_b in mask_list[1:]:
+    temp_list.append(mask_a) # save for later deletion
+    mask_a = utils.unite(mask_a, mask_b) # leaves old mask_a in masks list
+
+  for m in temp_list[1:]: # don't delete the original mask_a
+    mimics.data.masks.delete(m) 
+
+  return mask_a # return the final mask_a
