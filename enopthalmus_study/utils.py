@@ -200,8 +200,6 @@ def get_basis_vectors(img, get_origin = False):
   else:
     return basis
 
-
-
 def make_bbox(base_point, offset, extents, basis=DEFAULT_BASIS):
   vectors = (np.array(extents) * np.array(basis))
   bbox = mimics.BoundingBox3d(origin = base_point - np.array(offset),

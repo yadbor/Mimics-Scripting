@@ -338,7 +338,7 @@ def bbox_to_points_old(bbox):
     return p1, p2
 
 def bbox_to_points(bbox):
-    """Find the extreme points p1 and p2 of a mimics.BoundingBox3D, with p1 at the origin."""
+    """Find the extreme points p1 and p2 of a mimics.BoundingBox3D, with p1 at the box origin."""
     p1 = bbox.origin
     span = np.array(bbox.first_vector) + np.array(bbox.second_vector) + np.array(bbox.third_vector)
     p2 = np.array(p1) + span
@@ -347,15 +347,16 @@ def bbox_to_points(bbox):
 def bbox_from_points(p1, p2):
     """Given two points p1 and p2 crerate a mimics.BoundingBox3D between them."""
     span = np.array(p1) - np.array(p1)
-    bbox = mimics.BoundingBox3d(p1, span[0]], span[1], span[2])
+    bbox = mimics.BoundingBox3d(p1, span[0], span[1], span[2])
     return bbox
 
 def expand_points(p1, p2, expand, basis=DEFAULT_BASIS):
+  """Given expand = (xlo, xhi, ylo, yhi, zlo, zhi) return p1 - (xlo, ylo, zlo) & p2 + (xhi, yhi, zhi)."""
   # Rearrange the expansion values for easier calculation
   # so that they are ordered (min(X, Y, X), max(X, Y, Z))
   exp_min, exp_max = [idx for idx in zip(* expand)]
   # Subtract exp_min from p1 and add exp_max to p2, by X,Y,Z component
-  # Multiply the expansion vector by the basis to allow for skew scans
+  # Multiply the expansion vector by the basis to allow for skewed scans
   new_p1 = np.array(p1) - (np.array(exp_min) * np.array(basis))
   new_p2 = np.array(p2) + (np.array(exp_max) * np.array(basis))
 
@@ -363,7 +364,7 @@ def expand_points(p1, p2, expand, basis=DEFAULT_BASIS):
 
 
 def expand_bbox(bbox, expand, basis=DEFAULT_BASIS):
-  """Expand a mimics.BoundingBox3D by adding a vector = (X_left, X_right), (Y_ant, Y_post), (Z_inf, Z_sup)."""
+  """Expand a mimics.BoundingBox3D by a vector expand=(X_left, X_right), (Y_ant, Y_post), (Z_inf, Z_sup)."""
   # Rearrange the expansion values for easier calculation
   # so that they are ordered (min(X, Y, X), max(X, Y, Z))
   exp_min, exp_max = [idx for idx in zip(* expand)]
@@ -549,6 +550,19 @@ def unite_list(mask_list):
     temp_list.append(mask_a) # save for later deletion
     mask_a = utils.unite(mask_a, mask_b) # leaves old mask_a in masks list
 
+  for m in temp_list[1:]: # don't delete the original mask_a
+    mimics.data.masks.delete(m) 
+
+  return mask_a # return the final mask_a
+
+def boolean_list(mask_list, op = "Unite"):
+  temp_list = []
+  mask_a = mask_list[0]
+  for mask_b in mask_list[1:]:
+    temp_list.append(mask_a) # save for later deletion
+    # this leaves the old mask_a in the global masks list - delete later
+    mask_a = mimics.segment.boolean_operation(mask_a, mask_b ,operation=op)
+  # Now delete the temporary masks created along the way
   for m in temp_list[1:]: # don't delete the original mask_a
     mimics.data.masks.delete(m) 
 
