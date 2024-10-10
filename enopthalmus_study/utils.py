@@ -225,11 +225,11 @@ def bbox_to_points(bbox):
     p2 = np.array(p1) + span
     return p1, p2
 
-def bbox_from_points(p1, p2):
+def bbox_from_points(p1, p2, basis=DEFAULT_BASIS):
     """Given two points p1 and p2 crerate a mimics.BoundingBox3D between them."""
     span = np.array(p1) - np.array(p1)
-    bbox = mimics.BoundingBox3d(p1, span[0], span[1], span[2])
-    return bbox
+    vectors = span * basis
+    return mimics.BoundingBox3d(p1, vectors[0], vectors[1], vectors[2])
 
 def expand_points(p1, p2, expand, basis=DEFAULT_BASIS):
   return None
