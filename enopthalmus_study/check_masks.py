@@ -1,16 +1,18 @@
 import os  # for scandir() etc
 import re  # for regexp matching
 
+import mimics # to keep pylance happy
+
 root = r'D:\Projects & Research\Enophthalmos Study'
 
 
 def check_mask(side):
     # Find the Orbital Volume mask for this side. 
     # End the regex with '$' to skip any experimental or trial masks (e.g. with/without sinus)
-    orbit_vol = mimics.data.masks.find(f'(?i){side}_Orbital Volume$', regex=True) # Use perl style ignore case flag
+    orbit_vol = mimics.data.masks.find(f'(?i){side}.*Orbital Volume$', regex=True) # Use perl style ignore case flag
 
     if orbit_vol is None:
-        # couldn't find the mask, so raise an insex error & bail
+        # couldn't find the mask, so raise an index error & bail
         raise (IndexError, ValueError)
         # Huston, we have a problem. Bail without returning results
         return
@@ -25,7 +27,7 @@ def check_mask(side):
 if __name__ == '__main__':
   # Execute when the module is not initialized from an import statement.
  
-  # This version has one folder with the segmenting person int he file name
+  # This version has one folder with the segmenting person in the file name
   
   root = r'D:\Projects & Research\Enophthalmos Study\re-do_DICOM'
   

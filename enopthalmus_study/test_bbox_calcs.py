@@ -3,8 +3,9 @@ def bbox_to_points(bbox):
     p1 = bbox.origin
     # Add the three vectors
     span = [(a + b + c) 
-    for a, b, c 
-    in zip(bbox.first_vector, bbox.second_vector, bbox.third_vector)]
+                for a, b, c 
+                in zip(bbox.first_vector, bbox.second_vector, bbox.third_vector)
+            ]
     p2 = tuple((p + s) for p, s in zip(p1, span)) # Return a tuple so both points the same
     return (p1, p2)
 
@@ -17,19 +18,19 @@ def v_hat(v):
 
 def mimics_basis_vectors():
     '''return the three unit vectors that descrivbe this image volume.'''
-    active_img = [i for i in mimics.data.images if i.active]#
+    active_img = mimics.data.images.get_active()
     p0 = active_img.get_voxel_center([0, 0, 0])
     d = active_img.get_voxel_buffer().shape
-    x = active_img.get_voxel_center(#-1, 0, 0])
-    y = active_img.get_voxel_center([0, d#-1, 0])
-    z = active_img.get_voxel_center([0, 0, d#)
+    x = active_img.get_voxel_center([1, 0, 0])
+    y = active_img.get_voxel_center([0, 1, 0])
+    z = active_img.get_voxel_center([0, 0, 1])
     if 'numpy' in sys.modules:
-    # use the faster neater version
-    basis = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
-    (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in basis]
+        # use the faster neater version
+        basis = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+        (i, j, k) = [b_i / np.linalg.norm(b_i, ord=1) for b_i in basis]
     else:
-    basis = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
-    (i, j, k) = [v_hat(v) for v in basis]
+        basis = [tuple(b-a for a,b in zip(p0,v)) for v in (x, y, z)]
+        (i, j, k) = [v_hat(v) for v in basis]
     
     return (i,j,k)
 
@@ -42,7 +43,7 @@ def mimics_basis_vectors():
 left_m_air = mimics.data.masks.find('left_m_air')
 left_m_air.maximum_value, left_m_air.minimum_value
 #(824, 0)
-m_air_bb = mimics.measure.get_bounding_box(#)
+m_air_bb = mimics.measure.get_bounding_box()
 m_air_bb
 #<mimics.BoundingBox3d((-17.78324137441814, -415.53645670134574, -331.625), (96.73704539053142, -1.180451363325119e-05, 0.0), (1.0244548320770264e-07, 143.59886514861137, 0.0), (1.0244548320770264e-07, -1.180451363325119e-05, 56.03125))>
 m_air_bb.origin
@@ -80,10 +81,10 @@ delta
 np.array(p1) + np.array(delta)
 #[ 78.95380422 -271.93761516 -275.59375 ]
 p2 = np.array(p1) + np.array(delta)
-v_align = [m * np.array(v) for m, v in zip(delta, #
+v_align = [m * np.array(v) for m, v in zip(delta, p1)]
 v_align
 #[array([ 84.94480508, -11.79224051, 0. ]), array([ 17.50468905, 126.09415249, 0. ]), array([ 0. , 0. , 56.03125])]
-bb_align = mimics.BoundingBox3d(origin=p1, first_vector=v_align#, second_vector=v_align#, third_vector=v_align#)
+bb_align = mimics.BoundingBox3d(origin=p1, first_vector=v_align, second_vector=v_align, third_vector=v_align)
 m_align = mimics.segment.threshold(mask=mimics.segment.create_mask(), threshold_min=0, threshold_max=4095, bounding_box=bb_align)
 
 # match crop mask to mask and it reads p1 = [-16.5915, -404.8305, -331.4531], p2 = [84.4474, -300.7347, -275.0781]

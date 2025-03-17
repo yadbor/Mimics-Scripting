@@ -1,0 +1,397 @@
+[2024-07-28 17:48:49] Starting Materialise Mimics Medical 25.0.0.550 ...
+    Logging level: INFO
+PYTHON INTERACTIVE CONSOLE
+3.8.10 (tags/v3.8.10:3d8993a, May 3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)] [C:\Users\Health\AppData\Local\Programs\Python\Python38]
+
+
+[17:35:14] ››› mimics.file.open_project("D:\Projects & Research\Enophthalmos Study\Wungundin 2016.09.18 Soft SS 01.mcs")
+[17:35:14] Project edition information
+    Project created in: Materialise Mimics Medical 25.0
+    Project last modified in: Materialise Mimics Medical 25.0
+[17:35:15] Open project
+    file name: D:\Projects & Research\Enophthalmos Study\Wungundin 2016.09.18 Soft SS 01.mcs
+[17:36:34] ››› def v_hat(v):
+[17:36:34]       '''Return a normalised unit vector.''' 
+[17:36:34]       mag = np.linalg.norm(v)
+[17:36:34]       return([i/mag for i in v])
+[17:36:34] 
+[17:36:34]     def mimics_basis_vectors(img):
+[17:36:34]       '''return the three unit vectors that descrivbe this image volume.'''
+[17:36:34]       #active_img = [i for i in mimics.data.images if i.active][0]
+[17:36:34]       p0 = img.get_voxel_center([0, 0, 0])
+[17:36:34]       d = img.get_voxel_buffer().shape
+[17:36:34]       x = img.get_voxel_center([d[0]-1, 0, 0])
+[17:36:34]       y = img.get_voxel_center([0, d[1]-1, 0])
+[17:36:34]       z = img.get_voxel_center([0, 0, d[2]-1])
+[17:36:34]       span = [np.asarray(v) - np.asarray(p0) for v in (x, y, z)]
+[17:36:34]       (i, j, k) = [v_hat(v) for v in span]
+[17:36:34] 
+[17:36:34]       return (i,j,k)
+
+[17:38:05] ››› active_img = [i for i in mimics.data.images if i.active][0]
+
+
+[17:38:37] ››› import numpy as np
+
+[17:39:04] ››› o, *v = mimics_basis_vectors(active_img)
+[17:39:06] ››› o
+[17:39:06] [1.0, 0.0, 0.0]
+[17:39:08] ››› v
+[17:39:08] [[0.0, 0.9707118808807633, 0.24024663226969634], [0.0, -0.24024655354719848, 0.9707119003642085]]
+[17:39:22] ››› (i, j, k) = mimics_basis_vectors(active_img)
+[17:39:27] ››› (i, j, k)
+[17:39:27] ([1.0, 0.0, 0.0], [0.0, 0.9707118808807633, 0.24024663226969634], [0.0, -0.24024655354719848, 0.9707119003642085])
+[17:42:23] CAD object created
+    type: Point
+    name: Point 1
+    color: [255, 32, 32, 255]
+    coordinates: [17.715887, 77.031258, 606.909851]
+[17:42:55] CAD object created
+    type: Point
+    name: Point 2
+    color: [255, 32, 32, 255]
+    coordinates: [-14.689835, 77.888054, 607.121887]
+
+	[17:43:23] ››› mimics.data.splines, mimics.data.spheres, mimics.data.points
+[17:43:23] (<DataContainer 'splines' [<mimics.analyze.Spline(Spline 1)>, <mimics.analyze.Spline(Spline 2)>]>, <DataContainer 'spheres' [<mimics.analyze.Sphere(Sphere 1)>, <mimics.analyze.Sphere(Sphere 2)>]>, <DataContainer 'points' [<mimics.analyze.Point(17.71588706970215, 77.03125762939453, 606.9098510742188)>, <mimics.analyze.Point(-14.689834594726562, 77.88805389404297, 607.1218872070312)>]>)
+[17:43:37] ››› list(zip(mimics.data.splines, mimics.data.spheres, mimics.data.points))
+[17:43:37] [(<mimics.analyze.Spline(Spline 1)>, <mimics.analyze.Sphere(Sphere 1)>, <mimics.analyze.Point(17.71588706970215, 77.03125762939453, 606.9098510742188)>), (<mimics.analyze.Spline(Spline 2)>, <mimics.analyze.Sphere(Sphere 2)>, <mimics.analyze.Point(-14.689834594726562, 77.88805389404297, 607.1218872070312)>)]
+[17:44:07] ››› bb = mimics.measure.get_bounding_box(list(zip(mimics.data.splines, mimics.data.spheres, mimics.data.points)))
+
+[17:44:54] ››› bb = mimics.measure.get_bounding_box((mimics.data.splines[0], mimics.data.spheres[0], mimics.data.points[0], mimics.data.splines[1], mimics.data.spheres[1], mimics.data.points[1]))
+[17:44:58] ››› bb
+[17:44:58] <mimics.BoundingBox3d((-53.06679916381836, 16.117493357495952, 574.209228515625), (107.6156005859375, -6.817147024662518e-07, 0.0), (0.0, 62.40206078068764, 0.0), (0.0, -6.817147024662518e-07, 35.48138427734375))>
+
+## get the first two elements of each of spheres, splines and points, into a form that can be passed to get_bounding_box()
+           from itertools import tee, zip_longest, islice
+[22:47:34] ››› l = [x for xs in [mimics.data.spheres,mimics.data.splines, mimics.data.points] for x in islice(xs, 2)]
+[22:47:36] ››› l
+[22:47:36] [<mimics.analyze.Sphere(Sphere 1)>, <mimics.analyze.Sphere(Sphere 2)>, <mimics.analyze.Spline(Spline 1)>, <mimics.analyze.Spline(Spline 2)>, <mimics.analyze.Point(17.71588706970215, 77.03125762939453, 606.9098510742188)>, <mimics.analyze.Point(-14.689834594726562, 77.88805389404297, 607.1218872070312)>]
+[22:47:40] ››› mimics.measure.get_bounding_box(l)
+[22:47:40] <mimics.BoundingBox3d((-53.06679916381836, 16.117493357495952, 574.209228515625), (107.6156005859375, -6.817147024662518e-07, 0.0), (0.0, 62.40206078068764, 0.0), (0.0, -6.817147024662518e-07, 35.48138427734375))>
+
+
+[17:46:26] ››› mimics.analyze.create_point(bb.origin, name="origin", color=(0.3,0.7,0.8))
+[17:46:26] CAD object created
+    type: Point
+    name: origin
+    color: [77, 179, 204, 255]
+    coordinates: [-53.066799, 16.117493, 574.209229]
+[17:46:26] <mimics.analyze.Point(-53.06679916381836, 16.11749267578125, 574.209228515625)>
+[17:46:48] ››› bb.first_vector
+[17:46:48] (107.6156005859375, -6.817147024662518e-07, 0.0)
+[17:47:04] ››› bb.first_vector + bb.origin
+[17:47:04] (107.6156005859375, -6.817147024662518e-07, 0.0, -53.06679916381836, 16.117493357495952, 574.209228515625)
+[17:47:24] ››› np.array(bb.first_vector) + np.array(bb.origin)
+[17:47:25] [ 54.54880142 16.11749268 574.20922852]
+[17:48:20] ››› mimics.analyze.create_line(point1=bb.origin, point2=np.array(bb.origin) + np.array(bb.first_vector), name="first")
+[17:48:20] CAD object created
+    type: Line
+    name: first
+    color: [255, 32, 32, 255]
+    point 1: [-53.066799, 16.117493, 574.209229]
+    point 2: [54.548801, 16.117493, 574.209229]
+[17:48:20] <mimics.analyze.Line(first)>
+[17:48:34] ››› mimics.analyze.create_line(point1=bb.origin, point2=np.array(bb.origin) + np.array(bb.second_vector), name="second")
+[17:48:34] CAD object created
+    type: Line
+    name: second
+    color: [255, 32, 32, 255]
+    point 1: [-53.066799, 16.117493, 574.209229]
+    point 2: [-53.066799, 78.519554, 574.209229]
+[17:48:34] <mimics.analyze.Line(second)>
+[17:48:46] ››› mimics.analyze.create_line(point1=bb.origin, point2=np.array(bb.origin) + np.array(bb.third_vector), name="third")
+[17:48:46] CAD object created
+    type: Line
+    name: third
+    color: [255, 32, 32, 255]
+    point 1: [-53.066799, 16.117493, 574.209229]
+    point 2: [-53.066799, 16.117493, 609.690613]
+[17:48:46] <mimics.analyze.Line(third)>
+[17:50:34] ››› mm = mimics.segment.threshold(mask=mimics.segment.create_mask(),threshold_min=0,threshold_max=4096,bounding_box=bb)
+Threshold high cannot be greater than maximum grey value: 4000
+[17:50:34] Thresholding performed
+    Mask label: Yellow
+    Mask index: 1
+    Grey value min: 0
+    Grey value max: 4000
+
+	[17:52:07] ››› vv = (bb.first_vector, bb.second_vector, bb.third_vector)
+[17:52:17] ››› [np.linalg.norm(v) for v in vv]
+[17:52:17] [107.6156005859375, 62.40206078068764, 35.48138427734376]
+[17:53:00] ››› mag = [np.linalg.norm(v) for v in vv]
+[17:53:07] ››› i, j, k
+[17:53:08] ([1.0, 0.0, 0.0], [0.0, 0.9707118808807633, 0.24024663226969634], [0.0, -0.24024655354719848, 0.9707119003642085])
+
+[17:53:52] ››› np.array(i) * mag[0]
+[17:53:52] [107.61560059 0. 0. ]
+[17:55:27] ››› [idx for idx in list(zip(* vv))]
+[17:55:27] [(107.6156005859375, 0.0, 0.0), (-6.817147024662518e-07, 62.40206078068764, -6.817147024662518e-07), (0.0, 0.0, 35.48138427734375)]
+[17:55:40] ››› [idx for idx in list(zip(* vv, mag))]
+[17:55:40] [(107.6156005859375, 0.0, 0.0, 107.6156005859375), (-6.817147024662518e-07, 62.40206078068764, -6.817147024662518e-07, 62.40206078068764), (0.0, 0.0, 35.48138427734375, 35.48138427734376)]
+
+[17:56:32] ››› [m for m in list(zip(mag, * vv))]
+[17:56:32] [(107.6156005859375, 107.6156005859375, 0.0, 0.0), (62.40206078068764, -6.817147024662518e-07, 62.40206078068764, -6.817147024662518e-07), (35.48138427734376, 0.0, 0.0, 35.48138427734375)]
+
+[17:57:44] ››› vb = tuple(v_hat(v) for v in vv)
+[17:57:45] ››› vb
+[17:57:46] ([1.0, -6.334720047599992e-09, 0.0], [0.0, 1.0, 0.0], [0.0, -1.9213306254839474e-08, 0.9999999999999998])
+
+[17:58:27] ››› vb = np.array([v_hat(v) for v in vv])
+[17:58:28] ››› vb
+[17:58:28] [[ 1.00000000e+00 -6.33472005e-09 0.00000000e+00]
+[17:58:28]  [ 0.00000000e+00 1.00000000e+00 0.00000000e+00]
+[17:58:28]  [ 0.00000000e+00 -1.92133063e-08 1.00000000e+00]]
+[17:58:39] ››› vb * mag
+[17:58:39] [[ 1.07615601e+02 -3.95299585e-07 0.00000000e+00]
+[17:58:39]  [ 0.00000000e+00 6.24020608e+01 0.00000000e+00]
+[17:58:39]  [ 0.00000000e+00 -1.19894990e-06 3.54813843e+01]]
+[17:58:58] ››› vv
+[17:58:58] ((107.6156005859375, -6.817147024662518e-07, 0.0), (0.0, 62.40206078068764, 0.0), (0.0, -6.817147024662518e-07, 35.48138427734375))
+[17:59:23] ››› vb = [v_hat(v) for v in vv]
+[17:59:24] ››› vb
+[17:59:24] [[1.0, -6.334720047599992e-09, 0.0], [0.0, 1.0, 0.0], [0.0, -1.9213306254839474e-08, 0.9999999999999998]]
+[17:59:40] ››› bb.first_vector
+[17:59:40] (107.6156005859375, -6.817147024662518e-07, 0.0)
+[18:00:17] ››› vv[0]
+[18:00:17] (107.6156005859375, -6.817147024662518e-07, 0.0)
+[18:00:23] ››› v_hat(vv[0])
+[18:00:23] [1.0, -6.334720047599992e-09, 0.0]
+
+[18:00:56] ››› vb * np.array(mag)
+[18:00:56] [[ 1.07615601e+02 -3.95299585e-07 0.00000000e+00]
+[18:00:56]  [ 0.00000000e+00 6.24020608e+01 0.00000000e+00]
+[18:00:56]  [ 0.00000000e+00 -1.19894990e-06 3.54813843e+01]]
+[18:01:03] ››› vb
+[18:01:03] [[1.0, -6.334720047599992e-09, 0.0], [0.0, 1.0, 0.0], [0.0, -1.9213306254839474e-08, 0.9999999999999998]]
+[18:01:17] ››› mag
+[18:01:17] [107.6156005859375, 62.40206078068764, 35.48138427734376]
+[18:01:59] ››› [(mag, v) for mag, v in zip(mag, vv)]
+[18:01:59] [(107.6156005859375, (107.6156005859375, -6.817147024662518e-07, 0.0)), (62.40206078068764, (0.0, 62.40206078068764, 0.0)), (35.48138427734376, (0.0, -6.817147024662518e-07, 35.48138427734375))]
+[18:02:09] ››› [(mag, v) for mag, v in zip(mag, vb)]
+[18:02:09] [(107.6156005859375, [1.0, -6.334720047599992e-09, 0.0]), (62.40206078068764, [0.0, 1.0, 0.0]), (35.48138427734376, [0.0, -1.9213306254839474e-08, 0.9999999999999998])]
+[18:02:34] ››› [mag * np.array(v) for mag, v in zip(mag, vb)]
+[18:02:34] [array([ 1.07615601e+02, -6.81714702e-07, 0.00000000e+00]), array([ 0. , 62.40206078, 0. ]), array([ 0.00000000e+00, -6.81714702e-07, 3.54813843e+01])]
+[18:02:43] ››› vv
+[18:02:43] ((107.6156005859375, -6.817147024662518e-07, 0.0), (0.0, 62.40206078068764, 0.0), (0.0, -6.817147024662518e-07, 35.48138427734375))
+[18:03:51] ››› ofs = (-10, -50, -10)
+[18:04:02] ››› [mag * np.array(v) for mag, v in zip(ofs, vb)]
+[18:04:02] [array([-1.00000000e+01, 6.33472005e-08, -0.00000000e+00]), array([ -0., -50., -0.]), array([-0.00000000e+00, 1.92133063e-07, -1.00000000e+01])]
+[18:04:29] ››› np.diag([mag * np.array(v) for mag, v in zip(ofs, vb)])
+[18:04:29] [-10. -50. -10.]
+[18:04:53] ››› o
+[18:04:53] [1.0, 0.0, 0.0]
+[18:04:59] ››› bb.origin
+[18:04:59] (-53.06679916381836, 16.117493357495952, 574.209228515625)
+[18:05:10] ››› np.diag([mag * np.array(v) + bb.origin for mag, v in zip(ofs, vb)])
+[18:05:10] [-63.06679916 -33.88250664 564.20922852]
+[18:05:25] ››› new_origin = np.diag([mag * np.array(v) + bb.origin for mag, v in zip(ofs, vb)])
+[18:06:13] ››› extend = (10,10,10)
+[18:06:29] ››› ofs + extend
+[18:06:29] (-10, -50, -10, 10, 10, 10)
+[18:06:55] ››› np.array(extend) - np.array(ofs)
+[18:06:55] [20 60 20]
+[18:08:36] ››› bb2=mimics.BoundingBox3d()
+[18:08:51] ››› bb2.origin = bb.origin + np.array(ofs)
+[18:11:42] ››› 1 + np.array(extend)/np.array(mag)
+[18:11:42] [1.09292333 1.16025112 1.28183793]
+[18:11:47] ››› np.array(extend)/np.array(mag)
+[18:11:47] [0.09292333 0.16025112 0.28183793]
+[18:12:48] ››› extra = np.array(extend) - np.array(ofs) # add some at both ends, so extra vector length includes both
+[18:12:55] ››› np.array(extra)/np.array(mag)
+[18:12:55] [0.18584666 0.96150671 0.56367587]
+[18:13:12] ››› 1 + np.array(extra)/np.array(mag) # multiplier for new vector lengths
+[18:13:12] [1.18584666 1.96150671 1.56367587]
+[18:13:24] ››› vv
+[18:13:24] ((107.6156005859375, -6.817147024662518e-07, 0.0), (0.0, 62.40206078068764, 0.0), (0.0, -6.817147024662518e-07, 35.48138427734375))
+[18:14:09] ››› m = 1 + np.array(extra)/np.array(mag) # multiplier for new vector lengths
+[18:14:15] ››› m * vv
+[18:14:15] [[ 1.27615601e+02 -1.33718796e-06 0.00000000e+00]
+[18:14:15]  [ 0.00000000e+00 1.22402061e+02 0.00000000e+00]
+[18:14:15]  [ 0.00000000e+00 -1.33718796e-06 5.54813843e+01]]
+[18:14:38] ››› np.array((1,1,1)) * vv
+[18:14:38] [[ 1.07615601e+02 -6.81714702e-07 0.00000000e+00]
+[18:14:38]  [ 0.00000000e+00 6.24020608e+01 0.00000000e+00]
+[18:14:38]  [ 0.00000000e+00 -6.81714702e-07 3.54813843e+01]]
+[18:15:13] ››› new_vectors = m * vv
+[18:15:31] ››› bb2.first_vector = new_vectors[0]
+[18:15:38] ››› bb2.second_vector = new_vectors[1]
+[18:15:46] ››› bb2.third_vector = new_vectors[2]
+[18:20:05] ››› def draw_bbox(bbox):
+[18:20:05]       id = bbox.name
+[18:20:05]       mimics.analyze.create_point(bb2.origin, name=f"{id}_origin", color=(0.3,0.7,0.8))
+[18:20:05]       mimics.analyze.create_line(point1=bbox.origin, point2=np.array(bbox.origin) + np.array(bbox.first_vector), name=f"{id}_first")
+[18:20:05]       mimics.analyze.create_line(point1=bbox.origin, point2=np.array(bbox.origin) + np.array(bbox.second_vector), name=f"{id}_second")
+[18:20:05]       mimics.analyze.create_line(point1=bbox.origin, point2=np.array(bbox.origin) + np.array(bbox.third_vector), name=f"{id}_third")
+[18:20:33] ››› bb2.name = "bb2"
+[18:20:47] Object deleted
+    name: bb2_origin
+[18:20:51] ››› draw_bbox(bb2)
+[18:20:51] CAD object created
+    type: Point
+    name: bb2_origin
+    color: [77, 179, 204, 255]
+    coordinates: [-63.066799, -33.882507, 564.209229]
+[18:20:51] CAD object created
+    type: Line
+    name: bb2_first
+    color: [255, 32, 32, 255]
+    point 1: [-63.066799, -33.882507, 564.209229]
+    point 2: [64.548798, -33.882507, 564.209229]
+[18:20:51] CAD object created
+    type: Line
+    name: bb2_second
+    color: [255, 32, 32, 255]
+    point 1: [-63.066799, -33.882507, 564.209229]
+    point 2: [-63.066799, 88.519554, 564.209229]
+[18:20:51] CAD object created
+    type: Line
+    name: bb2_third
+    color: [255, 32, 32, 255]
+    point 1: [-63.066799, -33.882507, 564.209229]
+    point 2: [-63.066799, -33.882507, 619.690613]
+[18:22:04] ››› mm2 = mimics.segment.threshold(mask=mimics.segment.create_mask(),threshold_min=0,threshold_max=4096,bounding_box=bb2)
+Threshold high cannot be greater than maximum grey value: 4000
+[18:22:04] Thresholding performed
+    Mask label: Cyan
+    Mask index: 2
+    Grey value min: 0
+    Grey value max: 4000
+
+	
+	[18:24:34] ››› mimics.segment.HU2GV(-1024), mimics.segment.HU2GV(-200)
+[18:24:34] (0, 824)
+[18:27:00] ››› air_all = mimics.segment.threshold(mask=mimics.segment.create_mask(),threshold_min=0,threshold_max=824,bounding_box=bb2)
+[18:27:00] Thresholding performed
+    Mask label: Orange
+    Mask index: 4
+    Grey value min: 0
+    Grey value max: 824
+[18:29:32] ››› air_big = mimics.segment.keep_largest(mimics.data.masks.duplicate(object=air_all))
+[18:29:40] ››› air_int = mimics.segment.boolean_operations(mask_a=air_all, mask_b=air_big, operation='Minus')
+[18:29:40] Boolean operation
+    mask A: Fuchsia
+    mask B: Orange
+    operation: Mask minus
+    result mask: Red
+[18:30:50] ››› shell = mimics.segment.morphology_operations(input_mask=air_int, operation='Dilate', number_of_pixels=2, connectivity=26, target_mask_name="air_shell")
+[18:30:50] Morphology operation
+    source mask: Red
+    operation: Dilate mask
+    target mask: air_shell
+    number of pixels: 2
+    connectivity: 26
+
+	[18:32:28] ››› mimics.segment.HU2GV(226), mimics.segment.HU2GV(2976)
+[18:32:28] (1250, 4000)
+[18:32:57] ››› bone_trim = mimics.segment.threshold(mask=mimics.segment.create_mask(),threshold_min=1250,threshold_max=4000,bounding_box=bb2)
+[18:32:57] Thresholding performed
+    Mask label: Magenta
+    Mask index: 7
+    Grey value min: 1250
+    Grey value max: 4000
+[18:34:32] ››› bone_trim.name = "bone_trim"
+[18:36:40] ››› bone_extra = mimics.data.masks.duplicate(bone_trim)
+[18:37:13] ››› bone_extra.name = "bone_extra"
+
+### NB - local_threshold takes threshold value sin HU, not GV like everything else ###
+
+	
+	[18:42:45] ››› bone_duplicate = mimics.data.masks.find(name="bone_duplicate")
+[18:42:47] ››› bone_extra_1=mimics.segment.local_threshold(mask=bone_duplicate, threshold_min=1172, threshold_max=1685, search_distance=2, isolate=True, bounding_box=bb2)
+[18:42:47] Local Threshold
+    mask: Peach
+    range min: 2196
+    range max: 2709
+    search distance: 2
+[18:42:59] ››› bone_extra_2=mimics.segment.local_threshold(mask=bone_duplicate, threshold_min=1172, threshold_max=1685, search_distance=2, isolate=False, bounding_box=bb2)
+
+[18:43:56] ››› bone_extra_1=mimics.segment.local_threshold(mask=bone_duplicate, threshold_min=148, threshold_max=661, search_distance=2, isolate=True, bounding_box=bb2)
+[18:44:19] ››› bone_extra_2=mimics.segment.local_threshold(mask=bone_duplicate, threshold_min=148, threshold_max=661, search_distance=2, isolate=False, bounding_box=bb2)
+
+[18:46:49] ››› local_seg_false=mimics.segment.local_threshold(mask=bone_duplicate, threshold_min=148, threshold_max=2976, search_distance=2, isolate=False, bounding_box=bb2)
+[18:47:05] ››› local_seg_true=mimics.segment.local_threshold(mask=bone_duplicate, threshold_min=148, threshold_max=2976, search_distance=2, isolate=True, bounding_box=bb2)
+[18:49:18] ››› bone_complete = mimics.segment.boolean_operations(mask_a=mimics.data.masks["bone_duplicate"], mask_b=mimics.data.masks["bone_extra_3"], operation='Unite')
+[18:49:32] ››› bone_complete.name = "bone_complete"
+[18:50:11] ››› bone_boundary = mimics.segment.boolean_operations(mask_a=mimics.data.masks["bone_complete"], mask_b=mimics.data.masks["air_shell"], operation='Unite')
+[18:50:35] ››› bone_boundary.name = "bone_boundary"
+[18:52:29] ››› bone_boundary_2 = mimics.segment.morphology_operations(input_mask=bone_boundary, operation='Close', number_of_pixels=2, connectivity=26,target_mask_name="bone_boundary_close", limited_to_mask=bone_boundary)
+[18:52:47] ››› bone_boundary_2 = mimics.segment.morphology_operations(input_mask=bone_boundary, operation='Close', number_of_pixels=3, connectivity=26,target_mask_name="bone_boundary_close", limited_to_mask=bone_boundary)
+[18:53:43] ››› bone_smart_2 = mimics.segment.smart_fill_global(mask=bone_boundary, hole_closing_distance=2)
+[18:53:55] ››› bone_smart_3 = mimics.segment.smart_fill_global(mask=bone_boundary, hole_closing_distance=3)
+[18:55:29] Create Part from mask
+    Quality: maximum
+    Mask(s): GreenYellow2
+    Shell reduction: OFF
+    Smooth: ON
+    Reduce: ON
+    First slice, mm: 478.3635
+    Last slice, mm: 606.4974
+    elapsed time: 00:02.173
+[18:55:36] Smooth
+    object: Smoothed_GreenYellow2 2
+    iterations: 6
+    smooth factor: 0.4000
+    compensate shrinkage: OFF
+    keep originals: ON
+[18:56:41] Wrap
+    object: Wrapped_Smoothed_GreenYellow2 2
+    smallest detail (mm): 0.2000
+    gap closing distance (mm): 10.0000
+    dilate result: OFF
+    protect thin walls: ON
+    keep originals: ON
+[20:59:29] Change Part Label: changed from Wrapped_Smoothed_GreenYellow2 2 to Wrapped_0.20_x10
+[20:59:43] Wrap
+    object: Wrapped_Smoothed_GreenYellow2 2
+    smallest detail (mm): 0.2500
+    gap closing distance (mm): 12.0000
+    dilate result: OFF
+    protect thin walls: ON
+    keep originals: ON
+[21:00:11] Change Part Label: changed from Wrapped_Smoothed_GreenYellow2 2 to Wrapped_0.25_x12
+[21:02:23] Wrap
+    object: Wrapped_Smoothed_GreenYellow2 2
+    smallest detail (mm): 0.2000
+    gap closing distance (mm): 15.0000
+    dilate result: OFF
+    protect thin walls: ON
+    keep originals: ON
+[21:03:51] Change Part Label: changed from Wrapped_Smoothed_GreenYellow2 2 to Wrapped_0.20_x12
+
+[21:11:21] Morphology operation
+    source mask: Wrapped_0.20_x12
+    operation: Open mask
+    target mask: wrapped_open_2x8_limit
+    limited to mask: Purple2
+    number of pixels: 2
+    connectivity: 8
+
+	
+	[21:12:34] Contour Editing dialog is launched
+[21:12:47] Contour Editing dialog is closed
+[21:12:54] Object duplicated
+    name: Wrapped_0.20_x10
+[21:12:59] Contour Editing dialog is launched
+[21:14:21] Object hidden
+    name: Wrapped_0.20_x12
+[21:14:22] Object hidden
+    name: Wrapped_0.20_x10
+[21:14:50] Part contour has been changed with Grab tool
+    Edited entity: Part-43
+    Diameter, mm: 10.0000
+    Depth, mm: 10.0000
+    Cone factor: 0.0000
+[21:15:07] Contour Editing dialog is closed
+[21:15:59] Contour Editing dialog is launched
+[21:16:02] Part contour has been changed with Grab tool
+    Edited entity: Part-43
+    Diameter, mm: 10.0000
+    Depth, mm: 10.0000
+    Cone factor: 0.0000
+[21:17:16] Part contour has been changed with Grab tool
+    Edited entity: Part-43
+    Diameter, mm: 7.0000
+    Depth, mm: 6.0000
+    Cone factor: 0.0000
+[21:18:26] Contour Editing dialog is closed

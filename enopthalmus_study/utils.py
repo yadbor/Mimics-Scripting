@@ -83,6 +83,20 @@ def mask_dilate(mask, number_of_pixels = 2, connectivity = 8):
                                               target_mask_name=None, 
                                               limited_to_mask=None)
 
+## THIS IS NOT WORKING YET
+def extract_regions(mask):
+   leftovers = mimics.data.masks.duplicate(object=mask)
+   biggest = mimics.segment.keep_largest(leftovers) # first region
+   regions = [biggest]
+   leftovers = mimics.segment.boolean_operations(leftovers, biggest, operation='Minus')
+   while leftovers is not None:
+     biggest = mimics.segment.keep_largest(leftovers)
+     regions.append(biggest)
+     leftovers = mimics.segment.boolean_operations(leftovers, biggest, operation='Minus')
+
+   return regions
+
+
 ## Geometry functions
    
 from collections import namedtuple
@@ -140,6 +154,7 @@ def sphere_to_mask(s):
   mimics.move_object(part_scaled, s.center) # start from (0,0,0) so offset is just the target point
   m = mimics.segment.calculate_mask_from_part(part_scaled)
   m.name = "globe_mask"
+  mimics.data.parts.delete([part, part_scaled]) # clean up the parts that were created
   return(m)
 
 ## Functions to manipulate Bounding boxes
@@ -242,6 +257,61 @@ def mimics_basis_vectors(img):
   (i, j, k) = [v_hat(v) for v in span]
   
   return (i,j,k)
+
+def active_image():
+    '''Return the current active image, or Nothing if there are no active images.'''
+    for i in mimics.data.images:
+        if i.active:
+            return i
+
+def basis_vectors():
+  return mimics_basis_vectors(active_image())
+
+def find_spline_plane_intersections(spline, plane):
+  pt_up, pt_down = None, None
+  norm = np.array(plane.normal)
+  origin = np.array(plane.origin)
+  # The spline is a continous loop. Check if each pair of points intersects this plane
+  for p1, p2 in utils.looped_pairwise(spline.geometry_points):
+    # If this segment of spline crosses this plane then one endpoint will be above the plane and one below. 
+    p1_delta = np.array(p1) - origin
+    p2_delta = np.array(p2) - origin
+    p1_side = np.dot(p1_delta, norm)  #>0 = same side as normal pointing
+    p2_side = np.dot(p2_delta, norm)  #<0 = opposite side to normal 
+    # Most lines will not cross this plane, in which case both these will be False, so this is fast.
+    if (p1_side >= 0 and p2_side <= 0): # crosses from above
+      line_int = mimics.analyze.create_line(p1, p2) # temp line to get intersection point
+      pt_up = mimics.analyze.create_point_as_line_and_plane_intersection(line_int, plane)
+      mimics.data.lines.delete(line_int) # remove the temp line
+  
+    if (p1_side <= 0 and p2_side >= 0): # crosses from below
+      line_int = mimics.analyze.create_line(p1, p2) # temp line to get intersection point
+      pt_down = mimics.analyze.create_point_as_line_and_plane_intersection(line_int, plane)
+      mimics.data.lines.delete(line_int) # remove the temp line
+      
+    # Each segment will only cross a given plane once. Stop when have found one in each direction.
+    if (pt_up is not None) and (pt_down is not None):
+      break # We have found that line for this plane   
+  else:
+    # Fell through the loop without breaking
+    print(f"WARNING: did not find intersection for plane {plane}")
+
+  return (pt_up, pt_down)
+
+def find_extrema_points(splines, plane):
+  intersection_points = [pts for s in splines for pts in find_spline_plane_intersections(spline=s, plane=plane)]
+  intersection_array = np.array(intersection_points)
+  max_idx = np.argmax(intersection_array, axis = 0)[0] # test the X axis and only return the x index
+  min_idx = np.argmin(intersection_array, axis = 0)[0] # test the X axis and only return the x index
+  return (intersection_points[min_idx], intersection_points[max_idx])
+
+# face_pts = find_extrema_points(mimics.data.splines.filter("rim", regex=True), measure_plane)
+
+def dist_line_to_points(p, q, rs):
+    x = p-q
+    return np.linalg.norm(
+        np.outer(np.dot(rs-q, x)/np.dot(x, x), x)+q-rs,
+        axis=1)
 
 ## Miscellaneous functions.
 
