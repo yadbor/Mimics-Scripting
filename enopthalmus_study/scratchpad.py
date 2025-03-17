@@ -1,3 +1,12 @@
+import mimics
+from const import * # Safe to use * as only CONSTANT variables
+import utils
+import materials
+import numpy as np
+import re
+import os
+
+
 # The DICOM co-ordinate system is defined (for a BIPED) as patient LPS. That is:
 #    X+ to the Left hand side of the patient
 #    Y+ to the Posterior (towards the back)
@@ -258,12 +267,12 @@ mimics.segment.create_part(v,t)
 
 def spline_intercept_plane(spline_lines, plane):
     for line in spline_lines:
-		from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z]) # TODO: should this be >=
-		from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z]) # TODO: should this be =<
-		if (from_above):
-		  pt_up = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
-		if (from_below):
-		  pt_down = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
+      from_above = (line.point1[Z] > plane.origin[Z] and line.point2[Z] < plane.origin[Z]) # TODO: should this be >=
+      from_below = (line.point1[Z] < plane.origin[Z] and line.point2[Z] > plane.origin[Z]) # TODO: should this be =<
+      if (from_above):
+        pt_up = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
+      if (from_below):
+        pt_down = mimics.analyze.create_point_as_line_and_plane_intersection(line, plane)
 
 
 
@@ -899,7 +908,7 @@ def get_centre(part):
   return p1 + (span / 2)
 
 def get_sides(parts):
-  '''Given a list of 0 to 2 mimics objects return them allocated to side of the head.'''
+  '''Given a list of 0 or more mimics objects return the first 0 to 2 them allocated to side of the head.'''
   sides = {'left': None, 'right': None}
   try:
     p0 = get_centre(parts[0])[0]
@@ -996,3 +1005,50 @@ def find_eyes_loop(spheres, splines, points):
 def flatten_eyes(eyes):
   '''turn the eyes dict into a simple list of mimics objects to use with get_bounding_box().'''
   return [v for k, d in eyes.items() if k != 'num_eyes' for v in d.values()]
+
+
+def draw_bbox(bbox):
+  id = bbox.name
+  mimics.analyze.create_point(bb2.origin, name=f"{id}_origin", color=(0.3,0.7,0.8))
+  mimics.analyze.create_line(point1=bbox.origin, point2=np.array(bbox.origin) + np.array(bbox.first_vector), name=f"{id}_first")
+  mimics.analyze.create_line(point1=bbox.origin, point2=np.array(bbox.origin) + np.array(bbox.second_vector), name=f"{id}_second")
+  mimics.analyze.create_line(point1=bbox.origin, point2=np.array(bbox.origin) + np.array(bbox.third_vector), name=f"{id}_third")
+
+
+  # manual BB
+# [18:10:26] Crop mask
+#     Corner 1: [-41.6953, 21.5672, 77.2996]
+#     Corner 2: [76.6641, -104.9953, 148.8985]
+# bb from eyes
+# [18:08:11] <mimics.BoundingBox3d((-35.107398986816406, -43.477662086486816, 104.1532974243164), (102.0990982055664, 9.5367431640625e-07, 0.0), (0.0, 52.631205558776855, 0.0), (0.0, 9.5367431640625e-07, 37.191200256347656))>
+# [18:13:30] ››› utils.bbox_to_points(bb)
+# [18:13:30] ((-35.107398986816406, -43.477662086486816, 104.1532974243164), (66.99169921875, 9.153545379638672, 141.34449768066406))
+
+
+def dice_mask(mask):
+  del_list = list()
+  mask_list = [mask]
+  all = mimics.data.masks.duplicate(mask)
+  for i in range(5):
+    big = mimics.segment.keep_largest(mimics.data.masks.duplicate(all))
+    big.name = f"mask_{i}"
+    mask_list.append(big)
+    rest = mimics.segment.boolean_operations(all, big, operation='Minus')
+    rest.name = "rest"
+    del_list.append(all)
+    all = rest 
+  mimics.data.masks.delete(del_list)  
+  return mask_list
+
+def boolean_list(mask_list, op="Unite"):
+    del_list = list()
+    mask_a = mask_list[0]
+    for mask_b in mask_list[1:]:
+        mask_a = mimics.segment.boolean_operations(mask_a=mask_a, mask_b=mask_b, operation=op)
+        del_list.append(mask_a)
+
+    del del_list[-1]
+    for m in del_list:
+        mimics.data.masks.delete(m)
+
+    return mask_a
